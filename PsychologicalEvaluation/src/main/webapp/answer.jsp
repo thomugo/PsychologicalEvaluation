@@ -17,9 +17,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
+	<meta name="viewport" content="width=device-width,initial-scale=1"> 
 	<script type="text/javascript" src="js/json2.js"></script>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/answer.js"></script>
+	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/answer.css" />
+	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/style.css" />
   </head>
   
   <body>

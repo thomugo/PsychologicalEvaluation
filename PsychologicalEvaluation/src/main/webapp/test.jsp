@@ -17,19 +17,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
+	<link rel="stylesheet" type="text/css" href="<%=path %>/styles/style.css"/>
+	<link rel="stylesheet" type="text/css" href="<%=path %>/styles/test.css"/>
 	<script type="text/javascript" src="js/json2.js"></script>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/answer.js"></script>
   </head>
   
   <body>
-  	<%-- <h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3> --%>
-  	<h1><s:property value="questionaire.title"/></h1>
+  	  	<div class="top">
+  				  测一测
+    		  	<div class="user">
+    		  		<a href="${ pageContext.request.contextPath }/index.jsp">返回主页</a>
+				</div>
+    	</div>
   	<s:div id="questionaire" name="%{questionaire.id}">
-  	<h2>选择题</h2></br>
+  	<h2>选择题</h2>
   		<s:iterator value="choiceQuestions"  var="choiceQuestion">
   			<div class="choiceQuestions">
-		  			<s:property value="#choiceQuestion.content" /></br>
+		  			<s:property value="#choiceQuestion.content" />
 		  			<s:iterator value="%{#choiceQuestion.options}" var="option">
 		  				<div class="options">
 		  						<s:checkbox  name="optionValue" fieldValue="%{#option.id}"  id="%{#choiceQuestion.id}" />
@@ -40,10 +46,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  	</div>
   		</s:iterator> 
   		
-  	<h2>判断题</h2></br>
+  	<h2>判断题</h2>
   		<s:iterator value="trueFalseQuestions"  var="trueFalseQuestion">
 	  		<div class="trueFalseQuestions">
-	  			<s:property value="#trueFalseQuestion.content"/></br>
+	  			<s:property value="#trueFalseQuestion.content"/>
 	  			<s:radio list="#{'1' : '是','0' : '否'}" id="%{#trueFalseQuestion.id}"  name="%{#trueFalseQuestion.id}" class="radio"></s:radio>
 	  			</br></br>
 	  		</div>
@@ -51,6 +57,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		
   		<button id="save">save</button>
   	</s:div>
-  	<s:debug></s:debug>
   </body>
 </html>

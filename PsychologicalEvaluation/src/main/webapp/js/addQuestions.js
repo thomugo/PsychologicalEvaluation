@@ -4,9 +4,11 @@ $(document).ready(
 				$("#addquestion1").click(function() {
 					//alert("addquestion");
 					$("#question").append("<div class='choicequestion'>"
-																+ "<input type='text'  class='question'>question<br/>"
+																+ "<label>问题</label>"
+																+ "<input type='text'  class='question'><br/>"
 																+ "<div class='choiceoption'>"
-																	+ "<input type='text'  class='option' >option"
+																+ "<label>选项</label>"
+																+ "<input type='text'  class='option' >"
 																+ "</div>"
 																+ "<button class='addoption'>添加选项</button>"
 														+ "</div>");
@@ -17,7 +19,7 @@ $(document).ready(
 				    $('.addoption').each(function(i){
 				        this.onclick=function(){
 				            //alert(i);
-				            $(this).siblings("div").append("<input type='text' class='option' >option");
+				            $(this).siblings("div").append("<label>选项</label><input type='text' class='option'>");
 				        };
 				    });
 				}
@@ -26,7 +28,7 @@ $(document).ready(
 			
 				$("#save").click(function(){ 
 						var questionNum = $(".choicequestion").length;
-						alert("questionNum: "+questionNum);
+						alert("题数: "+questionNum);
 						var questions = new Array();
 					
 						for(var i=0; i<questionNum; i++)

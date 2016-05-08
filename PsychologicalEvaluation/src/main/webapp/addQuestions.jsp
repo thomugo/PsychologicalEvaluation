@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'index.jsp' starting page</title>
+    <title>制作问卷</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -20,20 +20,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="js/json2.js"></script>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/addQuestions.js"></script>
+	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/addQuestions.css" />
+	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/style.css" />
   </head>
   
   <body>
-    This is test page<br/>
+    <div class='top'>添加问题</div>
     <div id="question">
 	    <div class="choicequestion">
-	    	<input type="text"  class="question">question<br/>
+	    	<label>问题</label>
+	    	<input type="text"  class="question"><br/>
 	    	<div class="choiceoption">
-	   	 		<input type="text"  class="option" >option
+	    		<label>选项</label>
+	   	 		<input type="text"  class="option" >
 	   	 	</div>
-	  		<button class="addoption">添加选项</button>
+	  		<button class="addoption">添加选项</button><br />
+	  		<button id="addquestion1">添加问题</button>
+  		   
 	  	</div>
+ 			
   	</div>
-  	<button id="addquestion1">添加问题</button><br/>
-  	<button id="save" >保存</button>
+			<button id="save" >保存</button>
   </body>
 </html>
