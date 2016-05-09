@@ -22,6 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<link rel="stylesheet" type="text/css" href="<%=path %>/styles/listUser.css">
 	<link rel="stylesheet" type="text/css" href="<%=path %>/styles/style.css">
+	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/bootstrap.min.css" />
 
   </head>
   

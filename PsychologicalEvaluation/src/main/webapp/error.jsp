@@ -14,6 +14,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1"> 
 	<link rel="stylesheet" type="text/css" href="styles/style.css" />
 	<link rel="stylesheet" type="text/css" href="styles/error.css" />
+	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/bootstrap.min.css" />
   </head>
   
   <body>
