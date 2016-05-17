@@ -4,9 +4,9 @@ $(document).ready(function() {
 				$("#addquestion1").click(function() {
 					//alert("addquestion");
 					$("#question1").append("<div class='choicequestion'>"
-								+ "<input type='text'  class='question1'>question<br/>"
+								+ "<input type='text'  class='question1'>问题<br/>"
 									+ "<div class='choiceoption'>"
-										+ "<input type='text'  class='option' >option"
+										+ "<input type='text'  class='option' >选项"
 									+ "</div>"
 								+ "<button class='addoption'>添加选项</button>"
 								+ "</div>");
@@ -16,7 +16,7 @@ $(document).ready(function() {
 				$("#addquestion2").click(function() {
 					//alert("addquestion2");
 					$("#question2").append("<div class='truefalsequestion'>"
-							+ "<input type='text'  class='question2'>question<br/>"
+							+ "<input type='text'  class='question2'>问题<br/>"
 							/*+ "<div class='options'>"
 			   	 				+ "<input type='text'  class='option' >option1"
 			   	 				+ "<input type='text'  class='option' >option2"
@@ -32,7 +32,7 @@ $(document).ready(function() {
 				    $('.addoption').each(function(i){
 				        this.onclick=function(){
 				            //alert(i);
-				            $(this).siblings("div").append("<input type='text' class='option' >option");
+				            $(this).siblings("div").append("<input type='text' class='option' >选项");
 				        };
 				    });
 				}
@@ -158,8 +158,3 @@ $(document).ready(function() {
 				
 				
 });
-
-/*function ajaxTransferObject(choice_question, options) {
-	this.choice_question = choice_question;
-	this.options = options;
-}*/

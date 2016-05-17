@@ -11,27 +11,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>psychological evaluation</title>
+    <title>心理测试</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<link rel="stylesheet" type="text/css" href="<%=path %>/styles/style.css"/>
-	<link rel="stylesheet" type="text/css" href="<%=path %>/styles/test.css"/>
-	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/bootstrap.min.css" />
-	<script type="text/javascript" src="js/json2.js"></script>
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/answer.js"></script>
+	<meta name="viewport" content="width=device-width,initial-scale=1"> 
+	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/reset.css">
+	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/custom.css">
+	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/dialog.css">
   </head>
   
   <body>
-  	  	<div class="top">
-  				  测一测
-    		  	<div class="user">
-    		  		<a href="${ pageContext.request.contextPath }/index.jsp">返回主页</a>
+  <header>
+			<div role="navigation" class="navbar navbar-default topnav">
+				<div class="container">
+					<div class="navbar-header">
+			            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			              <span class="sr-only">Toggle navigation</span>
+			              <span class="icon-bar"></span>
+			              <span class="icon-bar"></span>
+			              <span class="icon-bar"></span>
+			            </button>
+			            <a href="index.jsp" class="navbar-brand">心理测评</a>
+			        </div>
+					<div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+							<li class="" id="index-li"><a href="index.jsp">首页</a></li>
+						</ul>
+						<div class="navbar-right">
+							<ul class="nav navbar-nav">									
+										<li class="" id="index-li"><a href="index.jsp">返回主页</a></li>			
+							</ul>
+						</div>
+					</div>
 				</div>
-    	</div>
+			</div>
+		</header>
   	<s:div id="questionaire" name="%{questionaire.id}">
   	<h2>选择题</h2>
   		<s:iterator value="choiceQuestions"  var="choiceQuestion">
@@ -56,7 +74,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		</div>
   		</s:iterator> 	
   		
-  		<button id="save">save</button>
+  		<button id="save">查看结果</button>
   	</s:div>
+  	
+    <footer>
+        <div class="container">
+            <p><strong>试手</strong> &copy; 2016 All Rights Reserved <a class="links" href="user/adminLogin.jsp">进入后台</a></p>
+        </div>
+    </footer>  	
   </body>
 </html>

@@ -6,7 +6,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 <html>
 <head>
 <base href="<%=basePath%>">
@@ -18,13 +18,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="keywords" content="微信公众号，心理测评">
 <meta name="format-detection" content="telephone=no">
 <meta name="format-detection" content="address=no">
-
 	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/reset.css">
 	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/custom.css">
 	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/dialog.css">
-	
-  </head>
+<!--[if lt IE 9]>
+    <script src="js/html5.js"></script>
+<![endif]-->
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>	
+</head>
   
 <body>
 	<div class="main-container">
@@ -43,8 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div id="navbar" class="navbar-collapse collapse">
 						<div class="navbar-right">
 							<ul class="nav navbar-nav">										
-									
-									    <li class="" id="login-li"><a href="index.jsp">返回主页</a></li>															
+								 <li class="" id="index-li"><a href="index.jsp">返回主页</a></li>															
 							</ul>
 						</div>
 					</div>
@@ -56,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="col-xs-12">
 		<div class="login-wrapper">
 			<div class="col-xs-12 col-sm-10 col-md-10">
-				<form class="form-horizontal" role="form" method="post" action="adminlogin.do" id="admin-login-form">
+				<form class="form-horizontal" role="form" method="post" action="adminlogin.do"  id="admin-login-form"> 
 					<div class="form-group">
 						<div class="col-md-offset-2">
 							<h1>管理员登录</h1>
@@ -70,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                         <div class="col-md-4">
                         
-                    	<div class="alert alert-danger hidden" role="alert" id="alert-login-username">
+                    		<div class="alert alert-danger hidden" role="alert" id="alert-login-username">
 	                    		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;&nbsp;
 	                    		<span id="alert-login-username-message"></span>
 	                    	</div>
@@ -78,6 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    	<div class="alert hidden" role="alert" id="alert-login-username-ok"></div>
 	                    </div>
                     </div>
+                    
                     <div class="form-group">
                         <label for="login-password" class="col-md-4 control-label">密码</label>
                         <div class="col-md-4">
@@ -107,8 +110,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 </div>
 
-        </div>
-    </div>
     <footer>
         <div class="container">
             <p><strong>试手</strong> &copy; 2016 All Rights Reserved </p>
