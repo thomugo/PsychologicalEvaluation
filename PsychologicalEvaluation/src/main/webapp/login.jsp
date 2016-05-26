@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'index.jsp' starting page</title>
+    <title> Login Page</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -21,12 +21,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
-  	<s:if test="#loginUser empty">ddd</s:if>
-  	<a href="${ pageContext.request.contextPath }/user.action">user</a>
-  	<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
-    This is my  index JSP page. <br/>
-    Home Page!!!
-  	<s:debug></s:debug>
+    This is my Login Page. <br/>
+    <s:fielderror></s:fielderror>
+    <s:actionerror/>
+   <s:form action="/login.action" method="post">
+    	<s:textfield name="username" label="username"></s:textfield>
+    	<br/>
+    	<s:textfield name="password" label="password"></s:textfield>
+    	<br/>
+    	<s:submit value="submit"></s:submit>
+    </s:form>
   </body>
 </html>

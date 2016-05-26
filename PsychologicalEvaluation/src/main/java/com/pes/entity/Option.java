@@ -21,6 +21,7 @@ public class Option implements Serializable{
 	private Integer id;
 	private ChoiceQuestion question;
 	private String content;
+	private Integer score;
 	public Option() {
 		// TODO Auto-generated constructor stub
 	}
@@ -38,7 +39,14 @@ public class Option implements Serializable{
 		this.id = id;
 	}
 	
-
+	
+	@Column(name="score")
+	public Integer getScore() {
+		return score;
+	}
+	public void setScore(Integer score) {
+		this.score = score;
+	}
 	@Column(name="content")
 	public String getContent() {
 		return content;

@@ -20,6 +20,7 @@ public class TrueFalseQuestion implements Serializable{
 	private Category category;
 	private Questionaire questionaire;
 	private String content;
+	private Integer score;
 	public TrueFalseQuestion(String content) {
 		// TODO Auto-generated constructor stub
 		this.content = content;
@@ -59,6 +60,14 @@ public class TrueFalseQuestion implements Serializable{
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	
+	@Column(name="Score")
+	public Integer getScore() {
+		return score;
+	}
+	public void setScore(Integer score) {
+		this.score = score;
 	}
 	@Override
 	public String toString() {

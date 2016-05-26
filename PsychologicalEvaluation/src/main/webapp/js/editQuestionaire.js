@@ -7,6 +7,7 @@ $(document).ready(function() {
 								+ "<input type='text'  class='question1'>question<br/>"
 									+ "<div class='choiceoption'>"
 										+ "<input type='text'  class='option' >option"
+										+ "<input type='text'  class='score' >score"
 									+ "</div>"
 								+ "<button class='addoption'>添加选项</button>"
 								+ "</div>");
@@ -17,6 +18,7 @@ $(document).ready(function() {
 					//alert("addquestion2");
 					$("#question2").append("<div class='truefalsequestion'>"
 							+ "<input type='text'  class='question2'>question<br/>"
+							+ "<input type='text'  class='score'>score<br/>"
 							/*+ "<div class='options'>"
 			   	 				+ "<input type='text'  class='option' >option1"
 			   	 				+ "<input type='text'  class='option' >option2"
@@ -32,7 +34,7 @@ $(document).ready(function() {
 				    $('.addoption').each(function(i){
 				        this.onclick=function(){
 				            //alert(i);
-				            $(this).siblings("div").append("<input type='text' class='option' >option");
+				            $(this).siblings("div").append("<input type='text' class='option' >option<input type='text'  class='score' >score");
 				        };
 				    });
 				}
@@ -106,9 +108,11 @@ $(document).ready(function() {
 						//遍历判断题
 						for(var i=0; i<question2Num; i++)
 						{
+							var map2={};
 							//alert("judge start");
 							//取得判断题问题
 						 	question2 =  $(".question2").eq(i).val();
+						 	score2 =  $(".score2").eq(i).val();
 						 	//去除前后空格
 						 	question2 = $.trim(question2);
 						 	if(question2.length == 0)
@@ -136,8 +140,9 @@ $(document).ready(function() {
 						 		alert(options);
 						 		-------------------------------------------
 						 		*/
-						 		
-						 		trueFalseQuestions [i] = question2;
+						 	map2["question"] = question2;
+						 	map2["score"] = score2;
+						 	trueFalseQuestions [i] = map2;
 						}
 						
 						
@@ -150,8 +155,8 @@ $(document).ready(function() {
 						//用ajax请求服务器保存数据
 						var jsonString = JSON.stringify(questionaire);
 						$.post("editQuestionaire.action", {"jsonString" : jsonString},
-								function (){ 
-									alert("edit succeed"); 
+								function (result){ 
+									alert(result); 
 						}); 
 					}
 			});

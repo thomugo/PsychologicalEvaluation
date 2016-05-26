@@ -18,6 +18,7 @@ import java.util.Set;
 
 
 
+
 import javax.faces.component.EditableValueHolder;
 
 import org.apache.log4j.Logger;
@@ -25,6 +26,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.ChildBeanDefinition;
 import org.springframework.test.context.transaction.AfterTransaction;
 import org.springframework.test.context.transaction.BeforeTransaction;
 
@@ -192,6 +194,25 @@ public class TestQuestionaireService extends BaseTestTemplate{
     	optionService.save(option1);
     	optionService.save(option2);
     	
+    }
+    @Test
+    public void score(){
+    	ChoiceQuestion question1 = new ChoiceQuestion("test question1");
+    	Option option1 = new Option("option1");
+    	option1.setScore(22);
+    	ChoiceQuestion question2 = new ChoiceQuestion("test question2");
+    	Option option2 = new Option("option2");
+    	option2.setScore(11);
+    	Option option3 = new Option("option3");
+    	option3.setScore(12);
+    	option1.setQuestion(question1);
+		question1.getOptions().add(option1);
+		option2.setQuestion(question2);
+		question2.getOptions().add(option2);
+		option3.setQuestion(question2);
+		question2.getOptions().add(option3);
+		choiceQuestionService.save(question1);
+		choiceQuestionService.save(question2);
     }
     @Test
     public void init()

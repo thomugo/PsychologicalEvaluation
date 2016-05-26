@@ -25,21 +25,21 @@ public class TestAction extends BaseAction{
 	private Set<ChoiceQuestion> choiceQuestions = new HashSet<ChoiceQuestion>();
 	private Set<TrueFalseQuestion> trueFalseQuestions = new HashSet<TrueFalseQuestion>();
 	
-
 	public Questionaire getQuestionaire() {
 		return questionaire;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public Set<ChoiceQuestion> getChoiceQuestions() {
 		return choiceQuestions;
 	}
 
-
 	public Set<TrueFalseQuestion> getTrueFalseQuestions() {
 		return trueFalseQuestions;
 	}
-
 
 	@Override
 	public String execute() throws Exception {

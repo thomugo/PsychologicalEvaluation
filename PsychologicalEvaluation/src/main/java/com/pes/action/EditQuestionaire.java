@@ -19,6 +19,7 @@ import com.pes.interceptor.Authority;
 import com.pes.service.ChoiceQuestionService;
 import com.pes.service.QuestionaireService;
 import com.pes.service.TrueFalseQuestionService;
+import com.pes.util.AjaxUtil;
 
 @ParentPackage("myBasicPackage")
 @Action(value = "editQuestionaire")
@@ -44,7 +45,7 @@ public class EditQuestionaire extends ActionSupport {
 	}
 
 	@Override
-	@Authority(actionName="NormalUser", privilege=2)
+	@Authority(privilege=2)
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println(jsonString);
@@ -63,9 +64,10 @@ public class EditQuestionaire extends ActionSupport {
 			ChoiceQuestion choiceQuestion = new ChoiceQuestion(question_content);
 			String[] options = question.getString("options").split(",");
 			// 遍历options
-			for (int j = 0; j < options.length; j++) {
+			for (int j = 0; j < options.length; j=j+2) {
 				Option option = new Option(options[j]);
-				System.out.println(options[j]);
+				System.out.println(options[j]+":" + options[j+1]);
+				option.setScore(Integer.parseInt(options[j+1]));
 				// 建立关联
 				option.setQuestion(choiceQuestion);
 				choiceQuestion.getOptions().add(option);
@@ -79,13 +81,20 @@ public class EditQuestionaire extends ActionSupport {
 		// 取得判断题并保存
 		// 取得所有选择题并保存
 		for (int i = 0; i < judgeList.size(); i++) {
-			String question_content = judgeList.getString(i);
+			JSONObject question = judgeList.getJSONObject(i);
+			String question_content = question.getString("question");
+			String score = question.getString("score");
 			System.out.println("TrueFalseQuestion=" + question_content);
-			TrueFalseQuestion question = new TrueFalseQuestion(question_content);
-			question.setQuestionaire(questionaire);
-			trueFalseQuestionService.save(question);
-			trueFalseQuestions.add(question);
+			System.out.println("truefalsequestion score:" + score);
+			TrueFalseQuestion true_false_question = new TrueFalseQuestion(question_content);
+			true_false_question.setScore(Integer.parseInt(score));
+			true_false_question.setQuestionaire(questionaire);
+			trueFalseQuestionService.save(true_false_question);
+			trueFalseQuestions.add(true_false_question);
 		}
+		System.out.println("save true false questions over");
+		AjaxUtil.ajaxJSONResponse("success");
+		System.out.println("edit success");
 		return NONE;
 	}
 }

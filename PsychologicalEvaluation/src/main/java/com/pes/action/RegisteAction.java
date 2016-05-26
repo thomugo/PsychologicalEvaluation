@@ -15,7 +15,7 @@ import com.pes.util.AjaxUtil;
 
 
 @Results( {
-        @Result(name = "success", location = "/user/userinfo.jsp"),
+        @Result(name = "success", location = "/index.jsp"),
         @Result(name = "input", location = "/user/registe.jsp")
     })
 public class RegisteAction extends BaseAction implements ModelDriven<User>{

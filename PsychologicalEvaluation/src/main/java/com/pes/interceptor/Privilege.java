@@ -64,31 +64,20 @@ public class Privilege extends AbstractInterceptor{
 	            //获取权限校验的注解
 	            Authority authority = currentMethod.getAnnotation(Authority.class);
 	            //获取当前请求的注解的actionName   
-	            String actionName = authority.actionName();
+	            //String actionName = authority.actionName();
 	            //获取当前请求需要的权限   
 	            int privilege = authority.privilege();
 	            
-	            System.out.println("annotation actionName: " + actionName);
+	            //System.out.println("annotation actionName: " + actionName);
 	            System.out.println("annotation privilege: " + privilege);
 	            System.out.println("user:  "+ user.getPrivilege());
 	            System.out.println("username " + user.getUsername());
-	            //具有管理员权限
-	            if(actionName.equals("Admin") && privilege==user.getPrivilege()){
+	            //权限检查
+	            if(privilege >= user.getPrivilege()){
 	            	System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++");   
-		            System.out.println("客户" + user.getUsername() + "在" + new Date() + "执行了" + actionName+"方法，拥有"+privilege+"权限！！");   
+		            System.out.println("客户" + user.getUsername() + "在" + new Date() + "执行了" + methodName+"方法，拥有"+privilege+"权限！！");   
 		            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++");   
 	            	return invocation.invoke();
-	            }
-	            //具有普通用户权限
-	            if(actionName.equals( "NormalUser"))
-	            {
-	            	System.out.println("actionName: " + actionName);
-	            	if(privilege >= user.getPrivilege()){
-	            		System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++");   
-			            System.out.println("客户" + user.getUsername() + "在" + new Date() + "执行了" + actionName+"方法，拥有"+privilege+"权限！！");   
-			            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++");   
-		            	return invocation.invoke();
-	            	}
 	            }
 	            
 				return "error";//无访问权限

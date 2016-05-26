@@ -59,5 +59,11 @@ public class User extends BaseUser implements Serializable{
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
+
+	@Override
+	public String toString() {
+		return "User [gender=" + gender + ", age=" + age + ", vocation="
+				+ vocation + ", phone=" + phone + ", regdate=" + regdate + "]";
+	}
 	
 }

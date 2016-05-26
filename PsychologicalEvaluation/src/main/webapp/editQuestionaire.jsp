@@ -32,6 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    	<input type="text"  class="question1">question<br/>
 		    	<div class="choiceoption">
 		   	 		<input type="text"  class="option" >option
+		   	 		<input type="text"  class="score" >分数
 		   	 	</div>
 		  		<button class="addoption">添加选项</button>
 		  	</div>
@@ -42,6 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  	<div id="question2">
 		  	<div class="truefalsequestion">
 		    	<input type="text"  class="question2">question<br/>
+		    	<input type="text"  class="score2">score<br/>
 		    	<!-- <div class="options">
 		   	 		<input type="text"  class="option" >option1
 		   	 		<input type="text"  class="option" >option2

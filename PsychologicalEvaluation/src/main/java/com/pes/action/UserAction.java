@@ -1,6 +1,7 @@
 package com.pes.action;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -17,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import sun.tools.tree.ThisExpression;
 
+import com.alibaba.fastjson.JSONObject;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.validator.annotations.EmailValidator;
@@ -38,15 +41,40 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	private static final Logger LOGGER = Logger.getLogger(UserAction.class);
 	@Autowired
 	private UserService userService;
-	int pageSize ;
-	int totalPages ;
-	private User user = new User();
+	private int id;
+	private int pageSize = 5 ;
+	private int totalPages  = 0;
+	private int pageNum = 0;
+	private String jsonString;
+	private User user = null;
 	private List<User> users = new ArrayList<User>();
 	
+	public int getPageNum() {
+		return pageNum;
+	}
+
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
+	}
+
+	public String getJsonString() {
+		return jsonString;
+	}
+
+	public void setJsonString(String jsonString) {
+		this.jsonString = jsonString;
+	}
+
 	@Override
+	@Action(value="user", results={
+			@Result(name="userinfo", location="/user/userinfo.jsp")
+			})
 	public String execute() throws Exception {
-		System.out.println("in user.action ");
-		return "index";
+		user = (User) this.httpSession.getAttribute("loginUser");
+		System.out.println("login user infomation: ");
+		System.out.println(user);
+		ActionContext.getContext().getValueStack().push(user);
+		return "userinfo";
 	}
 	
 	@Action(value="detail", results={
@@ -62,14 +90,40 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	})
 	public String getAllUsers(){
 		//List<User> users = userService.findAll();
-		pageSize=5;
+		JSONObject json = JSONObject.parseObject(jsonString);
+		if(json != null){
+			pageNum = json.getInteger("pageNum");
+			pageSize = json.getInteger("pageSize");
+		}
 		totalPages = userService.getMaxPageNo(pageSize);
-		//int rows = userService.getTotalRows();
 		System.out.println("totalPages: " + totalPages);
 		System.out.println("pageSize: " + pageSize);
-		users = userService.findByPage(1, pageSize);
-		//AjaxUtil.ajaxJSONResponse(users);
+		users = userService.findByPage(pageNum, pageSize);
+		System.out.println("find "+users.size()+"users");
+		if(json != null)
+			AjaxUtil.ajaxJSONResponse(users);
 		return "users";
+	}
+	
+	@Action(value="deleteUser")
+	public String deleteUser(){
+		//JSONObject json = JSONObject.parseObject(jsonString);
+		//id = json.getInteger("id");
+		id = Integer.parseInt(httpServletRequest.getParameter("id"));
+		User user = userService.findById(id);
+		userService.remove(user);
+		System.out.println("delete User "+id);
+		System.out.println("pageNum:" + pageNum+" pageSize: " + pageSize);
+		users = userService.findByPage(pageNum, pageSize);
+		AjaxUtil.ajaxJSONResponse(users);
+		return NONE;
+	}
+	@Action(value="modifyUser")
+	public String modifyUser(){
+		userService.modify(user);
+		this.httpSession.setAttribute("loginUser", user);
+		//AjaxUtil.ajaxJSONResponse(userInfo);
+		return "success";
 	}
 	
 	@Action(value="logout", results={

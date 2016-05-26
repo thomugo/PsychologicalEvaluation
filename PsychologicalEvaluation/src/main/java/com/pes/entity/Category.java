@@ -20,8 +20,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
-
-
 @Entity
 @Table(name="question_cate" , catalog="pes")
 public class Category implements Serializable{
