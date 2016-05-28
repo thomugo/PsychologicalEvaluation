@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'userinfo.jsp' starting page</title>
+    <title>管理中心</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -22,14 +22,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="js/json2.js"></script>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/user.js"></script>
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	<link rel="stylesheet" type="text/css" href="<%=path %>/styles/listUser.css">
+	<link rel="stylesheet" type="text/css" href="<%=path %>/styles/style.css">
+	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/bootstrap.min.css" />
 
   </head>
   
   <body>
-   <a href="${ pageContext.request.contextPath }/listUser.action"> 用户列表</a><br/> 
+   <!--  <a href="${ pageContext.request.contextPath }/listUser.action"> 用户中心</a><br/> -->
+     	<div class="top">
+  				用户中心
+    		  	<div class="user">
+  					<a href="${ pageContext.request.contextPath }/index.jsp">返回主页</a>
+				</div>
+    	</div>
 	<table>
 	<tr>
 		<th>ID</th>
@@ -57,5 +63,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<button id="prepage">上一页</button>第<span id="num"><s:property value="pageNum" /></span>/<span id="total"><s:property value="totalPages"/></span>  页<button id="nextpage">下一页</button><br/>
 	<s:debug/>
 	<text id="pageSize"><s:property value="pageSize" /></text>
+
   </body>
 </html>

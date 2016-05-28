@@ -2,23 +2,34 @@ var save = true;
 $(document).ready(function() {
 				//添加选择题
 				$("#addquestion1").click(function() {
-					//alert("addquestion");
-					$("#question1").append("<div class='choicequestion'>"
-								+ "<input type='text'  class='question1'>question<br/>"
-									+ "<div class='choiceoption'>"
-										+ "<input type='text'  class='option' >option"
-										+ "<input type='text'  class='score' >score"
-									+ "</div>"
-								+ "<button class='addoption'>添加选项</button>"
-								+ "</div>");
+					$("#sample-form").append("<div class='choicequestion'>"
+												+"<div class='form-group has-success'>"
+												+"<hr/>"
+												+"<label class=' col-sm-3 control-label no-padding-right'>问题</label>"
+												+"<div class=' col-sm-5'>"
+												+"<span class='block input-icon input-icon-right'>"
+												+"<input type='text' class='width-100'/>"
+												+"</span>"
+												+"</div>"
+												+"</div>"
+												+"<div class=''>"
+												+"<div class='mystyle'>"
+												+"<span>选项</span>"
+												
+												+"<input type='text' style='width:267px;'/>"
+												+"<input type='text' style='width:45px;font-size:14px;' class='fenzhi' placeholder='分值'/>"
+												+"<button class='btn addoption'>添加选项"
+												+"</div>"
+												
+												+"</button>"
+												+"</div>"
+												+"</div>");
 					});
 				
 				//添加判读题
 				$("#addquestion2").click(function() {
-					//alert("addquestion2");
 					$("#question2").append("<div class='truefalsequestion'>"
-							+ "<input type='text'  class='question2'>question<br/>"
-							+ "<input type='text'  class='score'>score<br/>"
+							+ "<input type='text'  class='question2'>问题<br/>"
 							/*+ "<div class='options'>"
 			   	 				+ "<input type='text'  class='option' >option1"
 			   	 				+ "<input type='text'  class='option' >option2"
@@ -33,8 +44,16 @@ $(document).ready(function() {
 				function add(){
 				    $('.addoption').each(function(i){
 				        this.onclick=function(){
-				            //alert(i);
-				            $(this).siblings("div").append("<input type='text' class='option' >option<input type='text'  class='score' >score");
+				            $(this).parent().parent().append("<div class='mystyle'>"
+				            								+"<span>"
+				            								+"选项"
+				            								+"</span>"
+															
+															+"<input type='text' style='width:267px;'>"
+															+"<input type='text' style='width:45px;font-size:14px;' class='fenzhi' placeholder='分值'/>"
+															+"</div>"
+															
+															+"</div>");
 				        };
 				    });
 				}
@@ -45,17 +64,17 @@ $(document).ready(function() {
 				
 						//选择题数目
 						var question1Num = $(".choicequestion").length;
-						alert("choicequestionNum: "+question1Num);
+						alert("选择题: "+question1Num);
 						//判断题数目
 						var question2Num = $(".truefalsequestion").length;
-						alert("judgequestionNum:"+question2Num);
+						alert("判断题:"+question2Num);
 						var questionaire = {};
 						var choiceQuestions = new Array();
 						var trueFalseQuestions = new Array();
 						
 						//取得试卷题目
 						var title =  $("#title").val();
-						//alert($("#title").length);
+
 					 	//去除前后空格
 					 	title = $.trim(title);
 					 	if(title.length == 0)
@@ -86,7 +105,6 @@ $(document).ready(function() {
 						 	
 						 	var options = $(".choiceoption").eq(i).children().map(function() {
 						 			option = $.trim(this.value);
-						 			//alert("option="+option.length);
 						 			if(option.length == 0)
 						 				{
 						 					//标记置空
@@ -101,15 +119,12 @@ $(document).ready(function() {
 						 	map1["question"] = question1;
 						 	map1["options"] = options;
 						 	choiceQuestions[i] = map1;
-						 	//alert("choice over");
 						}
 						
 						
 						//遍历判断题
 						for(var i=0; i<question2Num; i++)
 						{
-							var map2={};
-							//alert("judge start");
 							//取得判断题问题
 						 	question2 =  $(".question2").eq(i).val();
 						 	score2 =  $(".score2").eq(i).val();
@@ -123,26 +138,7 @@ $(document).ready(function() {
 						 			//设置焦点
 						 			$(".question2").eq(i).focus().select();
 						 		}
-						 	//取得判断题选项--------------------------
-						 	/*var options = $(".options").eq(i).children().map(function() {
-					 			option = $.trim(this.value);
-					 			//alert("option="+option.length);
-					 			if(option.length == 0)
-					 				{
-					 					//标记置空
-					 					save = false;
-					 					alert("选项不能为空！！！");
-					 					//设置焦点
-					 					this.focus().select();
-					 				}
-					 			return option;
-					 	  	}).get().join(',');
-						 		alert(options);
-						 		-------------------------------------------
-						 		*/
-						 	map2["question"] = question2;
-						 	map2["score"] = score2;
-						 	trueFalseQuestions [i] = map2;
+						 		trueFalseQuestions [i] = question2;
 						}
 						
 						
@@ -155,16 +151,11 @@ $(document).ready(function() {
 						//用ajax请求服务器保存数据
 						var jsonString = JSON.stringify(questionaire);
 						$.post("editQuestionaire.action", {"jsonString" : jsonString},
-								function (result){ 
-									alert(result); 
+								function (){ 
+									alert("编辑成功"); 
 						}); 
 					}
 			});
 				
 				
 });
-
-/*function ajaxTransferObject(choice_question, options) {
-	this.choice_question = choice_question;
-	this.options = options;
-}*/
