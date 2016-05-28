@@ -1,0 +1,83 @@
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:49] org.springframework.test.context.support.AbstractTestContextBootstrapper.getDefaultTestExecutionListenerClassNames(256) | Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:49] org.springframework.test.context.support.AbstractTestContextBootstrapper.getTestExecutionListeners(182) | Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@15d3402, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@1565ec2, org.springframework.test.context.support.DirtiesContextTestExecutionListener@2f8f11, org.springframework.test.context.transaction.TransactionalTestExecutionListener@193948d, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@1604f19]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:49] org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(317) | Loading XML bean definitions from class path resource [spring.xml]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:49] org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(317) | Loading XML bean definitions from class path resource [spring-hibernate.xml]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:50] org.springframework.context.support.AbstractApplicationContext.prepareRefresh(510) | Refreshing org.springframework.context.support.GenericApplicationContext@85bdee: startup date [Wed May 25 21:16:50 CST 2016]; root of context hierarchy
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:50] org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(172) | Loading properties file from class path resource [config.properties]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:50] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(153) | JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:50] com.alibaba.druid.pool.DruidDataSource.init(669) | {dataSource-1} inited
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:51] org.hibernate.annotations.common.reflection.java.JavaReflectionManager.<clinit>(66) | HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:51] org.hibernate.Version.logVersion(54) | HHH000412: Hibernate Core {4.3.8.Final}
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:51] org.hibernate.cfg.Environment.<clinit>(239) | HHH000206: hibernate.properties not found
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:51] org.hibernate.cfg.Environment.buildBytecodeProvider(346) | HHH000021: Bytecode provider name : javassist
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:52] org.hibernate.dialect.Dialect.<init>(145) | HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:53] org.hibernate.engine.transaction.internal.TransactionFactoryInitiator.initiateService(62) | HHH000399: Using default transaction strategy (direct JDBC transactions)
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:53] org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory.<init>(47) | HHH000397: Using ASTQueryTranslatorFactory
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(207) | HHH000228: Running hbm2ddl schema update
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(218) | HHH000102: Fetching database metadata
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(230) | HHH000396: Updating schema
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(66) | HHH000261: Table found: pes.admin
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(67) | HHH000037: Columns: [password, id, privilege, email, username]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(69) | HHH000108: Foreign keys: []
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(70) | HHH000126: Indexes: [primary]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(66) | HHH000261: Table found: pes.answer
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(67) | HHH000037: Columns: [result, questionaireid, id, userid]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(69) | HHH000108: Foreign keys: [fk_exlfls0sc72mkxeykf5xh18as, fk_gxf6jjui01frkiume7e9uph5r]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(70) | HHH000126: Indexes: [fk_exlfls0sc72mkxeykf5xh18as, fk_gxf6jjui01frkiume7e9uph5r, primary]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(66) | HHH000261: Table found: pes.choice_question
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(67) | HHH000037: Columns: [cateid, questionaireid, id, content]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(69) | HHH000108: Foreign keys: [fk_crajb64cr7tndv0fjvhrwb3g9]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(70) | HHH000126: Indexes: [cateid, fk_9eqek7jdogrbi48lndwmbs3pe, primary]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(66) | HHH000261: Table found: pes.option
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(67) | HHH000037: Columns: [score, optionsindex, questionid, id, content]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(69) | HHH000108: Foreign keys: [option_ibfk_1]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(70) | HHH000126: Indexes: [questionid, primary]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(66) | HHH000261: Table found: pes.option_answer
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(67) | HHH000037: Columns: [answerid, optionid, id]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(69) | HHH000108: Foreign keys: [fk_kdtphm3xk2ajcgn9bhl2rtatx, fk_rb2l4jp92c8iywmwc0ig2vmik]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(70) | HHH000126: Indexes: [fk_kdtphm3xk2ajcgn9bhl2rtatx, primary, fk_rb2l4jp92c8iywmwc0ig2vmik]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(66) | HHH000261: Table found: pes.question_cate
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(67) | HHH000037: Columns: [id, parentid, catename]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(69) | HHH000108: Foreign keys: [fk_ne7q1bbh1odqdodc2jlb0smtb]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(70) | HHH000126: Indexes: [fk_ne7q1bbh1odqdodc2jlb0smtb, primary]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(66) | HHH000261: Table found: pes.questionaire
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(67) | HHH000037: Columns: [id, title]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(69) | HHH000108: Foreign keys: []
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(70) | HHH000126: Indexes: [primary]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(66) | HHH000261: Table found: pes.true_false_answer
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(67) | HHH000037: Columns: [answerid, questionid, id, _option]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(69) | HHH000108: Foreign keys: [fk_9g3al2rv7mc5oskwbhxahr9fo, fk_gl0bl9lnoce4fd7lrur134016]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(70) | HHH000126: Indexes: [fk_9g3al2rv7mc5oskwbhxahr9fo, fk_gl0bl9lnoce4fd7lrur134016, primary]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(66) | HHH000261: Table found: pes.true_false_question
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(67) | HHH000037: Columns: [score, cateid, questionaireid, id, content]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(69) | HHH000108: Foreign keys: [fk_7fkfacjb7ap97csok46pgvld0, fk_emc3oyv00l8oj7hqgp12j0thh]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(70) | HHH000126: Indexes: [fk_7fkfacjb7ap97csok46pgvld0, fk_emc3oyv00l8oj7hqgp12j0thh, primary]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(66) | HHH000261: Table found: pes.user_info
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(67) | HHH000037: Columns: [vocation, password, gender, phone, regdate, id, privilege, age, email, username]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(69) | HHH000108: Foreign keys: []
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.TableMetadata.<init>(70) | HHH000126: Indexes: [primary]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(267) | HHH000232: Schema update complete
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.springframework.orm.hibernate4.HibernateTransactionManager.afterPropertiesSet(360) | Using DataSource [{
+	CreateTime:"2016-05-25 21:16:50",
+	ActiveCount:0,
+	PoolingCount:1,
+	CreateCount:1,
+	DestroyCount:0,
+	CloseCount:2,
+	ConnectCount:2,
+	Connections:[
+		{ID:8569930, ConnectTime:"2016-05-25 21:16:52", UseCount:2, LastActiveTime:"2016-05-25 21:16:54"}
+	]
+}
+
+[
+	{
+	ID:8569930, 
+	poolStatements:[
+		]
+	}
+]] of Hibernate SessionFactory for HibernateTransactionManager
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:54] org.springframework.test.context.transaction.TransactionContext.startTransaction(101) | Began transaction (1) for test context [DefaultTestContext@17d1df8 testClass = TestQuestionaireService, testInstance = com.pes.service.TestQuestionaireService@44e9c7, testMethod = score@TestQuestionaireService, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@1d7b27f testClass = TestQuestionaireService, locations = '{classpath:spring.xml, classpath:spring-hibernate.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]]; transaction manager [org.springframework.orm.hibernate4.HibernateTransactionManager@1096b06]; rollback [false]
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:55] org.springframework.test.context.transaction.TransactionContext.endTransaction(136) | Committed transaction for test context [DefaultTestContext@17d1df8 testClass = TestQuestionaireService, testInstance = com.pes.service.TestQuestionaireService@44e9c7, testMethod = score@TestQuestionaireService, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@1d7b27f testClass = TestQuestionaireService, locations = '{classpath:spring.xml, classpath:spring-hibernate.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]].
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:55] org.springframework.context.support.AbstractApplicationContext.doClose(862) | Closing org.springframework.context.support.GenericApplicationContext@85bdee: startup date [Wed May 25 21:16:50 CST 2016]; root of context hierarchy
+[spring_struts2_Hibernate][INFO] [2016-05-25 21:16:55] com.alibaba.druid.pool.DruidDataSource.close(1385) | {dataSource-1} closed
