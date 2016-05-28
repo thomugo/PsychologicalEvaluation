@@ -5,6 +5,8 @@
 	<constant name="struts.objectFactory" value="spring" />
 	<!-- 所有匹配*.action的请求都由struts2处理 -->
 	<constant name="struts.action.extension" value="action" />
+	<!-- struts2对ws的请求不截拦 -->
+	<constant name="struts.action.excludePattern" value="ws://*"></constant>
 	<!-- 是否启用开发模式 -->
 	<!-- <constant name="struts.devMode" value="true" /> -->
 	<constant name="struts.configuration.xml.reload" value="true"/>
