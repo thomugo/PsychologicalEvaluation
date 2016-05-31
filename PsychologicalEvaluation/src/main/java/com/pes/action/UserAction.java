@@ -46,7 +46,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	private int totalPages  = 0;
 	private int pageNum = 0;
 	private String jsonString;
-	private User user = null;
+	private User user = null;	
 	private List<User> users = new ArrayList<User>();
 	
 	public int getPageNum() {
@@ -85,8 +85,8 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		return "userinfo";
 	}
 	
-	@Action(value="listUser", results={
-			@Result(name="users", location="/user/listUser.jsp")
+	@Action(value="userList", results={
+			@Result(name="users", location="/user/userList.jsp")
 	})
 	public String getAllUsers(){
 		//List<User> users = userService.findAll();

@@ -9,8 +9,6 @@ $(document).ready(function() {
 		}); 
 	});
 	$("#prepage").click(function() {
-		//$(".users").remove();
-		//alert($("#num").html());
 		var pageNum = $("#num").html();
 		var totalPages = $("#totalPages").html();
 		var pageSize = $("#pageSize").html();

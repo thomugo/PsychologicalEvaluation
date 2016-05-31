@@ -317,7 +317,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<ul class="submenu">
 								<li>
-									<a href="<%=path%>/user/userList.jsp">
+									<a href="${ pageContext.request.contextPath }/userList.action">
 										<i class="icon-double-angle-right"></i>
 										用户列表
 									</a>

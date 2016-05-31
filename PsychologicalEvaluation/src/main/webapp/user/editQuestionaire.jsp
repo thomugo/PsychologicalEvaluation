@@ -323,7 +323,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<ul class="submenu">
 								<li>
-									<a href="<%=path%>/user/userList.jsp">
+									<a href="${ pageContext.request.contextPath }/userList.action">
 										<i class="icon-double-angle-right"></i>
 										用户列表
 									</a>
@@ -442,15 +442,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</li>
 							<li class="active">添加测评问卷</li>
 						</ul><!-- .breadcrumb -->
-
-						<div class="nav-search" id="nav-search">
-							<form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="查找 ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="icon-search nav-search-icon"></i>
-								</span>
-							</form>
-						</div><!-- #nav-search -->
 					</div>
 
 					<div class="page-content">
@@ -503,12 +494,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																		<label class="col-xs-12 col-sm-3 control-label no-padding-right">问题</label>
 																		<div class="col-xs-12 col-sm-5">
 																			<span class="block input-icon input-icon-right">
-																				<input type="text"  class="width-100" />
+																				<input type="text"  class="width-100  question1" />
 																			</span>
 																		</div>	
 																	</div>
 
-																	<div class="">
+																	<div class="choiceoption">
 																		<div class="mystyle">											
 																			<span>选项</span>
 																									

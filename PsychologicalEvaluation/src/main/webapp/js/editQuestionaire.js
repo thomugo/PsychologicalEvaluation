@@ -27,17 +27,13 @@ $(document).ready(function() {
 					});
 				
 				//添加判读题
-				$("#addquestion2").click(function() {
+/*				$("#addquestion2").click(function() {
 					$("#question2").append("<div class='truefalsequestion'>"
 							+ "<input type='text'  class='question2'>问题<br/>"
-							/*+ "<div class='options'>"
-			   	 				+ "<input type='text'  class='option' >option1"
-			   	 				+ "<input type='text'  class='option' >option2"
-			   	 			+ "</div>"*/
 			   	 			+ "</div>"
 					);
 				});
-				
+				*/
 				
 				//为添加选项按钮添加定时器定时检测按钮个数以触发点击事件
 				//添加选择题选项
@@ -60,20 +56,30 @@ $(document).ready(function() {
 				ref = setInterval(function(){add();},1000);
 			
 			
-				$("#save").click(function(){ 
-				
+				$("#save").click(function(){
+/*						var arr=[];
+						arr=$('input');
+						var inputNum=$('input').length;
+						for(var i=0;i<inputNum;i++){
+							if(arr[i]==''){
+								alert("有未填写的地方！");
+								break;
+							}
+							else continue;
+						}*/
+						
 						//选择题数目
 						var question1Num = $(".choicequestion").length;
-						alert("选择题: "+question1Num);
+						alert("共有 "+question1Num+"题");
 						//判断题数目
-						var question2Num = $(".truefalsequestion").length;
-						alert("判断题:"+question2Num);
+						//var question2Num = $(".truefalsequestion").length;
+						//alert("判断题:"+question2Num);
 						var questionaire = {};
 						var choiceQuestions = new Array();
-						var trueFalseQuestions = new Array();
+						//var trueFalseQuestions = new Array();
 						
 						//取得试卷题目
-						var title =  $("#title").val();
+						var title =  $("#inputWarning").val();
 
 					 	//去除前后空格
 					 	title = $.trim(title);
@@ -81,9 +87,9 @@ $(document).ready(function() {
 					 		{
 					 			//标记置空
 					 			save = false;
-					 			alert("问卷标题不能为空！！！");
+					 			alert("问卷名未填写！");
 					 			//设置焦点
-					 			$("#title").focus().select();
+					 			$("#inputWarning").focus().select();
 					 		}
 					 	
 					 	
@@ -98,20 +104,19 @@ $(document).ready(function() {
 						 		{
 						 			//标记置空
 						 			save = false;
-						 			alert("问题不能为空！！！");
+						 			alert("有未填写的问题！");
 						 			//设置焦点
 						 			$(".question1").eq(i).focus().select();
 						 		}
 						 	
 						 	var options = $(".choiceoption").eq(i).children().map(function() {
-						 			option = $.trim(this.value);
-						 			if(option.length == 0)
+						 			option = $.trim(this.children(":eq(1)").value);
+						 			if(option.length ==0)
 						 				{
 						 					//标记置空
 						 					save = false;
-						 					alert("选项不能为空！！！");
+						 					alert("有未填写的选项！");
 						 					//设置焦点
-						 					this.focus().select();
 						 				}
 						 			return option;
 						 	  	}).get().join(',');
@@ -122,7 +127,7 @@ $(document).ready(function() {
 						}
 						
 						
-						//遍历判断题
+					/*	//遍历判断题
 						for(var i=0; i<question2Num; i++)
 						{
 							//取得判断题问题
@@ -140,12 +145,12 @@ $(document).ready(function() {
 						 		}
 						 		trueFalseQuestions [i] = question2;
 						}
-						
+						*/
 						
 						//封装试卷
 						questionaire["title"] = title;
 						questionaire["choiceQuestions"] = choiceQuestions;
-						questionaire["trueFalseQuestions"] = trueFalseQuestions;
+						//questionaire["trueFalseQuestions"] = trueFalseQuestions;
 						
 					if(save){
 						//用ajax请求服务器保存数据
@@ -156,6 +161,5 @@ $(document).ready(function() {
 						}); 
 					}
 			});
-				
-				
+								
 });

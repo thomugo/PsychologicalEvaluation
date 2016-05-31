@@ -1,0 +1,141 @@
+body{
+  font-family: "Heiti SC", "Microsoft YaHei", Verdana, Arial, Helvetica, sans-serif !important;
+}
+/* line 3, ../sass/app-ad.re.scss */
+.advertiseBar {
+  width: 100%;
+}
+
+/* line 6, ../sass/app-ad.re.scss */
+.advertiseBar .wrapper {
+  height: 50px;
+  background: #fff;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* line 13, ../sass/app-ad.re.scss */
+.advertiseBar .close {
+  float: left;
+  width: 12px;
+  height: 12.5px;
+  padding: 7.5px;
+  margin: 11.25px 0;
+  background: none;
+}
+/* line 20, ../sass/app-ad.re.scss */
+.advertiseBar .close img {
+  width: 100%;
+}
+
+/* line 25, ../sass/app-ad.re.scss */
+.dl-link {
+  display: block;
+  height: 50px;
+}
+
+/* line 30, ../sass/app-ad.re.scss */
+.advertiseBar .appicon {
+  float: left;
+  width: 32.5px;
+  height: 32.5px;
+  margin: 7.5px 0 0 2.5px;
+  background: none;
+}
+
+/* line 38, ../sass/app-ad.re.scss */
+.advertiseBar .textArea {
+  float: left;
+  margin-top: 7.5px;
+  margin-left: 7.5px;
+}
+
+/* line 44, ../sass/app-ad.re.scss */
+.advertiseBar .textArea h1, .advertiseBar .textArea p {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 49, ../sass/app-ad.re.scss */
+.advertiseBar .textArea h1 {
+  font-size: 15px;
+  line-height: 18px;
+  color: #666666;
+}
+
+/* line 55, ../sass/app-ad.re.scss */
+.advertiseBar .textArea p {
+  font-size: 11px;
+  line-height: 14.5px;
+  color: #999999;
+}
+
+/* line 61, ../sass/app-ad.re.scss */
+.advertiseBar .btn_down {
+  float: right;
+  display: block;
+  width: 84px;
+  height: 25px;
+  line-height: 25px;
+  margin-top: 12px;
+  margin-right: 10px;
+  text-align: center;
+  border: 1px solid #2699db;
+  color: #2699db;
+  -moz-border-radius: 2.5px;
+  -webkit-border-radius: 2.5px;
+  border-radius: 2.5px;
+  font-size: 11px;
+}
+
+/* line 78, ../sass/app-ad.re.scss */
+.fullAd {
+  position: fixed;
+  z-index: 10;
+  width: 220px;
+  height: 296px;
+  top: 50%;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  margin: -148px 0 0 -110px;
+}
+
+/* line 90, ../sass/app-ad.re.scss */
+.fullAd .head .close {
+  position: absolute;
+  width: 19px;
+  height: 50px;
+  top: 0;
+  right: 0;
+  background: none;
+}
+
+/* line 99, ../sass/app-ad.re.scss */
+.fullAd .body {
+  position: absolute;
+  width: 220px;
+  height: 246px;
+  top: 50px;
+  background: none;
+}
+
+/* line 107, ../sass/app-ad.re.scss */
+.fullMask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000;
+  opacity: .4;
+  z-index: 9;
+}
+.header h2 {
+  font-weight: normal;
+  text-shadow: initial !important;
+  font-family: "Heiti SC", "Microsoft YaHei", Verdana, Arial, Helvetica, sans-serif !important;
+}
+#id_start_ceshi{
+  color: #ffffff !important;
+}

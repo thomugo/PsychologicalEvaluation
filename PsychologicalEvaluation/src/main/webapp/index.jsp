@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- fonts -->
 
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+		<link rel="stylesheet" href="<%=path%>/style/family.css" />
 
 		<!-- ace styles -->
 
@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- ace settings handler -->
 
-		<script src="assets/js/ace-extra.min.js"></script>
+		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
@@ -302,12 +302,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</a>
 
 							<ul class="submenu">
-								<li>
-									<a href="<%=path%>/user/userList.jsp">
-										<i class="icon-double-angle-right"></i>
+						<li>
+							<a href="${ pageContext.request.contextPath }/userList.action">
+										<i class="icon-double-angle-right"></i>			
 										用户列表
-									</a>
-								</li>
+							</a>
+
+						</li>
 
 								<li>
 									<a href="<%=path%>/user/profile.jsp">
