@@ -407,7 +407,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 								
 								<li>
-									<a href="<%=path%>/file.jsp">
+									<a href="<%=path%>/user/file.jsp">
 										<i class="icon-double-angle-right"></i>
 										文件上传
 									</a>
@@ -547,13 +547,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			if("ontouchend" in document) document.write("<script src='<%=path%>/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
 		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
-		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
-
-		<script src="<%=path%>/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-		<script src="<%=path%>/assets/js/jquery.ui.touch-punch.min.js"></script>
-		<script src="<%=path%>/assets/js/jquery.slimscroll.min.js"></script>
+  		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
 
 		<!-- ace scripts -->
 
@@ -571,6 +568,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$(e.target).prev().children(0).removeClass('collapsed');
 				})
 			});
+		</script>
+		<script type="text/javascript">
+		
+			window.onload=funtion(){
+				var length=${questionaire.size()};
+					for(var i=0;i<length;i++){
+					$('#')
+					
+					}
+			};
+			
 		</script>
 	</body>
 </html>

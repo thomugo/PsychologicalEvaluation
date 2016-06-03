@@ -407,7 +407,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 								
 								<li>
-									<a href="<%=path%>/file.jsp">
+									<a href="<%=path%>/user/file.jsp">
 										<i class="icon-double-angle-right"></i>
 										文件上传
 									</a>

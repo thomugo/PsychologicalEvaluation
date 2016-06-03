@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- fonts -->
 
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+		<link rel="stylesheet" href="<%=path%>/style/family.css" />
 
 		<!-- ace styles -->
 
@@ -408,7 +408,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 								
 								<li>
-									<a href="<%=path%>/file.jsp">
+									<a href="<%=path%>/user/file.jsp">
 										<i class="icon-double-angle-right"></i>
 										文件上传
 									</a>
@@ -464,7 +464,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 											<div class="widget-body">
 												<div class="widget-main no-padding">
-													<div class="wysiwyg-editor" id="editor2"></div><!--编辑区  -->
+													<textarea class="wysiwyg-editor" id="editor2" style='width:99%'></textarea><!--编辑区  -->
 												</div>
 
 												<div class="widget-toolbox padding-4 clearfix">
@@ -477,7 +477,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 														<option value='5'>其他</option>
 													</select>
 													<div class="btn-group pull-right">
-														<button class="btn btn-sm btn-danger">
+														<button class="btn btn-sm btn-danger" id = "wz_save">
 															<i class="icon-save bigger-125"></i>
 															保存
 														</button>
@@ -545,14 +545,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- page specific plugin scripts -->
 
-		<script src="<%=path%>/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-		<script src="<%=path%>/assets/js/jquery.ui.touch-punch.min.js"></script>
-		<script src="<%=path%>/assets/js/markdown/markdown.min.js"></script>
-		<script src="<%=path%>/assets/js/markdown/bootstrap-markdown.min.js"></script>
-		<script src="<%=path%>/assets/js/jquery.hotkeys.min.js"></script>
-		<script src="<%=path%>/assets/js/bootstrap-wysiwyg.min.js"></script>
-		<script src="<%=path%>/assets/js/bootbox.min.js"></script>
-
+  		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/push.js"></script>
 		<!-- ace scripts -->
 
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>

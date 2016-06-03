@@ -8,13 +8,13 @@ $(document).ready(function() {
 												+"<label class=' col-sm-3 control-label no-padding-right'>问题</label>"
 												+"<div class=' col-sm-5'>"
 												+"<span class='block input-icon input-icon-right'>"
-												+"<input type='text' class='width-100'/>"
+												+"<input type='text' class='width-100 question1'/>"
 												+"</span>"
 												+"</div>"
 												+"</div>"
-												+"<div class=''>"
+												+"<div class='choiceoption'>"
 												+"<div class='mystyle'>"
-												+"<span>选项</span>"
+												+"<span class='option'>选项</span>"
 												
 												+"<input type='text' style='width:267px;'/>"
 												+"<input type='text' style='width:45px;font-size:14px;' class='fenzhi' placeholder='分值'/>"
@@ -41,10 +41,10 @@ $(document).ready(function() {
 				    $('.addoption').each(function(i){
 				        this.onclick=function(){
 				            $(this).parent().parent().append("<div class='mystyle'>"
-				            								+"<span>"
+				            								+"<span class='option'>"
 				            								+"选项"
 				            								+"</span>"
-															
+					
 															+"<input type='text' style='width:267px;'>"
 															+"<input type='text' style='width:45px;font-size:14px;' class='fenzhi' placeholder='分值'/>"
 															+"</div>"
@@ -80,6 +80,7 @@ $(document).ready(function() {
 						
 						//取得试卷题目
 						var title =  $("#inputWarning").val();
+						var describtion= $("#describtion").val();
 
 					 	//去除前后空格
 					 	title = $.trim(title);
@@ -110,8 +111,9 @@ $(document).ready(function() {
 						 		}
 						 	
 						 	var options = $(".choiceoption").eq(i).children().map(function() {
-						 			option = $.trim(this.children(":eq(1)").value);
-						 			if(option.length ==0)
+						 		var option=$.trim($(this).children().eq(1).val());
+
+						 			if(option.length == 0)
 						 				{
 						 					//标记置空
 						 					save = false;
@@ -120,11 +122,45 @@ $(document).ready(function() {
 						 				}
 						 			return option;
 						 	  	}).get().join(',');
-						 	alert(options);
+						 	
+						 	var fenzhis = $(".choiceoption").eq(i).children().map(function() {
+						 		var fenzhi=$.trim($(this).children().eq(2).val());
+
+						 			if(fenzhi.length == 0)
+						 				{
+						 					//标记置空
+						 					save = false;
+						 					alert("有未填写的分值！");
+						 					//设置焦点
+						 				}
+						 			return fenzhi;
+						 	  	}).get().join(',');
 						 	map1["question"] = question1;
 						 	map1["options"] = options;
+						 	map1["fenzhi"] = fenzhis;
+						 	
+						 	//map1["fenzhi"]=fenzhi;
 						 	choiceQuestions[i] = map1;
 						}
+						
+/*					 	var options = $(".choiceoption").eq(i).children().map(function() {
+					 		var fenzhi=$.trim($(this).children().eq(2).val());
+					 	//	var fenzhi=$.trim($(this).children().eq(2).val());
+					 			if(option.length == 0)
+					 				{
+					 					//标记置空
+					 					save = false;
+					 					alert("有未填写的分值！");
+					 					//设置焦点
+					 				}
+					 			return fenzhi;
+					 	  	}).get().join(',');
+					 	alert(options);
+					 	map1["question"] = question1;
+					 	map1["options"] = options;
+					 	//map1["fenzhi"]=fenzhi;
+					 	choiceQuestions[i] = map1;
+					}*/						
 						
 						
 					/*	//遍历判断题
@@ -149,12 +185,15 @@ $(document).ready(function() {
 						
 						//封装试卷
 						questionaire["title"] = title;
+						questionaire["describtion"]=describtion;
 						questionaire["choiceQuestions"] = choiceQuestions;
 						//questionaire["trueFalseQuestions"] = trueFalseQuestions;
 						
 					if(save){
 						//用ajax请求服务器保存数据
 						var jsonString = JSON.stringify(questionaire);
+						alert(jsonString);
+						
 						$.post("editQuestionaire.action", {"jsonString" : jsonString},
 								function (){ 
 									alert("编辑成功"); 
