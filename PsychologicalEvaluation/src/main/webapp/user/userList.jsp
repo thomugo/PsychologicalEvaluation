@@ -516,8 +516,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var length= ${users.size()};
 
 			for(var i=0;i<length;i++){
-			  
-			 grid_data[i]={id:"asddas",name:"guyu",email:"sanjdw@123.com",phone:"${users[i-'0']["phone"]}",regdate:"${users[i-'0']["dateTime"]}", gender:"${users[i-'0']["gender"]}",vocation:"${users[i-'0']["vocation"]}"}; 
+			  alert("${users[i-'0']["dateTime"]}");
+			 grid_data[i]={id:"asddas",name:"guyu",email:"sanjdw@123.com",phone:"${users[i-'0']["phone"]}",dateTime:"${users[i-'0']["dateTime"]}", gender:"${users[i-'0']["gender"]}",vocation:"${users[i-'0']["vocation"]}"}; 
 			
 			} 
 			
@@ -549,7 +549,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						{name:'phone',index:'phone', width:110,editable: true,editoptions:{size:"20",maxlength:"25"}},
 
-						{name:'regdate',index:'regdate',width:150, editable:true, sorttype:"date",unformat: pickDate},
+						{name:'dateTime',index:'dateTime',width:150, editable:true, sorttype:"date",unformat: pickDate},
 						
 						{name:'gender',index:'gender', width:40, editable: true,edittype:"select",editoptions:{value:"FE:男;IN:女"}},
 						

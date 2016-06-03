@@ -70,7 +70,7 @@ public class User extends BaseUser implements Serializable{
 	@Override
 	public String toString() {
 		return "User [gender=" + gender + ", age=" + age + ", vocation="
-				+ vocation + ", phone=" + phone + ", regdate=" + dateTime + "]";
+				+ vocation + ", phone=" + phone + ", dateTime=" + dateTime + "]";
 	}
 	
 }
