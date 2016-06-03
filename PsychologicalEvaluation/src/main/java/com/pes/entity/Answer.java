@@ -2,6 +2,7 @@ package com.pes.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -31,6 +32,7 @@ public class Answer  implements Serializable{
 	private Integer id;
 	private User user;
 	private String result;
+	private Date dateTime;
 	private Questionaire questionaire;
 	private Set<OptionAnswer> optionAnswer = new HashSet<OptionAnswer>();
 	private Set<TrueFalseAnswer>  trueFalseAnswers = new HashSet<TrueFalseAnswer>();
@@ -63,6 +65,13 @@ public class Answer  implements Serializable{
 	}
 	public void setResult(String result) {
 		this.result = result;
+	}
+	@Column(name="dateTime")
+	public Date getDateTime() {
+		return dateTime;
+	}
+	public void setDateTime(Date dateTime) {
+		this.dateTime = dateTime;
 	}
 	@OneToMany(targetEntity=OptionAnswer.class, mappedBy="answer", fetch=FetchType.LAZY,
 			cascade=CascadeType.ALL, orphanRemoval=true)

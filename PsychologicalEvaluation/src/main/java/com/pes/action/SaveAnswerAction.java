@@ -115,7 +115,7 @@ public class SaveAnswerAction extends BaseAction{
 			int oid = object.getInteger("option");
 			int qid = object.getInteger("question");
 			Option option = optionService.get(oid);
-			ChoiceQuestion question = choiceQuestionService.findById(qid);
+			ChoiceQuestion question = choiceQuestionService.get(qid);
 			OptionAnswer optionAnswer = new OptionAnswer();
 			
 			//建立answer与optonAnswer的关联
@@ -143,7 +143,7 @@ public class SaveAnswerAction extends BaseAction{
 			int qid = object.getInteger("question");
 			//System.out.println(qid);
 			int option = object.getInteger("option");
-			TrueFalseQuestion question = trueFalseQuestionService.findById(qid);
+			TrueFalseQuestion question = trueFalseQuestionService.get(qid);
 			TrueFalseAnswer trueFalseAnswer = new TrueFalseAnswer();
 			trueFalseQuestionAnswers.put(question, option);
 			//建立trueFalseAnswer与answer的关联

@@ -18,11 +18,15 @@ import com.pes.entity.Admin;
  *
  */
 @Repository("adminDao")
-public class AdminDaoImpl implements AdminDao{
+public class AdminDaoImpl extends GenericDao2Impl<Admin, Integer> implements AdminDao{
 
 	@Autowired
 	private SessionFactory sessionFactory;
-
+	
+	public AdminDaoImpl() {   
+        super(Admin.class, "Admin");   
+     }   
+	
 	private Session getCurrentSession() {
 		return this.sessionFactory.getCurrentSession();
 	}
@@ -55,4 +59,5 @@ public class AdminDaoImpl implements AdminDao{
 			return true;
 		}
 	}
+
 }

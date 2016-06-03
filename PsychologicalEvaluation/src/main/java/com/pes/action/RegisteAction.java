@@ -32,7 +32,7 @@ public class RegisteAction extends BaseAction implements ModelDriven<User>{
 	}
 	public String execute()
 	{
-		userInfo.setRegdate(new Date());
+		userInfo.setDateTime(new Date());
 		Integer id = 0;
 		id = userService.save(userInfo);
 		System.out.println("add success");

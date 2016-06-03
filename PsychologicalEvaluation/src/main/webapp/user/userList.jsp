@@ -517,7 +517,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			for(var i=0;i<length;i++){
 			  
-			 grid_data[i]={id:"asddas",name:"guyu",email:"sanjdw@123.com",phone:"${users[i-'0']["phone"]}",regdate:"${users[i-'0']["regdate"]}", gender:"${users[i-'0']["gender"]}",vocation:"${users[i-'0']["vocation"]}"}; 
+			 grid_data[i]={id:"asddas",name:"guyu",email:"sanjdw@123.com",phone:"${users[i-'0']["phone"]}",regdate:"${users[i-'0']["dateTime"]}", gender:"${users[i-'0']["gender"]}",vocation:"${users[i-'0']["vocation"]}"}; 
 			
 			} 
 			

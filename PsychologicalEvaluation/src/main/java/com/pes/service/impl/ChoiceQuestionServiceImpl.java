@@ -19,6 +19,32 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService {
 	ChoiceQuestionDao choiceQuestionDao;
 
 	@Override
+	public ChoiceQuestion load(Integer id) {
+		// TODO Auto-generated method stub
+		return choiceQuestionDao.load(id);
+	}
+
+	@Override
+	public ChoiceQuestion get(Integer id) {
+		// TODO Auto-generated method stub
+		return choiceQuestionDao.get(id);
+	}
+
+	@Override
+	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
+	public List<ChoiceQuestion> findAll() {
+		// TODO Auto-generated method stub
+		return choiceQuestionDao.findAll();
+	}
+
+	@Override
+	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
+	public void persist(ChoiceQuestion entity) {
+		// TODO Auto-generated method stub
+		choiceQuestionDao.persist(entity);
+	}
+
+	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	public Integer save(ChoiceQuestion entity) {
 		// TODO Auto-generated method stub
@@ -27,53 +53,23 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService {
 
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
-	public void remove(ChoiceQuestion entity) {
+	public void saveOrUpdate(ChoiceQuestion entity) {
 		// TODO Auto-generated method stub
-		choiceQuestionDao.remove(entity);
+		choiceQuestionDao.saveOrUpdate(entity);
 	}
 
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
-	public void removeAll(Collection<ChoiceQuestion> entities) {
+	public void delete(Integer id) {
 		// TODO Auto-generated method stub
-		choiceQuestionDao.removeAll(entities);
+		choiceQuestionDao.delete(id);
 	}
 
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
-	public void modify(ChoiceQuestion entity) {
+	public void flush() {
 		// TODO Auto-generated method stub
-		choiceQuestionDao.modify(entity);
-	}
-
-	@Override
-	public ChoiceQuestion findById(Integer id) {
-		// TODO Auto-generated method stub
-		return choiceQuestionDao.findById(id);
-	}
-
-	@Override
-	public List<ChoiceQuestion> findAll() {
-		// TODO Auto-generated method stub
-		return choiceQuestionDao.findAll();
-	}
-
-	@Override
-	public List<ChoiceQuestion> findByPage(int pageNo, int pageSize) {
-		// TODO Auto-generated method stub
-		return choiceQuestionDao.findByPage(pageNo, pageSize);
-	}
-
-	@Override
-	public int getTotalRows() {
-		// TODO Auto-generated method stub
-		return choiceQuestionDao.getTotalRows();
-	}
-
-	@Override
-	public int getMaxPageNo(int pageSize) {
-		// TODO Auto-generated method stub
-		return choiceQuestionDao.getMaxPageNo(pageSize);
+		choiceQuestionDao.flush();
 	}
 	
 	

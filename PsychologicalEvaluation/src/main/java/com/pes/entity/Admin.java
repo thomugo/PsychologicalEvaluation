@@ -18,13 +18,16 @@ public class Admin extends BaseUser implements Serializable{
 	public Admin() {
 		// TODO Auto-generated constructor stub
 		privilege = 1;
+		broadcast = 0;
 	}
-
+	
 	public Admin(String username, String password) {
 		// TODO Auto-generated constructor stub
 		privilege = 1;
 		this.setUsername(username);
 		this.setPassword(password);
+		broadcast = 0;
 	}
+	
 	
 }

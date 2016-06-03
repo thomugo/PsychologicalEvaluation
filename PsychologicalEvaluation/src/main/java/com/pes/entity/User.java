@@ -14,14 +14,21 @@ import javax.persistence.Table;
 @Entity
 @Table(name="user_info", catalog="pes")
 public class User extends BaseUser implements Serializable{
+	private int id;
+	private String username;
+	private String password;
+	private String email;
+	protected int privilege;
+	protected int broadcast; //用户已看广播数；
 	private int gender;
 	private int age;
 	private String vocation;
 	private String phone;
-	private Date regdate;
+	private Date dateTime;
 	public User() {
 		// TODO Auto-generated constructor stub
 		privilege = 2;
+		broadcast = 0;
 	}
 	
 	@Column(name="gender")
@@ -52,18 +59,18 @@ public class User extends BaseUser implements Serializable{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	@Column(name="regdate")
-	public Date getRegdate() {
-		return regdate;
+	@Column(name="dateTime")
+	public Date getDateTime() {
+		return dateTime;
 	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
+	public void setDateTime(Date dateTime) {
+		this.dateTime = dateTime;
 	}
 
 	@Override
 	public String toString() {
 		return "User [gender=" + gender + ", age=" + age + ", vocation="
-				+ vocation + ", phone=" + phone + ", regdate=" + regdate + "]";
+				+ vocation + ", phone=" + phone + ", regdate=" + dateTime + "]";
 	}
 	
 }

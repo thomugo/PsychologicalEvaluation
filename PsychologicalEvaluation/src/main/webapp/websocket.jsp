@@ -95,13 +95,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             var message = document.getElementById('chat').value;
             var map = {};
             var targetId;
-            if(id == 15)
-            	targetId = 14;
+            var flag = 5;  //0： 未读消息（默认值）/ 4 ：无效消息（测试连接使用）/5：广播消息
+            if(id == 18)
+            	targetId = 20;
             else
-               targetId=15;
+               targetId=18;
             if (message != '') {
             	map["message"] = message;
             	map["targetId"] = targetId;
+            	map["onChat"] = true;
+            	map["flag"] = flag;
             	var jsonString = JSON.stringify(map);
                 Chat.socket.send(jsonString);
                 document.getElementById('chat').value = '';

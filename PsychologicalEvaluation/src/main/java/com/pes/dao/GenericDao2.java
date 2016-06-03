@@ -13,7 +13,11 @@ public interface GenericDao2 <T, ID extends Serializable> {
      * @return 保存后得到的id
      */  
    public ID save(T entity);   
- 
+   
+   void saveOrUpdate(T entity);
+   
+   void flush();
+   
    /**
      * <p>
      * 删除实体
@@ -55,10 +59,12 @@ public interface GenericDao2 <T, ID extends Serializable> {
      * <p/>
      * 查找全部实体
      * <p/>
-     *
+     *@param order : 结果输出顺序 true : 正序;
+     * 				false : 逆序
+     * 
      * @return 所有实体的列表
      */  
-   public List<T> findAll();   
+   public List<T> findAll(final boolean asc);   
    /**
      * <p>
      * 计算匹配查询条件的记录总数,如果没有注入或者设置hql语句,将使用默认的查询语句返回数据库中所有记录
@@ -85,7 +91,9 @@ public interface GenericDao2 <T, ID extends Serializable> {
      *              查询的hql语句
      * @param size : 每页记录数
      *              分页信息,参见PageInfo
+     * @param order : 结果输出顺序 true : 正序;
+     * 				false : 逆序
      * @return 匹配的实体列表
      */  
-   public List<T> findByPage(final int pageNo, final int pageSize);   
+   public List<T> findByPage(final int pageNo, final int pageSize, final boolean order);   
 }

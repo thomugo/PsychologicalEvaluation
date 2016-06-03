@@ -1,6 +1,5 @@
 package com.pes.service.impl;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,69 +7,67 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.pes.dao.TrueFalseQuestionDao;
-import com.pes.entity.TrueFalseQuestion;
-import com.pes.service.TrueFalseQuestionService;
+import com.pes.dao.ArticleClassDao;
+import com.pes.entity.ArticleClass;
+import com.pes.service.ArticleClassService;
 
-@Service("trueFalseQuestionService")
-@Transactional(readOnly=true, propagation=Propagation.SUPPORTS)
-public class TrueFalseQuestionServiceImpl implements TrueFalseQuestionService {
-
+@Service("articleClassService")
+@Transactional(readOnly=true, propagation = Propagation.SUPPORTS)
+public class ArticleClassServiceImpl implements ArticleClassService{
 	@Autowired
-	TrueFalseQuestionDao trueFalseQuestionDao;
-
+	private ArticleClassDao articleClassDao;
+	
 	@Override
-	public TrueFalseQuestion load(Integer id) {
+	public ArticleClass load(Integer id) {
 		// TODO Auto-generated method stub
-		return trueFalseQuestionDao.load(id);
+		return articleClassDao.load(id);
 	}
 
 	@Override
-	public TrueFalseQuestion get(Integer id) {
+	public ArticleClass get(Integer id) {
 		// TODO Auto-generated method stub
-		return trueFalseQuestionDao.get(id);
+		return articleClassDao.get(id);
 	}
 
 	@Override
-	public List<TrueFalseQuestion> findAll() {
+	public List<ArticleClass> findAll() {
 		// TODO Auto-generated method stub
-		return trueFalseQuestionDao.findAll();
-	}
-
-	@Override
-	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
-	public void persist(TrueFalseQuestion entity) {
-		// TODO Auto-generated method stub
-		trueFalseQuestionDao.persist(entity);
+		return articleClassDao.findAll();
 	}
 
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
-	public Integer save(TrueFalseQuestion entity) {
+	public void persist(ArticleClass entity) {
 		// TODO Auto-generated method stub
-		return trueFalseQuestionDao.save(entity);
+		articleClassDao.persist(entity);
 	}
 
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
-	public void saveOrUpdate(TrueFalseQuestion entity) {
+	public Integer save(ArticleClass entity) {
 		// TODO Auto-generated method stub
-		trueFalseQuestionDao.saveOrUpdate(entity);
+		return articleClassDao.save(entity);
+	}
+
+	@Override
+	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
+	public void saveOrUpdate(ArticleClass entity) {
+		// TODO Auto-generated method stub
+		articleClassDao.saveOrUpdate(entity);
 	}
 
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	public void delete(Integer id) {
 		// TODO Auto-generated method stub
-		trueFalseQuestionDao.delete(id);
+		articleClassDao.delete(id);
 	}
 
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	public void flush() {
 		// TODO Auto-generated method stub
-		trueFalseQuestionDao.flush();
+		articleClassDao.flush();
 	}
-	
 
 }

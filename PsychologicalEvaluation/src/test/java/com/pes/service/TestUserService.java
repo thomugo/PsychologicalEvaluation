@@ -72,7 +72,7 @@ public class TestUserService extends BaseTestTemplate{
     @Test
     public void testfindall(){
     	
-    	List<User> list = userService.findByPage(1, 2);
+    	List<User> list = userService.findByPage(1, 2, true);
     	userService.removeAll(list);
     	
     }
@@ -86,7 +86,7 @@ public class TestUserService extends BaseTestTemplate{
 		userInfo.setGender(0);
 		userInfo.setVocation("teacher");
 		userInfo.setPhone("13212221333");
-		userInfo.setRegdate(new Date());
+		userInfo.setDateTime(new Date());
 		Integer id = userService.save(userInfo);
 		System.out.println(id);
 	}
