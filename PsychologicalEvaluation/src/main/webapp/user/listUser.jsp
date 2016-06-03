@@ -22,6 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="js/json2.js"></script>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/user.js"></script>
+	<script type="text/javascript" src="js/messageDemo.js"></script>
 	<link rel="stylesheet" type="text/css" href="<%=path %>/styles/listUser.css">
 	<link rel="stylesheet" type="text/css" href="<%=path %>/styles/style.css">
 	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/bootstrap.min.css" />
@@ -63,6 +64,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<button id="prepage">上一页</button>第<span id="num"><s:property value="pageNum" /></span>/<span id="total"><s:property value="totalPages"/></span>  页<button id="nextpage">下一页</button><br/>
 	<s:debug/>
 	<text id="pageSize"><s:property value="pageSize" /></text>
-
+	<button id = "message">messageTest</button>
   </body>
 </html>

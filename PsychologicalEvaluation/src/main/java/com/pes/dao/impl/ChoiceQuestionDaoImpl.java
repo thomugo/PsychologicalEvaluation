@@ -14,7 +14,7 @@ import com.pes.entity.ChoiceQuestion;
 import com.pes.entity.User;
 
 @Repository("choiceQuestionDao")
-public class ChoiceQuestionDaoImpl extends GenericDao2Impl<ChoiceQuestion, Integer> implements ChoiceQuestionDao {
+public class ChoiceQuestionDaoImpl extends GenericDao1Impl<ChoiceQuestion, Integer> implements ChoiceQuestionDao {
 	public ChoiceQuestionDaoImpl() {   
         super(ChoiceQuestion.class, "ChoiceQuestion");   
      }   

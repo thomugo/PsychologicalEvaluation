@@ -22,6 +22,7 @@ import org.hibernate.annotations.BatchSize;
 public class Questionaire implements Serializable{
 	private Integer id;
 	private String title;
+	private String note;
 	private Set<ChoiceQuestion> choiceQuestions = new HashSet<ChoiceQuestion>();
 	private Set<TrueFalseQuestion> trueFalseQuestions = new HashSet<TrueFalseQuestion>();
 	public  Questionaire() {
@@ -42,6 +43,14 @@ public class Questionaire implements Serializable{
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	@Column(name="note")
+	public String getNote() {
+		return note;
+	}
+	public void setNote(String note) {
+		this.note = note;
 	}
 	@OneToMany(targetEntity=ChoiceQuestion.class, mappedBy="questionaire", fetch=FetchType.LAZY,
 			cascade=CascadeType.ALL, orphanRemoval=true)

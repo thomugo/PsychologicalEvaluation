@@ -10,6 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author thomugo
+ * @flag 消息状态：0/未读; 1/已读; 4/无效消息; 5/广播消息
+ */
 @Entity
 @Table(name="message", catalog="pes")
 public class Message implements Serializable{
@@ -17,11 +22,22 @@ public class Message implements Serializable{
 	private int fromId;
 	private int toId;
 	private String content;
-	private int flag;
+	private int flag;  //消息状态：0/未读; 1/已读; 4/无效消息; 5/广播消息
 	private Date dateTime;
 	
 	public Message() {
 		flag = 0;
+	}
+	
+	/**
+	 * @author thomugo
+	 * @param content : 消息内容
+	 * @param fromId : 发送者ID
+	 */
+	public Message(String content, int fromId) {
+		flag = 0;
+		this.content = content;
+		this.fromId = fromId;
 	}
 	
 	@Id
@@ -72,7 +88,7 @@ public class Message implements Serializable{
 	@Override
 	public String toString() {
 		return "Message [id=" + id + ", fromId=" + fromId + ", toId=" + toId
-				+ ", content=" + content + ", flag=" + flag + ", dateTime="
+				+ ", content=" + content + ", flag=" + flag +  ", dateTime="
 				+ dateTime + "]";
 	}
 	

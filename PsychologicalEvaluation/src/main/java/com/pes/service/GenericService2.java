@@ -18,6 +18,11 @@ public interface GenericService2<T, ID extends Serializable> {
       * @return 保存后得到的id
       */  
     public ID save(T entity);   
+    
+    void saveOrUpdate(T entity);
+    
+    void flush();
+    
     /**
       * 删除实体
       * @param entity :实体
@@ -42,16 +47,20 @@ public interface GenericService2<T, ID extends Serializable> {
     public T findById(ID id);   
     /**
       * 查找全部实体
+      * @param asc :  结果显示顺序:
+      * 	true : 正序; false : 逆序
       * @return 所有实体的列表
       */  
-    public List<T> findAll();   
+    public List<T> findAll(final boolean asc);   
     /**
       * 根据给定的hql语句进行分页查找
       * @param pageNo : 要查询的页码
       * @param pageSize : 每页记录条数
+      * @param asc :  结果显示顺序:
+      * 	true : 正序; false : 逆序
       * @return 匹配的实体列表
       */  
-    public List<T> findByPage(final int pageNo, final int pageSize);   
+    public List<T> findByPage(final int pageNo, final int pageSize, final boolean asc);   
     /**
       * 计算匹配查询条件的记录总数,如果没有注入或者设置hql语句,将使用默认的查询语句返回数据库中所有记录
       * @return 记录总数

@@ -12,6 +12,7 @@ import com.alibaba.druid.sql.dialect.oracle.ast.stmt.OracleSelectRestriction.Rea
 import com.pes.entity.User;
 import com.pes.service.UserService;
 import com.pes.dao.UserDao;
+import com.sun.istack.internal.FinalArrayList;
 
 /**
  * 
@@ -26,9 +27,9 @@ public class UserServiceImpl implements UserService{
 	private UserDao userInfoDao;
 	
 	@Override
-	public List<User> findAll() {
+	public List<User> findAll(final boolean asc) {
 		// TODO Auto-generated method stub
-		return userInfoDao.findAll();
+		return userInfoDao.findAll(asc);
 	}
 	
 	@Override
@@ -76,9 +77,9 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<User> findByPage(int pageNo, int pageSize) {
+	public List<User> findByPage(final int pageNo, final int pageSize, final boolean asc) {
 		// TODO Auto-generated method stub
-		return userInfoDao.findByPage(pageNo, pageSize);
+		return userInfoDao.findByPage(pageNo, pageSize, asc);
 	}
 
 	@Override
@@ -91,6 +92,20 @@ public class UserServiceImpl implements UserService{
 	public int getMaxPageNo(int pageSize) {
 		// TODO Auto-generated method stub
 		return userInfoDao.getMaxPageNo(pageSize);
+	}
+
+	@Override
+	@Deprecated
+	public void saveOrUpdate(User entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	@Deprecated
+	public void flush() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

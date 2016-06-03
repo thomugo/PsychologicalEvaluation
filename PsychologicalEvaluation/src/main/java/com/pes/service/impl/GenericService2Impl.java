@@ -13,16 +13,16 @@ public class GenericService2Impl<T, ID extends Serializable> implements
 	private GenericDao2<T, ID> genericDao;
 	
 	@Override
-	public List<T> findAll() {
-		return genericDao.findAll();
+	public List<T> findAll(final boolean asc) {
+		return genericDao.findAll(asc);
 	}
 	@Override
 	public T findById(ID id) {
 		return genericDao.findById(id);
 	}
 	@Override
-	public List<T> findByPage(int pageNo, int pageSize) {
-		return genericDao.findByPage(pageNo, pageSize);
+	public List<T> findByPage(int pageNo, int pageSize, boolean asc) {
+		return genericDao.findByPage(pageNo, pageSize, asc);
 	}
 	@Override
 	public int getMaxPageNo(int pageSize) {
@@ -48,8 +48,16 @@ public class GenericService2Impl<T, ID extends Serializable> implements
 	public ID save(T entity) {
 		return genericDao.save(entity);
 	}
-	public void setGenericDao(GenericDao2<T, ID> genericDao) {
-		this.genericDao = genericDao;
+	
+	@Override
+	public void saveOrUpdate(T entity) {
+		// TODO Auto-generated method stub
+		genericDao.saveOrUpdate(entity);
+	}
+	@Override
+	public void flush() {
+		// TODO Auto-generated method stub
+		genericDao.flush();
 	}
 	
 

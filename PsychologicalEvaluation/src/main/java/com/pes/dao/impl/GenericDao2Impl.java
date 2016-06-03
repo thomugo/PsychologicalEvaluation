@@ -8,6 +8,8 @@ import java.util.List;
 
 
 
+
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -44,8 +46,12 @@ public class GenericDao2Impl <T, ID extends Serializable> implements GenericDao2
      }   
     
     @SuppressWarnings("unchecked")   
-    public List<T> findAll() {   
-    	String hql = "from " + className;   
+    public List<T> findAll(final boolean asc) {   
+    	String orderString = " order by a.dateTime ";
+        if(!asc){
+        	orderString += " desc ";
+        }
+    	String hql = "from " + className + " as a " + orderString;   
         return (List<T>) this.getCurrentSession().createQuery(hql).list(); 
      }   
        
@@ -73,6 +79,19 @@ public class GenericDao2Impl <T, ID extends Serializable> implements GenericDao2
     public ID save(T entity) {   
         return (ID) this.getCurrentSession().save(entity);   
      }   
+    
+    @Override
+	public void saveOrUpdate(T entity) {
+		// TODO Auto-generated method stub
+		this.getCurrentSession().saveOrUpdate(entity);
+	}
+    
+    @Override
+	public void flush() {
+		// TODO Auto-generated method stub
+		this.getCurrentSession().flush();
+	}
+    
     public int getTotalRows() {   
          String actualHql = "select count(*) "  
                  + hql.substring(hql.indexOf("from"));   
@@ -96,15 +115,19 @@ public class GenericDao2Impl <T, ID extends Serializable> implements GenericDao2
         return maxPageNo;   
      }   
     @SuppressWarnings("unchecked")   
-    public List<T> findByPage(final int pageNo, final int pageSize) {   
+    public List<T> findByPage(final int pageNo, final int pageSize, final boolean asc) {   
         final int maxPageNo = this.getMaxPageNo(pageSize);   
         final int totalRows = this.getTotalRows();   
+        String orderString = " order by a.dateTime ";
+        if(!asc){
+        	orderString += " desc ";
+        }
         // 实际页码   
         int actualPageNo = (pageNo > maxPageNo) ? maxPageNo : pageNo;  
         // 计算实际每页的条数,如果请求的每页数据条数大于总条数, 则等于总条数   
         int actualPageSize = (pageSize > totalRows) ? totalRows : pageSize;   
         // 计算请求页码的第一条记录的索引值,如果 
-        Query query = this.getCurrentSession().createQuery("from "+ className);
+        Query query = this.getCurrentSession().createQuery("from "+ className + " as a " + orderString);
         int startRow = (actualPageNo > 0) ? (actualPageNo - 1) * actualPageSize : 0;  
         query.setFirstResult(startRow);
         query.setMaxResults(actualPageSize);

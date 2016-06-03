@@ -98,7 +98,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		totalPages = userService.getMaxPageNo(pageSize);
 		System.out.println("totalPages: " + totalPages);
 		System.out.println("pageSize: " + pageSize);
-		users = userService.findByPage(pageNum, pageSize);
+		users = userService.findByPage(pageNum, pageSize, true);
 		System.out.println("find "+users.size()+"users");
 		if(json != null)
 			AjaxUtil.ajaxJSONResponse(users);
@@ -114,7 +114,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		userService.remove(user);
 		System.out.println("delete User "+id);
 		System.out.println("pageNum:" + pageNum+" pageSize: " + pageSize);
-		users = userService.findByPage(pageNum, pageSize);
+		users = userService.findByPage(pageNum, pageSize, true);
 		AjaxUtil.ajaxJSONResponse(users);
 		return NONE;
 	}

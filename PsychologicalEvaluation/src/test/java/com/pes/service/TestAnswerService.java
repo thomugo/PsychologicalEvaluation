@@ -77,7 +77,7 @@ public class TestAnswerService extends BaseTestTemplate{
     	option3.setOption(optionService.get(69));
     	judge.setAnswer(answer);
     	judge.setOption(1);
-    	judge.setQuestion(trueFalseQuestionService.findById(5));
+    	judge.setQuestion(trueFalseQuestionService.get(5));
     	Set<OptionAnswer> optionAnswers = new HashSet<OptionAnswer>();
     	optionAnswers.add(option1);
     	optionAnswers.add(option2);

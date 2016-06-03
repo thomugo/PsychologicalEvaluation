@@ -8,21 +8,23 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class BaseUser {
-	private Integer id;
+	private int id;
 	private String username;
 	private String password;
 	private String email;
-	protected Integer privilege;
+	protected int privilege;
+	protected int broadcast; //用户已看广播数；
 	
-	public BaseUser(){}
+	public BaseUser(){
+	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id", unique=true, nullable=false)
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	@Column(name="username")
@@ -47,11 +49,22 @@ public class BaseUser {
 		this.email = email;
 	}
 	@Column(name="privilege")
-	public Integer getPrivilege() {
+	public int getPrivilege() {
 		return privilege;
 	}
-	public void setPrivilege(Integer privilege) {
+	public void setPrivilege(int privilege) {
 		this.privilege = privilege;
+	}
+	
+	@Column(name="broadcast")
+	public int getBroadcast() {
+		return broadcast;
+	}
+
+	public void setBroadcast(int broadcast) {
+		this.broadcast = broadcast;
 	};
+	
+	
 	
 }

@@ -167,7 +167,7 @@ public class TestQuestionaireService extends BaseTestTemplate{
     		Option option = iterator.next();
     		System.out.println(option.getQuestion().getContent());
     	}*/
-    	System.out.println(choiceQuestionService.getMaxPageNo(2));
+    	//System.out.println(choiceQuestionService.getMaxPageNo(2));
     	//System.out.println("rows "+ choiceQuestionService.getTotalRows());
     	
     }

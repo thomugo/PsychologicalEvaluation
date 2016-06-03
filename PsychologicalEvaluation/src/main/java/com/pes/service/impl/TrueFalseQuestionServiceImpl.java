@@ -18,36 +18,17 @@ public class TrueFalseQuestionServiceImpl implements TrueFalseQuestionService {
 
 	@Autowired
 	TrueFalseQuestionDao trueFalseQuestionDao;
-	
+
 	@Override
-	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
-	public Integer save(TrueFalseQuestion entity) {
+	public TrueFalseQuestion load(Integer id) {
 		// TODO Auto-generated method stub
-		return trueFalseQuestionDao.save(entity);
+		return trueFalseQuestionDao.load(id);
 	}
 
 	@Override
-	public void remove(TrueFalseQuestion entity) {
+	public TrueFalseQuestion get(Integer id) {
 		// TODO Auto-generated method stub
-		trueFalseQuestionDao.remove(entity);
-	}
-
-	@Override
-	public void removeAll(Collection<TrueFalseQuestion> entities) {
-		// TODO Auto-generated method stub
-		trueFalseQuestionDao.removeAll(entities);
-	}
-
-	@Override
-	public void modify(TrueFalseQuestion entity) {
-		// TODO Auto-generated method stub
-		trueFalseQuestionDao.modify(entity);
-	}
-
-	@Override
-	public TrueFalseQuestion findById(Integer id) {
-		// TODO Auto-generated method stub
-		return trueFalseQuestionDao.findById(id);
+		return trueFalseQuestionDao.get(id);
 	}
 
 	@Override
@@ -57,21 +38,39 @@ public class TrueFalseQuestionServiceImpl implements TrueFalseQuestionService {
 	}
 
 	@Override
-	public List<TrueFalseQuestion> findByPage(int pageNo, int pageSize) {
+	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
+	public void persist(TrueFalseQuestion entity) {
 		// TODO Auto-generated method stub
-		return trueFalseQuestionDao.findByPage(pageNo, pageSize);
+		trueFalseQuestionDao.persist(entity);
 	}
 
 	@Override
-	public int getTotalRows() {
+	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
+	public Integer save(TrueFalseQuestion entity) {
 		// TODO Auto-generated method stub
-		return trueFalseQuestionDao.getTotalRows();
+		return trueFalseQuestionDao.save(entity);
 	}
 
 	@Override
-	public int getMaxPageNo(int pageSize) {
+	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
+	public void saveOrUpdate(TrueFalseQuestion entity) {
 		// TODO Auto-generated method stub
-		return trueFalseQuestionDao.getMaxPageNo(pageSize);
+		trueFalseQuestionDao.saveOrUpdate(entity);
 	}
+
+	@Override
+	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
+	public void delete(Integer id) {
+		// TODO Auto-generated method stub
+		trueFalseQuestionDao.delete(id);
+	}
+
+	@Override
+	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
+	public void flush() {
+		// TODO Auto-generated method stub
+		trueFalseQuestionDao.flush();
+	}
+	
 
 }
