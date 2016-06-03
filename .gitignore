@@ -2,12 +2,8 @@
 PsychologicalEvaluation/.classpath
 PsychologicalEvaluation/src/main/resources/config.properties
 PsychologicalEvaluation/.classpath
-logs/spring_struts2_Hibernate_demo.log
-logs/spring_struts2_Hibernate_demo.log.2016-05-28
-logs/spring_struts2_Hibernate_demo.log.2016-05-30
-logs/spring_struts2_Hibernate_demo.log
-logs/spring_struts2_Hibernate_demo.log
-logs/spring_struts2_Hibernate_demo.log
-logs/spring_struts2_Hibernate_demo.log
-logs/spring_struts2_Hibernate_error.log.2016-06-01
-logs/spring_struts2_Hibernate_error.log
+logs/*.log
+logs/*
+PsychologicalEvaluation/.settings/*
+*.project
+PsychologicalEvaluation/.project

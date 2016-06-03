@@ -14,6 +14,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name="user_info", catalog="pes")
 public class User extends BaseUser implements Serializable{
+	private int id;
+	private String username;
+	private String password;
+	private String email;
+	protected int privilege;
+	protected int broadcast; //用户已看广播数；
 	private int gender;
 	private int age;
 	private String vocation;
@@ -64,7 +70,7 @@ public class User extends BaseUser implements Serializable{
 	@Override
 	public String toString() {
 		return "User [gender=" + gender + ", age=" + age + ", vocation="
-				+ vocation + ", phone=" + phone + ", regdate=" + dateTime + "]";
+				+ vocation + ", phone=" + phone + ", dateTime=" + dateTime + "]";
 	}
 	
 }

@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- fonts -->
 
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+		<link rel="stylesheet" href="<%=path%>/style/family.css" />
 
 		<!-- ace styles -->
 
@@ -54,12 +54,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
-		<script src="<%=path%>/assets/js/html5shiv.js"></script>
 		<script src="<%=path%>/assets/js/respond.min.js"></script>
-		<![endif]-->
+		<!--[endif]-->
+
 	</head>
 
 	<body>
+	<s:debug></s:debug>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -407,7 +408,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="<%=path%>/file.jsp">
+									<a href="<%=path%>/user/file.jsp">
 										<i class="icon-double-angle-right"></i>
 										文件上传
 									</a>
@@ -445,16 +446,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<div class="row">
 							<div class="col-xs-12">
-								<!-- PAGE CONTENT BEGINS -->
-
 								<table id="grid-table"></table>
-
+									
 								<div id="grid-pager"></div>
-
 								<script type="text/javascript">
-									var $path_base = "/";//this will be used in gritter alerts containing images
+									var $path_base = "<%=path%>/";//this will be used in gritter alerts containing images
 								</script>
-
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
 						</div><!-- /.row -->
@@ -465,19 +462,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
 				<i class="icon-double-angle-up icon-only bigger-110"></i>
-			</a>
+			</a>	
 		</div><!-- /.main-container -->
-
+		
 		<!-- basic scripts -->
-
+	<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
+	<script type="text/javascript" src="<%=path%>/js/user.js"></script>
+	<script type="text/javascript" src="<%=path%>/js/json2.js"></script>	
 		<!--[if !IE]> -->
 
 
 		<!-- <![endif]-->
 
 		<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<![endif]-->
+			<script src="<%=path%>/js/jquery.min.js"></script>
+		<!--[endif]-->
 
 		<!--[if !IE]> -->
 
@@ -487,11 +486,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- <![endif]-->
 
-		<!--[if IE]>
+		<!--[if IE]-->
 <script type="text/javascript">
  window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
 </script>
-<![endif]-->
+<!--  [endif]-->
 
 		<script type="text/javascript">
 			if("ontouchend" in document) document.write("<script src='<%=path%>/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
@@ -510,47 +509,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
 		<script src="<%=path%>/assets/js/ace.min.js"></script>
 
-		<!-- inline scripts related to this page -->
+
 
 		<script type="text/javascript">
-			var grid_data = 
-			[ 
-				{id:"sanjdw",name:"谷雨",note:"患者",stock:"小学生",ship:"很多", sdate:"男"},
-				{id:"tsyj",name:"樊涛声",note:"欠揍 ",stock:"大学生",ship:"自恋测试",sdate:"男"},
-				{id:"3",name:"LCD Monitor",note:"note3",stock:"Yes",ship:"TNT",sdate:"2007-12-03"},
-				{id:"4",name:"Speakers",note:"note",stock:"No",ship:"ARAMEX",sdate:"2007-12-03"},
-				{id:"5",name:"Laser Printer",note:"note2",stock:"Yes",ship:"FedEx",sdate:"2007-12-03"},
-				{id:"6",name:"Play Station",note:"note3",stock:"No", ship:"FedEx",sdate:"2007-12-03"},
-				{id:"7",name:"Mobile Telephone",note:"note",stock:"Yes",ship:"ARAMEX",sdate:"2007-12-03"},
-				{id:"8",name:"Server",note:"note2",stock:"Yes",ship:"TNT",sdate:"2007-12-03"},
-				{id:"9",name:"Matrix Printer",note:"note3",stock:"No", ship:"FedEx",sdate:"2007-12-03"},
-				{id:"10",name:"Desktop Computer",note:"note",stock:"Yes",ship:"FedEx", sdate:"2007-12-03"},
-				{id:"11",name:"Laptop",note:"Long text ",stock:"Yes",ship:"InTime",sdate:"2007-12-03"},
-				{id:"12",name:"LCD Monitor",note:"note3",stock:"Yes",ship:"TNT",sdate:"2007-12-03"},
-				{id:"13",name:"Speakers",note:"note",stock:"No",ship:"ARAMEX",sdate:"2007-12-03"},
-				{id:"14",name:"Laser Printer",note:"note2",stock:"Yes",ship:"FedEx",sdate:"2007-12-03"},
-				{id:"15",name:"Play Station",note:"note3",stock:"No", ship:"FedEx",sdate:"2007-12-03"},
-				{id:"16",name:"Mobile Telephone",note:"note",stock:"Yes",ship:"ARAMEX",sdate:"2007-12-03"},
-				{id:"17",name:"Server",note:"note2",stock:"Yes",ship:"TNT",sdate:"2007-12-03"},
-				{id:"18",name:"Matrix Printer",note:"note3",stock:"No", ship:"FedEx",sdate:"2007-12-03"},
-				{id:"19",name:"Matrix Printer",note:"note3",stock:"No", ship:"FedEx",sdate:"2007-12-03"},
-				{id:"20",name:"Desktop Computer",note:"note",stock:"Yes",ship:"FedEx", sdate:"2007-12-03"},
-				{id:"21",name:"Laptop",note:"Long text ",stock:"Yes",ship:"InTime",sdate:"2007-12-03"},
-				{id:"22",name:"LCD Monitor",note:"note3",stock:"Yes",ship:"TNT",sdate:"2007-12-03"},
-				{id:"23",name:"Speakers",note:"note",stock:"No",ship:"ARAMEX",sdate:"2007-12-03"}
-			];	
+			var grid_data=[];
+			var length= ${users.size()};
+
+			for(var i=0;i<length;i++){
+			  alert("${users[i-'0']["dateTime"]}");
+			 grid_data[i]={id:"asddas",name:"guyu",email:"sanjdw@123.com",phone:"${users[i-'0']["phone"]}",dateTime:"${users[i-'0']["dateTime"]}", gender:"${users[i-'0']["gender"]}",vocation:"${users[i-'0']["vocation"]}"}; 
+			
+			} 
 			
 			jQuery(function($) {
 				var grid_selector = "#grid-table";
 				var pager_selector = "#grid-pager";
 			
 				jQuery(grid_selector).jqGrid({
-					//direction: "rtl",
 					
 					data: grid_data,
 					datatype: "local",
 					height: 250,
-					colNames:[' ', '用户名','性别','年龄', '职业', '做过的测试','备注'],
+					colNames:['操作', 'ID','用户名','电子邮箱', '联系电话', '注册日期','性别','职业'],
 					colModel:[
 						{name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
 							formatter:'actions', 
@@ -561,13 +541,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								//editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
 							}
 						},
-						{name:'id',index:'id', width:60, sorttype:"int", editable: true},
-						{name:'sdate',index:'sdate',width:90, editable:true, sorttype:"date",unformat: pickDate},
-						{name:'name',index:'name', width:150,editable: true,editoptions:{size:"20",maxlength:"30"}},
-						{name:'stock',index:'stock', width:70, editable: true,edittype:"checkbox",editoptions: {value:"Yes:No"},unformat: aceSwitch},
-						{name:'ship',index:'ship', width:90, editable: true,edittype:"select",editoptions:{value:"FE:FedEx;IN:InTime;TN:TNT;AR:ARAMEX"}},
-						{name:'note',index:'note', width:150, sortable:false,editable: true,edittype:"textarea", editoptions:{rows:"2",cols:"10"}} 
-					], 
+						{name:'id',index:'id', width:90, sorttype:"int", editable: true},
+
+						{name:'name',index:'name', width:90,editable: true,editoptions:{size:"20",maxlength:"30"}},
+
+						{name:'email',index:'email', width:150,editable: true,editoptions:{size:"20",maxlength:"30"}},
+
+						{name:'phone',index:'phone', width:110,editable: true,editoptions:{size:"20",maxlength:"25"}},
+
+						{name:'dateTime',index:'dateTime',width:150, editable:true, sorttype:"date",unformat: pickDate},
+						
+						{name:'gender',index:'gender', width:40, editable: true,edittype:"select",editoptions:{value:"FE:男;IN:女"}},
+						
+		//				{name:'note',index:'note', width:150, sortable:false,editable: true,edittype:"textarea", editoptions:{rows:"2",cols:"10"}} 
+						
+						{name:'vocation',index:'vocation', width:130,editable: true,editoptions:{size:"25",maxlength:"30"}}
+					], 						
 			
 					viewrecords : true,
 					rowNum:10,
@@ -591,18 +580,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						}, 0);
 					},
 			
-					editurl: $path_base+"/dummy.html",//nothing is saved
+					editurl: $path_base+"/modifyUser.action",//nothing is saved
 					caption: "用户信息",
-			
-			
 					autowidth: true
 			
 				});
 			
-				//enable search/filter toolbar
-				//jQuery(grid_selector).jqGrid('filterToolbar',{defaultSearch:true,stringResult:true})
-			
-				//switch element when editing inline
 				function aceSwitch( cellvalue, options, cell ) {
 					setTimeout(function(){
 						$(cell) .find('input[type=checkbox]')

@@ -24,15 +24,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>心理学从这里开始</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
-<link rel="stylesheet" href="<%=path%>/style/mobile.css">
+<link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css">
 
-<script src="http://lapp.xinli001.com/dist/mobile_0cca9dc8c8.js" ></script><!--[if lt IE 9]>
-<script src="http://lapp.xinli001.com/jsmin/html5.min.js" ></script><![endif]-->
+<script src="<%=path%>/js/mobile_f4b5a0a094.js" ></script><!--[if lt IE 9]>
+<script src="http://lapp.xinli001.com/jsmin/html5.min.js" ></script><!--[endif]-->
 <script>
     var postUserMessageUrl = 'http://m.xinli001.com/ajax/post-user-message.json';
     $(function() {
         if($('script[src$="app.ad.js"]').length<1){
-            $("<script>").attr({"src":"http://lapp.xinli001.com/jsmin/app.ad.min.js"}).appendTo($("body"));
+            $("<script>").attr({"src":"<%=path%>/js/app.ad.min.js"}).appendTo($("body"));
         }else{
             console.log("Already loaded app.ad.js.");
         }
@@ -48,8 +48,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="right">
                     <div id="header_avatar_btn_div">
                 <div class="img">
-                    <a class="avatar" href="http://m.xinli001.com/account/login">
-                        <img src="http://lapp.xinli001.com/images/website-mobile/img155.png" width="60" height="60">
+                    <a class="avatar" href="<%=path%>/user/login.jsp">
+                        <img src="<%=path%>/image/img155.png" width="60" height="60">
                     </a>
                 </div>
             </div>
@@ -64,31 +64,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="sy-banner">
                 <ul class="slides">
                                                                         <li class="slide">
-                                <a href="http://www.xinli001.com/user/1000130575"><img src="http://image.xinli001.com/20160525/11123128mksdho3v8bf4a1.jpg!600"/></a>
-                                <a href="http://www.xinli001.com/user/1000130575">
+                                <a href="#"><img src="<%=path%>/image/11123128mksdho3v8bf4a1.jpg"/></a>
+                                <a href="#">
 <!--                                    <h2>--><!--</h2>-->
                                 </a>
                             </li>
                                                     <li class="slide">
-                                <a href="http://xy.xinli001.com/course/89"><img src="http://image.xinli001.com/20160525/043034uj6pq30kpw15ddhs.jpg!600"/></a>
-                                <a href="http://xy.xinli001.com/course/89">
+                                <a href="#"><img src="<%=path%>/image/043034uj6pq30kpw15ddhs.jpg"/></a>
+                                <a href="#">
 <!--                                    <h2>--><!--</h2>-->
                                 </a>
                             </li>
                                                     <li class="slide">
-                                <a href="http://m.xinli001.com/huodong/feature/seeFuture.html?from=mm"><img src="http://image.xinli001.com/20160523/031603fo3oqq4giwjkdrsw.jpg!600"/></a>
-                                <a href="http://m.xinli001.com/huodong/feature/seeFuture.html?from=mm">
+                                <a href="#"><img src="<%=path%>/image/031603fo3oqq4giwjkdrsw.jpg"/></a>
+                                <a href="#">
 <!--                                    <h2>--><!--</h2>-->
                                 </a>
                             </li>
                                                     <li class="slide">
-                                <a href="http://m.xinli001.com/subject/15"><img src="http://image.xinli001.com/20160520/132258qo2ptcxq2nydc91x.jpg!600"/></a>
-                                <a href="http://m.xinli001.com/subject/15">
+                                <a href="#"><img src="<%=path%>/image/132258qo2ptcxq2nydc91x.jpg"/></a>
+                                <a href="#">
 <!--                                    <h2>--><!--</h2>-->
                                 </a>
                             </li>
                                                     <li class="slide">
-                                <a href="http://www.xinli001.com/info/100319446"><img src="http://image.xinli001.com/20160519/100242giq2mxfwujjmedwm.jpg!600"/></a>
+                                <a href="http://www.xinli001.com/info/100319446"><img src="<%=path%>/image/100242giq2mxfwujjmedwm.jpg"/></a>
                                 <a href="http://www.xinli001.com/info/100319446">
 <!--                                    <h2>--><!--</h2>-->
                                 </a>
@@ -100,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <ul>
     <li>
 
-        <a href="http://m.xinli001.com/info" >
+        <a href="<%=path%>/user/info.jsp" >
             <div class="img">
                 <i class="icon icon-article"></i>
             </div>
@@ -109,20 +109,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </li>
     <li>
 
-        <a href="http://m.xinli001.com/ceshi" >
+        <a href="<%=path%>/user/ceshi.jsp" >
             <div class="img">
                 <i class="icon icon-ceshi"></i>
             </div>
             <h2>做测试</h2>
-        </a>
-    </li>
-    <li>
-
-        <a href="http://xy.xinli001.com/" >
-            <div class="img">
-                <i class="icon icon-classes"></i>
-            </div>
-            <h2>学课程</h2>
         </a>
     </li>
     <li>
@@ -133,13 +124,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <h2>听FM</h2>
         </a>
+    </li>    
+	<li>
+        <a href="<%=path%>/user/chat.jsp" >
+            <div class="img">
+                <i class="icon icon-fm"></i>
+            </div>
+            <h2>交流</h2>
+        </a>
     </li>
     </ul>
 </div>
 
 <div class="sy-bigNav">
     <div class="left actionArea">
-        <a href="http://m.xinli001.com/zx?tab=teacher">
+        <a href="#">
             <h1>预约咨询</h1>
             <p>5000位专业咨询师
                 <br/>等你来约</p>
@@ -148,7 +147,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <div class="right">
         <div class="up actionArea">
-            <a href="http://m.xinli001.com/qingsu">
+            <a href="<%=path%>/user/chat.jsp">
                 <span>
                     <h1>即时倾诉</h1>
                     <p>心情不好马上倾诉</p>
@@ -166,77 +165,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </a>
         </div>
     </div>
-    <div class="broadcast">
-        <div class="head">
-            <i class="icon icon-broadcast"></i>
-        </div>
-        <div class="body">
-            <ul class="slides">
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">q**预约了黎燕 1次 ¥98 语音咨询</div></p>
-                </li>
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">艾**预约了罗丽 1次 ¥300 语音咨询</div></p>
-                </li>
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">小**预约了王国华 1次 ¥300 语音咨询</div></p>
-                </li>
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">小**预约了龙慧兰 1次 ¥300 语音咨询</div></p>
-                </li>
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">C**预约了孔凡琼 1次 ¥300 语音咨询</div></p>
-                </li>
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">用**预约了殷国 1次 ¥120 语音咨询</div></p>
-                </li>
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">咨询师罗丽收到用**的好评</div></p>
-                </li>
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">用**预约了卜芸 1次 ¥120 语音咨询</div></p>
-                </li>
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">小**预约了赵婕 1次 ¥150 语音咨询</div></p>
-                </li>
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">w**预约了王方国 1次 ¥1 语音咨询</div></p>
-                </li>
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">计**预约了珊妮 1次 ¥120 语音咨询</div></p>
-                </li>
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">用**预约了殷国 1次 ¥120 语音咨询</div></p>
-                </li>
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">1**预约了刘月 1次 ¥400 面对面咨询</div></p>
-                </li>
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">咨询师高恒收到用**的好评</div></p>
-                </li>
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">咨询师李乾收到叶**的好评</div></p>
-                </li>
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">用**预约了刘文静 1次 ¥400 面对面咨询</div></p>
-                </li>
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">用**预约了刘文静 2次 ¥800 面对面咨询</div></p>
-                </li>
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">咨询师刘大熊发布话题 如何做个优秀的自己</div></p>
-                </li>
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">咨询师朱晓宁发布话题 亲密关系</div></p>
-                </li>
-                                <li class="slide">
-                    <p><div style="width: 200px; color: #999;">咨询师宋毅发布话题 职场中的情绪压力应对</div></p>
-                </li>
-                            </ul>
-        </div>
-    </div>
 </div>
-            <div class="wz-list">
+             <div class="wz-list">
                 <div class="list-head">
                     看文章
                 </div>
@@ -244,106 +174,104 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <ul>
                                                 <li>
                             <div class="img">
-                                <a href="http://m.xinli001.com/info/100320064"><img src="http://image.xinli001.com/20160526/070843oqkr3tuh7qhqv2c5.jpg!180x120""></a>
+                                <a href="#"><img src="<%=path %>/image/0710264ee7ydh4165s37en.jpg"></a>
                             </div>
                             <div class="text">
                                 <div class="desc">
-                                    <a href="http://m.xinli001.com/info/100320064">深度分析：谈话中的男女差异</a>
+                                    <a href="#">武志红：出轨家庭不愿离婚的真实原因到底是什么？</a>
                                 </div>
                                 <div class="info">
-                                    <span>罗贤</span>
+                                    <span>婚恋专栏·壹心理</span>
                                     <dl>
-                                        <dd><a href="javascript:void(0);"><i class="ico2">4</i></a></dd>
+                                        <dd><a href="javascript:void(0);"><i class="ico2">607</i></a></dd>
                                     </dl>
                                 </div>
                             </div>
                         </li>
                                                 <li>
                             <div class="img">
-                                <a href="http://m.xinli001.com/info/100320349"><img src="http://image.xinli001.com/20160526/0654465bkf6ilqk5synob2.jpg!180x120""></a>
+                                <a href="#"><img src="<%=path %>/image/101115qdvsimjx1egru5xk.jpg"></a>
                             </div>
                             <div class="text">
                                 <div class="desc">
-                                    <a href="http://m.xinli001.com/info/100320349">“别睡了，起来嗨！”是种什么心理？</a>
+                                    <a href="#">你判断一个人内向或外向的标准，可能都是错的</a>
                                 </div>
                                 <div class="info">
                                     <span>健康专栏·壹心理</span>
                                     <dl>
-                                        <dd><a href="javascript:void(0);"><i class="ico2">6</i></a></dd>
+                                        <dd><a href="javascript:void(0);"><i class="ico2">1318</i></a></dd>
                                     </dl>
                                 </div>
                             </div>
                         </li>
                                                 <li>
                             <div class="img">
-                                <a href="http://m.xinli001.com/info/100320345"><img src="http://image.xinli001.com/20160526/064150a43c4wb7k4clidwx.png!180x120""></a>
+                                <a href="#"><img src="<%=path %>/image/095358x2tdocjhq1jp5rol.jpg"></a>
                             </div>
                             <div class="text">
                                 <div class="desc">
-                                    <a href="http://m.xinli001.com/info/100320345">你控制欲那么强，源于未化解早年对父母的恨与不满</a>
-                                </div>
-                                <div class="info">
-                                    <span>丛非从</span>
-                                    <dl>
-                                        <dd><a href="javascript:void(0);"><i class="ico2">18</i></a></dd>
-                                    </dl>
-                                </div>
-                            </div>
-                        </li>
-                                                <li>
-                            <div class="img">
-                                <a href="http://m.xinli001.com/info/100320344"><img src="http://image.xinli001.com/20160526/063604bafk2kdp8s4oxe0i.jpg!180x120""></a>
-                            </div>
-                            <div class="text">
-                                <div class="desc">
-                                    <a href="http://m.xinli001.com/info/100320344">高情商孩子是怎么养成的？</a>
+                                    <a href="#">对孩子三大冷暴力，全世界的爸爸都中枪了</a>
                                 </div>
                                 <div class="info">
                                     <span>亲子专栏</span>
                                     <dl>
-                                        <dd><a href="javascript:void(0);"><i class="ico2">45</i></a></dd>
+                                        <dd><a href="javascript:void(0);"><i class="ico2">483</i></a></dd>
                                     </dl>
                                 </div>
                             </div>
                         </li>
                                                 <li>
                             <div class="img">
-                                <a href="http://m.xinli001.com/info/100320327"><img src="http://image.xinli001.com/20160526/043222s48xpyryywi8keoq.jpg!180x120""></a>
+                                <a href="#"><img src="<%=path %>/image/034244cie655ql6nb37aks.jpg"></a>
                             </div>
                             <div class="text">
                                 <div class="desc">
-                                    <a href="http://m.xinli001.com/info/100320327">懂得放手的父母，才对孩子爱得更深</a>
+                                    <a href="#">如何利用仪式感提高效率？</a>
                                 </div>
                                 <div class="info">
-                                    <span>亲子专栏</span>
+                                    <span>职场专栏·壹心理</span>
                                     <dl>
-                                        <dd><a href="javascript:void(0);"><i class="ico2">74</i></a></dd>
+                                        <dd><a href="javascript:void(0);"><i class="ico2">2696</i></a></dd>
                                     </dl>
                                 </div>
                             </div>
                         </li>
                                                 <li>
                             <div class="img">
-                                <a href="http://m.xinli001.com/info/100319464"><img src="http://image.xinli001.com/20160526/035549a3tns7994nhhnut5.jpg!180x120""></a>
+                                <a href="#"><img src="<%=path %>/image/125438rnyezm4gdqf4wryw.jpg"></a>
                             </div>
                             <div class="text">
                                 <div class="desc">
-                                    <a href="http://m.xinli001.com/info/100319464">什么也没错，就是你犯的最大错误</a>
+                                    <a href="#">前女友究竟是一种怎样的存在？</a>
                                 </div>
                                 <div class="info">
-                                    <span>壹心理jhb</span>
+                                    <span>科普专栏·壹心理</span>
                                     <dl>
-                                        <dd><a href="javascript:void(0);"><i class="ico2">244</i></a></dd>
+                                        <dd><a href="javascript:void(0);"><i class="ico2">10222</i></a></dd>
                                     </dl>
                                 </div>
                             </div>
                         </li>
-                        
-                    </ul>
+                                                <li>
+                            <div class="img">
+                                <a href="#"><img src="<%=path %>/image/063436o7z6qvctloxqlbne.jpg"></a>
+                            </div>
+                            <div class="text">
+                                <div class="desc">
+                                    <a href="#">这世上没有无私的爱，这是本性</a>
+                                </div>
+                                <div class="info">
+                                    <span>邵琪「心灵花园nice」</span>
+                                    <dl>
+                                        <dd><a href="javascript:void(0);"><i class="ico2">4894</i></a></dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </li>
 
                  </div>
                 <div class="list-foot">
-                    <a href="http://m.xinli001.com/info"> 更多文章</a>
+                    <a href="<%=path %>/user/info.jsp"> 更多文章</a>
                 </div>
                             </div>
 
@@ -354,27 +282,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <div class="list-body">
                     <ul>
                                                 <li>
-                            <a href="http://m.xinli001.com/user/1000056093">
+                            <a href="#">
                                 <div class="img">
-                                    <img src="http://image.xinli001.com/20150702/160448/339108.JPG!80"/>
+                                    <img src="<%=path %>/image/339108.JPG"/>
                                 </div>
                                 <h2>蒋琪</h2>
 <!--                                <h4>--><!--</h4>-->
                             </a>
                         </li>
                                                 <li>
-                            <a href="http://m.xinli001.com/user/70242723">
+                            <a href="#">
                                 <div class="img">
-                                    <img src="http://ossimg.xinli001.com/20160413/7efd92aabd91d204abfb134a2bba0e74.png!80"/>
+                                    <img src="<%=path %>/image/7efd92aabd91d204abfb134a2bba0e74.png"/>
                                 </div>
                                 <h2>彭君</h2>
 <!--                                <h4>--><!--</h4>-->
                             </a>
                         </li>
                                                 <li>
-                            <a href="http://m.xinli001.com/user/3510061">
+                            <a href="#">
                                 <div class="img">
-                                    <img src="http://image.xinli001.com/20150115/121240/934382.JPG!80"/>
+                                    <img src="<%=path %>/image/934382.JPG"/>
                                 </div>
                                 <h2>杨浩波</h2>
 <!--                                <h4>--><!--</h4>-->
@@ -383,7 +311,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             </ul>
                 </div>
                 <div class="list-foot">
-                     <a href="http://m.xinli001.com/zx?tab=teacher">更多专家</a>
+                     <a href="#">更多专家</a>
                 </div>
                             </div>
             <div class="fm-list">
@@ -394,10 +322,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <ul>
                                                 <li>
                             <div class="img">
-                                <a href="http://m.xinli001.com//fm/99389176"><img src="http://image.xinli001.com/20160525/1547165ufedj25kqol9853.jpg!200x200"/></a>
+                                <a href="http://m.xinli001.com//fm/99389166"><img src="<%=path %>/image/1303404eaflshdtqw9p945.jpg"/></a>
                                 <em></em>
                             </div>
-                            <h2><a href="http://m.xinli001.com//fm/99389176">杨绛：我与钟书</a></h2>
+                            <h2><a href="http://m.xinli001.com//fm/99389166">无心炫耀，才是真正拥有</a></h2>
 <!--                            <h4>-->
 <!--                                <a href="--><!--">-->
 <!--                                    <img src="--><!--"/>-->
@@ -406,10 +334,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </li>
                                                 <li>
                             <div class="img">
-                                <a href="http://m.xinli001.com//fm/99389175"><img src="http://image.xinli001.com/20160525/153700ok5odiaeyxrgf6qw.jpg!200x200"/></a>
+                                <a href="#"><img src="<%=path %>/image/013403xy2lt0ewz5bv7434.jpg"/></a>
                                 <em></em>
                             </div>
-                            <h2><a href="http://m.xinli001.com//fm/99389175">杨绛先生：执子之手夫复何求</a></h2>
+                            <h2><a href="#">余秋雨-我一直在等你</a></h2>
 <!--                            <h4>-->
 <!--                                <a href="--><!--">-->
 <!--                                    <img src="--><!--"/>-->
@@ -418,10 +346,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </li>
                                                 <li>
                             <div class="img">
-                                <a href="http://m.xinli001.com//fm/99389172"><img src="http://image.xinli001.com/20160525/121057bjtxxd40ndzcnzhq.png!200x200"/></a>
+                                <a href="#"><img src="<%=path %>/image/001008bxw0e3t0x2d8xgr3.jpg"/></a>
                                 <em></em>
                             </div>
-                            <h2><a href="http://m.xinli001.com//fm/99389172">杨绛：人生边上的智慧</a></h2>
+                            <h2><a href="#">幸福的含义是什么？</a></h2>
 <!--                            <h4>-->
 <!--                                <a href="--><!--">-->
 <!--                                    <img src="--><!--"/>-->
@@ -442,35 +370,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <ul>
                                                 <li>
                             <div class="img">
-                                <a href="http://m.xinli001.com//ceshi/2501"><img src="http://image.xinli001.com/20160526/020544ljhlpm0cprai39q6.jpg!200x134"/></a>
+                                <a href="<%=path %>/ceshi/357.jsp"><img src="<%=path %>/image/021356cvg7ha82skersh0f.jpg"/></a>
                             </div>
                             <div class="text">
-                                <h2><a href="http://m.xinli001.com//ceshi/2501">娱乐测试：你的灵魂会去往何处？</a></h2>
-                                <h4><i class="icon icon-user-small"></i>173593</h4>
+                                <h2><a href="<%=path %>/ceshi/357.jsp">世界上另一个自己会对你说什么？</a></h2>
+                                <h4><i class="icon icon-user-small"></i>119325</h4>
                             </div>
                         </li>
                                                 <li>
                             <div class="img">
-                                <a href="http://m.xinli001.com//ceshi/99897574"><img src="http://image.xinli001.com/20160524/101429te35em19j4e5eq5o.jpg!200x134"/></a>
+                                <a href="http://m.xinli001.com//ceshi/2501"><img src="<%=path %>/image/020544ljhlpm0cprai39q6.jpg"/></a>
                             </div>
                             <div class="text">
-                                <h2><a href="http://m.xinli001.com//ceshi/99897574">测测你在他心中的分量有多少？（限女生）</a></h2>
-                                <h4><i class="icon icon-user-small"></i>17050</h4>
+                                <h2><a href="#">娱乐测试：你的灵魂会去往何处？</a></h2>
+                                <h4><i class="icon icon-user-small"></i>195118</h4>
                             </div>
                         </li>
                                                 <li>
                             <div class="img">
-                                <a href="http://m.xinli001.com//ceshi/99897573"><img src="http://image.xinli001.com/20160524/08570762ljeetn787bkc9y.jpg!200x134"/></a>
+                                <a href="#"><img src="<%=path %>/image/101429te35em19j4e5eq5o.jpg"/></a>
                             </div>
                             <div class="text">
-                                <h2><a href="http://m.xinli001.com//ceshi/99897573">友谊心理模式测评</a></h2>
-                                <h4><i class="icon icon-user-small"></i>11</h4>
+                                <h2><a href="#">测测你在他心中的分量有多少？（限女生）</a></h2>
+                                <h4><i class="icon icon-user-small"></i>34019</h4>
                             </div>
                         </li>
                                             </ul>
                 </div>
                 <div class="list-foot">
-                    <a href="http://m.xinli001.com/ceshi">更多测试</a>
+                    <a href="<%=path %>/user/ceshi.jsp">更多测试</a>
                 </div>
                             </div>
             <div class="hd-list" style="display: none;">
@@ -481,52 +409,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <ul>
                                                 <li>
                             <div class="img">
-                                <a href="http://m.xinli001.com//site/event/99911396"><img src="http://image.xinli001.com//20160525/170535/869253.jpg!huodong"></a>
+                                <a href="#"><img src="<%=path %>/image/870071.jpg"></a>
                             </div>
-                            <h2><a href="http://m.xinli001.com//site/event/99911396">身体治疗课程</a></h2>
+                            <h2><a href="#">行为治疗的个案概念化</a></h2>
                             <div class="attr">
-                                <i>时间</i><span class="time">2016年06月08日</span>
+                                <i>时间</i><span class="time">2016年05月28日</span>
                             </div>
                         </li>
                                                 <li>
                             <div class="img">
-                                <a href="http://m.xinli001.com//site/event/99911395"><img src="http://image.xinli001.com//20160525/160437/968813.jpg!huodong"></a>
+                                <a href="#"><img src="<%=path %>/image/118311.jpg"></a>
                             </div>
-                            <h2><a href="http://m.xinli001.com//site/event/99911395">第四期冉江峰长程动力性缓慢开放动力性团体</a></h2>
+                            <h2><a href="#">自杀的心理动力学意义及应对</a></h2>
                             <div class="attr">
-                                <i>时间</i><span class="time">2016年10月13日</span>
+                                <i>时间</i><span class="time">2016年06月11日</span>
                             </div>
                         </li>
                                                 <li>
                             <div class="img">
-                                <a href="http://m.xinli001.com//site/event/99911394"><img src="http://image.xinli001.com//20160525/140232/506205.jpg!huodong"></a>
+                                <a href="#"><img src="<%=path %>/image/160458/453277.jpg"></a>
                             </div>
-                            <h2><a href="http://m.xinli001.com//site/event/99911394">【微光心理】公益心理咨询项目申请介绍</a></h2>
+                            <h2><a href="#">（网络版）NLP销售冠军训练营</a></h2>
                             <div class="attr">
-                                <i>时间</i><span class="time">2016年05月25日</span>
+                                <i>时间</i><span class="time">2016年05月01日</span>
                             </div>
                         </li>
                                             </ul>
                 </div>
                 <div class="list-foot list-foot1">
-                    <a href="http://m.xinli001.com//site/event">更多活动</a>
+                    <a href="#">更多活动</a>
                 </div>
                             </div>
 
             <div class="hd-foot">
     <p>
-        <a href="http://m.xinli001.com/feedback/">反馈留言</a>
+        <a href="<%=path %>/user/feedback.jsp">反馈留言</a>
     </p>
     <p>
-        我们的小组<span>心理测评</span>
+        我们的小组<span>心理测评系统</span>
     </p>
 
 </div>
 
-<span style="display: none">
-<!--    <script type="text/javascript" src="http://js.tongji.linezing.com/2646296/tongji.js"></script>-->
-<!--    <noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2646296/tongji.gif"/></a></noscript>-->
-</span>
 <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd64469e9d7bdbf03af6f074dffe7f9b5' type='text/javascript'%3E%3C/script%3E"));

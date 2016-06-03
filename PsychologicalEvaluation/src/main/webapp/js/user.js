@@ -9,8 +9,6 @@ $(document).ready(function() {
 		}); 
 	});
 	$("#prepage").click(function() {
-		//$(".users").remove();
-		//alert($("#num").html());
 		var pageNum = $("#num").html();
 		var totalPages = $("#totalPages").html();
 		var pageSize = $("#pageSize").html();
@@ -23,7 +21,7 @@ $(document).ready(function() {
 		map["pageNum"] = pageNum;
 		map["pageSize"] = pageSize;
 		var jsonString = JSON.stringify(map);
-		$.get("listUser.action", {"jsonString" : jsonString},
+		$.get("userList.action", {"jsonString" : jsonString},
 				function (result){ 
 					alert(result); 
 		}); 
@@ -41,7 +39,7 @@ $(document).ready(function() {
 		map["pageNum"] = pageNum;
 		map["pageSize"] = pageSize;
 		var jsonString = JSON.stringify(map);
-		$.get("listUser.action", {"jsonString" : jsonString},
+		$.get("userList.action", {"jsonString" : jsonString},
 				function (result){ 
 					alert(result); 
 		}); 

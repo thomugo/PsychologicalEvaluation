@@ -85,8 +85,8 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		return "userinfo";
 	}
 	
-	@Action(value="listUser", results={
-			@Result(name="users", location="/user/listUser.jsp")
+	@Action(value="userList", results={
+			@Result(name="users", location="/user/userList.jsp")
 	})
 	public String getAllUsers(){
 		//List<User> users = userService.findAll();
@@ -100,6 +100,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		System.out.println("pageSize: " + pageSize);
 		users = userService.findByPage(pageNum, pageSize, true);
 		System.out.println("find "+users.size()+"users");
+		System.out.println(users);
 		if(json != null)
 			AjaxUtil.ajaxJSONResponse(users);
 		return "users";

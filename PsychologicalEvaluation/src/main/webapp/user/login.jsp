@@ -1,107 +1,127 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ page isELIgnored="false" %>
-<%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ page isELIgnored="false"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
 
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>登录</title>
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<html>
+<head>
+<script>
+        var pageName = 'mobile/account/login';
+        var sendPwdUrl = 'http://m.xinli001.com/ajax/send-dynamic-pwd';
+    </script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="">
+<meta name="format-detection" content="telephone=no">
+<title></title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css">
 
-    <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap-responsive.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/theme.css">
-    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
+<script src="<%=path%>/js/mobile_f4b5a0a094.js"></script>
+<!--[if lt IE 9]-->
+</head>
 
-    <script src="lib/jquery-1.8.1.min.js" type="text/javascript"></script>
-
-    <!-- Demo page code -->
-    
-    <style type="text/css">
-        #line-chart {
-            height:300px;
-            width:800px;
-            margin: 0px auto;
-            margin-top: 1em;
-        }
-        .brand { font-family: georgia, serif; }
-        .brand .first {
-            color: #ccc;
-            font-style: italic;
-        }
-        .brand .second {
-            color: #fff;
-            font-weight: bold;
-        }
-    </style>
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-  </head>
-
-  <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
-  <!--[if IE 7 ]> <body class="ie ie7"> <![endif]-->
-  <!--[if IE 8 ]> <body class="ie ie8"> <![endif]-->
-  <!--[if IE 9 ]> <body class="ie ie9"> <![endif]-->
-  <!--[if (gt IE 9)|!(IE)]><!--> 
-  <body> 
-  <!--<![endif]-->
-    
-    <div class="navbar">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                <ul class="nav pull-right">
-                    
-                </ul>
-                <a class="brand" href="index.html"><span class="first"></span> <span class="second">WinterAdmin</span></a>
-            </div>
-        </div>
-    </div>
-    
-
-    <div class="container-fluid">
+<body>
+    <div class="layout">
+                                
+        <div class="header ">
+    <div class="left">
+                <a href="javascript:history.go(-1);" class="ico ico-back icon"></a>
         
-        <div class="row-fluid">
-    <div class="dialog span4">
-        <div class="block">
-            <div class="block-heading">登录</div>
-            <div class="block-body">
-                <form>
-                    <label>用户名</label>
-                    <input type="text" class="span12">
-                    <label>密码</label>
-                    <input type="password" class="span12">
-                    <a href="index.html" class="btn btn-primary pull-right">登录</a>
-                    <label class="remember-me"><input type="checkbox"> 记住密码</label>
-                    <div class="clearfix"></div>
-                </form>
             </div>
-        </div>       
-        <p><a href="reset-password.html">忘记密码?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="user/registe.jsp">注册</a></p>
-    </div>
-</div>
+        <h2>登录</h2>
+    <div class="right">
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="lib/bootstrap/js/bootstrap.js"></script>
-    
-  </body>
+            </div>
+
+</div>
+        <section class="mainCont">
+
+          <s:form class="logIn-form show" id="logIn-form-email" action="login" method="post">
+                <div class="rowArea form-input">
+                    <div class="form-group email">
+                        <div class="form-control">
+                            <s:textfield name="username" placeholder="用户名"></s:textfield>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group phonePsw">
+                        <div class="form-control">
+                            <s:textfield type="password" name="password" placeholder="密码"></s:textfield>
+                        </div>
+                    </div>
+                </div>
+                <div class="rowArea logInTip">
+                    <ul>
+                        <li>您如果<span class="t-blue">忘记密码</span>，请用电脑登陆我们的心理测评系统网站找回密码。</li>
+                    </ul>
+                </div>
+                <div class="rowArea">
+                    <s:submit value="提交" class="logIn-form-submit" ></s:submit>
+                </div>
+             </s:form> 
+                    
+
+
+<!--  	<s:form action="login" method="post">
+     	<s:textfield name="username" label="username"></s:textfield>
+    	<br/>
+    	<s:textfield name="password" label="password"></s:textfield>
+    	<br/>
+    	<s:submit value="submit"></s:submit>
+    </s:form>-->
+
+			<div class="otherLogIn">
+				<div class="title">
+					<h3>第三方登录</h3>
+						<i class="bd"></i>
+				</div>
+				<div class="body">
+					<ul>
+						<li class="wb"><a href="#"><i class="icon-other-login"></i>微博登录</a></li>
+						<li class="qq"><a href="#"><i class="icon-other-login"></i>QQ登录</a></li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+<!-- 底部 -->
+	<div class="hd-foot">
+		<p>
+			<a href="<%=path%>/user/feedback.jsp">反馈留言</a>
+		</p>
+		<p>
+			我们的小组<span>心理测评</span>
+		</p>
+
+	</div>
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd64469e9d7bdbf03af6f074dffe7f9b5' type='text/javascript'%3E%3C/script%3E"));
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','<%=path%>/js/analytics.js', 'ga');
+
+	ga('create', 'UA-74218902-7', 'auto');
+	ga('send', 'pageview');
+</script>
+</div>
+</body>
+
 </html>
+

@@ -312,7 +312,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<ul class="submenu">
 								<li>
-									<a href="<%=path%>/user/userList.jsp">
+									<a href="${ pageContext.request.contextPath }/userList.action">
 										<i class="icon-double-angle-right"></i>
 										用户列表
 									</a>
@@ -403,7 +403,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="<%=path%>/file.jsp">
+									<a href="<%=path%>/user/file.jsp">
 										<i class="icon-double-angle-right"></i>
 										文件上传
 									</a>

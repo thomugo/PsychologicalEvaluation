@@ -19,7 +19,7 @@ $(document).ready(
 				    $('.addoption').each(function(i){
 				        this.onclick=function(){
 				            //alert(i);
-				            $(this).siblings("div").append("<label>选项</label><input type='text' class='option'>");
+				            $(this).siblings("div").append("<input type='text' class='option'>選項");
 				        };
 				    });
 				}
@@ -53,7 +53,7 @@ $(document).ready(
 						 				{
 						 					//标记置空
 						 					save = false;
-						 					alert("选项不能为空！！！");
+						 					alert("輸入選項！");
 						 					//设置焦点
 						 					this.focus().select();
 						 				}

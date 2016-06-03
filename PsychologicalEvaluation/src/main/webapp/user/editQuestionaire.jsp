@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- basic styles -->
 
-		<link href="<%=path%>/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
@@ -61,6 +61,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		margin-left:22.2%;
 		margin-top:15px;
 		font-size:15px;
+	}
+	.option{
+		margin-left:-1px;
+		letter-spacing:0px;
+		color:#468847;
 	}
 	</style>
 	</head>
@@ -323,7 +328,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<ul class="submenu">
 								<li>
-									<a href="<%=path%>/user/userList.jsp">
+									<a href="${ pageContext.request.contextPath }/userList.action">
 										<i class="icon-double-angle-right"></i>
 										用户列表
 									</a>
@@ -414,7 +419,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 								
 								<li>
-									<a href="<%=path%>/file.jsp">
+									<a href="<%=path%>/user/file.jsp">
 										<i class="icon-double-angle-right"></i>
 										文件上传
 									</a>
@@ -442,15 +447,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</li>
 							<li class="active">添加测评问卷</li>
 						</ul><!-- .breadcrumb -->
-
-						<div class="nav-search" id="nav-search">
-							<form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="查找 ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="icon-search nav-search-icon"></i>
-								</span>
-							</form>
-						</div><!-- #nav-search -->
 					</div>
 
 					<div class="page-content">
@@ -488,11 +484,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																</div>
 
 																<div class="form-group has-error">
-																	<label class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right">问卷说明</label>
+																	<label class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right" >问卷说明</label>
 
 																	<div class="col-xs-12 col-sm-5">
 																		<span class="block input-icon input-icon-right">
-																			<textarea rows="4" class="width-100"></textarea>																			
+																			<textarea rows="4" class="width-100" id='describtion'></textarea>																			
 																		</span>
 																	</div>
 																</div>
@@ -503,14 +499,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																		<label class="col-xs-12 col-sm-3 control-label no-padding-right">问题</label>
 																		<div class="col-xs-12 col-sm-5">
 																			<span class="block input-icon input-icon-right">
-																				<input type="text"  class="width-100" />
+																				<input type="text"  class="width-100  question1" />
 																			</span>
 																		</div>	
 																	</div>
 
-																	<div class="">
+																	<div class="choiceoption">
 																		<div class="mystyle">											
-																			<span>选项</span>
+																			<span class='option'>选项</span>
 																									
 																			<input type='text' style='width:267px;'/><input type='text' style='width:45px;font-size:14px;' class='fenzhi' placeholder='分值'/>									
 																			<button class="btn addoption">添加选项</button>
@@ -577,9 +573,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 <![endif]-->
 
-		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='<%=path%>/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script>
 		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
 
 
@@ -587,6 +580,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
 		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
 		<script type="text/javascript" src="<%=path%>/js/editQuestionaire.js"></script>
+
 
 		<!-- ace scripts -->
 
