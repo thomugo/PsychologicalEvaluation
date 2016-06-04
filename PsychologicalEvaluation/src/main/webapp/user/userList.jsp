@@ -1,6 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -514,12 +516,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript">
 			var grid_data=[];
 			var length= ${users.size()};
-
-			for(var i=0;i<length;i++){
-			  alert("${users[i-'0']["dateTime"]}");
-			 grid_data[i]={id:"asddas",name:"guyu",email:"sanjdw@123.com",phone:"${users[i-'0']["phone"]}",dateTime:"${users[i-'0']["dateTime"]}", gender:"${users[i-'0']["gender"]}",vocation:"${users[i-'0']["vocation"]}"}; 
+			<c:forEach var="user" items="${users}" >
+           			alert(${user.gender});			
+			</c:forEach>
 			
-			} 
+			 //grid_data[i]={id:"asddas",name:"guyu",email:"sanjdw@123.com",phone:"${users[i-'0']["phone"]}",dateTime:"${users[i-'0']["dateTime"]}", gender:"${users[i-'0']["gender"]}",vocation:"${users[i-'0']["vocation"]}"}; 
+			
+			
 			
 			jQuery(function($) {
 				var grid_selector = "#grid-table";

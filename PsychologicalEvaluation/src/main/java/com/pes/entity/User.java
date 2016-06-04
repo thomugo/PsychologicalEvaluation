@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,23 +15,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name="user_info", catalog="pes")
 public class User extends BaseUser implements Serializable{
-	private int id;
-	private String username;
-	private String password;
-	private String email;
-	protected int privilege;
-	protected int broadcast; //用户已看广播数；
 	private int gender;
 	private int age;
 	private String vocation;
 	private String phone;
 	private Date dateTime;
+	
 	public User() {
 		// TODO Auto-generated constructor stub
 		privilege = 2;
 		broadcast = 0;
 	}
-	
+
 	@Column(name="gender")
 	public int getGender() {
 		return gender;
@@ -70,7 +66,10 @@ public class User extends BaseUser implements Serializable{
 	@Override
 	public String toString() {
 		return "User [gender=" + gender + ", age=" + age + ", vocation="
-				+ vocation + ", phone=" + phone + ", dateTime=" + dateTime + "]";
+				+ vocation + ", phone=" + phone + ", dateTime=" + dateTime
+				+ ", id=" + id + ", username=" + username + ", password="
+				+ password + ", email=" + email + ", privilege=" + privilege
+				+ ", broadcast=" + broadcast + "]";
 	}
 	
 }

@@ -15,6 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="admin" , catalog="pes")
 public class Admin extends BaseUser implements Serializable{
+	
 	public Admin() {
 		// TODO Auto-generated constructor stub
 		privilege = 1;
@@ -27,6 +28,13 @@ public class Admin extends BaseUser implements Serializable{
 		this.setUsername(username);
 		this.setPassword(password);
 		broadcast = 0;
+	}
+
+	@Override
+	public String toString() {
+		return "Admin [id=" + id + ", username=" + username + ", password="
+				+ password + ", email=" + email + ", privilege=" + privilege
+				+ ", broadcast=" + broadcast + "]";
 	}
 	
 	

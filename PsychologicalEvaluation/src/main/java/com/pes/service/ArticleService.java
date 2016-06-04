@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.pes.entity.Article;
+import com.pes.entity.ArticlePojo;
 
 
 public interface ArticleService extends GenericService2<Article, Integer>{
@@ -46,7 +47,7 @@ public interface ArticleService extends GenericService2<Article, Integer>{
 	 * @param pageSize : 页大小
 	 * @return 符合查询条件的记录
 	 */
-	public List<Article> findArticlesByPage(Integer userId, String keyWord, String userName,
+	public List<ArticlePojo> findArticlesByPage(Integer userId, String keyWord, String userName,
 			String className, Date start, Date end, Integer pageNo,
 			Integer pageSize);
 }

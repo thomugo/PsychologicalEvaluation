@@ -1,9 +1,11 @@
 package com.pes.dao.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import com.pes.dao.ArticleDao;
 import com.pes.entity.Article;
+import com.pes.entity.ArticlePojo;
 import com.pes.entity.BaseUser;
 import com.pes.entity.User;
 
@@ -71,7 +74,7 @@ public class ArticleDaoImpl extends GenericDao2Impl<Article, Integer> implements
 	}
 
 	@Override
-	public List<Article> findArticlesByPage(Integer userId, String keyWord, String userName,
+	public List<ArticlePojo> findArticlesByPage(Integer userId, String keyWord, String userName,
 			String className, Date start, Date end, Integer pageNo, Integer pageSize) {
 		// TODO Auto-generated method stub
 		Criteria criteria = this.getCurrentSession().createCriteria(Article.class);
@@ -90,8 +93,26 @@ public class ArticleDaoImpl extends GenericDao2Impl<Article, Integer> implements
 			    criteria.addOrder(Order.desc("dateTime"))
 			    .setFirstResult(pageNo > 0 ? (pageNo - 1) * pageSize : 0)
 			    .setMaxResults(pageSize);
-		List<Article> list = (List<Article>)criteria.list();
-		return list;
+			    criteria.setProjection( Projections.projectionList()
+			    		.add( Projections.property("id"), "id" )
+			    		.add( Projections.property("userId"), "userId")
+			    		.add( Projections.property("userName"), "userName")
+			    		.add( Projections.property("title"), "title")
+			    		.add( Projections.property("className"), "className")
+			    		.add( Projections.property("dateTime"), "dateTime"));
+			    ScrollableResults srs = criteria.scroll();
+			    ArrayList<ArticlePojo> articles = new ArrayList<ArticlePojo>();
+	             while(srs.next()){
+	               ArticlePojo articlePojo = new ArticlePojo();
+	               articlePojo.setId(srs.getInteger(0));
+	               articlePojo.setUserId(srs.getInteger(1));
+	               articlePojo.setUserName(srs.getString(2));
+	               articlePojo.setTitle(srs.getString(3));
+	               articlePojo.setClassName(srs.getString(4));
+	               articlePojo.setDateTime(srs.getDate(5));
+	               articles.add(articlePojo);
+	            }
+		return articles;
 	}
 
 }

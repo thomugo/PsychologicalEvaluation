@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 
 import com.alibaba.druid.sql.dialect.oracle.ast.stmt.OracleSelectRestriction.ReadOnly;
 import com.pes.entity.User;
+import com.pes.entity.UserPojo;
 import com.pes.service.UserService;
 import com.pes.dao.UserDao;
 import com.sun.istack.internal.FinalArrayList;
@@ -106,6 +107,13 @@ public class UserServiceImpl implements UserService{
 	public void flush() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<UserPojo> findBaseUserByPage(int pageNo, int pageSize,
+			boolean order) {
+		// TODO Auto-generated method stub
+		return userInfoDao.findBaseUserByPage(pageNo, pageSize, order);
 	}
 	
 }

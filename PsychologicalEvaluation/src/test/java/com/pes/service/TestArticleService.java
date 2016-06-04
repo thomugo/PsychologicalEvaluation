@@ -17,6 +17,7 @@ import org.springframework.test.context.transaction.BeforeTransaction;
 import com.pes.base.test.BaseTestTemplate;
 import com.pes.entity.Admin;
 import com.pes.entity.Article;
+import com.pes.entity.ArticlePojo;
 import com.pes.entity.User;
 
 
@@ -77,7 +78,7 @@ public class TestArticleService extends BaseTestTemplate{
 	
 	@Test
 	public void findByPage(){
-		List<Article> list1 = articleService.findArticlesByPage(18, "title", "thomugo", null, null,	 null, 1, 2);
+		List<ArticlePojo> list1 = articleService.findArticlesByPage(18, "title", "thomugo", null, null,	 null, 1, 2);
 		List<Article> list2 = articleService.findByPage(1, 3, true);
 		List<Article> list3 = articleService.findByPage(1, 3, false);
 		System.out.println(list1);

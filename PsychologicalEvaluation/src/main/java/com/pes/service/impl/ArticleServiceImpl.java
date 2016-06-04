@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pes.dao.ArticleDao;
 import com.pes.entity.Article;
+import com.pes.entity.ArticlePojo;
 import com.pes.service.ArticleService;
 
 @Service("articleService")
@@ -92,7 +93,7 @@ public class ArticleServiceImpl implements ArticleService{
 	}
 
 	@Override
-	public List<Article> findArticlesByPage(Integer userId, String keyWord, String userName,
+	public List<ArticlePojo> findArticlesByPage(Integer userId, String keyWord, String userName,
 			String className, Date start, Date end, Integer pageNo,
 			Integer pageSize) {
 		// TODO Auto-generated method stub

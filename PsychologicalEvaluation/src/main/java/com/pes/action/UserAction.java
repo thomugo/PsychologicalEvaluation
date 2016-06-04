@@ -100,6 +100,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		System.out.println("pageSize: " + pageSize);
 		users = userService.findByPage(pageNum, pageSize, true);
 		System.out.println("find "+users.size()+"users");
+		//System.out.println(userService.findById(18));
 		System.out.println(users);
 		if(json != null)
 			AjaxUtil.ajaxJSONResponse(users);
