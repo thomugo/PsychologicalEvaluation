@@ -2,7 +2,6 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -20,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- basic styles -->
 
-		<link href="<%=path%>/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
@@ -56,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
-		<script src="<%=path%>/assets/js/respond.min.js"></script>
+			<script src="<%=path%>/assets/js/respond.min.js"></script>
 		<!--[endif]-->
 
 	</head>
@@ -319,7 +318,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<ul class="submenu">
 								<li class="active">
-									<a href="<%=path%>/user/userList.jsp">
+									<a href="<%=path%>/userList.action">
 										<i class="icon-double-angle-right"></i>
 										用户列表
 									</a>
@@ -354,6 +353,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<a href="<%=path%>/user/editQuestionaire.jsp">
 										<i class="icon-double-angle-right"></i>
 										编辑测评问卷
+									</a>
+								</li>
+
+								<li>
+									<a href="<%=path%>/user/article.jsp">
+										<i class="icon-double-angle-right"></i>
+										文章
 									</a>
 								</li>
 
@@ -494,9 +500,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 <!--  [endif]-->
 
-		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='<%=path%>/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script>
+
 		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
 		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
 
@@ -511,18 +515,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
 		<script src="<%=path%>/assets/js/ace.min.js"></script>
 
-
-
 		<script type="text/javascript">
 			var grid_data=[];
-			var length= ${users.size()};
-			<c:forEach var="user" items="${users}" >
-           			alert(${user.gender});			
+			var i=0;
+			
+			<c:forEach var="user" items="${users}">
+				grid_data[i++]={age:${user.age},gender:${user.gender},phone:${user.phone},dateTime:"${user.dateTime}",vocation:"${user.vocation}"};
 			</c:forEach>
-			
-			 //grid_data[i]={id:"asddas",name:"guyu",email:"sanjdw@123.com",phone:"${users[i-'0']["phone"]}",dateTime:"${users[i-'0']["dateTime"]}", gender:"${users[i-'0']["gender"]}",vocation:"${users[i-'0']["vocation"]}"}; 
-			
-			
 			
 			jQuery(function($) {
 				var grid_selector = "#grid-table";
@@ -533,7 +532,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					data: grid_data,
 					datatype: "local",
 					height: 250,
-					colNames:['操作', 'ID','用户名','电子邮箱', '联系电话', '注册日期','性别','职业'],
+					colNames:['操作', 'ID','用户名','电子邮箱', '联系电话', '注册日期','性别','年龄','职业'],
 					colModel:[
 						{name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
 							formatter:'actions', 
@@ -541,12 +540,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								keys:true,
 								
 								delOptions:{recreateForm: true, beforeShowForm:beforeDeleteCallback},
-								//editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
 							}
 						},
 						{name:'id',index:'id', width:90, sorttype:"int", editable: true},
 
-						{name:'name',index:'name', width:90,editable: true,editoptions:{size:"20",maxlength:"30"}},
+						{name:'username',index:'username', width:90,editable: true,editoptions:{size:"20",maxlength:"30"}},
 
 						{name:'email',index:'email', width:150,editable: true,editoptions:{size:"20",maxlength:"30"}},
 
@@ -556,7 +554,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 						{name:'gender',index:'gender', width:40, editable: true,edittype:"select",editoptions:{value:"FE:男;IN:女"}},
 						
-		//				{name:'note',index:'note', width:150, sortable:false,editable: true,edittype:"textarea", editoptions:{rows:"2",cols:"10"}} 
+						{name:'age',index:'age', width:40, editable: true,editoptions:{size:"20",maxlength:"25"}},						
 						
 						{name:'vocation',index:'vocation', width:130,editable: true,editoptions:{size:"25",maxlength:"30"}}
 					], 						
@@ -669,8 +667,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						},
 						afterRedraw: function(){
 							style_search_filters($(this));
-						}
-						,
+						},
+						
 						multipleSearch: true,
 						/**
 						multipleGroup:true,
@@ -743,44 +741,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
 					style_edit_form(form);
 				}
-			
-			
-			
-				//it causes some flicker when reloading or navigating grid
-				//it may be possible to have some custom formatter to do this as the grid is being created to prevent this
-				//or go back to default browser checkbox styles for the grid
-				function styleCheckbox(table) {
-				/**
-					$(table).find('input:checkbox').addClass('ace')
-					.wrap('<label />')
-					.after('<span class="lbl align-top" />')
-			
-			
-					$('.ui-jqgrid-labels th[id*="_cb"]:first-child')
-					.find('input.cbox[type=checkbox]').addClass('ace')
-					.wrap('<label />').after('<span class="lbl align-top" />');
-				*/
-				}
-				
-			
-				//unlike navButtons icons, action icons in rows seem to be hard-coded
-				//you can change them like this in here if you want
-				function updateActionIcons(table) {
-					/**
-					var replacement = 
-					{
-						'ui-icon-pencil' : 'icon-pencil blue',
-						'ui-icon-trash' : 'icon-trash red',
-						'ui-icon-disk' : 'icon-ok green',
-						'ui-icon-cancel' : 'icon-remove red'
-					};
-					$(table).find('.ui-pg-div span.ui-icon').each(function(){
-						var icon = $(this);
-						var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
-						if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
-					})
-					*/
-				}
 				
 				//replace icons with FontAwesome icons like above
 				function updatePagerIcons(table) {
@@ -803,10 +763,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$('.navtable .ui-pg-button').tooltip({container:'body'});
 					$(table).find('.ui-pg-div').tooltip({container:'body'});
 				}
-			
-				//var selr = jQuery(grid_selector).jqGrid('getGridParam','selrow');
-			
-			
+						
 			});
 		</script>
 	</body>

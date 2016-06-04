@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- fonts -->
 
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+		<link rel="stylesheet" href="<%=path%>/style/family.css" />
 
 		<!-- ace styles -->
 
@@ -355,6 +355,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
+									<a href="<%=path%>/user/article.jsp">
+										<i class="icon-double-angle-right"></i>
+										文章
+									</a>
+								</li>	
+
+								<li>
 									<a href="<%=path%>/user/push.jsp">
 										<i class="icon-double-angle-right"></i>
 										文章推送
@@ -547,19 +554,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 <![endif]-->
 
-		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='<%=path%>/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script>
 		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
 		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
-
-		<!-- page specific plugin scripts -->
-
-		<script src="<%=path%>/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-		<script src="<%=path%>/assets/js/jquery.ui.touch-punch.min.js"></script>
-		<script src="<%=path%>/assets/js/jquery.slimscroll.min.js"></script>
-
-		<!-- ace scripts -->
 
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
 		<script src="<%=path%>/assets/js/ace.min.js"></script>

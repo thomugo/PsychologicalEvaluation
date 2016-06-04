@@ -345,6 +345,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
+									<a href="<%=path%>/user/article.jsp">
+										<i class="icon-double-angle-right"></i>
+										文章
+									</a>
+								</li>	
+
+								<li>
 									<a href="<%=path%>/user/push.jsp">
 										<i class="icon-double-angle-right"></i>
 										文章推送
@@ -489,50 +496,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</div>
 
 										<div class="col-xs-12 col-sm-9">
-											<div class="center">
-												<span class="btn btn-app btn-sm btn-light no-hover">
-													<span class="line-height-1 bigger-170 blue"> 1,411 </span>
-
-													<br />
-													<span class="line-height-1 smaller-90"> Views </span>
-												</span>
-
-												<span class="btn btn-app btn-sm btn-yellow no-hover">
-													<span class="line-height-1 bigger-170"> 32 </span>
-
-													<br />
-													<span class="line-height-1 smaller-90"> Followers </span>
-												</span>
-
-												<span class="btn btn-app btn-sm btn-pink no-hover">
-													<span class="line-height-1 bigger-170"> 4 </span>
-
-													<br />
-													<span class="line-height-1 smaller-90"> Projects </span>
-												</span>
-
-												<span class="btn btn-app btn-sm btn-grey no-hover">
-													<span class="line-height-1 bigger-170"> 23 </span>
-
-													<br />
-													<span class="line-height-1 smaller-90"> Reviews </span>
-												</span>
-
-												<span class="btn btn-app btn-sm btn-success no-hover">
-													<span class="line-height-1 bigger-170"> 7 </span>
-
-													<br />
-													<span class="line-height-1 smaller-90"> Albums </span>
-												</span>
-
-												<span class="btn btn-app btn-sm btn-primary no-hover">
-													<span class="line-height-1 bigger-170"> 55 </span>
-
-													<br />
-													<span class="line-height-1 smaller-90"> Contacts </span>
-												</span>
-											</div>
-
 											<div class="space-12"></div>
 
 											<div class="profile-user-info profile-user-info-striped">
@@ -884,9 +847,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 <![endif]-->
 
-		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='<%=path%>/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script>
 		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
 		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
 

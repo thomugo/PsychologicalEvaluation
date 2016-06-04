@@ -342,7 +342,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</a>
 
 							<ul class="submenu">
-								<li class="active">
+								<li>
 									<a href="<%=path%>/user/Questionaire.jsp">
 										<i class="icon-double-angle-right"></i>
 										问卷
@@ -355,14 +355,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										添加测评问卷
 									</a>
 								</li>
-
-								<li>
+								
+								<li class="active">
 									<a href="<%=path%>/user/article.jsp">
 										<i class="icon-double-angle-right"></i>
 										文章
 									</a>
-								</li>
-								
+								</li>								
+
 								<li>
 									<a href="<%=path%>/user/push.jsp">
 										<i class="icon-double-angle-right"></i>
@@ -474,36 +474,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<div class="space-8"></div>
 
 											<div id="faq-list-1" class="panel-group accordion-style1 accordion-style2">
-												<div class="panel panel-default">
+												<div class="panel panel-default" div='article'>
 													<div class="panel-heading">
-														<a href="#faq-1-1" data-parent="#faq-list-1" data-toggle="collapse" class="accordion-toggle collapsed">
+														<a id='title' href="#content" data-toggle="collapse" class="accordion-toggle collapsed">
+														
 															<i class="icon-chevron-left pull-right" data-icon-hide="icon-chevron-down" data-icon-show="icon-chevron-left"></i>
 
 															<i class="icon-user bigger-130"></i>
-															问卷一
+														问卷一	
 														</a>
 													</div>
 
-													<div class="panel-collapse collapse" id="faq-1-1">
+													<div class="panel-collapse collapse" id="content">
 														<div class="panel-body">
 															恩恩，恩恩。
-														</div>
-													</div>
-												</div>
-												
-												<div class="panel panel-default">
-													<div class="panel-heading">
-														<a href="#faq-1-2" data-parent="#faq-list-1" data-toggle="collapse" class="accordion-toggle collapsed">
-															<i class="icon-chevron-left pull-right" data-icon-hide="icon-chevron-down" data-icon-show="icon-chevron-left"></i>
-
-															<i class="icon-user bigger-130"></i>
-															
-														</a>
-													</div>
-
-													<div class="panel-collapse collapse" id="faq-1-2">
-														<div class="panel-body">
-															
 														</div>
 													</div>
 												</div>												
@@ -579,19 +563,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var article=[];
 			var i=0;
 			
-			<c:forEach var="user" items="${users}">
-				
-				article[i++]={age:${user.age},gender:${user.gender},phone:${user.phone},dateTime:"${user.dateTime}",vocation:"${user.vocation}"};
+			<c:forEach var="article" items="${articles}">
+				var title=${article.title};
+				var author=${article.author};
+				var wz_class=${article.wz_class};
+				var content=${article.content};
+ 				$('#article').append("<div class='panel-heading'>"
+									+"<a href='#content"+(i++)+"' data-toggle='collapse' class='accordion-toggle collapsed'>"
+									+"<i class='icon-chevron-left pull-right' data-icon-hide='icon-chevron-down' data-icon-show='icon-chevron-left'></i>"
+									+"<i class='icon-user bigger-130'></i>"
+									+title
+									+"</a>"	
+									+"</div>"
+									+"<div class='panel-collapse collapse' id='content"+(i++)+"'>"
+									+"<div class='panel-body'>"
+									+"content"
+									+"</div>"
+									+"</div>"); 				
+				//article[i++]={age:${article.title},gender:${user.gender},phone:${user.phone},dateTime:"${user.dateTime}",vocation:"${user.vocation}"};
 				
 			</c:forEach>
 						
-/* 			window.onload=funtion(){
-				var length=${questionaire.size()};
-					for(var i=0;i<length;i++){
-					$('#')
-					
-					}
-			}; */
 			
 		</script>
 	</body>

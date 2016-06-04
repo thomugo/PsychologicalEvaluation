@@ -12,13 +12,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
     <meta charset="UTF-8"/>
     <title>心理学从这里开始</title>
-    <meta name="keywords" content="心理测试,心理测试题及答案,心理测试题,心理测试大全">
-    <meta name="description" content="壹心理心理测试手机频道，这里有爱情测试、性格测试、能力测试、会员测试、精选测试、专业测评，包含了心理测试题及答案。">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
 
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-<meta content="yes" name="apple-mobile-web-app-capable" />
-<meta content="black" name="apple-mobile-web-app-status-bar-style" />
-<meta content="telephone=no" name="format-detection" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />		
+	<meta content="telephone=no" name="format-detection" />
     <link rel="stylesheet" href="<%=path%>/style/qz_home.css">    
     <link rel="stylesheet" href="<%=path%>/style/app-ad.re.css"></head>
 <body>
@@ -68,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <a href="http://cmcc.in/340">
                         <div class="roll">
                             <div class="pr">
-                                <img src="http://image.xinli001.com/20160518/060751erwj758i4gnz6az6.jpg!300" width="300" height="194"/>
+                                <img src="<%=path%>/image/060751erwj758i4gnz6az6.jpg" width="300" height="194"/>
                                 <span>壹心理测试：D先生的秘密日记</span>
                             </div>
                         </div> 
@@ -79,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <a href="<%=path%>/ceshi/357.jsp">
                         <div class="roll">
                             <div class="pr">
-                                <img src="http://image.xinli001.com/20160527/021356cvg7ha82skersh0f.jpg!300" width="300" height="194"/>
+                                <img src="<%=path%>/image/021356cvg7ha82skersh0f.jpg" width="300" height="194"/>
                                 <span>世界上另一个自己会对你说什么？</span>
                             </div>
                         </div> 
@@ -90,7 +90,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <a href="http://m.xinli001.com/ceshi/99897574">
                         <div class="roll">
                             <div class="pr">
-                                <img src="http://image.xinli001.com/20160524/101429te35em19j4e5eq5o.jpg!300" width="300" height="194"/>
+                                <img src="<%=path%>/image/101429te35em19j4e5eq5o.jpg" width="300" height="194"/>
                                 <span>测测你在他心中的分量有多少？（限女生）</span>
                             </div>
                         </div> 
@@ -101,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <a href="http://m.xinli001.com/ceshi/53957104">
                         <div class="roll">
                             <div class="pr">
-                                <img src="http://image.xinli001.com/20160523/020558eu6qq4upa59pflmk.jpg!300" width="300" height="194"/>
+                                <img src="<%=path%>/image/020558eu6qq4upa59pflmk.jpg" width="300" height="194"/>
                                 <span>测测你是否善于沟通？</span>
                             </div>
                         </div> 
@@ -112,7 +112,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <a href="http://m.xinli001.com/ceshi/99897563">
                         <div class="roll">
                             <div class="pr">
-                                <img src="http://image.xinli001.com/20160505/025415ezaaix9ccha1fjz8.png!300" width="300" height="194"/>
+                                <img src="<%=path%>/image/025415ezaaix9ccha1fjz8.png" width="300" height="194"/>
                                 <span>爱的能力评估</span>
                             </div>
                         </div> 
@@ -144,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="list_box">
      	<dl>
     		<a href="<%=path%>/ceshi/357.jsp">
-        		<dt><img src="http://image.xinli001.com/20160527/021356cvg7ha82skersh0f.jpg!50" alt="世界上另一个自己会对你说什么？"></dt>
+        		<dt><img src="<%=path%>/image/021356cvg7ha82skersh0f.jpg" alt="世界上另一个自己会对你说什么？"></dt>
         		<dd><h3>世界上另一个自己会对你说什么？</h3></dd>
         		<dd>你相信世界上还有一个你吗？或许我们可以认为在世界的某个角落里还存在着另一个自己。它也许和我们相似，又或者相反。又或许在你的思想里，心里还有另一个自己，它潜伏在你的心中，等待你发现它。我们来听听它说什么。</dd>
         		<dd><span>测试过：116483</span>评论：417</dd>
