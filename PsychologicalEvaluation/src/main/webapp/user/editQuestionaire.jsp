@@ -367,6 +367,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
+									<a href="<%=path%>/user/article.jsp">
+										<i class="icon-double-angle-right"></i>
+										文章
+									</a>
+								</li>	
+
+								<li>
 									<a href="<%=path%>/user/push.jsp">
 										<i class="icon-double-angle-right"></i>
 										文章推送

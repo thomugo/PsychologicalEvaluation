@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- fonts -->
 
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+		<link rel="stylesheet" href="<%=path%>/style/family.css" />
 
 		<!-- ace styles -->
 
@@ -349,6 +349,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										添加测评问卷
 									</a>
 								</li>
+
+								<li>
+									<a href="<%=path%>/user/article.jsp">
+										<i class="icon-double-angle-right"></i>
+										文章
+									</a>
+								</li>	
 
 								<li>
 									<a href="<%=path%>/user/push.jsp">

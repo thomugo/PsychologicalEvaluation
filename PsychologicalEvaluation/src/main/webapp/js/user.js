@@ -1,4 +1,8 @@
 $(document).ready(function() {
+
+	
+	
+	
 	$(".delete").click(function(){
 		alert("test");
 		var id= $(this).attr('id');
@@ -9,9 +13,9 @@ $(document).ready(function() {
 		}); 
 	});
 	$("#prepage").click(function() {
-		var pageNum = $("#num").html();
-		var totalPages = $("#totalPages").html();
-		var pageSize = $("#pageSize").html();
+		var pageNum = $("#num").text();
+		var totalPages = $("#totalPages").text();
+		var pageSize = $("#pageSize").text();
 		var map={};
 		pageNum -= 1;
 		if(pageNum < 0)
@@ -28,8 +32,8 @@ $(document).ready(function() {
 	});
 	$("#nextpage").click(function() {
 		var pageNum = $("#num").html();
-		var totalPages = $("#totalPages").html();
-		var pageSize = $("#pageSize").html();
+		var totalPages = $("#totalPages").text();
+		var pageSize = $("#pageSize").text();
 		var map={};
 		pageNum += 1;
 		if(pageNum < 0)

@@ -10,10 +10,9 @@
 $.jgrid = $.jgrid || {};
 $.extend($.jgrid,{
 	defaults : {
-		recordtext: "View {0} - {1} of {2}",
-		emptyrecords: "No records to view",
+		emptyrecords: "无记录",
 		loadtext: "加载中...",
-		pgtext : "Page {0} of {1}"
+		pgtext : " {0}/{1}页"
 	},
 	search : {
 		caption: "查找...",

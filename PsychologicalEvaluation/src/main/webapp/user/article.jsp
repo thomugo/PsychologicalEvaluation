@@ -2,11 +2,11 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- 
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- basic styles -->
 
-		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
@@ -56,13 +56,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
-			<script src="<%=path%>/assets/js/respond.min.js"></script>
-		<!--[endif]-->
-
+		<script src="<%=path%>/assets/js/html5shiv.js"></script>
+		<script src="<%=path%>/assets/js/respond.min.js"></script>
+		<![endif]-->
 	</head>
 
 	<body>
-	<s:debug></s:debug>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -309,7 +308,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</a>
 						</li>
 
-						<li class="active open">
+						<li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-list"></i>
 								<span class="menu-text"> 用户管理 </span>
@@ -318,8 +317,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</a>
 
 							<ul class="submenu">
-								<li class="active">
-									<a href="<%=path%>/userList.action">
+								<li>
+									<a href="${ pageContext.request.contextPath }/userList.action">
 										<i class="icon-double-angle-right"></i>
 										用户列表
 									</a>
@@ -334,7 +333,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</ul>
 						</li>
 
-						<li >
+						<li class='active open'>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-edit"></i>
 								<span class="menu-text"> 编辑 </span>
@@ -353,16 +352,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li>
 									<a href="<%=path%>/user/editQuestionaire.jsp">
 										<i class="icon-double-angle-right"></i>
-										编辑测评问卷
+										添加测评问卷
 									</a>
 								</li>
-
-								<li>
+								
+								<li class="active">
 									<a href="<%=path%>/user/article.jsp">
 										<i class="icon-double-angle-right"></i>
 										文章
 									</a>
-								</li>
+								</li>								
 
 								<li>
 									<a href="<%=path%>/user/push.jsp">
@@ -379,7 +378,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<i class="icon-text-width"></i>
 								<span class="menu-text"> 用户反馈 </span>
 							</a>
-						</li>
+						</li>	
 
 						<li>
 							<a href="#" class="dropdown-toggle">
@@ -415,13 +414,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										空白页面
 									</a>
 								</li>
-
+								
 								<li>
 									<a href="<%=path%>/user/file.jsp">
 										<i class="icon-double-angle-right"></i>
 										文件上传
 									</a>
-								</li>													
+								</li>								
 							</ul>
 						</li>										
 					</ul><!-- /.nav-list -->
@@ -437,9 +436,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home home-icon"></i>
-								<a href="<%=path%>/index.jsp">首页</a>
+								<a href="#">首页</a>
 							</li>
-							<li class="active">用户管理</li>
+
+							<li class="active">
+								<a href="#">用户反馈</a>
+							</li>
+
 						</ul><!-- .breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -451,16 +454,51 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</form>
 						</div><!-- #nav-search -->
 					</div>
+
 					<div class="page-content">
+						<div class="page-header">
+							<h1>
+								问卷集
+
+							</h1>
+						</div><!-- /.page-header -->
 
 						<div class="row">
 							<div class="col-xs-12">
-								<table id="grid-table"></table>
-									
-								<div id="grid-pager"></div>
-								<script type="text/javascript">
-									var $path_base = "<%=path%>/";//this will be used in gritter alerts containing images
-								</script>
+								<!-- PAGE CONTENT BEGINS -->
+
+								<div class="tabbable">
+									<div class="tab-content no-border padding-24">
+										<div id="faq-tab-1" class="tab-pane fade in active">
+
+											<div class="space-8"></div>
+
+											<div id="faq-list-1" class="panel-group accordion-style1 accordion-style2">
+												<div class="panel panel-default" div='article'>
+													<div class="panel-heading">
+														<a id='title' href="#content" data-toggle="collapse" class="accordion-toggle collapsed">
+														
+															<i class="icon-chevron-left pull-right" data-icon-hide="icon-chevron-down" data-icon-show="icon-chevron-left"></i>
+
+															<i class="icon-user bigger-130"></i>
+														问卷一	
+														</a>
+													</div>
+
+													<div class="panel-collapse collapse" id="content">
+														<div class="panel-body">
+															恩恩，恩恩。
+														</div>
+													</div>
+												</div>												
+
+											</div><!-- faq -->
+											
+											
+										</div><!-- table-content -->
+									</div>
+								</div>
+
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
 						</div><!-- /.row -->
@@ -471,21 +509,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
 				<i class="icon-double-angle-up icon-only bigger-110"></i>
-			</a>	
+			</a>
 		</div><!-- /.main-container -->
-		
-		<!-- basic scripts -->
-	<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
-	<script type="text/javascript" src="<%=path%>/js/user.js"></script>
-	<script type="text/javascript" src="<%=path%>/js/json2.js"></script>	
-		<!--[if !IE]> -->
 
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
 
 		<!-- <![endif]-->
 
 		<!--[if IE]>
-			<script src="<%=path%>/js/jquery.min.js"></script>
-		<!--[endif]-->
+			<script src="<%=path%>/jquery.min.js"></script>
+		<![endif]-->
 
 		<!--[if !IE]> -->
 
@@ -495,286 +530,61 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- <![endif]-->
 
-		<!--[if IE]-->
+		<!--[if IE]>
 <script type="text/javascript">
  window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
 </script>
-<!--  [endif]-->
+<![endif]-->
 
-
-		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
-		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/assets/js/bootstrap.min.js"></script>
 
 		<!-- page specific plugin scripts -->
-
-		<script src="<%=path%>/assets/js/date-time/bootstrap-datepicker.min.js"></script>
-		<script src="<%=path%>/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
-		<script src="<%=path%>/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
+  		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
 
 		<!-- ace scripts -->
 
-		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
-		<script src="<%=path%>/assets/js/ace.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/assets/js/ace-elements.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
 
 		<script type="text/javascript">
-			var grid_data=[];
+			jQuery(function($) {
+				$('.accordion').on('hide', function (e) {
+					$(e.target).prev().children(0).addClass('collapsed');
+				})
+				$('.accordion').on('show', function (e) {
+					$(e.target).prev().children(0).removeClass('collapsed');
+				})
+			});
+		</script>
+		<script type="text/javascript">
+			var article=[];
 			var i=0;
 			
-			<c:forEach var="user" items="${users}">
-			
-				grid_data[i++]={age:${user.age},gender:${user.gender},phone:${user.phone},dateTime:"${user.dateTime}",vocation:"${user.vocation}"};
+			<c:forEach var="article" items="${articles}">
+				var title=${article.title};
+				var author=${article.author};
+				var wz_class=${article.wz_class};
+				var content=${article.content};
+ 				$('#article').append("<div class='panel-heading'>"
+									+"<a href='#content"+(i++)+"' data-toggle='collapse' class='accordion-toggle collapsed'>"
+									+"<i class='icon-chevron-left pull-right' data-icon-hide='icon-chevron-down' data-icon-show='icon-chevron-left'></i>"
+									+"<i class='icon-user bigger-130'></i>"
+									+title
+									+"</a>"	
+									+"</div>"
+									+"<div class='panel-collapse collapse' id='content"+(i++)+"'>"
+									+"<div class='panel-body'>"
+									+"content"
+									+"</div>"
+									+"</div>"); 				
+				//article[i++]={age:${article.title},gender:${user.gender},phone:${user.phone},dateTime:"${user.dateTime}",vocation:"${user.vocation}"};
 				
 			</c:forEach>
-			
-			for(var i=0;i<length;i++){
-			 //alert("${users[i-'0']["dateTime"]}");
-			 var temp = list[i].gender;
-			 //grid_data[i]={id:temp,name:"${users[i-'0']["username"]}",email:"${users[i-'0']["email"]}",phone:"${users[i-'0']["phone"]}",dateTime:"${users[i-'0']["dateTime"]}", gender:"${users[i-'0']["gender"]}",vocation:"${users[i-'0']["vocation"]}"}; 
-			
-			} 
-			
-			jQuery(function($) {
-				var grid_selector = "#grid-table";
-				var pager_selector = "#grid-pager";
-			
-				jQuery(grid_selector).jqGrid({
-					
-					data: grid_data,
-					datatype: "local",
-					height: 250,
-					colNames:['操作', 'ID','用户名','电子邮箱', '联系电话', '注册日期','性别','年龄','职业'],
-					colModel:[
-						{name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
-							formatter:'actions', 
-							formatoptions:{ 
-								keys:true,
-								
-								delOptions:{recreateForm: true, beforeShowForm:beforeDeleteCallback},
-							}
-						},
-						{name:'id',index:'id', width:90, sorttype:"int", editable: true},
-
-						{name:'username',index:'username', width:90,editable: true,editoptions:{size:"20",maxlength:"30"}},
-
-						{name:'email',index:'email', width:150,editable: true,editoptions:{size:"20",maxlength:"30"}},
-
-						{name:'phone',index:'phone', width:110,editable: true,editoptions:{size:"20",maxlength:"25"}},
-
-						{name:'dateTime',index:'dateTime',width:150, editable:true, sorttype:"date",unformat: pickDate},
 						
-						{name:'gender',index:'gender', width:40, editable: true,edittype:"select",editoptions:{value:"FE:男;IN:女"}},
-						
-						{name:'age',index:'age', width:40, editable: true,editoptions:{size:"20",maxlength:"25"}},						
-						
-						{name:'vocation',index:'vocation', width:130,editable: true,editoptions:{size:"25",maxlength:"30"}}
-					], 						
 			
-					viewrecords : true,
-					rowNum:10,
-					rowList:[10,20,30],
-					pager : pager_selector,
-					altRows: true,
-					//toppager: true,
-					
-					multiselect: true,
-					//multikey: "ctrlKey",
-			        multiboxonly: true,
-			
-					loadComplete : function() {
-						var table = this;
-						setTimeout(function(){
-							styleCheckbox(table);
-							
-							updateActionIcons(table);
-							updatePagerIcons(table);
-							enableTooltips(table);
-						}, 0);
-					},
-			
-					editurl: $path_base+"/modifyUser.action",//nothing is saved
-					caption: "用户信息",
-					autowidth: true
-			
-				});
-			
-				function aceSwitch( cellvalue, options, cell ) {
-					setTimeout(function(){
-						$(cell) .find('input[type=checkbox]')
-								.wrap('<label class="inline" />')
-							.addClass('ace ace-switch ace-switch-5')
-							.after('<span class="lbl"></span>');
-					}, 0);
-				}
-				//enable datepicker
-				function pickDate( cellvalue, options, cell ) {
-					setTimeout(function(){
-						$(cell) .find('input[type=text]')
-								.datepicker({format:'yyyy-mm-dd' , autoclose:true}); 
-					}, 0);
-				}
-			
-			
-				//navButtons
-				jQuery(grid_selector).jqGrid('navGrid',pager_selector,
-					{ 	//navbar options
-						edit: true,
-						editicon : 'icon-pencil blue',
-						add: true,
-						addicon : 'icon-plus-sign purple',
-						del: true,
-						delicon : 'icon-trash red',
-						search: true,
-						searchicon : 'icon-search orange',
-						refresh: true,
-						refreshicon : 'icon-refresh green',
-						view: true,
-						viewicon : 'icon-zoom-in grey',
-					},
-					{
-						//edit record form
-						//closeAfterEdit: true,
-						recreateForm: true,
-						beforeShowForm : function(e) {
-							var form = $(e[0]);
-							form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-							style_edit_form(form);
-						}
-					},
-					{
-						//new record form
-						closeAfterAdd: true,
-						recreateForm: true,
-						viewPagerButtons: false,
-						beforeShowForm : function(e) {
-							var form = $(e[0]);
-							form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-							style_edit_form(form);
-						}
-					},
-					{
-						//delete record form
-						recreateForm: true,
-						beforeShowForm : function(e) {
-							var form = $(e[0]);
-							if(form.data('styled')) return false;
-							
-							form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-							style_delete_form(form);
-							
-							form.data('styled', true);
-						},
-						onClick : function(e) {
-							alert(1);
-						}
-					},
-					{
-						//search form
-						recreateForm: true,
-						afterShowSearch: function(e){
-							var form = $(e[0]);
-							form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
-							style_search_form(form);
-						},
-						afterRedraw: function(){
-							style_search_filters($(this));
-						},
-						
-						multipleSearch: true,
-						/**
-						multipleGroup:true,
-						showQuery: true
-						*/
-					},
-					{
-						//view record form
-						recreateForm: true,
-						beforeShowForm: function(e){
-							var form = $(e[0]);
-							form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
-						}
-					}
-				)
-			
-			
-				
-				function style_edit_form(form) {
-					//enable datepicker on "sdate" field and switches for "stock" field
-					form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
-						.end().find('input[name=stock]')
-							  .addClass('ace ace-switch ace-switch-5').wrap('<label class="inline" />').after('<span class="lbl"></span>');
-			
-					//update buttons classes
-					var buttons = form.next().find('.EditButton .fm-button');
-					buttons.addClass('btn btn-sm').find('[class*="-icon"]').remove();//ui-icon, s-icon
-					buttons.eq(0).addClass('btn-primary').prepend('<i class="icon-ok"></i>');
-					buttons.eq(1).prepend('<i class="icon-remove"></i>')
-					
-					buttons = form.next().find('.navButton a');
-					buttons.find('.ui-icon').remove();
-					buttons.eq(0).append('<i class="icon-chevron-left"></i>');
-					buttons.eq(1).append('<i class="icon-chevron-right"></i>');		
-				}
-			
-				function style_delete_form(form) {
-					var buttons = form.next().find('.EditButton .fm-button');
-					buttons.addClass('btn btn-sm').find('[class*="-icon"]').remove();//ui-icon, s-icon
-					buttons.eq(0).addClass('btn-danger').prepend('<i class="icon-trash"></i>');
-					buttons.eq(1).prepend('<i class="icon-remove"></i>')
-				}
-				
-				function style_search_filters(form) {
-					form.find('.delete-rule').val('X');
-					form.find('.add-rule').addClass('btn btn-xs btn-primary');
-					form.find('.add-group').addClass('btn btn-xs btn-success');
-					form.find('.delete-group').addClass('btn btn-xs btn-danger');
-				}
-				function style_search_form(form) {
-					var dialog = form.closest('.ui-jqdialog');
-					var buttons = dialog.find('.EditTable')
-					buttons.find('.EditButton a[id*="_reset"]').addClass('btn btn-sm btn-info').find('.ui-icon').attr('class', 'icon-retweet');
-					buttons.find('.EditButton a[id*="_query"]').addClass('btn btn-sm btn-inverse').find('.ui-icon').attr('class', 'icon-comment-alt');
-					buttons.find('.EditButton a[id*="_search"]').addClass('btn btn-sm btn-purple').find('.ui-icon').attr('class', 'icon-search');
-				}
-				
-				function beforeDeleteCallback(e) {
-					var form = $(e[0]);
-					if(form.data('styled')) return false;
-					
-					form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-					style_delete_form(form);
-					
-					form.data('styled', true);
-				}
-				
-				function beforeEditCallback(e) {
-					var form = $(e[0]);
-					form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-					style_edit_form(form);
-				}
-				
-				//replace icons with FontAwesome icons like above
-				function updatePagerIcons(table) {
-					var replacement = 
-					{
-						'ui-icon-seek-first' : 'icon-double-angle-left bigger-140',
-						'ui-icon-seek-prev' : 'icon-angle-left bigger-140',
-						'ui-icon-seek-next' : 'icon-angle-right bigger-140',
-						'ui-icon-seek-end' : 'icon-double-angle-right bigger-140'
-					};
-					$('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
-						var icon = $(this);
-						var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
-						
-						if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
-					})
-				}
-			
-				function enableTooltips(table) {
-					$('.navtable .ui-pg-button').tooltip({container:'body'});
-					$(table).find('.ui-pg-div').tooltip({container:'body'});
-				}
-						
-			});
 		</script>
 	</body>
 </html>

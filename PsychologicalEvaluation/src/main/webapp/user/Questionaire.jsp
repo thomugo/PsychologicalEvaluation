@@ -1,10 +1,12 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- basic styles -->
 
-		<link href="<%=path%>/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
@@ -33,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- fonts -->
 
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+		<link rel="stylesheet" href="<%=path%>/style/family.css" />
 
 		<!-- ace styles -->
 
@@ -355,6 +357,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
+									<a href="<%=path%>/user/article.jsp">
+										<i class="icon-double-angle-right"></i>
+										文章
+									</a>
+								</li>
+								
+								<li>
 									<a href="<%=path%>/user/push.jsp">
 										<i class="icon-double-angle-right"></i>
 										文章推送
@@ -471,7 +480,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 															<i class="icon-chevron-left pull-right" data-icon-hide="icon-chevron-down" data-icon-show="icon-chevron-left"></i>
 
 															<i class="icon-user bigger-130"></i>
-															&nbsp; 问卷一
+															问卷一
 														</a>
 													</div>
 
@@ -488,13 +497,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 															<i class="icon-chevron-left pull-right" data-icon-hide="icon-chevron-down" data-icon-show="icon-chevron-left"></i>
 
 															<i class="icon-user bigger-130"></i>
-															&nbsp; 问卷二
+															
 														</a>
 													</div>
 
 													<div class="panel-collapse collapse" id="faq-1-2">
 														<div class="panel-body">
-															哼哼，哼哼。
+															
 														</div>
 													</div>
 												</div>												
@@ -526,8 +535,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- <![endif]-->
 
 		<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<![endif]-->
+			<script src="<%=path%>/jquery.min.js"></script>
+		<![endif]-->
 
 		<!--[if !IE]> -->
 
@@ -543,10 +552,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 <![endif]-->
 
-		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='<%=path%>/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script>
-		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/assets/js/bootstrap.min.js"></script>
 
 		<!-- page specific plugin scripts -->
   		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
@@ -554,8 +560,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- ace scripts -->
 
-		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
-		<script src="<%=path%>/assets/js/ace.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/assets/js/ace-elements.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
 
@@ -570,14 +576,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});
 		</script>
 		<script type="text/javascript">
-		
-			window.onload=funtion(){
+			var article=[];
+			var i=0;
+			
+			<c:forEach var="user" items="${users}">
+				
+				article[i++]={age:${user.age},gender:${user.gender},phone:${user.phone},dateTime:"${user.dateTime}",vocation:"${user.vocation}"};
+				
+			</c:forEach>
+						
+/* 			window.onload=funtion(){
 				var length=${questionaire.size()};
 					for(var i=0;i<length;i++){
 					$('#')
 					
 					}
-			};
+			}; */
 			
 		</script>
 	</body>

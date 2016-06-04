@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -13,15 +14,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<script type="text/javascript" src="js/json2.js"></script>
-	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<meta http-equiv="keywords" content="">
+	<meta http-equiv="description" content="">
+	<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
+	<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
 	
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-    <title>Apache Tomcat WebSocket Examples: Chat</title>
+    <title>管理员</title>
     <style type="text/css"><![CDATA[
         input#chat {
             width: 410px
@@ -49,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script language="JavaScript">
         "use strict";
 		var id = ${loginUser.id};
-		alert("loginUser:"+ id);
+			alert("loginUser:"+ id);
         var Chat = {};
 
         Chat.socket = null;
@@ -60,12 +58,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             } else if ('MozWebSocket' in window) {
                 Chat.socket = new MozWebSocket(host);
             } else {
-                Console.log('Error: WebSocket is not supported by this browser.');
+                Console.log('Error: 浏览器不支持websocket聊天.');
                 return;
             }
 
             Chat.socket.onopen = function () {
-                Console.log('Info: WebSocket connection opened.');
+                Console.log('提示 : 聊天链接已建立');
                 document.getElementById('chat').onkeydown = function(event) {
                     if (event.keyCode == 13) {
                         Chat.sendMessage();
@@ -75,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
             Chat.socket.onclose = function () {
                 document.getElementById('chat').onkeydown = null;
-                Console.log('Info: WebSocket closed.');
+                Console.log('提示: 聊天已关闭.');
             };
 
             Chat.socket.onmessage = function (message) {
@@ -94,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         Chat.sendMessage = (function() {
             var message = document.getElementById('chat').value;
             var map = {};
-            var targetId;
+            var targetId=18;
             var flag = 5;  //0： 未读消息（默认值）/ 4 ：无效消息（测试连接使用）/5：广播消息
             if(id == 18)
             	targetId = 20;
@@ -138,13 +136,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </script>
 </head>
 <body>
-<div class="noscript"><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websockets rely on Javascript being enabled. Please enable
-    Javascript and reload this page!</h2></div>
+	<s:debug> </s:debug>
 <div>
 	<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
   	<s:if test="#loginUser empty">ddd</s:if>
   	<a href="${ pageContext.request.contextPath }/user.action">user</a>
-  	<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
+  	<a href="${ pageContext.request.contextPath }/logout.action">退出</a>
   	<input type="hidden" class="${loginUser.id}" id = "target">
     <p>
         <input type="text" placeholder="type and press enter to chat" id="chat" />
