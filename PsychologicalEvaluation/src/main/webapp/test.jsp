@@ -21,9 +21,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/reset.css">
 	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/custom.css">
 	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/dialog.css">
+	<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" src="<%=path%>/js/answer.js"></script>
+	
   </head>
   
   <body>
+  <s:debug></s:debug>
   <header>
 			<div role="navigation" class="navbar navbar-default topnav">
 				<div class="container">
@@ -73,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		</div>
   		</s:iterator> 	
   		
-  		<button id="save">查看结果</button>
+  		<button id="save">提交</button>
   	</s:div>
   	
     <footer>

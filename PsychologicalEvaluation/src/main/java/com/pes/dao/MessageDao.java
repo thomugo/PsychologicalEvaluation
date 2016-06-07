@@ -1,9 +1,7 @@
 package com.pes.dao;
 
 import java.util.List;
-
 import com.pes.entity.Message;
-import com.sun.istack.internal.FinalArrayList;
 
 public interface MessageDao extends GenericDao2<Message, Integer>{
 	/**

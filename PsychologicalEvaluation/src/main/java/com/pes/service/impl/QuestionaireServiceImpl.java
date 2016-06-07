@@ -69,4 +69,29 @@ public class QuestionaireServiceImpl implements QuestionaireService {
 		questionDao.flush();
 	}
 
+	@Override
+	public List<Integer> getVectors(int id) {
+		// TODO Auto-generated method stub
+		return questionDao.getVectors(id);
+	}
+
+	@Override
+	public int findTotalRaws(String title, String note) {
+		// TODO Auto-generated method stub
+		return questionDao.findTotalRaws(title, note);
+	}
+
+	@Override
+	public int getMaxPageNo(String title, String note, Integer pageSize) {
+		// TODO Auto-generated method stub
+		return questionDao.getMaxPageNo(title, note, pageSize);
+	}
+
+	@Override
+	public List<Questionaire> findQuestionairesByPage(String title,
+			String note, Integer pageNo, Integer pageSize, boolean asc) {
+		// TODO Auto-generated method stub
+		return questionDao.findQuestionairesByPage(title, note, pageNo, pageSize, asc);
+	}
+
 }

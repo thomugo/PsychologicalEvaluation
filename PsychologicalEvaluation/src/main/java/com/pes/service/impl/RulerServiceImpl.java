@@ -1,6 +1,5 @@
 package com.pes.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,71 +8,76 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pes.dao.OptionDao;
+import com.pes.dao.RulerDao;
 import com.pes.entity.Option;
+import com.pes.entity.Ruler;
 import com.pes.service.OptionService;
+import com.pes.service.RulerService;
 
-@Service("optionService")
+@Service("rulerService")
 @Transactional(readOnly=true, propagation=Propagation.SUPPORTS)
-public class OptionServiceImpl implements OptionService {
+public class RulerServiceImpl implements RulerService {
 	@Autowired
-	OptionDao optionDao;
-	
+	RulerDao rulerDao;
+
 	@Override
-	public Option load(Integer id) {
+	public Ruler load(Integer id) {
 		// TODO Auto-generated method stub
-		return optionDao.load(id);
+		return rulerDao.load(id);
 	}
 
 	@Override
-	public Option get(Integer id) {
+	public Ruler get(Integer id) {
 		// TODO Auto-generated method stub
-		return optionDao.get(id);
+		return rulerDao.get(id);
 	}
 
 	@Override
-	public List<Option> findAll() {
+	public List<Ruler> findAll() {
 		// TODO Auto-generated method stub
-		return optionDao.findAll();
-	}
-
-	@Override
-	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
-	public void persist(Option entity) {
-		// TODO Auto-generated method stub
-		optionDao.persist(entity);
+		return rulerDao.findAll();
 	}
 
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
-	public Integer save(Option entity) {
+	public void persist(Ruler entity) {
 		// TODO Auto-generated method stub
-		return optionDao.save(entity);
+		rulerDao.persist(entity);
 	}
 
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
-	public void saveOrUpdate(Option entity) {
+	public Integer save(Ruler entity) {
 		// TODO Auto-generated method stub
-		optionDao.saveOrUpdate(entity);
+		return rulerDao.save(entity);
+	}
+
+	@Override
+	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
+	public void saveOrUpdate(Ruler entity) {
+		// TODO Auto-generated method stub
+		rulerDao.saveOrUpdate(entity);
 	}
 
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	public void delete(Integer id) {
 		// TODO Auto-generated method stub
-		optionDao.delete(id);
+		rulerDao.delete(id);
 	}
 
 	@Override
+	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	public void flush() {
 		// TODO Auto-generated method stub
-		optionDao.flush();
+		rulerDao.flush();
 	}
 
 	@Override
-	public HashMap<Integer, Float> getScores(int answerId) {
+	public String getRuler(int questionaireId, int vector, float score) {
 		// TODO Auto-generated method stub
-		return optionDao.getScores(answerId);
+		return rulerDao.getRuler(questionaireId, vector, score);
 	}
 
+	
 }

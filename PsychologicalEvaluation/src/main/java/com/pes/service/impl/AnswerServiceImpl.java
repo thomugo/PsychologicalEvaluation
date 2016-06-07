@@ -1,5 +1,6 @@
 package com.pes.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +73,12 @@ public class AnswerServiceImpl implements AnswerService{
 	public void flush() {
 		// TODO Auto-generated method stub
 		answerDao.flush();
+	}
+
+	@Override
+	public HashMap<Integer, Float> getScores(int answerId) {
+		// TODO Auto-generated method stub
+		return answerDao.getScores(answerId);
 	}
 
 }

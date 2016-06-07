@@ -85,8 +85,13 @@ public class TestAnswerService extends BaseTestTemplate{
     	answer.setOptionAnswer(optionAnswers);
     	Set<TrueFalseAnswer> trueFalseAnswers = new HashSet<TrueFalseAnswer>();
     	trueFalseAnswers.add(judge);
-    	answer.setTrueFalseAnswers(trueFalseAnswers);
+    	//answer.setTrueFalseAnswers(trueFalseAnswers);
     	answerService.save(answer);
+    }
+    
+    @Test
+    public void testScores(){
+    	System.out.println(answerService.getScores(44));
     }
     
 }

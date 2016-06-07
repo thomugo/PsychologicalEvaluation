@@ -35,9 +35,9 @@ public class Answer  implements Serializable{
 	private Date dateTime;
 	private Questionaire questionaire;
 	private Set<OptionAnswer> optionAnswer = new HashSet<OptionAnswer>();
-	private Set<TrueFalseAnswer>  trueFalseAnswers = new HashSet<TrueFalseAnswer>();
+	//private Set<TrueFalseAnswer>  trueFalseAnswers = new HashSet<TrueFalseAnswer>();
 	private Map<ChoiceQuestion, List<Option>> choiceQuestions = new HashMap<ChoiceQuestion, List<Option>>();
-	private Map<TrueFalseQuestion, Integer> trueFalseQuestions = new HashMap<TrueFalseQuestion, Integer>();
+	//private Map<TrueFalseQuestion, Integer> trueFalseQuestions = new HashMap<TrueFalseQuestion, Integer>();
 	
 	public Answer() {
 		// TODO Auto-generated constructor stub
@@ -81,14 +81,14 @@ public class Answer  implements Serializable{
 	public void setOptionAnswer(Set<OptionAnswer> optionAnswer) {
 		this.optionAnswer = optionAnswer;
 	}
-	@OneToMany(targetEntity=TrueFalseAnswer.class, mappedBy="answer", fetch=FetchType.LAZY,
+	/*@OneToMany(targetEntity=TrueFalseAnswer.class, mappedBy="answer", fetch=FetchType.LAZY,
 			cascade=CascadeType.ALL, orphanRemoval=true)
 	public Set<TrueFalseAnswer> getTrueFalseAnswers() {
 		return trueFalseAnswers;
 	}
 	public void setTrueFalseAnswers(Set<TrueFalseAnswer> trueFalseAnswers) {
 		this.trueFalseAnswers = trueFalseAnswers;
-	}
+	}*/
 	
 	@ManyToOne(fetch=FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name="questionaireId")
@@ -122,7 +122,7 @@ public class Answer  implements Serializable{
 		
 		return choiceQuestions;
 	}
-	@Transient
+	/*@Transient
 	public Map<TrueFalseQuestion, Integer> getTrueFalseQuestions(){
 		Iterator<TrueFalseAnswer> iterator = trueFalseAnswers.iterator();
 		while(iterator.hasNext()){
@@ -133,6 +133,6 @@ public class Answer  implements Serializable{
 			trueFalseQuestions.put(question, answer.getOption());
 		}
 		return trueFalseQuestions;
-	}
+	}*/
 	
 }
