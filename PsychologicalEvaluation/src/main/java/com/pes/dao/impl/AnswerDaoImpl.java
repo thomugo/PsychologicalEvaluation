@@ -1,16 +1,24 @@
 package com.pes.dao.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pes.dao.AnswerDao;
 import com.pes.dao.UserDao;
 import com.pes.entity.Answer;
+import com.pes.entity.OptionAnswer;
+import com.pes.entity.Questionaire;
 import com.pes.entity.User;
 
 @Repository("answerDao")
@@ -36,5 +44,38 @@ public class AnswerDaoImpl extends GenericDao1Impl<Answer, Integer> implements A
 		query.setInteger(1, questionaireId);
 		List<Answer> list = query.list(); 
 		return list;
-	}   
+	}
+
+	@Override
+	public HashMap<Integer, Float> getScores(int answerId) {
+		Criteria criteria = this.getCurrentSession().createCriteria(Answer.class);
+		criteria.createAlias("optionAnswer", "oa");
+		criteria.createAlias("oa.option", "o");
+		criteria.createAlias("o.question", "q");
+		criteria.add( Restrictions.idEq(answerId));
+		 criteria.setProjection( Projections.projectionList()
+		    		.add( Projections.groupProperty("q.vector"))
+		    		.add( Projections.sum("o.score"), "score"));
+		 ScrollableResults srs = criteria.scroll();
+		 HashMap<Integer, Float> scores = new HashMap<Integer, Float>();
+	         while(srs.next()){
+	        	 scores.put(srs.getInteger(0), srs.getDouble(1).floatValue());
+	        }
+	     if(scores.containsKey(0)){
+	    	 return scores;
+	     }
+	     else{
+	    	 Criteria criteria2 = this.getCurrentSession().createCriteria(Answer.class);
+		     criteria2.createAlias("optionAnswer", "oa");
+		     criteria2.createAlias("oa.option", "o");
+		     criteria2.add(Restrictions.idEq(answerId))
+		     	.setProjection(Projections.sum("o.score"));
+		     float sum = (float)((double)criteria2.uniqueResult());
+		     scores.put(0, sum);
+	     }
+	     
+		return scores;
+	}
+
+	
 }

@@ -6,24 +6,22 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
+import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.opensymphony.xwork2.ActionSupport;
 import com.pes.entity.ChoiceQuestion;
 import com.pes.entity.Option;
 import com.pes.entity.Questionaire;
-import com.pes.entity.TrueFalseQuestion;
 import com.pes.interceptor.Authority;
 import com.pes.service.ChoiceQuestionService;
 import com.pes.service.QuestionaireService;
 import com.pes.service.TrueFalseQuestionService;
-import com.pes.util.AjaxUtil;
 
 @ParentPackage("myBasicPackage")
-@Action(value = "editQuestionaire")
-public class EditQuestionaire extends ActionSupport {
+@Action(value="editQuestionaire")
+@Result(name="success", location="/user/editQuestionaire.jsp")
+public class EditQuestionaire extends BaseAction {
 	private static final Logger LOGGER = Logger.getLogger(EditQuestionaire.class);
 	@Autowired
 	private QuestionaireService questionaireService;
@@ -34,7 +32,8 @@ public class EditQuestionaire extends ActionSupport {
 	private String jsonString;
 	private Questionaire questionaire = new Questionaire();
 	private List<ChoiceQuestion> choiceQuestions = new ArrayList<ChoiceQuestion>();
-	private List<TrueFalseQuestion> trueFalseQuestions = new ArrayList<TrueFalseQuestion>();
+	private ArrayList<Integer> vectors = new ArrayList<Integer>();
+	//private List<TrueFalseQuestion> trueFalseQuestions = new ArrayList<TrueFalseQuestion>();
 
 	public String getJsonString() {
 		return jsonString;
@@ -42,6 +41,14 @@ public class EditQuestionaire extends ActionSupport {
 
 	public void setJsonString(String jsonString) {
 		this.jsonString = jsonString;
+	}
+	
+	public ArrayList<Integer> getVectors() {
+		return vectors;
+	}
+	
+	public Questionaire getQuestionaire() {
+		return questionaire;
 	}
 
 	@Override
@@ -52,34 +59,40 @@ public class EditQuestionaire extends ActionSupport {
 		JSONObject json = JSONObject.parseObject(jsonString);
 		// 取得标题并保存问卷
 		questionaire.setTitle(json.getString("title"));
-		questionaireService.save(questionaire);
+		questionaire.setNote(json.getString("description"));
+		//questionaireService.save(questionaire);
 		JSONArray choiceList = json.getJSONArray("choiceQuestions");
-		JSONArray judgeList = json.getJSONArray("trueFalseQuestions");
+		//JSONArray judgeList = json.getJSONArray("trueFalseQuestions");//暂不开放
 
 		// 取得所有选择题并保存
 		for (int i = 0; i < choiceList.size(); i++) {
 			JSONObject question = choiceList.getJSONObject(i);
 			String question_content = question.getString("question");
-			System.out.println("ChoiceQuestion=" + question_content);
+			//int question_vector = question.getInteger("vector");
+			//System.out.println("ChoiceQuestion=" + question_content);
 			ChoiceQuestion choiceQuestion = new ChoiceQuestion(question_content);
+			choiceQuestion.setVector(1);
 			String[] options = question.getString("options").split(",");
+			String[] scores = question.getString("scores").split(",");
 			// 遍历options
-			for (int j = 0; j < options.length; j=j+2) {
+			for (int j = 0; j < options.length; j++) {
 				Option option = new Option(options[j]);
-				System.out.println(options[j]+":" + options[j+1]);
-				option.setScore(Integer.parseInt(options[j+1]));
+				//System.out.println(options[j]+":" + options[j+1]);
+				//option.setScore(Integer.parseInt(options[j+1]));
 				// 建立关联
+				option.setScore(Float.parseFloat(scores[j]));
 				option.setQuestion(choiceQuestion);
 				choiceQuestion.getOptions().add(option);
 			}
 			choiceQuestion.setQuestionaire(questionaire);
-			choiceQuestionService.save(choiceQuestion);
+			questionaire.getChoiceQuestions().add(choiceQuestion);
 			choiceQuestions.add(choiceQuestion);
-			
 		}
-		System.out.println("save choice questions over");
+		questionaireService.save(questionaire);
 		// 取得判断题并保存
 		// 取得所有选择题并保存
+		//暂不开放
+		/*
 		for (int i = 0; i < judgeList.size(); i++) {
 			JSONObject question = judgeList.getJSONObject(i);
 			String question_content = question.getString("question");
@@ -92,9 +105,11 @@ public class EditQuestionaire extends ActionSupport {
 			trueFalseQuestionService.save(true_false_question);
 			trueFalseQuestions.add(true_false_question);
 		}
-		System.out.println("save true false questions over");
-		AjaxUtil.ajaxJSONResponse("success");
-		System.out.println("edit success");
-		return NONE;
+		System.out.println("save true false questions over");*/
+		System.out.println("edit questionaire success");
+		//AjaxUtil.ajaxJSONResponse("success");
+		vectors = (ArrayList<Integer>)choiceQuestionService.getVectors(questionaire.getId());
+		return "success";
 	}
+	
 }

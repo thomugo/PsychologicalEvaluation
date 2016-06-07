@@ -71,6 +71,12 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService {
 		// TODO Auto-generated method stub
 		choiceQuestionDao.flush();
 	}
+
+	@Override
+	public List<Integer> getVectors(int questionaireId) {
+		// TODO Auto-generated method stub
+		return choiceQuestionDao.getVectors(questionaireId);
+	}
 	
 	
 }

@@ -64,15 +64,15 @@ public class TestQuestionaireService extends BaseTestTemplate{
     public void test2(){
     	Questionaire test = questionaireService.get(10);
     	Set<ChoiceQuestion> questions1 = test.getChoiceQuestions();
-    	Set<TrueFalseQuestion> questions2 = test.getTrueFalseQuestions();
+    	//Set<TrueFalseQuestion> questions2 = test.getTrueFalseQuestions();
     	Iterator<ChoiceQuestion> iterator1 = questions1.iterator();
     	while(iterator1.hasNext()){
     		System.out.println(iterator1.next().toString());
     	}
-    	Iterator<TrueFalseQuestion> iterator2 = questions2.iterator();
+    	/*Iterator<TrueFalseQuestion> iterator2 = questions2.iterator();
     	while(iterator2.hasNext()){
     		System.out.println(iterator2.next().toString());
-    	}
+    	}*/
     }
     @Test
     public void test1(){
@@ -81,7 +81,7 @@ public class TestQuestionaireService extends BaseTestTemplate{
     	TrueFalseQuestion question1 = new TrueFalseQuestion();
     	question1.setContent("doubi1?");
     	question1.setQuestionaire(questionaire);
-    	questionaire.getTrueFalseQuestions().add(question1);
+    	//questionaire.getTrueFalseQuestions().add(question1);
     	questionaireService.save(questionaire);
     	
     }
@@ -168,7 +168,7 @@ public class TestQuestionaireService extends BaseTestTemplate{
     	Category category = categoryService.get(3);
     	ChoiceQuestion question2 = new ChoiceQuestion();
     	question2.setContent("what's the basketball's color?");
-    	question2.setCategory(category);
+    	//question2.setCategory(category);
     	Option option1 = new Option();
     	option1.setContent("blue");
     	option1.setQuestion(question2);
@@ -186,12 +186,12 @@ public class TestQuestionaireService extends BaseTestTemplate{
     public void score(){
     	ChoiceQuestion question1 = new ChoiceQuestion("test question1");
     	Option option1 = new Option("option1");
-    	option1.setScore(22);
+    	option1.setScore((float) 2.2);
     	ChoiceQuestion question2 = new ChoiceQuestion("test question2");
     	Option option2 = new Option("option2");
-    	option2.setScore(11);
+    	option2.setScore((float) 0.1);
     	Option option3 = new Option("option3");
-    	option3.setScore(12);
+    	option3.setScore((float) 1.2);
     	option1.setQuestion(question1);
 		question1.getOptions().add(option1);
 		option2.setQuestion(question2);
@@ -247,4 +247,16 @@ public class TestQuestionaireService extends BaseTestTemplate{
     	//System.out.println(question1.getOptions());
     }
     
+    @Test
+    public void getVectors(){
+    	//List<Integer> list = choiceQuestionService.getVectors(36);
+    	List<Integer> list = questionaireService.getVectors(36);
+    	System.out.println(list);
+    }
+    
+    @Test
+    public void getQuestionaires(){
+    	List<Questionaire> questionaires = questionaireService.findQuestionairesByPage("TEST", null, 0, 3, true);
+    	System.out.println(questionaires);
+    }
 }

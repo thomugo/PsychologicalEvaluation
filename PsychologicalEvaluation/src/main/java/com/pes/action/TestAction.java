@@ -2,17 +2,12 @@ package com.pes.action;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.opensymphony.xwork2.ActionSupport;
 import com.pes.entity.ChoiceQuestion;
 import com.pes.entity.Questionaire;
-import com.pes.entity.TrueFalseQuestion;
-import com.pes.service.ChoiceQuestionService;
 import com.pes.service.QuestionaireService;
 
 @Results(value = { @Result(name="success", location="/test.jsp" ) })
@@ -23,7 +18,7 @@ public class TestAction extends BaseAction{
 	private int id;
 	private Questionaire questionaire;
 	private Set<ChoiceQuestion> choiceQuestions = new HashSet<ChoiceQuestion>();
-	private Set<TrueFalseQuestion> trueFalseQuestions = new HashSet<TrueFalseQuestion>();
+	//private Set<TrueFalseQuestion> trueFalseQuestions = new HashSet<TrueFalseQuestion>();
 	
 	public Questionaire getQuestionaire() {
 		return questionaire;
@@ -37,9 +32,9 @@ public class TestAction extends BaseAction{
 		return choiceQuestions;
 	}
 
-	public Set<TrueFalseQuestion> getTrueFalseQuestions() {
+	/*public Set<TrueFalseQuestion> getTrueFalseQuestions() {
 		return trueFalseQuestions;
-	}
+	}*/
 
 	@Override
 	public String execute() throws Exception {
@@ -48,7 +43,10 @@ public class TestAction extends BaseAction{
 		System.out.println("id: "+id);
 		questionaire = questionaireService.get(id);
 		choiceQuestions = questionaire.getChoiceQuestions();
-		trueFalseQuestions = questionaire.getTrueFalseQuestions();
+		//trueFalseQuestions = questionaire.getTrueFalseQuestions();
 		return "success";
 	}
+	
+	
+	
 }

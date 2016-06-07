@@ -24,7 +24,7 @@ public class Questionaire implements Serializable{
 	private String title;
 	private String note;
 	private Set<ChoiceQuestion> choiceQuestions = new HashSet<ChoiceQuestion>();
-	private Set<TrueFalseQuestion> trueFalseQuestions = new HashSet<TrueFalseQuestion>();
+	//private Set<TrueFalseQuestion> trueFalseQuestions = new HashSet<TrueFalseQuestion>();
 	public  Questionaire() {
 		// TODO Auto-generated constructor stub
 	}
@@ -61,7 +61,7 @@ public class Questionaire implements Serializable{
 	public void setChoiceQuestions(Set<ChoiceQuestion> choiceQuestions) {
 		this.choiceQuestions = choiceQuestions;
 	}
-	@OneToMany(targetEntity=TrueFalseQuestion.class, mappedBy="questionaire", fetch=FetchType.LAZY,
+	/*@OneToMany(targetEntity=TrueFalseQuestion.class, mappedBy="questionaire", fetch=FetchType.LAZY,
 			cascade=CascadeType.ALL, orphanRemoval=true)
 	@BatchSize(size=5)
 	public Set<TrueFalseQuestion> getTrueFalseQuestions() {
@@ -69,6 +69,10 @@ public class Questionaire implements Serializable{
 	}
 	public void setTrueFalseQuestions(Set<TrueFalseQuestion> trueFalseQuestions) {
 		this.trueFalseQuestions = trueFalseQuestions;
+	}*/
+	@Override
+	public String toString() {
+		return "Questionaire [id=" + id + ", title=" + title + ", note=" + note
+				+ "]";
 	}
-	
 }

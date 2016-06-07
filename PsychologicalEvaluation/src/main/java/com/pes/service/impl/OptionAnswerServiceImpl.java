@@ -1,6 +1,7 @@
 package com.pes.service.impl;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -70,7 +71,5 @@ public class OptionAnswerServiceImpl implements OptionAnswerService {
 		// TODO Auto-generated method stub
 		optionAnswerDao.flush();
 	}
-	
-	
 
 }

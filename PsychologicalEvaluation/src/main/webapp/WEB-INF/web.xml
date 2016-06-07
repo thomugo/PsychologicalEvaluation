@@ -58,7 +58,7 @@
 
 	<!-- 配置session超时时间，单位分钟 -->
 	<session-config>
-		<session-timeout>30</session-timeout>
+		<session-timeout>60</session-timeout>
 	</session-config>
 	
 	<!-- Struts2 filter -->

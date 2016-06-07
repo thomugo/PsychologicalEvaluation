@@ -1,6 +1,7 @@
 package com.pes.action;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,26 +9,23 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.opensymphony.xwork2.ActionSupport;
 import com.pes.entity.Answer;
 import com.pes.entity.ChoiceQuestion;
 import com.pes.entity.Option;
 import com.pes.entity.OptionAnswer;
 import com.pes.entity.Questionaire;
-import com.pes.entity.TrueFalseAnswer;
-import com.pes.entity.TrueFalseQuestion;
+import com.pes.entity.Ruler;
+import com.pes.entity.User;
 import com.pes.service.AnswerService;
 import com.pes.service.ChoiceQuestionService;
 import com.pes.service.OptionAnswerService;
 import com.pes.service.OptionService;
 import com.pes.service.QuestionaireService;
-import com.pes.service.TrueFalseAnswerService;
-import com.pes.service.TrueFalseQuestionService;
+import com.pes.service.RulerService;
 import com.pes.service.UserService;
 
 @Result(name="success", location="/answer.jsp")
@@ -39,20 +37,23 @@ public class SaveAnswerAction extends BaseAction{
 	private AnswerService answerService;
 	@Autowired
 	private OptionService optionService;
-	@Autowired QuestionaireService questionaireService;
+	@Autowired
+	private RulerService rulerService;
+	@Autowired 
+	QuestionaireService questionaireService;
 	@Autowired
 	private ChoiceQuestionService choiceQuestionService;
-	@Autowired
-	private TrueFalseQuestionService trueFalseQuestionService;
+	/*@Autowired
+	private TrueFalseQuestionService trueFalseQuestionService;*/
 	@Autowired
 	private OptionAnswerService optionAnswerService ;
-	@Autowired
-	private TrueFalseAnswerService trueFalseAnswerService;
+	/*@Autowired
+	private TrueFalseAnswerService trueFalseAnswerService;*/
 	private String jsonString;
 	private Answer answer = new Answer();
 	private Questionaire questionaire ;
 	private Map<ChoiceQuestion, List<Option>> choiceQuestionAnswers = new HashMap<ChoiceQuestion, List<Option>>();
-	private Map<TrueFalseQuestion, Integer> trueFalseQuestionAnswers = new HashMap<TrueFalseQuestion, Integer>();
+	//private Map<TrueFalseQuestion, Integer> trueFalseQuestionAnswers = new HashMap<TrueFalseQuestion, Integer>();
 	
 	
 	public String getJsonString() {
@@ -75,9 +76,9 @@ public class SaveAnswerAction extends BaseAction{
 	}
 
 
-	public Map<TrueFalseQuestion, Integer> getTrueFalseQuestionAnswers() {
+	/*public Map<TrueFalseQuestion, Integer> getTrueFalseQuestionAnswers() {
 		return trueFalseQuestionAnswers;
-	}
+	}*/
 	@Action(value="showAnswer", results={
 			@Result(name="success", location="/answer.jsp"),
 			@Result(name="index", location="/index.jsp")
@@ -88,7 +89,7 @@ public class SaveAnswerAction extends BaseAction{
 		questionaire = questionaireService.get(questionaireID);
 		answer = answerService.findByQuestionaire(userID, questionaireID).get(20);
 		choiceQuestionAnswers = answer.getChoiceQuestions();
-		trueFalseQuestionAnswers = answer.getTrueFalseQuestions();
+		//trueFalseQuestionAnswers = answer.getTrueFalseQuestions();
 		return "success";
 	}
 	
@@ -98,15 +99,16 @@ public class SaveAnswerAction extends BaseAction{
 		// TODO Auto-generated method stub
 		System.out.println("jsonString:" + jsonString);
 		JSONObject json = JSONObject.parseObject(jsonString);
-		answer.setUser(userService.findById(9));
-		
+		User user = (User)httpSession.getAttribute("loginUser");
+		answer.setUser(user);
+		answer.setDateTime(new Date());
 		Integer questionaireId = json.getInteger("questionaire");
 		//System.out.println(questionaireId);
 		questionaire = questionaireService.get(questionaireId);
 		answer.setQuestionaire(questionaire);
 		
 		JSONArray choiceList = json.getJSONArray("choiceQuestions");
-		JSONArray judgeList = json.getJSONArray("judgeQuestions");
+		//JSONArray judgeList = json.getJSONArray("judgeQuestions");
 		
 		//保存选择题
 		for(int i=0; i<choiceList.size(); i++)
@@ -137,7 +139,7 @@ public class SaveAnswerAction extends BaseAction{
 			answer.getOptionAnswer().add(optionAnswer);
 		}
 		//保存判断题
-		for(int j=0; j<judgeList.size(); j++)
+		/*for(int j=0; j<judgeList.size(); j++)
 		{
 			JSONObject object = judgeList.getJSONObject(j);
 			int qid = object.getInteger("question");
@@ -152,8 +154,19 @@ public class SaveAnswerAction extends BaseAction{
 			trueFalseAnswer.setQuestion(question);
 			
 			answer.getTrueFalseAnswers().add(trueFalseAnswer);
-		}
+		}*/
 		answerService.save(answer);
+		ArrayList<Integer> vectors = (ArrayList<Integer>)questionaireService.getVectors(questionaireId);
+		String result = "";
+		HashMap<Integer, Float> scores = answerService.getScores(answer.getId());
+		for (Integer vector : vectors) {
+			float score = scores.get(vector);
+			System.out.println("get result:"+score);
+			result += rulerService.getRuler(questionaireId, vector, score);
+		}
+		answer.setResult(result);
+		answerService.saveOrUpdate(answer);
+		System.out.println(result);
 		System.out.println("questionaire:" + questionaire.getTitle());
 		System.out.println(choiceQuestionAnswers.size());
 		return "success";

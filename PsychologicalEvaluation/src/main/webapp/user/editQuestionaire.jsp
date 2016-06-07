@@ -11,7 +11,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<head>
 		<meta charset="utf-8" />
 		<title>管理员</title>
-		
+		<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
+  		<a href="${ pageContext.request.contextPath }/user/login.jsp">login</a>
+  		<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
+  		<s:debug></s:debug>
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />

@@ -27,7 +27,7 @@ import org.hibernate.annotations.BatchSize;
 @Table(name="choice_question" , catalog="pes")
 public class ChoiceQuestion implements Serializable{
 	private Integer id;
-	private Category category;
+	private int vector; //问题所属维度
 	private Questionaire questionaire;
 	private String content;
 	private List<Option> options = new ArrayList<Option>();
@@ -49,13 +49,14 @@ public class ChoiceQuestion implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="cateId")
-	public Category getCategory() {
-		return category;
+	
+	@Column(name="vector", nullable=false)
+	public int getVector() {
+		return vector;
 	}
-	public void setCategory(Category category) {
-		this.category = category;
+
+	public void setVector(int vector) {
+		this.vector = vector;
 	}
 
 	@Column(name="content")
@@ -86,7 +87,7 @@ public class ChoiceQuestion implements Serializable{
 
 	@Override
 	public String toString() {
-		return "ChoiceQuestion [id=" + id + ", category=" + category
+		return "ChoiceQuestion [id=" + id + ", vector=" + vector
 				+ ", questionaire=" + questionaire + ", content=" + content
 				+ ", options=" + options + "]";
 	}
