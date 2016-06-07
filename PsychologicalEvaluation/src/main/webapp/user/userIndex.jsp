@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="left">
         
             </div>
-        <h2>壹心理</h2>
+        <h2>心理学，从这里开始</h2>
     <div class="right">
                     <div id="header_avatar_btn_div">
                 <div class="img">
@@ -100,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <ul>
     <li>
 
-        <a href="<%=path%>/user/info.jsp" >
+        <a href="<%=path%>/article/marticleList.jsp" >
             <div class="img">
                 <i class="icon icon-article"></i>
             </div>
@@ -109,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </li>
     <li>
 
-        <a href="<%=path%>/user/ceshi.jsp" >
+        <a href="<%=path%>/test/mtestList.jsp" >
             <div class="img">
                 <i class="icon icon-ceshi"></i>
             </div>
@@ -118,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </li>
     <li>
 
-        <a href="http://m.xinli001.com/fm" >
+        <a href="#" >
             <div class="img">
                 <i class="icon icon-fm"></i>
             </div>
@@ -126,7 +126,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </a>
     </li>    
 	<li>
-        <a href="<%=path%>/user/chat.jsp" >
+        <a href="#" >
             <div class="img">
                 <i class="icon icon-fm"></i>
             </div>
@@ -156,7 +156,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </a>
         </div>
         <div class="down actionArea">
-            <a href="http://m.xinli001.com/zx">
+            <a href="#">
                 <span>
                     <h1>话题咨询</h1>
                     <p>最热门的生活话题</p>
@@ -168,11 +168,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
              <div class="wz-list">
                 <div class="list-head">
-                    看文章
+                  	  看文章
                 </div>
-                                <div class="list-body ">
+                <div class="list-body ">
                     <ul>
-                                                <li>
+                        <li>
                             <div class="img">
                                 <a href="#"><img src="<%=path %>/image/0710264ee7ydh4165s37en.jpg"></a>
                             </div>
@@ -188,92 +188,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </div>
                             </div>
                         </li>
-                                                <li>
-                            <div class="img">
-                                <a href="#"><img src="<%=path %>/image/101115qdvsimjx1egru5xk.jpg"></a>
-                            </div>
-                            <div class="text">
-                                <div class="desc">
-                                    <a href="#">你判断一个人内向或外向的标准，可能都是错的</a>
-                                </div>
-                                <div class="info">
-                                    <span>健康专栏·壹心理</span>
-                                    <dl>
-                                        <dd><a href="javascript:void(0);"><i class="ico2">1318</i></a></dd>
-                                    </dl>
-                                </div>
-                            </div>
-                        </li>
-                                                <li>
-                            <div class="img">
-                                <a href="#"><img src="<%=path %>/image/095358x2tdocjhq1jp5rol.jpg"></a>
-                            </div>
-                            <div class="text">
-                                <div class="desc">
-                                    <a href="#">对孩子三大冷暴力，全世界的爸爸都中枪了</a>
-                                </div>
-                                <div class="info">
-                                    <span>亲子专栏</span>
-                                    <dl>
-                                        <dd><a href="javascript:void(0);"><i class="ico2">483</i></a></dd>
-                                    </dl>
-                                </div>
-                            </div>
-                        </li>
-                                                <li>
-                            <div class="img">
-                                <a href="#"><img src="<%=path %>/image/034244cie655ql6nb37aks.jpg"></a>
-                            </div>
-                            <div class="text">
-                                <div class="desc">
-                                    <a href="#">如何利用仪式感提高效率？</a>
-                                </div>
-                                <div class="info">
-                                    <span>职场专栏·壹心理</span>
-                                    <dl>
-                                        <dd><a href="javascript:void(0);"><i class="ico2">2696</i></a></dd>
-                                    </dl>
-                                </div>
-                            </div>
-                        </li>
-                                                <li>
-                            <div class="img">
-                                <a href="#"><img src="<%=path %>/image/125438rnyezm4gdqf4wryw.jpg"></a>
-                            </div>
-                            <div class="text">
-                                <div class="desc">
-                                    <a href="#">前女友究竟是一种怎样的存在？</a>
-                                </div>
-                                <div class="info">
-                                    <span>科普专栏·壹心理</span>
-                                    <dl>
-                                        <dd><a href="javascript:void(0);"><i class="ico2">10222</i></a></dd>
-                                    </dl>
-                                </div>
-                            </div>
-                        </li>
-                                                <li>
-                            <div class="img">
-                                <a href="#"><img src="<%=path %>/image/063436o7z6qvctloxqlbne.jpg"></a>
-                            </div>
-                            <div class="text">
-                                <div class="desc">
-                                    <a href="#">这世上没有无私的爱，这是本性</a>
-                                </div>
-                                <div class="info">
-                                    <span>邵琪「心灵花园nice」</span>
-                                    <dl>
-                                        <dd><a href="javascript:void(0);"><i class="ico2">4894</i></a></dd>
-                                    </dl>
-                                </div>
-                            </div>
-                        </li>
-
-                 </div>
-                <div class="list-foot">
-                    <a href="<%=path %>/user/info.jsp"> 更多文章</a>
+                   </ul>     
                 </div>
-                            </div>
+                
+                <div class="list-foot">
+                    <a href="<%=path %>/article/marticleList.jsp"> 更多文章</a>
+                </div>
+             </div>
 
             <div class="zj-list" style="display: none;">
                 <div class="list-head">
@@ -314,91 +235,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      <a href="#">更多专家</a>
                 </div>
                             </div>
-            <div class="fm-list">
-                <div class="list-head">
-                    听心理FM
-                </div>
-                                <div class="list-body">
-                    <ul>
-                                                <li>
-                            <div class="img">
-                                <a href="http://m.xinli001.com//fm/99389166"><img src="<%=path %>/image/1303404eaflshdtqw9p945.jpg"/></a>
-                                <em></em>
-                            </div>
-                            <h2><a href="http://m.xinli001.com//fm/99389166">无心炫耀，才是真正拥有</a></h2>
-<!--                            <h4>-->
-<!--                                <a href="--><!--">-->
-<!--                                    <img src="--><!--"/>-->
-<!--                                    --><!--                                </a>-->
-<!--                            </h4>-->
-                        </li>
-                                                <li>
-                            <div class="img">
-                                <a href="#"><img src="<%=path %>/image/013403xy2lt0ewz5bv7434.jpg"/></a>
-                                <em></em>
-                            </div>
-                            <h2><a href="#">余秋雨-我一直在等你</a></h2>
-<!--                            <h4>-->
-<!--                                <a href="--><!--">-->
-<!--                                    <img src="--><!--"/>-->
-<!--                                    --><!--                                </a>-->
-<!--                            </h4>-->
-                        </li>
-                                                <li>
-                            <div class="img">
-                                <a href="#"><img src="<%=path %>/image/001008bxw0e3t0x2d8xgr3.jpg"/></a>
-                                <em></em>
-                            </div>
-                            <h2><a href="#">幸福的含义是什么？</a></h2>
-<!--                            <h4>-->
-<!--                                <a href="--><!--">-->
-<!--                                    <img src="--><!--"/>-->
-<!--                                    --><!--                                </a>-->
-<!--                            </h4>-->
-                        </li>
-                                            </ul>
-                </div>
-                <div class="list-foot">
-                    <a href="http://m.xinli001.com//fm">更多FM</a>
-                </div>
-                            </div>
+
             <div class="cs-list">
                 <div class="list-head">
-                    做测试
+                    	做测试
                 </div>
-                                <div class="list-body">
+                <div class="list-body">
                     <ul>
-                                                <li>
+                        <li>
                             <div class="img">
-                                <a href="<%=path %>/ceshi/357.jsp"><img src="<%=path %>/image/021356cvg7ha82skersh0f.jpg"/></a>
+                                <a href="<%=path %>/test/mtest.jsp"><img src="<%=path %>/image/021356cvg7ha82skersh0f.jpg"/></a>
                             </div>
                             <div class="text">
-                                <h2><a href="<%=path %>/ceshi/357.jsp">世界上另一个自己会对你说什么？</a></h2>
+                                <h2><a href="<%=path %>/test/mtest.jsp">世界上另一个自己会对你说什么？</a></h2>
                                 <h4><i class="icon icon-user-small"></i>119325</h4>
                             </div>
                         </li>
-                                                <li>
-                            <div class="img">
-                                <a href="http://m.xinli001.com//ceshi/2501"><img src="<%=path %>/image/020544ljhlpm0cprai39q6.jpg"/></a>
-                            </div>
-                            <div class="text">
-                                <h2><a href="#">娱乐测试：你的灵魂会去往何处？</a></h2>
-                                <h4><i class="icon icon-user-small"></i>195118</h4>
-                            </div>
-                        </li>
-                                                <li>
-                            <div class="img">
-                                <a href="#"><img src="<%=path %>/image/101429te35em19j4e5eq5o.jpg"/></a>
-                            </div>
-                            <div class="text">
-                                <h2><a href="#">测测你在他心中的分量有多少？（限女生）</a></h2>
-                                <h4><i class="icon icon-user-small"></i>34019</h4>
-                            </div>
-                        </li>
-                                            </ul>
+                   </ul>
                 </div>
                 <div class="list-foot">
-                    <a href="<%=path %>/user/ceshi.jsp">更多测试</a>
+                    <a href="<%=path %>/test/mtestList.jsp">更多测试</a>
                 </div>
                             </div>
             <div class="hd-list" style="display: none;">
@@ -465,33 +321,7 @@ ga('send', 'pageview');
 </script>
         </div>
     </div>
-    <div class="dialog" style="display: none;">
-        <div class="head">
-            <h2>频道</h2>
-            <em class="close"></em>
-        </div>
-        <div class="body">
-                        <div class="list">
-                <dl>
-
-                                                                        <dd><a href="http://m.xinli001.com/info">读文章</a></dd>
-                                                                                                <dd><a href="http://m.xinli001.com/ceshi">做测试</a></dd>
-                                                                                                <dd><a href="http://xy.xinli001.com/">学课程</a></dd>
-                                                                                                <dd><a href="http://m.xinli001.com/fm">听FM</a></dd>
-                                                            </dl>
-            </div>
-            <div class="list1">
-                <div class="hd">更多频道</div>
-                <div class="bd">
-                    <span><a href="http://m.xinli001.com/site/">心理圈</a></span>
-                    <span><a href="http://m.xinli001.com/cureimg/">治愈图片</a></span>
-                    <span><a href="http://m.xinli001.com/movie/">微电影</a></span>
-                    <span class="last"><a href="http://m.xinli001.com/hole/">树洞</a></span>
-                </div>
-            </div>
-                    </div>
-    </div>
-
+    
     <script type="text/javascript">
         // 导航下面的滚动信息
         $(".sy-bigNav .broadcast .body").glide({

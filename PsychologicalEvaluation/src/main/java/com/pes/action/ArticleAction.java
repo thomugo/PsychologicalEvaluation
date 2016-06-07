@@ -27,7 +27,7 @@ import com.pes.util.AjaxUtil;
 import com.sun.tools.javac.resources.compiler;
 
 @ParentPackage("myBasicPackage")
-public class ArticleAction extends BaseAction implements ModelDriven<Article>{
+public class ArticleAction extends BaseAction{
 	private static final Logger LOGGER = Logger.getLogger(ArticleAction.class);
 	@Autowired
 	private ArticleService articleService;
@@ -44,10 +44,6 @@ public class ArticleAction extends BaseAction implements ModelDriven<Article>{
 	private String jsonString;
 	private List<ArticlePojo> articles = null;
 	
-	@Override
-	public Article getModel(){
-		return article;
-	}
 
 	public int getId() {
 		return id;
@@ -119,20 +115,31 @@ public class ArticleAction extends BaseAction implements ModelDriven<Article>{
 	@Action(value = "editArticle")
 	public String editArticle()
 	{
-		String editState;
+		JSONObject json = JSONObject.parseObject(jsonString);
+		String title = json.getString("title");
+		String content = json.getString("content");
+		String className = json.getString("className");
+		Article article = new Article();
+		article.setClassName(className);
+		article.setContent(content);
 		article.setDateTime(new Date());
+		article.setTitle(title);
+		User user = (User)httpSession.getAttribute("loginUser");
+		article.setUserId(user.getId());
+		article.setUserName(user.getUsername());
+		String editState;
 		Integer id = 0;
 		id = articleService.save(article);
+		article.setId(id);
 		if(id != 0){
 			System.out.println("add success");
 			editState = "edit article success";
-			ActionContext.getContext().getValueStack().push(editState);
 		}else{
 			System.out.println("edit article failed");
 			editState = "edit article success";
-			ActionContext.getContext().getValueStack().push(editState);
 		}
-		article.setId(id);
+		AjaxUtil.ajaxJSONResponse(editState);
+		
 		return NONE;
 	}
 	

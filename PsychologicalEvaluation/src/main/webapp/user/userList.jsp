@@ -57,7 +57,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!--[if lt IE 9]>
 			<script src="<%=path%>/assets/js/respond.min.js"></script>
 		<!--[endif]-->
-
+<style type="text/css">
+#grid-table th{
+	text-align:center;
+}
+</style>
 	</head>
 
 	<body>
@@ -343,7 +347,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<ul class="submenu">
 								<li>
-									<a href="<%=path%>/user/Questionaire.jsp">
+									<a href="<%=path%>/user/Questionaire.action">
 										<i class="icon-double-angle-right"></i>
 										问卷
 									</a>
@@ -357,7 +361,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="<%=path%>/user/article.jsp">
+									<a href="<%=path%>/article/articleList.action">
 										<i class="icon-double-angle-right"></i>
 										文章
 									</a>
@@ -520,7 +524,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var i=0;
 			
 			<c:forEach var="user" items="${users}">
-				grid_data[i++]={age:${user.age},gender:${user.gender},phone:${user.phone},dateTime:"${user.dateTime}",vocation:"${user.vocation}"};
+				grid_data[i++]={username:"${user.username}",id:"${user.id}",email:"${user.email}",age:${user.age},gender:(${user.gender})?'男':'女',phone:${user.phone},dateTime:"${user.dateTime}",vocation:"${user.vocation}"};
 			</c:forEach>
 			
 			jQuery(function($) {

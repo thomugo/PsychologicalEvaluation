@@ -76,7 +76,7 @@ public class ArticlePojo implements Serializable{
 	public String toString() {
 		return "Article [id=" + id + ", title=" + title + ", className="
 				+ className + ", dateTime=" + dateTime
-				+ ", author=" + userName + "]";
+				+ ", userName=" + userName + "]";
 	}
 	
 }

@@ -95,34 +95,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <input type="submit" id="submit" value="提  交">
     </form>
 </section>
-
-
-	
-	
-	
-<div class="module module-margin tuijian">
-	<div class="topic">
-		<ul class="cont-list">
-			
-			
-			<li>
-				<span class="live-icon">推荐</span><a href="#">预约咨询师，你的心事TA来听</a>
-			</li>
-			
-		</ul>
-	</div>
-	<div class="topic">
-		<ul class="cont-list">
-			
-			
-			<li>
-				<span class="live-icon">推荐</span><a href="http://m.xinli001.com/fm">心理FM：总有一个声音治愈你</a>
-			</li>
-			
-		</ul>
-	</div>
-</div>
-	
 	
 	<footer class="footer">
 	<div>

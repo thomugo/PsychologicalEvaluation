@@ -45,29 +45,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             margin: 0;
         }
     ]]></style>
-
-</head>
-<body>
-	<s:debug> </s:debug>
-<div>
-	<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
-  	<s:if test="#loginUser empty">ddd</s:if>
-  	<a href="${ pageContext.request.contextPath }/user.action">user</a>
-  	<a href="${ pageContext.request.contextPath }/logout.action">退出</a>
-  	<input type="hidden" class="${loginUser.id}" id = "target">
-    <p>
-        <input type="text" placeholder="type and press enter to chat" id="chat" />
-    </p>
-    <div id="console-container">
-        <div id="console"/>
-    </div>
-</div>
     <script language="JavaScript">
         "use strict";
 		var id = ${loginUser.id};
-		var name="${loginUser.username}";
-			alert("用户:"+ name);
-			//alert("什么鬼啊！");
+			alert("loginUser:"+ id);
         var Chat = {};
 
         Chat.socket = null;
@@ -78,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             } else if ('MozWebSocket' in window) {
                 Chat.socket = new MozWebSocket(host);
             } else {
-                Console.log('错误: 浏览器不支持websocket聊天.');
+                Console.log('Error: 浏览器不支持websocket聊天.');
                 return;
             }
 
@@ -154,5 +135,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }, false);
 
     </script>
+</head>
+<body>
+	<s:debug> </s:debug>
+<div>
+	<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
+  	<s:if test="#loginUser empty">ddd</s:if>
+  	<a href="${ pageContext.request.contextPath }/user.action">user</a>
+  	<a href="${ pageContext.request.contextPath }/logout.action">退出</a>
+  	<input type="hidden" class="${loginUser.id}" id = "target">
+    <p>
+        <input type="text" placeholder="type and press enter to chat" id="chat" />
+    </p>
+    <div id="console-container">
+        <div id="console"/>
+    </div>
+</div>
 </body>
 </html>

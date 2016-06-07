@@ -5,10 +5,9 @@ $(document).ready(function() {
 					$("#sample-form").append("<div class='choicequestion'>"
 												+"<div class='form-group has-success'>"
 												+"<hr/>"
-												+"<label class=' col-sm-3 control-label no-padding-right'>问题</label>"
-												+"<div class=' col-sm-5'>"
-												+"<span class='block input-icon input-icon-right'>"
-												+"<input type='text' class='width-100 question1'/>"
+												+"<div class='ques'>"
+												+"<span class='queslabel'>问题"
+												+"<input type='text' style='width:400px;' class='question1'/><input type='text' style='width:45px;font-size:14px;' class='vector' placeholder='维度'/>"
 												+"</span>"
 												+"</div>"
 												+"</div>"
@@ -18,6 +17,7 @@ $(document).ready(function() {
 												
 												+"<input type='text' style='width:267px;'/>"
 												+"<input type='text' style='width:45px;font-size:14px;' class='fenzhi' placeholder='分值'/>"
+												+" "
 												+"<button class='btn addoption'>添加选项"
 												+"</div>"
 												
@@ -98,7 +98,7 @@ $(document).ready(function() {
 						for(var i=0; i<question1Num; i++)
 						{
 						 	var map1 = {};
-						 	question1 =  $(".question1").eq(i).val();
+						 	var question1 =  $(".question1").eq(i).val();
 						 	//去除前后空格
 						 	question1 = $.trim(question1);
 						 	if(question1.length == 0)
@@ -110,6 +110,8 @@ $(document).ready(function() {
 						 			$(".question1").eq(i).focus().select();
 						 		}
 						 	
+						 	var vector=$.trim($(".vector").eq(i).val());
+						 		
 						 	var options = $(".choiceoption").eq(i).children().map(function() {
 						 		var option=$.trim($(this).children().eq(1).val());
 
@@ -136,8 +138,9 @@ $(document).ready(function() {
 						 			return fenzhi;
 						 	  	}).get().join(',');
 						 	map1["question"] = question1;
+						 	map1["vector"] = vector;
 						 	map1["options"] = options;
-						 	map1["fenzhi"] = fenzhis;
+						 	map1["scores"] = fenzhis;
 						 	
 						 	//map1["fenzhi"]=fenzhi;
 						 	choiceQuestions[i] = map1;

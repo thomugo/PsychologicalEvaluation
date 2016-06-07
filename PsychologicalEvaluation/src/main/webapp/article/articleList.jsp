@@ -59,9 +59,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/html5shiv.js"></script>
 		<script src="<%=path%>/assets/js/respond.min.js"></script>
 		<![endif]-->
+<style type="text/css">
+.panel-heading{
+margin-top:5px;
+}
+
+</style>
 	</head>
 
 	<body>
+	<s:debug></s:debug>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -343,7 +350,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<ul class="submenu">
 								<li>
-									<a href="<%=path%>/user/Questionaire.jsp">
+									<a href="<%=path%>/user/Questionaire.action">
 										<i class="icon-double-angle-right"></i>
 										问卷
 									</a>
@@ -357,7 +364,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 								
 								<li class="active">
-									<a href="<%=path%>/user/article.jsp">
+									<a href="<%=path%>/article/articleList.action">
 										<i class="icon-double-angle-right"></i>
 										文章
 									</a>
@@ -440,7 +447,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</li>
 
 							<li class="active">
-								<a href="#">用户反馈</a>
+								<a href="#">全部文章</a>
 							</li>
 
 						</ul><!-- .breadcrumb -->
@@ -458,7 +465,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="page-content">
 						<div class="page-header">
 							<h1>
-								问卷集
+								全部文章
 
 							</h1>
 						</div><!-- /.page-header -->
@@ -474,14 +481,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<div class="space-8"></div>
 
 											<div id="faq-list-1" class="panel-group accordion-style1 accordion-style2">
-												<div class="panel panel-default" div='article'>
+												<div class="panel panel-default" id='article'>
 													<div class="panel-heading">
 														<a id='title' href="#content" data-toggle="collapse" class="accordion-toggle collapsed">
 														
 															<i class="icon-chevron-left pull-right" data-icon-hide="icon-chevron-down" data-icon-show="icon-chevron-left"></i>
 
 															<i class="icon-user bigger-130"></i>
-														问卷一	
+														&nbsp;&nbsp;问卷一	
 														</a>
 													</div>
 
@@ -519,28 +526,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- <![endif]-->
 
 		<!--[if IE]>
-			<script src="<%=path%>/jquery.min.js"></script>
+			<script src="<%=path%>/js/jquery.min.js"></script>
 		<![endif]-->
 
 		<!--[if !IE]> -->
 
-		<script type="text/javascript">
-			window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
-		</script>
-
 		<!-- <![endif]-->
 
 		<!--[if IE]>
-<script type="text/javascript">
- window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
-</script>
-<![endif]-->
 
+<![endif]-->
+		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
 		<script type="text/javascript" src="<%=path%>/assets/js/bootstrap.min.js"></script>
 
 		<!-- page specific plugin scripts -->
   		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
+
 
 		<!-- ace scripts -->
 
@@ -560,27 +561,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});
 		</script>
 		<script type="text/javascript">
-			var article=[];
-			var i=0;
-			
+				var i=0;
 			<c:forEach var="article" items="${articles}">
-				var title=${article.title};
-				var author=${article.author};
-				var wz_class=${article.wz_class};
-				var content=${article.content};
- 				$('#article').append("<div class='panel-heading'>"
-									+"<a href='#content"+(i++)+"' data-toggle='collapse' class='accordion-toggle collapsed'>"
+				
+				
+				var title="${article.title}";
+				//alert(title);
+				var userName = "${article.userName}";
+				var className = "${article.className}";
+				var dateTime ="${article.dateTime}";
+ 				 $('#article').append("<div class='panel-heading'>"
+									+"<a href='#content"+i+"' data-toggle='collapse' class='accordion-toggle collapsed'>"
 									+"<i class='icon-chevron-left pull-right' data-icon-hide='icon-chevron-down' data-icon-show='icon-chevron-left'></i>"
 									+"<i class='icon-user bigger-130'></i>"
+									+"&nbsp;&nbsp;&nbsp;"
 									+title
 									+"</a>"	
 									+"</div>"
 									+"<div class='panel-collapse collapse' id='content"+(i++)+"'>"
 									+"<div class='panel-body'>"
-									+"content"
+									+userName
 									+"</div>"
-									+"</div>"); 				
-				//article[i++]={age:${article.title},gender:${user.gender},phone:${user.phone},dateTime:"${user.dateTime}",vocation:"${user.vocation}"};
+									+"</div>");  			
 				
 			</c:forEach>
 						

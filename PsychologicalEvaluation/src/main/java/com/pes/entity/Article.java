@@ -89,7 +89,7 @@ public class Article implements Serializable{
 	public String toString() {
 		return "Article [id=" + id + ", title=" + title + ", className="
 				+ className + ", content=" + content + ", dateTime=" + dateTime
-				+ ", author=" + userName + "]";
+				+ ", userName=" + userName + "]";
 	}
 	
 }

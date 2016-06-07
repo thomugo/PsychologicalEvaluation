@@ -13,6 +13,7 @@ import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.transform.impl.AddDelegateTransformer;
 import org.springframework.stereotype.Repository;
 
 import com.pes.dao.ArticleDao;

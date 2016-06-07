@@ -56,6 +56,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/respond.min.js"></script>
 		<![endif]-->
 	<style type="text/css">
+	.ques{
+		margin-left:23.0%;
+		margin-top:15px;
+		font-size:15px;
+	}
+	.queslabel{
+		margin-left:-1px;
+		letter-spacing:0px;
+		color:#468847;
+	}
 	.mystyle{
 
 		margin-left:22.2%;
@@ -353,7 +363,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<ul class="submenu">
 								<li>
-									<a href="<%=path%>/user/Questionaire.jsp">
+									<a href="<%=path%>/user/Questionaire.action">
 										<i class="icon-double-angle-right"></i>
 										问卷
 									</a>
@@ -367,7 +377,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="<%=path%>/user/article.jsp">
+									<a href="<%=path%>/article/articleList.action">
 										<i class="icon-double-angle-right"></i>
 										文章
 									</a>
@@ -503,10 +513,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																<div class="choicequestion" >																
 																	<div class="form-group has-success">
 																		<hr/>																	
-																		<label class="col-xs-12 col-sm-3 control-label no-padding-right">问题</label>
-																		<div class="col-xs-12 col-sm-5">
-																			<span class="block input-icon input-icon-right">
-																				<input type="text"  class="width-100  question1" />
+																		<!-- <label class="col-xs-12 col-sm-3 control-label no-padding-right">问题</label> -->
+																		<div class="ques">
+																			<span class="queslabel">问题
+																			
+																			<input type="text"  style='width:400px;' class="question1" /><input type='text' style='width:45px;font-size:14px;' class='vector' placeholder='维度'/>
 																			</span>
 																		</div>	
 																	</div>

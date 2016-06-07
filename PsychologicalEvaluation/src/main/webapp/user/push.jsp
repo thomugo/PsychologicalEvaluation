@@ -356,7 +356,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="<%=path%>/user/article.jsp">
+									<a href="<%=path%>/article/articleList.action">
 										<i class="icon-double-angle-right"></i>
 										文章
 									</a>
@@ -477,11 +477,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												<div class="widget-toolbox padding-4 clearfix">
 													<input type='text' id='wz_title' style='width:200px;font-size:15px;'  placeholder='文章标题'/>
 													<select id='wz-class'>
-														<option value='1'>生活</option>
-														<option value='2'>工作</option>
-														<option value='3'>情感</option>
-														<option value='4'>学习</option>
-														<option value='5'>其他</option>
+														<option value='class0'>生活</option>
+														<option value='class1'>工作</option>
+														<option value='class2'>情感</option>
+														<option value='class3'>学习</option>
+														<option value='class4'>其他</option>
 													</select>
 													<div class="btn-group pull-right">
 														<button class="btn btn-sm btn-danger" id = "wz_save">
