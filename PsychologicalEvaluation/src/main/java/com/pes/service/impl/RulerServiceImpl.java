@@ -1,6 +1,9 @@
 package com.pes.service.impl;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,6 +80,22 @@ public class RulerServiceImpl implements RulerService {
 	public String getRuler(int questionaireId, int vector, float score) {
 		// TODO Auto-generated method stub
 		return rulerDao.getRuler(questionaireId, vector, score);
+	}
+
+	@Override
+	public String getResult(int questionaireId, HashMap<Integer, Float> scores) {
+		// TODO Auto-generated method stub
+		StringBuilder result = new StringBuilder();
+		Iterator iter = scores.entrySet().iterator();
+		while (iter.hasNext()) {
+			Map.Entry entry = (Map.Entry) iter.next();
+			int vector = (int)entry.getKey();
+			float score = (float)entry.getValue();
+			if(vector != 0)
+				result.append(rulerDao.getRuler(questionaireId, vector, score));
+		}
+		result.append(rulerDao.getRuler(questionaireId, 0, scores.get(0)));
+		return result.toString();
 	}
 
 	

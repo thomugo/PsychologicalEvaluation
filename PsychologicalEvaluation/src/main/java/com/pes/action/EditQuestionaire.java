@@ -60,7 +60,6 @@ public class EditQuestionaire extends BaseAction {
 		// 取得标题并保存问卷
 		questionaire.setTitle(json.getString("title"));
 		questionaire.setNote(json.getString("description"));
-		//questionaireService.save(questionaire);
 		JSONArray choiceList = json.getJSONArray("choiceQuestions");
 		//JSONArray judgeList = json.getJSONArray("trueFalseQuestions");//暂不开放
 
@@ -68,10 +67,10 @@ public class EditQuestionaire extends BaseAction {
 		for (int i = 0; i < choiceList.size(); i++) {
 			JSONObject question = choiceList.getJSONObject(i);
 			String question_content = question.getString("question");
-			//int question_vector = question.getInteger("vector");
+			int question_vector = question.getInteger("vector");
 			//System.out.println("ChoiceQuestion=" + question_content);
 			ChoiceQuestion choiceQuestion = new ChoiceQuestion(question_content);
-			choiceQuestion.setVector(1);
+			choiceQuestion.setVector(question_vector);
 			String[] options = question.getString("options").split(",");
 			String[] scores = question.getString("scores").split(",");
 			// 遍历options

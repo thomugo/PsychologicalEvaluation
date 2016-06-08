@@ -91,7 +91,12 @@ public class TestAnswerService extends BaseTestTemplate{
     
     @Test
     public void testScores(){
-    	System.out.println(answerService.getScores(44));
+    	//System.out.println(answerService.getScores(51));
+    	System.out.println(answerService.getAvgScores(51));
+    }
+    @Test
+    public void testCount(){
+    	System.out.println(answerService.getCountInVector(51));
     }
     
 }
