@@ -44,11 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- ace settings handler -->
 
-		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
 		
-		<script type="text/javascript" src="<%=path%>/js/consult.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/dfdaf.js"></script>
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
@@ -61,6 +57,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
   		<a href="${ pageContext.request.contextPath }/user/login.jsp">login</a>
   		<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
+  		<input type="hidden" id="userId"  value="${sessionScope.loginUser.id}"/> 
+  		<input type="hidden" id="username"  value="${sessionScope.loginUser.username}"/> 
+  		<input type="hidden" id="userIcon"  value="${sessionScope.loginUser.icon}"/> 
+  		<input type="hidden" id="targetId"  value="${target.id}"/> 
+  		<input type="hidden" id="targetIcon"  value="${target.icon}"/> 
+  		<input type="hidden" id="targetUsername"  value="${target.username}"/> 
 		<s:debug></s:debug>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
@@ -529,10 +531,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 														
 													</div><!-- dialogs -->
 
-													<form>
+													<div ="send">
 														<div class="form-actions">
 															<div class="input-group">
-																<input placeholder="在这里输入信息 ..." type="text" class="form-control" name="message" />
+																<input placeholder="在这里输入信息 ..." type="text" class="form-control" name="message" id="message"/>
 																<span class="input-group-btn">
 																	<button class="btn btn-sm btn-info no-radius" type="button" id="send">
 																		<i class="icon-share-alt" ></i>
@@ -541,7 +543,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																</span>
 															</div>
 														</div>
-													</form>
+													</div>
 													
 												</div><!-- /widget-main -->
 											</div><!-- /widget-body -->
@@ -675,6 +677,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			})
 		</script>
+		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/consult.js"></script>
 	</body>
 </html>
 
