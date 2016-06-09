@@ -34,7 +34,7 @@ public class Admin extends BaseUser implements Serializable{
 	public String toString() {
 		return "Admin [id=" + id + ", username=" + username + ", password="
 				+ password + ", email=" + email + ", privilege=" + privilege
-				+ ", broadcast=" + broadcast + "]";
+				+ ", broadcast=" + broadcast + ",icon=" + icon + "]";
 	}
 	
 	

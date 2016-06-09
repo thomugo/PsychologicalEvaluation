@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.pes.entity.Admin;
+import com.pes.entity.BaseUser;
 import com.pes.entity.User;
 import com.pes.interceptor.Authority;
 import com.pes.service.AdminService;
@@ -30,6 +31,7 @@ public class LoginAction extends  BaseAction{
 	private String password;
 	//登录前页面
     private String prePage;
+    private BaseUser user;
 	@Autowired
 	private UserService userService;
 	
@@ -67,7 +69,7 @@ public class LoginAction extends  BaseAction{
         prePage = (String) session.get("prePage");
         System.out.println("in login action and prePage: "+prePage);
 		System.out.println("Normal user: " + username+password);
-		User user = userService.validate(username, password);
+		user = userService.validate(username, password);
 		if(user == null)
 		{
 			this.addActionError("密码错误！");

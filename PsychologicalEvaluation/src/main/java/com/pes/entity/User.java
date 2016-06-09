@@ -69,7 +69,7 @@ public class User extends BaseUser implements Serializable{
 				+ vocation + ", phone=" + phone + ", dateTime=" + dateTime
 				+ ", id=" + id + ", username=" + username + ", password="
 				+ password + ", email=" + email + ", privilege=" + privilege
-				+ ", broadcast=" + broadcast + "]";
+				+ ", broadcast=" + broadcast + ",icon=" + icon + "]";
 	}
 	
 }

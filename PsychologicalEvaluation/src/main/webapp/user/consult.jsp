@@ -41,14 +41,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<![endif]-->
 
 		<!-- inline styles related to this page -->
-
+		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
 		<!-- ace settings handler -->
 
-		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
 		
-		<script type="text/javascript" src="<%=path%>/js/consult.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/dfdaf.js"></script>
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
@@ -61,6 +57,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
   		<a href="${ pageContext.request.contextPath }/user/login.jsp">login</a>
   		<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
+  		<input type="hidden" id="userId"  value="${sessionScope.loginUser.id}"/> 
+  		<input type="hidden" id="username"  value="${sessionScope.loginUser.username}"/> 
+  		<input type="hidden" id="userIcon"  value="${sessionScope.loginUser.icon}"/> 
+  		<input type="hidden" id="targetId"  value="${target.id}"/> 
+  		<input type="hidden" id="targetIcon"  value="${target.icon}"/> 
+  		<input type="hidden" id="targetUsername"  value="${target.username}"/> 
 		<s:debug></s:debug>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
@@ -83,13 +85,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li class="purple">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-bell-alt icon-animated-bell"></i>
-								<span class="badge badge-important">8</span>
+								<span class="badge badge-important" id="broadcast">${unReadBroadCastMessageCount}</span>
 							</a>
 
 							<ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
 								<li class="dropdown-header">
 									<i class="icon-warning-sign"></i>
-									8 Notifications
+									${unReadBroadCastMessageCount}条通知
 								</li>
 
 								<li>
@@ -97,47 +99,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="clearfix">
 											<span class="pull-left">
 												<i class="btn btn-xs no-hover btn-pink icon-comment"></i>
-												New Comments
+												系统通知
 											</span>
-											<span class="pull-right badge badge-info">+12</span>
+											<span class="pull-right badge badge-info">+${unReadBroadCastMessageCount}</span>
 										</div>
 									</a>
 								</li>
 
 								<li>
 									<a href="#">
-										<i class="btn btn-xs btn-primary icon-user"></i>
-										Bob just signed up as an editor ...
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<div class="clearfix">
-											<span class="pull-left">
-												<i class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>
-												New Orders
-											</span>
-											<span class="pull-right badge badge-success">+8</span>
-										</div>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<div class="clearfix">
-											<span class="pull-left">
-												<i class="btn btn-xs no-hover btn-info icon-twitter"></i>
-												Followers
-											</span>
-											<span class="pull-right badge badge-info">+11</span>
-										</div>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										See all notifications
+										查看所有通知
 										<i class="icon-arrow-right"></i>
 									</a>
 								</li>
@@ -147,27 +118,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li class="green">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-envelope icon-animated-vertical"></i>
-								<span class="badge badge-success">5</span>
+								<span class="badge badge-success" id="offLineMessage">${offLineMessageCount}</span>
 							</a>
 
 							<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
 								<li class="dropdown-header">
 									<i class="icon-envelope-alt"></i>
-									5 Messages
+									${offLineMessageCount}条消息
 								</li>
 
 								<li>
 									<a href="#">
-										<img src="/PsychologicalEvaluation/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+										<img src="<%=path%>/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Alex:</span>
-												Ciao sociis natoque penatibus et auctor ...
+												不知道写啥 ...
 											</span>
 
 											<span class="msg-time">
 												<i class="icon-time"></i>
-												<span>a moment ago</span>
+												<span>1分钟以前</span>
 											</span>
 										</span>
 									</a>
@@ -175,16 +146,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<li>
 									<a href="#">
-										<img src="/PsychologicalEvaluation/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+										<img src="<%=path%>/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Susan:</span>
-												Vestibulum id ligula porta felis euismod ...
+												不知道翻译...
 											</span>
 
 											<span class="msg-time">
 												<i class="icon-time"></i>
-												<span>20 minutes ago</span>
+												<span>20分钟以前</span>
 											</span>
 										</span>
 									</a>
@@ -192,24 +163,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<li>
 									<a href="#">
-										<img src="/PsychologicalEvaluation/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+										<img src="<%=path%>/assets/avatars/avatar4.png" class="msg-photo" alt="谷雨's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
-												<span class="blue">Bob:</span>
-												Nullam quis risus eget urna mollis ornare ...
+												<span class="blue">谷雨:</span>
+												到底是不是英文 ...
 											</span>
 
 											<span class="msg-time">
 												<i class="icon-time"></i>
-												<span>3:15 pm</span>
+												<span>下午3:15</span>
 											</span>
 										</span>
 									</a>
 								</li>
 
 								<li>
-									<a href="inbox.html">
-										See all messages
+									<a href="#">
+										查看所有消息
 										<i class="icon-arrow-right"></i>
 									</a>
 								</li>
@@ -218,7 +189,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="/PsychologicalEvaluation/assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>欢迎光临</small>
 								</span>
@@ -230,23 +201,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li>
 									<a href="#">
 										<i class="icon-cog"></i>
-										Settings
+										设置
 									</a>
 								</li>
 
-								<li>
-									<a href="#">
-										<i class="icon-user"></i>
-										Profile
-									</a>
-								</li>
 
 								<li class="divider"></li>
 
 								<li>
 									<a href="#">
 										<i class="icon-off"></i>
-										Logout
+										退出
 									</a>
 								</li>
 							</ul>
@@ -345,7 +310,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<ul class="submenu">
 								<li>
-									<a href="<%=path%>/questionaireList.action">
+									<a href="<%=path%>/user/Questionaire.action">
 										<i class="icon-double-angle-right"></i>
 										问卷
 									</a>
@@ -359,7 +324,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="<%=path%>/articleList.action">
+									<a href="<%=path%>/article/articleList.action">
 										<i class="icon-double-angle-right"></i>
 										文章
 									</a>
@@ -411,7 +376,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="<%=path%>/blank.jsp">
+									<a href="<%=path%>/user/blank.jsp">
 										<i class="icon-double-angle-right"></i>
 										空白页面
 									</a>
@@ -535,10 +500,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 														
 													</div><!-- dialogs -->
 
-													<form>
+													<div ="send">
 														<div class="form-actions">
 															<div class="input-group">
-																<input placeholder="在这里输入信息 ..." type="text" class="form-control" name="message" />
+																<input placeholder="在这里输入信息 ..." type="text" class="form-control" name="message" id="message"/>
 																<span class="input-group-btn">
 																	<button class="btn btn-sm btn-info no-radius" type="button" id="send">
 																		<i class="icon-share-alt" ></i>
@@ -547,7 +512,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																</span>
 															</div>
 														</div>
-													</form>
+													</div>
 													
 												</div><!-- /widget-main -->
 											</div><!-- /widget-body -->
@@ -577,7 +542,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- <![endif]-->
 
 		<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+			<script src="<%=path%>/js/jquery.min.js"></script>
 		<![endif]-->
 
 		<!--[if !IE]> -->
@@ -603,7 +568,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  <script src="<%=path%>/assets/js/excanvas.min.js"></script>
 		<![endif]-->
 
-
+		<script src="<%=path%>/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="<%=path%>/assets/js/jquery.slimscroll.min.js"></script>
+		<script src="<%=path%>/assets/js/flot/jquery.flot.min.js"></script>
+		<script src="<%=path%>/assets/js/flot/jquery.flot.resize.min.js"></script>
+		<script src="<%=path%>/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+		<script src="<%=path%>/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
+		<script src="<%=path%>/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
 		<!-- ace scripts -->
 
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
@@ -611,6 +582,76 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- inline scripts related to this page -->
 
+		<script type="text/javascript">
+			jQuery(function($) {
+														
+			  var $tooltip = $("<div class='tooltip top in'><div class='tooltip-inner'></div></div>").hide().appendTo('body');
+			  var previousPoint = null;
+			
+			  placeholder.on('plothover', function (event, pos, item) {
+				if(item) {
+					if (previousPoint != item.seriesIndex) {
+						previousPoint = item.seriesIndex;
+						var tip = item.series['label'] + " : " + item.series['percent']+'%';
+						$tooltip.show().children(0).text(tip);
+					}
+					$tooltip.css({top:pos.pageY + 10, left:pos.pageX + 10});
+				} else {
+					$tooltip.hide();
+					previousPoint = null;
+				}
+				
+			 });
+			
+			
+			
+			
+			
+			
+				var d1 = [];
+				for (var i = 0; i < Math.PI * 2; i += 0.5) {
+					d1.push([i, Math.sin(i)]);
+				}
+			
+				var d2 = [];
+				for (var i = 0; i < Math.PI * 2; i += 0.5) {
+					d2.push([i, Math.cos(i)]);
+				}
+			
+				var d3 = [];
+				for (var i = 0; i < Math.PI * 2; i += 0.2) {
+					d3.push([i, Math.tan(i)]);
+				}		
+			
+				$('#recent-box [data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+				function tooltip_placement(context, source) {
+					var $source = $(source);
+					var $parent = $source.closest('.tab-content')
+					var off1 = $parent.offset();
+					var w1 = $parent.width();
+			
+					var off2 = $source.offset();
+					var w2 = $source.width();
+			
+					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+					return 'left';
+				}
+			
+			
+				$('.dialogs,.comments').slimScroll({
+					height: '300px'
+			    });
+				
+				
+				//Android's default browser somehow is confused when tapping on label which will lead to dragging the task
+				//so disable dragging when clicking on label			
+			
+			})
+		</script>
+		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/consult.js"></script>
 	</body>
 </html>
 

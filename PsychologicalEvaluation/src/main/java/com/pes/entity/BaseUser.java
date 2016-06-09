@@ -15,6 +15,7 @@ public class BaseUser {
 	protected String email;
 	protected int privilege;
 	protected int broadcast; //用户已看广播数；
+	protected String icon;
 	
 	public BaseUser(){
 	}
@@ -73,6 +74,22 @@ public class BaseUser {
 	@Column(name="privilege")
 	public int getPrivilege() {
 		return privilege;
+	}
+	
+	@Column(name="icon")
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+
+	@Override
+	public String toString() {
+		return "BaseUser [id=" + id + ", username=" + username + ", password="
+				+ password + ", email=" + email + ", privilege=" + privilege
+				+ ", broadcast=" + broadcast + ", icon=" + icon + "]";
 	}
 	
 	

@@ -81,4 +81,16 @@ public class AnswerServiceImpl implements AnswerService{
 		return answerDao.getScores(answerId);
 	}
 
+	@Override
+	public HashMap<Integer, Integer> getCountInVector(int answerId) {
+		// TODO Auto-generated method stub
+		return answerDao.getCountInVector(answerId);
+	}
+
+	@Override
+	public HashMap<Integer, Float> getAvgScores(int answerId) {
+		// TODO Auto-generated method stub
+		return answerDao.getAvgScores(answerId);
+	}
+
 }

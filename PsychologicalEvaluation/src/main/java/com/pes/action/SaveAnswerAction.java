@@ -156,19 +156,13 @@ public class SaveAnswerAction extends BaseAction{
 			answer.getTrueFalseAnswers().add(trueFalseAnswer);
 		}*/
 		answerService.save(answer);
-		ArrayList<Integer> vectors = (ArrayList<Integer>)questionaireService.getVectors(questionaireId);
-		String result = "";
 		HashMap<Integer, Float> scores = answerService.getScores(answer.getId());
-		for (Integer vector : vectors) {
-			float score = scores.get(vector);
-			System.out.println("get result:"+score);
-			result += rulerService.getRuler(questionaireId, vector, score);
-		}
+		String result = rulerService.getResult(questionaireId, scores);
 		answer.setResult(result);
 		answerService.saveOrUpdate(answer);
 		System.out.println(result);
-		System.out.println("questionaire:" + questionaire.getTitle());
-		System.out.println(choiceQuestionAnswers.size());
+		//System.out.println("questionaire:" + questionaire.getTitle());
+		//System.out.println(choiceQuestionAnswers.size());
 		return "success";
 		
 	}
