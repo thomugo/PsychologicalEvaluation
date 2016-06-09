@@ -7,13 +7,15 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<title>管理员</title>
-
+		<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
+  		<a href="${ pageContext.request.contextPath }/user/login.jsp">login</a>
+  		<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
+  		<s:debug></s:debug>
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,9 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- page specific plugin styles -->
 
-		<link rel="stylesheet" href="<%=path%>/assets/css/jquery-ui-1.10.3.full.min.css" />
-		<link rel="stylesheet" href="<%=path%>/assets/css/datepicker.css" />
-		<link rel="stylesheet" href="<%=path%>/assets/css/ui.jqgrid.css" />
+		<link rel="stylesheet" href="<%=path%>/assets/css/select2.css" />
 
 		<!-- fonts -->
 
@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
 
 		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="<%=path%>/assets/css/ace-ie.min.css" />
 		<![endif]-->
 
 		<!-- inline styles related to this page -->
@@ -59,16 +59,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/html5shiv.js"></script>
 		<script src="<%=path%>/assets/js/respond.min.js"></script>
 		<![endif]-->
-<style type="text/css">
-.panel-heading{
-margin-top:5px;
-}
+	<style type="text/css">
+	.vector{
+		margin-left:23.0%;
+		margin-top:15px;
+		font-size:15px;
+	}
+	.vec{
+		margin-left:10px;
+		letter-spacing:0px;
+		color:#468847;
+		margin-top:5px;
+	}
+	.vecto{
+		margin-left:19px;
 
-</style>
+	}
+
+	.option{
+		margin-left:-1px;
+		letter-spacing:0px;
+		color:#468847;
+	}
+
+ 	textarea{
+		margin-left:5px;
+	} 
+ 	.startScore{
+		margin-top:22px;
+	} 
+ 	.endScore{
+		margin-top:22px;
+	} 
+	.mystyle{
+		margin-bottom:10px;
+	}
+	.addV{
+		margin-left:10px;
+	}
+	</style>
 	</head>
 
 	<body>
-	<s:debug></s:debug>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -86,6 +118,7 @@ margin-top:5px;
 
 				<div class="navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
+					
 						<li class="purple">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-bell-alt icon-animated-bell"></i>
@@ -340,7 +373,7 @@ margin-top:5px;
 							</ul>
 						</li>
 
-						<li class='active open'>
+						<li class="active open">
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-edit"></i>
 								<span class="menu-text"> 编辑 </span>
@@ -349,26 +382,26 @@ margin-top:5px;
 							</a>
 
 							<ul class="submenu">
-								<li class="active">
+								<li>
 									<a href="<%=path%>/questionaireList.action">
 										<i class="icon-double-angle-right"></i>
 										问卷
 									</a>
 								</li>
 								
-								<li>
+								<li class="active">
 									<a href="<%=path%>/user/editQuestionaire.jsp">
 										<i class="icon-double-angle-right"></i>
 										添加测评问卷
 									</a>
 								</li>
-								
+
 								<li>
 									<a href="<%=path%>/article/articleList.action">
 										<i class="icon-double-angle-right"></i>
 										文章
 									</a>
-								</li>								
+								</li>	
 
 								<li>
 									<a href="<%=path%>/user/push.jsp">
@@ -378,14 +411,14 @@ margin-top:5px;
 								</li>
 
 							</ul>
-						</li>						
+						</li>							
 
 						<li>
 							<a href="<%=path%>/user/userFeedback.jsp">
 								<i class="icon-text-width"></i>
 								<span class="menu-text"> 用户反馈 </span>
 							</a>
-						</li>	
+						</li>
 
 						<li>
 							<a href="#" class="dropdown-toggle">
@@ -427,11 +460,11 @@ margin-top:5px;
 										<i class="icon-double-angle-right"></i>
 										文件上传
 									</a>
-								</li>								
+								</li>									
 							</ul>
 						</li>										
 					</ul><!-- /.nav-list -->
-
+					
 				</div>
 
 				<div class="main-content">
@@ -446,67 +479,81 @@ margin-top:5px;
 								<a href="#">首页</a>
 							</li>
 
-							<li class="active">
-								<a href="#">全部问卷</a>
+							<li>
+								<a href="#">编辑</a>
 							</li>
-
+							<li class="active">添加测评问卷</li>
 						</ul><!-- .breadcrumb -->
-
-						<div class="nav-search" id="nav-search">
-							<form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="查找 ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="icon-search nav-search-icon"></i>
-								</span>
-							</form>
-						</div><!-- #nav-search -->
 					</div>
 
 					<div class="page-content">
-						<div class="page-header">
-							<h1>
-								全部问卷
-
-							</h1>
-						</div><!-- /.page-header -->
 
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
 
-								<div class="tabbable">
-									<div class="tab-content no-border padding-24">
-										<div id="faq-tab-1" class="tab-pane fade in active">
+								<div class="hr hr-18 hr-double dotted"></div>
 
-											<div class="space-8"></div>
+								<div class="row-fluid">
+									<div class="span12">
+										<div class="widget-box">
+											<div class="widget-header widget-header-blue widget-header-flat">
+												<h4 class="lighter"><small>评价标准</small></h4>
 
-											<div id="faq-list-1" class="panel-group accordion-style1 accordion-style2">
-												<div class="panel panel-default" id='testList'>
-													<div class="panel-heading">
-														<a id='title' href="#content" data-toggle="collapse" class="accordion-toggle collapsed">
-														
-															<i class="icon-chevron-left pull-right" data-icon-hide="icon-chevron-down" data-icon-show="icon-chevron-left"></i>
+											</div>
 
-															<i class="icon-user bigger-130"></i>
-														&nbsp;&nbsp;问卷一	
-														</a>
+											<div class="widget-body">
+												<div class="widget-main">							
+													
+													<div class="step-content row-fluid position-relative" id="step-container">
+														<div class="step-pane active" id="step1">
+
+															<div class="form-horizontal" id="sample-form" >
+																
+																<div class="form-group has-error vector" id="0">
+																	<label class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right" >总评</label>
+
+																	<div class="mystyle">
+																		<span class="">
+																			<textarea rows="4" cols="55" class='description'></textarea> 
+																			
+																			&nbsp<input type='text' style='width:43px;font-size:14px;' class='startScore' placeholder='分数'/> —— <input type='text' style='width:43px;font-size:14px;' class='endScore' placeholder='区间'/>
+																																				
+																		</span>
+																	</div>
+																</div>
+																
+																<div class="choicequestion" >																
+																	<div class="form-group has-success" id="vector">
+																		<hr/>																	
+																		<!-- <label class="col-xs-12 col-sm-3 control-label no-padding-right">问题</label> -->
+																	</div>
+																										
+																</div>															
+															</div>
+														</div>										
+												
 													</div>
 
-													<div class="panel-collapse collapse" id="content">
-														<div class="panel-body">
-															恩恩，恩恩。
-														</div>
+													<hr />
+													<div class="row-fluid wizard-actions">	
+														<button id="addresult" class="btn btn-success">
+															添加总评
+															<i class="icon-on-right"></i>
+														</button>																												
+																										
+														<button id="save" type="submit" class="btn btn-success">
+															完成
+															<i class="icon-on-right"></i>
+														</button>
+																												
 													</div>
-												</div>												
-
-											</div><!-- faq -->
-											
-											
-										</div><!-- table-content -->
+												</div><!-- /widget-main -->
+											</div><!-- /widget-body -->
+										</div>
 									</div>
 								</div>
 
-								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
 						</div><!-- /.row -->
 					</div><!-- /.page-content -->
@@ -523,70 +570,154 @@ margin-top:5px;
 
 		<!--[if !IE]> -->
 
+
+
 		<!-- <![endif]-->
 
-		<!--[if IE]>
-			<script src="<%=path%>/js/jquery.min.js"></script>
-		<![endif]-->
 
 		<!--[if !IE]> -->
 
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+		</script>
+
 		<!-- <![endif]-->
 
 		<!--[if IE]>
-
 <![endif]-->
-		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/assets/js/bootstrap.min.js"></script>
+
+		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
+
 
 		<!-- page specific plugin scripts -->
   		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
+<%-- 		<script type="text/javascript" src="<%=path%>/js/editRule.js"></script> --%>
 
 
 		<!-- ace scripts -->
 
-		<script type="text/javascript" src="<%=path%>/assets/js/ace-elements.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/assets/js/ace.min.js"></script>
-
-		<!-- inline scripts related to this page -->
-
-		<script type="text/javascript">
-			jQuery(function($) {
-				$('.accordion').on('hide', function (e) {
-					$(e.target).prev().children(0).addClass('collapsed');
-				})
-				$('.accordion').on('show', function (e) {
-					$(e.target).prev().children(0).removeClass('collapsed');
-				})
-			});
-		</script>
-		<script type="text/javascript">
-				var i=0;
-			<c:forEach var="tests" items="${questionaires}">
-								
-				var id=${tests.id};
-				var title="${tests.title}"
-				var description = "${tests.note}";
- 				 $('#testList').append("<div class='panel-heading'>"
-									+"<a id='title' href='#content"+i+"' data-toggle='collapse' class='accordion-toggle collapsed'>"
-									+"<i class='icon-chevron-left pull-right' data-icon-hide='icon-chevron-down' data-icon-show='icon-chevron-left'></i>"
-									+"<i class='icon-user bigger-130'></i>"
-									+"&nbsp;&nbsp;&nbsp;"
-									+title
-									+"</a>"	
-									+"</div>"
-									+"<div class='panel-collapse collapse' id='content"+(i++)+"'>"
-									+"<div class='panel-body'>"
-									+"<a href='<%=path%>/questionaire?id="
-									+id
-									+"'>"
-									+description
-									+"</a>"
-									+"</div>"
-									+"</div>");  			
-				
+		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
+		<script src="<%=path%>/assets/js/ace.min.js"></script>
+		<script>
+				var i=1;
+/* 				var questionaireid=${questionaireId};
+				alert(questionaireid); */
+			<c:forEach var="vector" items="${vectors}">
+				var vector=${vector};			
+ 				  $('#vector').append("<div class='vector' id='"+(i++)+"'>"
+									+"<span class='vec'>"
+									+vector
+									+"<textarea rows='4' cols='55' class='description'></textarea>"
+									+" "
+									+"<input type='text' style='width:43px;font-size:14px;' class='startScore' placeholder='分数'/>"
+									+" —— <input type='text' style='width:43px;font-size:14px;' class='endScore' placeholder='区间'/>"
+									+"<button class='btn addoption addV'>添加维度测评</button>"
+									+"</span>"
+									+"</div>");  	 					
 			</c:forEach>
-									
 		</script>
+		
+		<script>
+var save = true;
+$(document).ready(function() {
+				//添加选择题
+				$("#addresult").click(function() {
+					$("#0").append("<label class='col-xs-12 col-sm-3 col-md-3 control-label no-padding-right' ></label>"
+										+"<div class='mystyle'>"
+										+"<span class=''>"
+										+"<textarea rows='4' cols='55' class='description'></textarea>"
+										+" &nbsp"
+										+"<input type='text' style='width:43px;font-size:14px;' class='startScore' placeholder='分数'/> —— <input type='text' style="
+										+"'width:43px;font-size:14px;' class='endScore' placeholder='区间'/>"
+										+"</span>"
+										+"</div>");
+					});
+				$(".addV").each(function(i){
+					this.onclick=function(){
+						$(this).parent().append("<span class='vec vecto'>"
+											+"<textarea rows='4' cols='55' class='description'></textarea>"
+											+" "
+											+"<input type='text' style='width:43px;font-size:14px;' class='startScore' placeholder='分数'/>"
+											+" —— <input type='text' style='width:43px;font-size:14px;' class='endScore' placeholder='区间'/>"
+											+"</span>");
+					};
+				});
+			
+			
+				$("#save").click(function(){
+
+						//选择题数目
+
+						var vectorNum=$(".vector").length;
+
+						alert("共有 "+(vectorNum-1)+"维度的评价");
+
+						var questionaire = {};
+						var rulers = new Array();
+						//遍历选择题
+						for(var i=0; i<vectorNum; i++){
+							var map2={};
+						 	var id=$(".vector").eq(i).attr("id");
+						 	
+						 	var pingjias=$(".vector").eq(i).map(function(){
+								
+						 			var pingjia = $(".vector").eq(i).find('.description').val();
+						 				pingjia=$.trim(pingjia);
+						 			if(pingjia.length == 0){	//标记置空
+						 				save = false;
+						 				alert("有未填写的评价！");
+						 			}
+						 		return pingjia;
+						 	}).get().join(',');
+						 	
+						 	var starts=$(".vector").eq(i).find(".startScore").map(function(){
+					 			var start = $.trim($(this).val());
+
+					 			if(start.length == 0){	//标记置空
+					 				save = false;
+					 				alert("有未填写的分数！");
+					 			}
+					 			return start;
+					 		}).get().join(',');	
+						 	
+						 	var ends=$(".vector").eq(i).find(".endScore").map(function(){
+					 			var end = $.trim($(this).val());
+
+					 			if(end.length == 0){	//标记置空
+					 				save = false;
+					 				alert("有未填写的分数！");
+					 			}
+					 			return end;
+					 		}).get().join(',');						 	
+						 	
+						 	map2["ruler"]=pingjias;
+						 	map2["startScore"]=starts;
+						 	map2["endScore"]=ends;
+						 	map2["vector"]=id;
+						 	
+						 	rulers[i]=map2;
+						 };
+						 
+						//封装试卷
+						questionaire["rulers"] = rulers;
+						questionaire["questionaireId"]=${questionaireId};
+						
+						
+						
+					if(save){
+						//用ajax请求服务器保存数据
+						var jsonString = JSON.stringify(questionaire);
+						alert(jsonString);
+						$.post("saveRulers.action", {"jsonString" : jsonString},function(result){
+							$("body").html(result)}
+						); 
+					}
+				});								
+});		
+		
+		</script>
+					
 	</body>
 </html>
+

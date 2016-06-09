@@ -8,19 +8,23 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.pes.entity.ChoiceQuestion;
 import com.pes.entity.Option;
 import com.pes.entity.Questionaire;
+import com.pes.entity.User;
 import com.pes.interceptor.Authority;
 import com.pes.service.ChoiceQuestionService;
 import com.pes.service.QuestionaireService;
 import com.pes.service.TrueFalseQuestionService;
+import com.pes.util.AjaxUtil;
 
 @ParentPackage("myBasicPackage")
 @Action(value="editQuestionaire")
-@Result(name="success", location="/user/editQuestionaire.jsp")
+@Result(name="success", location="/user/editRule.jsp")
 public class EditQuestionaire extends BaseAction {
 	private static final Logger LOGGER = Logger.getLogger(EditQuestionaire.class);
 	@Autowired
@@ -29,10 +33,15 @@ public class EditQuestionaire extends BaseAction {
 	private ChoiceQuestionService choiceQuestionService;
 	@Autowired
 	private TrueFalseQuestionService trueFalseQuestionService;
+	private String title = null;
+	private String note = null;
+	private int pageNo = 0;
+	private int pageSize = 6;
 	private String jsonString;
 	private Questionaire questionaire = new Questionaire();
 	private List<ChoiceQuestion> choiceQuestions = new ArrayList<ChoiceQuestion>();
 	private ArrayList<Integer> vectors = new ArrayList<Integer>();
+	private ArrayList<Questionaire> questionaires = new ArrayList<Questionaire>();
 	//private List<TrueFalseQuestion> trueFalseQuestions = new ArrayList<TrueFalseQuestion>();
 
 	public String getJsonString() {
@@ -49,6 +58,11 @@ public class EditQuestionaire extends BaseAction {
 	
 	public Questionaire getQuestionaire() {
 		return questionaire;
+	}
+	
+	
+	public ArrayList<Questionaire> getQuestionaires() {
+		return questionaires;
 	}
 
 	@Override
@@ -111,5 +125,31 @@ public class EditQuestionaire extends BaseAction {
 		vectors = (ArrayList<Integer>)choiceQuestionService.getVectors(questionaire.getId());
 		return "success";
 	}
+	@Action(value="questionaireList", results={
+			@Result(name="success", location="/test/mtestList.jsp"),
+			@Result(name="admin", location="/test/testList.jsp")
+	})
+	public String questionaireList(){
+		if(jsonString != null){
+			JSONObject json = JSON.parseObject(jsonString);
+			title = json.getString("title");
+			note = json.getString("note");
+			pageNo = json.getInteger("pageNo");
+			pageSize = json.getInteger("pageSize");
+		}
+		questionaires = (ArrayList<Questionaire>)questionaireService.findQuestionairesByPage(title, note, pageNo, pageSize, false);
+		
+		if(jsonString != null){
+			AjaxUtil.ajaxJSONResponse(questionaires);
+		}
+		User user = (User)httpSession.getAttribute("loginUser");
+		if(user.getPrivilege() == 1){
+			return "admin";
+		}
+		else{
+			return "success";
+		}
+	}
+
 	
 }

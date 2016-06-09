@@ -92,8 +92,7 @@ $(document).ready(function() {
 					 			//设置焦点
 					 			$("#inputWarning").focus().select();
 					 		}
-					 	
-					 	
+					 						 	
 						//遍历选择题
 						for(var i=0; i<question1Num; i++)
 						{

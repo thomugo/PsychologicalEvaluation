@@ -145,7 +145,7 @@ $('#id_ceshi_page').live('pageinit', function() {
 			$('#id_ceshi_show').hide();
 			$('#id_question_list').show();
 			$('.baidu_share').hide();
-			$('div.fmappbanner').hide();
+/*			$('div.fmappbanner').hide();*/
 			$('.po_footer').hide();
 		}
 	});

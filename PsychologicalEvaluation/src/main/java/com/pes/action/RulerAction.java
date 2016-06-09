@@ -13,7 +13,7 @@ import com.pes.service.QuestionaireService;
 import com.pes.service.RulerService;
 
 @Action(value="editRulers")
-@Result(name="success", location="/index.jsp")
+@Result(name="success", location="/user/editRule.jsp")
 public class RulerAction extends BaseAction{
 	private static final Logger LOGGER = Logger.getLogger(RulerAction.class);
 	@Autowired
@@ -44,6 +44,15 @@ public class RulerAction extends BaseAction{
 	
 	@Override
 	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+		vectors = (ArrayList<Integer>)questionaireService.getVectors(questionaireId);
+		return "success";
+	}
+	
+	@Action(value="saveRulers", results={
+			@Result(name="success", location="/index.jsp")
+	})
+	public String fee() throws Exception {
 		// TODO Auto-generated method stub
 		JSONObject json = JSONObject.parseObject(jsonString);
 		int questionaireId = json.getInteger("questionaireId");

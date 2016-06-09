@@ -60,14 +60,13 @@ public class Option implements Serializable{
 		return question;
 	}
 	
-	@Override
-	public String toString() {
-		return "Option [content=" + content + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
-	}
 	public void setQuestion(ChoiceQuestion question) {
 		this.question = question;
+	}
+	@Override
+	public String toString() {
+		return "Option [id=" + id + ", content="
+				+ content + ", score=" + score + "]";
 	}
 	
 }

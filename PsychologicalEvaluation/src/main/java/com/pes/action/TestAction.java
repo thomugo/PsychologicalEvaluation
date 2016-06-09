@@ -10,7 +10,7 @@ import com.pes.entity.ChoiceQuestion;
 import com.pes.entity.Questionaire;
 import com.pes.service.QuestionaireService;
 
-@Results(value = { @Result(name="success", location="/test.jsp" ) })
+@Results(value = { @Result(name="success", location="/test/mtest.jsp" ) })
 public class TestAction extends BaseAction{
 	@Autowired
 	QuestionaireService questionaireService;

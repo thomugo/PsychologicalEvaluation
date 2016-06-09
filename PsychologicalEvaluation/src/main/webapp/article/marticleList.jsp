@@ -1,6 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -40,6 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script></head>
 
 <body>
+<s:debug></s:debug>
 <div class="layout">
   	<div class="header ">
     	<div class="left">
@@ -62,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="sy-nav">
                 <ul>
                     <li class="on">
-                        <a href="<%=path%>/article/marticleList.jsp">全部</a>
+                        <a href="<%=path%>/articleList.action">全部</a>
                     </li>
                     
                     <li>
@@ -155,6 +158,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <span style="display: none">
 
 </span>
+		<script type="text/javascript">
+				var i=0;
+			<c:forEach var="article" items="${articles}">
+				
+				
+				var title="${article.title}";
+				//alert(title);
+				var userName = "${article.userName}";
+				var className = "${article.className}";
+				var dateTime ="${article.dateTime}";
+				var id=${article.id};
+ 				 $('#article-list').append("<ul>"+" "+"<li>"+" "
+ 				 					+"<div class='img'>"
+									+"<a href='http://m.xinli001.com/info/100319150'><img src='http://image.xinli001.com/20160525/084105vdf8dm4p7e6fvycf.jpg!180x120'/></a>"
+									+"</div>"
+									+" "
+									+"<div class='text'>"
+									+" "
+									+"<div class='desc'>"
+									+" "
+									+"<a href='/PsychologicalEvaluation/articleDetail.action?id=" + id + "'>"+title+"</a>"
+									+"</div>"	
+									+"<div class='info'>"
+									+" <span>"+userName+"</span>"
+									+"</li>"
+									+"</ul>");  			
+				
+			</c:forEach>
+<%-- 	    
+        				<div class="desc">
+            				<a href="<%=path%>/article/marticle.jsp">孩子，我宁愿你不那么乖</a>
+        				</div>
+        				<div class="info">
+                        	<span>西格玛.心视界</span>
+                        <dl>
+                			<dd><a href="javascript:void(0);"><i class="ico1">11</i></a></dd>
+                			<dd><a href="javascript:void(0);"><i class="ico2">747</i></a></dd>
+            			</dl>
+            	</li> 
+            </ul> --%>								
+		</script>
 <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd64469e9d7bdbf03af6f074dffe7f9b5' type='text/javascript'%3E%3C/script%3E"));
@@ -166,7 +210,9 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
 ga('create', 'UA-74218902-7', 'auto');
 ga('send', 'pageview');
-</script>    </div>
+</script>  
+  
+</div>
 </div>
 
 </body>

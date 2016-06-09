@@ -100,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <ul>
     <li>
 
-        <a href="<%=path%>/article/marticleList.jsp" >
+        <a href="<%=path%>/articleList.action" >
             <div class="img">
                 <i class="icon icon-article"></i>
             </div>
@@ -109,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </li>
     <li>
 
-        <a href="<%=path%>/test/mtestList.jsp" >
+        <a href="<%=path%>/questionaireList.action" >
             <div class="img">
                 <i class="icon icon-ceshi"></i>
             </div>
@@ -192,13 +192,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                 
                 <div class="list-foot">
-                    <a href="<%=path %>/article/marticleList.jsp"> 更多文章</a>
+                    <a href="<%=path %>/articleList.action"> 更多文章</a>
                 </div>
              </div>
 
             <div class="zj-list" style="display: none;">
                 <div class="list-head">
-                    约专家
+                    	约专家
                 </div>
                                 <div class="list-body">
                     <ul>
@@ -254,7 +254,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                    </ul>
                 </div>
                 <div class="list-foot">
-                    <a href="<%=path %>/test/mtestList.jsp">更多测试</a>
+                    <a href="<%=path %>/questionaireList.action">更多测试</a>
                 </div>
                             </div>
             <div class="hd-list" style="display: none;">

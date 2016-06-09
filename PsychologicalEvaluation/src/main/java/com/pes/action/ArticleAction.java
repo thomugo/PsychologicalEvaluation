@@ -24,6 +24,7 @@ import com.pes.service.ArticleService;
 import com.pes.service.MessageService;
 import com.pes.service.UserService;
 import com.pes.util.AjaxUtil;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 import com.sun.tools.javac.resources.compiler;
 
 @ParentPackage("myBasicPackage")
@@ -83,7 +84,8 @@ public class ArticleAction extends BaseAction{
 	}
 	
 	@Action(value="articleList", results={
-			@Result(name="articles", location="/article/articleList.jsp")
+			@Result(name="admin", location="/article/articleList.jsp"),
+			@Result(name="normal", location="/article/marticleList.jsp")
 	})
 	public String execute() {
 		if(jsonString != null){
@@ -109,7 +111,12 @@ public class ArticleAction extends BaseAction{
 		System.out.println(articles);
 		if(jsonString != null)
 			AjaxUtil.ajaxJSONResponse(articles);
-		return "articles";
+		User user = (User)httpSession.getAttribute("loginUser");
+		if(user.getPrivilege() == 1){
+			return "admin";
+		}else{
+			return "normal";
+		}
 	}
 	
 	@Action(value = "editArticle")
@@ -156,11 +163,12 @@ public class ArticleAction extends BaseAction{
 	}
 	
 	@Action(value="articleDetail", results={
-			@Result(name="articleinfo", location="/article/articleInfo.jsp")
+			@Result(name="articleinfo", location="/article/marticle.jsp")
 			})
 	public String detail(){
-		Article article = articleService.findById(id);
-		ActionContext.getContext().getValueStack().push(article);
+		article = articleService.findById(id);
+		System.out.println(article);
+		//ActionContext.getContext().getValueStack().push(article);
 		return "articleinfo";
 	}
 

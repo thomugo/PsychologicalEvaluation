@@ -350,7 +350,7 @@ margin-top:5px;
 
 							<ul class="submenu">
 								<li>
-									<a href="<%=path%>/user/Questionaire.action">
+									<a href="<%=path%>/questionaireList.action">
 										<i class="icon-double-angle-right"></i>
 										问卷
 									</a>
@@ -570,6 +570,7 @@ margin-top:5px;
 				var userName = "${article.userName}";
 				var className = "${article.className}";
 				var dateTime ="${article.dateTime}";
+				var id=${article.id}
  				 $('#article').append("<div class='panel-heading'>"
 									+"<a href='#content"+i+"' data-toggle='collapse' class='accordion-toggle collapsed'>"
 									+"<i class='icon-chevron-left pull-right' data-icon-hide='icon-chevron-down' data-icon-show='icon-chevron-left'></i>"
@@ -580,13 +581,12 @@ margin-top:5px;
 									+"</div>"
 									+"<div class='panel-collapse collapse' id='content"+(i++)+"'>"
 									+"<div class='panel-body'>"
-									+userName
+									+"<a href='/PsychologicalEvaluation/articleDetail.action?id=" + id + "'>作者："+userName+className+dateTime+"</a>"
 									+"</div>"
 									+"</div>");  			
 				
 			</c:forEach>
-						
-			
+									
 		</script>
 	</body>
 </html>

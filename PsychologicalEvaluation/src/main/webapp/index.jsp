@@ -55,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
 
 	<body>
-		<s:debug></s:debug>
+<%-- 		<s:debug></s:debug> --%>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -83,7 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
 								<li class="dropdown-header">
 									<i class="icon-warning-sign"></i>
-									8条通知
+									8 Notifications
 								</li>
 
 								<li>
@@ -91,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="clearfix">
 											<span class="pull-left">
 												<i class="btn btn-xs no-hover btn-pink icon-comment"></i>
-												新闻评论
+												New Comments
 											</span>
 											<span class="pull-right badge badge-info">+12</span>
 										</div>
@@ -101,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li>
 									<a href="#">
 										<i class="btn btn-xs btn-primary icon-user"></i>
-										切换为编辑登录..
+										Bob just signed up as an editor ...
 									</a>
 								</li>
 
@@ -110,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="clearfix">
 											<span class="pull-left">
 												<i class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>
-												新订单
+												New Orders
 											</span>
 											<span class="pull-right badge badge-success">+8</span>
 										</div>
@@ -122,7 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="clearfix">
 											<span class="pull-left">
 												<i class="btn btn-xs no-hover btn-info icon-twitter"></i>
-												粉丝
+												Followers
 											</span>
 											<span class="pull-right badge badge-info">+11</span>
 										</div>
@@ -131,7 +131,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<li>
 									<a href="#">
-										查看所有通知
+										See all notifications
 										<i class="icon-arrow-right"></i>
 									</a>
 								</li>
@@ -147,21 +147,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
 								<li class="dropdown-header">
 									<i class="icon-envelope-alt"></i>
-									5条消息
+									5 Messages
 								</li>
 
 								<li>
 									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+										<img src="/PsychologicalEvaluation/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Alex:</span>
-												不知道写啥 ...
+												Ciao sociis natoque penatibus et auctor ...
 											</span>
 
 											<span class="msg-time">
 												<i class="icon-time"></i>
-												<span>1分钟以前</span>
+												<span>a moment ago</span>
 											</span>
 										</span>
 									</a>
@@ -169,16 +169,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<li>
 									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+										<img src="/PsychologicalEvaluation/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Susan:</span>
-												不知道翻译...
+												Vestibulum id ligula porta felis euismod ...
 											</span>
 
 											<span class="msg-time">
 												<i class="icon-time"></i>
-												<span>20分钟以前</span>
+												<span>20 minutes ago</span>
 											</span>
 										</span>
 									</a>
@@ -186,24 +186,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<li>
 									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar4.png" class="msg-photo" alt="谷雨's Avatar" />
+										<img src="/PsychologicalEvaluation/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
-												<span class="blue">谷雨:</span>
-												到底是不是英文 ...
+												<span class="blue">Bob:</span>
+												Nullam quis risus eget urna mollis ornare ...
 											</span>
 
 											<span class="msg-time">
 												<i class="icon-time"></i>
-												<span>下午3:15</span>
+												<span>3:15 pm</span>
 											</span>
 										</span>
 									</a>
 								</li>
 
 								<li>
-									<a href="#">
-										查看所有消息
+									<a href="inbox.html">
+										See all messages
 										<i class="icon-arrow-right"></i>
 									</a>
 								</li>
@@ -212,7 +212,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="/PsychologicalEvaluation/assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>欢迎光临</small>
 								</span>
@@ -224,17 +224,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li>
 									<a href="#">
 										<i class="icon-cog"></i>
-										设置
+										Settings
 									</a>
 								</li>
 
+								<li>
+									<a href="#">
+										<i class="icon-user"></i>
+										Profile
+									</a>
+								</li>
 
 								<li class="divider"></li>
 
 								<li>
 									<a href="#">
 										<i class="icon-off"></i>
-										退出
+										Logout
 									</a>
 								</li>
 							</ul>
@@ -333,7 +339,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<ul class="submenu">
 								<li>
-									<a href="<%=path%>/user/Questionaire.action">
+									<a href="<%=path%>/questionaireList.action">
 										<i class="icon-double-angle-right"></i>
 										问卷
 									</a>
@@ -347,7 +353,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="<%=path%>/article/articleList.action">
+									<a href="<%=path%>/articleList.action">
 										<i class="icon-double-angle-right"></i>
 										文章
 									</a>
@@ -399,7 +405,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="<%=path%>/user/blank.jsp">
+									<a href="<%=path%>/blank.jsp">
 										<i class="icon-double-angle-right"></i>
 										空白页面
 									</a>
@@ -633,13 +639,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- <![endif]-->
 
 		<!--[if IE]>
-			<script src="<%=path%>/js/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<![endif]-->
 
 		<!--[if !IE]> -->
 
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-2.0.3.min.js'>"+"<"+"script>");
+			window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
 		</script>
 
 		<!-- <![endif]-->
@@ -659,10 +665,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  <script src="<%=path%>/assets/js/excanvas.min.js"></script>
 		<![endif]-->
 
-		<script src="<%=path%>/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-		<script src="<%=path%>/assets/js/jquery.slimscroll.min.js"></script>
-		<script src="<%=path%>/assets/js/flot/jquery.flot.min.js"></script>
-		<script src="<%=path%>/assets/js/flot/jquery.flot.resize.min.js"></script>
 
 		<!-- ace scripts -->
 
@@ -671,72 +673,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- inline scripts related to this page -->
 
-		<script type="text/javascript">
-			jQuery(function($) {
-														
-			  var $tooltip = $("<div class='tooltip top in'><div class='tooltip-inner'></div></div>").hide().appendTo('body');
-			  var previousPoint = null;
-			
-			  placeholder.on('plothover', function (event, pos, item) {
-				if(item) {
-					if (previousPoint != item.seriesIndex) {
-						previousPoint = item.seriesIndex;
-						var tip = item.series['label'] + " : " + item.series['percent']+'%';
-						$tooltip.show().children(0).text(tip);
-					}
-					$tooltip.css({top:pos.pageY + 10, left:pos.pageX + 10});
-				} else {
-					$tooltip.hide();
-					previousPoint = null;
-				}
-				
-			 });
-			
-			
-			
-			
-			
-			
-				var d1 = [];
-				for (var i = 0; i < Math.PI * 2; i += 0.5) {
-					d1.push([i, Math.sin(i)]);
-				}
-			
-				var d2 = [];
-				for (var i = 0; i < Math.PI * 2; i += 0.5) {
-					d2.push([i, Math.cos(i)]);
-				}
-			
-				var d3 = [];
-				for (var i = 0; i < Math.PI * 2; i += 0.2) {
-					d3.push([i, Math.tan(i)]);
-				}		
-			
-				$('#recent-box [data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-				function tooltip_placement(context, source) {
-					var $source = $(source);
-					var $parent = $source.closest('.tab-content')
-					var off1 = $parent.offset();
-					var w1 = $parent.width();
-			
-					var off2 = $source.offset();
-					var w2 = $source.width();
-			
-					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-					return 'left';
-				}
-			
-			
-				$('.dialogs,.comments').slimScroll({
-					height: '300px'
-			    });
-				
-				
-				//Android's default browser somehow is confused when tapping on label which will lead to dragging the task
-				//so disable dragging when clicking on label			
-			
-			})
-		</script>
 	</body>
 </html>
 
