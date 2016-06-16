@@ -1,21 +1,22 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ page isELIgnored="false" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<!DOCTYPE html>
-<html lang="en">
-	<head>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
 		<meta charset="utf-8" />
 		<title>管理员</title>
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 		<!-- basic styles -->
 		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
@@ -51,19 +52,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/html5shiv.js"></script>
 		<script src="<%=path%>/assets/js/respond.min.js"></script>
 		<![endif]-->
-	</head>
-
+</head>
 	<body>
-		<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
-  		<a href="${ pageContext.request.contextPath }/user/login.jsp">login</a>
-  		<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
-  		<input type="hidden" id="userId"  value="${sessionScope.loginUser.id}"/> 
-  		<input type="hidden" id="username"  value="${sessionScope.loginUser.username}"/> 
-  		<input type="hidden" id="userIcon"  value="${sessionScope.loginUser.icon}"/> 
-  		<input type="hidden" id="targetId"  value="${target.id}"/> 
-  		<input type="hidden" id="targetIcon"  value="${target.icon}"/> 
-  		<input type="hidden" id="targetUsername"  value="${target.username}"/> 
-		<s:debug></s:debug>
+
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -162,7 +153,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="#">
+									<span>
 										<img src="<%=path%>/assets/avatars/avatar4.png" class="msg-photo" alt="谷雨's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
@@ -175,7 +166,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												<span>下午3:15</span>
 											</span>
 										</span>
-									</a>
+									</span>
 								</li>
 
 								<li>
@@ -310,7 +301,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<ul class="submenu">
 								<li>
-									<a href="<%=path%>/user/Questionaire.action">
+									<a href="<%=path%>/Questionaire.action">
 										<i class="icon-double-angle-right"></i>
 										问卷
 									</a>
@@ -324,7 +315,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="<%=path%>/article/articleList.action">
+									<a href="<%=path%>/articleList.action">
 										<i class="icon-double-angle-right"></i>
 										文章
 									</a>
@@ -396,9 +387,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<div class="main-content">
 					<div class="breadcrumbs" id="breadcrumbs">
-						<script type="text/javascript">
+<%-- 						<script type="text/javascript">
 							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
-						</script>
+						</script> --%>
 
 						<ul class="breadcrumb">
 							<li>
@@ -461,7 +452,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																</div>
 
 																<div class="name">
-																	<a href="#">谷雨</a>
+																	<span >谷雨</span>
 																	<span class="label label-info arrowed arrowed-in-right">管理员</span>
 																</div>
 																<div class="text">欢迎大家使用我们做的后台管理系统.</div>
@@ -486,7 +477,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																	<span class="green">4分钟以前</span>
 																</div>
 																<div class="name">
-																	<a href="#">一个妹子</a>
+																	<span>一个妹子</span>
 																</div>
 																<div class="text">继续支持我们做的后台系统</div>
 																<div class="tools">
@@ -496,8 +487,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																</div>
 															</div><!-- body -->
 														</div><!-- itemdiv -->
-														
-														
+															<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
+													  		<a href="${ pageContext.request.contextPath }/user/login.jsp">login</a>
+													  		<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
+													  		<input type="hidden" id="userId"  value="${sessionScope.loginUser.id}"/> 
+													  		<input type="hidden" id="username"  value="${sessionScope.loginUser.username}"/> 
+													  		<input type="hidden" id="userIcon"  value="${sessionScope.loginUser.icon}"/> 
+													  		<input type="hidden" id="targetId"  value="${target.id}"/> 
+													  		<input type="hidden" id="targetIcon"  value="${target.icon}"/> 
+													  		<input type="hidden" id="targetUsername"  value="${target.username}"/> 
+															<s:debug></s:debug>														
+															<div>
+													
+													  			<input type="hidden" class="${loginUser.id}" id = "target">
+													    		<p>
+													        		<input type="text" placeholder="type and press enter to chat" id="chat" />
+													    		</p>
+													    		<div id="console-container">
+													        		<div id="console"></div>
+													    		</div>
+															</div>														
 													</div><!-- dialogs -->
 
 													<div ="send">
@@ -559,7 +568,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</script>
 		<![endif]-->
 
-		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
 		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
@@ -573,8 +581,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/flot/jquery.flot.min.js"></script>
 		<script src="<%=path%>/assets/js/flot/jquery.flot.resize.min.js"></script>
 		<script src="<%=path%>/assets/js/date-time/bootstrap-datepicker.min.js"></script>
-		<script src="<%=path%>/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
-		<script src="<%=path%>/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
+
 		<!-- ace scripts -->
 
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
@@ -582,76 +589,103 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- inline scripts related to this page -->
 
-		<script type="text/javascript">
-			jQuery(function($) {
-														
-			  var $tooltip = $("<div class='tooltip top in'><div class='tooltip-inner'></div></div>").hide().appendTo('body');
-			  var previousPoint = null;
-			
-			  placeholder.on('plothover', function (event, pos, item) {
-				if(item) {
-					if (previousPoint != item.seriesIndex) {
-						previousPoint = item.seriesIndex;
-						var tip = item.series['label'] + " : " + item.series['percent']+'%';
-						$tooltip.show().children(0).text(tip);
-					}
-					$tooltip.css({top:pos.pageY + 10, left:pos.pageX + 10});
-				} else {
-					$tooltip.hide();
-					previousPoint = null;
-				}
-				
-			 });
-			
-			
-			
-			
-			
-			
-				var d1 = [];
-				for (var i = 0; i < Math.PI * 2; i += 0.5) {
-					d1.push([i, Math.sin(i)]);
-				}
-			
-				var d2 = [];
-				for (var i = 0; i < Math.PI * 2; i += 0.5) {
-					d2.push([i, Math.cos(i)]);
-				}
-			
-				var d3 = [];
-				for (var i = 0; i < Math.PI * 2; i += 0.2) {
-					d3.push([i, Math.tan(i)]);
-				}		
-			
-				$('#recent-box [data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-				function tooltip_placement(context, source) {
-					var $source = $(source);
-					var $parent = $source.closest('.tab-content')
-					var off1 = $parent.offset();
-					var w1 = $parent.width();
-			
-					var off2 = $source.offset();
-					var w2 = $source.width();
-			
-					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-					return 'left';
-				}
-			
-			
-				$('.dialogs,.comments').slimScroll({
-					height: '300px'
-			    });
-				
-				
-				//Android's default browser somehow is confused when tapping on label which will lead to dragging the task
-				//so disable dragging when clicking on label			
-			
-			})
-		</script>
 		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
 		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
 		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/consult.js"></script>
+< 		<script type="text/javascript" src="<%=path%>/js/consult.js"></script> 
 	</body>
-</html>
 
+    <script language="JavaScript">
+        "use strict";
+		var id = ${loginUser.id};
+		var name="${loginUser.username}";
+			alert("用户:"+ name);
+			//alert("什么鬼啊！");
+        var Chat = {};
+
+        Chat.socket = null;
+
+        Chat.connect = (function(host) {
+            if ('WebSocket' in window) {
+                Chat.socket = new WebSocket(host);
+            } else if ('MozWebSocket' in window) {
+                Chat.socket = new MozWebSocket(host);
+            } else {
+                Console.log('错误: 浏览器不支持websocket聊天.');
+                return;
+            }
+
+            Chat.socket.onopen = function () {
+                Console.log('提示 : 聊天链接已建立');
+                document.getElementById('chat').onkeydown = function(event) {
+                    if (event.keyCode == 13) {
+                        Chat.sendMessage();
+                    }
+                };
+            };
+
+            Chat.socket.onclose = function () {
+                document.getElementById('chat').onkeydown = null;
+                Console.log('提示: 聊天已关闭.');
+            };
+
+            Chat.socket.onmessage = function (message) {
+                Console.log(message.data);
+            };
+        });
+
+        Chat.initialize = function() {
+            if (window.location.protocol == 'http:') {
+                Chat.connect('ws://localhost:8080/PsychologicalEvaluation/consult');
+            } else {
+                Chat.connect('wss://localhost:8080/PsychologicalEvaluation/consult');
+            }
+        };
+
+        Chat.sendMessage = (function() {
+            var message = document.getElementById('chat').value;
+            var map = {};
+            var targetId=18;
+            var flag = 5;  //0： 未读消息（默认值）/ 4 ：无效消息（测试连接使用）/5：广播消息
+            if(id == 18)
+            	targetId = 20;
+            else
+               targetId=18;
+            if (message != '') {
+            	map["message"] = message;
+            	map["targetId"] = targetId;
+            	map["onChat"] = true;
+            	map["flag"] = flag;
+            	var jsonString = JSON.stringify(map);
+                Chat.socket.send(jsonString);
+                document.getElementById('chat').value = '';
+            }
+        });
+
+        var Console = {};
+
+        Console.log = (function(message) {
+            var console = document.getElementById('console');
+            var p = document.createElement('p');
+            p.style.wordWrap = 'break-word';
+            p.innerHTML = message;
+            console.appendChild(p);
+            while (console.childNodes.length > 25) {
+                console.removeChild(console.firstChild);
+            }
+            console.scrollTop = console.scrollHeight;
+        });
+
+        Chat.initialize();
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Remove elements with "noscript" class - <noscript> is not allowed in XHTML
+            var noscripts = document.getElementsByClassName("noscript");
+            for (var i = 0; i < noscripts.length; i++) {
+                noscripts[i].parentNode.removeChild(noscripts[i]);
+            }
+        }, false);
+
+    </script>
+
+</html>

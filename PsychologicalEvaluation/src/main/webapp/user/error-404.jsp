@@ -200,7 +200,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="inbox.html">
+									<a href="<%=path%>/consult.action">
 										See all messages
 										<i class="icon-arrow-right"></i>
 									</a>
@@ -351,7 +351,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="<%=path%>/article/articleList.action">
+									<a href="<%=path%>/articleList.action">
 										<i class="icon-double-angle-right"></i>
 										文章
 									</a>

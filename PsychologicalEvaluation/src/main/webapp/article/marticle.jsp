@@ -12,16 +12,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html>
 <head>
-    <script>
-        var pageName = 'mobile/article/detail';
-        var articleId = '100319150';
-        var toggleZanUrl = 'http://m.xinli001.com/ajax/article-like-toggle.json';
-        var toggleFavoriteUrl = 'http://m.xinli001.com/ajax/article-fav-toggle.json';
-        var pageStatusUrl = 'http://m.xinli001.com/ajax/article-user-status.json';
-        var articleSimilarListUrl = "http://m.xinli001.com/ajax/article-similar-list.json";
-        var userId = '5393875';
-        var categoryMainId = '2';
-    </script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" >
@@ -66,7 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <div class="text">
                 <div class="hd">
-                    <h2 id='author'><a href="#">西格玛.心视界</a></h2>
+                    <h2 id='author'><a href="#"></a></h2>
                     <span class="tit">作者</span>
                 </div>
 
@@ -89,9 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="ft">
                  <div class="tags">
                         <ul>
-                            <li><a data-category-id="" data-tag="亲子沟通" href="javascript:;">亲子沟通</a></li>
-                            <li><a data-category-id="" data-tag="父母成长" href="javascript:;">父母成长</a></li>
-                            <li><a data-category-id="" data-tag="家庭关系" href="javascript:;">家庭关系</a></li>
+                            <li><a id='articleclass' data-category-id="" data-tag="亲子沟通" >亲子沟通</a></li>
                         </ul>
                  </div>
             </div>           
@@ -117,12 +105,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var content="${article.content}";
 			var title="${article.title}";
 			var articleclass="${article.className}"; 
- 	
+			if(articleclass=="class0"){
+				articleclass="生活";
+			}
+			else if(articleclass=="class1"){
+				articleclass="工作";
+			}
+			else if(articleclass=="class2"){
+				articleclass="情感";
+			}
+ 			else if(articleclass=="class3"){
+ 				articleclass="学习";
+ 			}
+ 			else if(articleclass=="class4"){
+ 				articleclass="其他";
+ 			}
+ 			else{
+ 				articleclass="生活";
+ 			}
 			$("#author").text(author);
 			$("#title").text(title);
 			$("#t_author").text(author);
 			$("#content").text(content);
 			$("#time").text(time); 
+			$("#articleclass").text(articleclass);
 
 	</script>
 <script type="text/javascript">

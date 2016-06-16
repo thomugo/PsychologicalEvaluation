@@ -46,9 +46,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
 		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
 		
-		<script type="text/javascript" src="<%=path%>/js/consult.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/dfdaf.js"></script>
+		
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<body>
 		<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
-  		<a href="${ pageContext.request.contextPath }/user/login.jsp">login</a>
+  		<a href="${ pageContext.request.contextPath }/user/adminLogin.jsp">login</a>
   		<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
 		<s:debug></s:debug>
 		<div class="navbar navbar-default" id="navbar">
@@ -208,7 +208,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="inbox.html">
+									<a href="<%=path%>/consult.action">
 										See all messages
 										<i class="icon-arrow-right"></i>
 									</a>
@@ -244,7 +244,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="${ pageContext.request.contextPath }/logout.action">
 										<i class="icon-off"></i>
 										Logout
 									</a>
@@ -345,7 +345,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<ul class="submenu">
 								<li>
-									<a href="<%=path%>/questionaireList.action">
+									<a href="<%=path%>/questionaire.action">
 										<i class="icon-double-angle-right"></i>
 										问卷
 									</a>
