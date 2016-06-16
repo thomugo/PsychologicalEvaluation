@@ -37,7 +37,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="<%=path%>/js/iscroll.js" ></script>
 </head>
 <body>
-<s:debug></s:debug>
 <div data-role="page" id="one">
     <div class="header">
     	<div class="left">
@@ -53,11 +52,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	</div>
 	</div>
     <div data-role="content" style="font-size: 120%">
-        <h1 class="po_title" id='title'>世界上另一个自己会对你说什么？</h1>
-        <h2 style="font-size:16px;" id='result0'>我的结果 : B.理想中的另一个自己</h2>
-        <div id='result1'>你对现在的自己不够满意。一方面，你只肯真正相信自己一个，另一方面，你有时又会很憎恶现在的这个自己。你希望可以彻底改变，去尝试一个不一样的人生。如果世界上真的还有另一个你的话，你希望是一个跟这个自己完全不同的存在。希望那个自己可以让自己看到一个与众不同的性格和生活方式，希望那个自己过得很自我、很独特。<br />
-建议：试着更加自信，更加爱自己，当生活让你不开心的时候就试着去改变而不是等待。<br />
-		</div>
+    <s:debug></s:debug>
+        <h1 class="po_title" id='title'>${questionaire.title}</h1>
+        <h2 style="font-size:16px;" id='result0'>我的结果 : ${answer.result}</h2>
         <br>
 
         <div class="kuang">

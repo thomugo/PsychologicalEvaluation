@@ -29,8 +29,11 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
+import com.pes.entity.Answer;
+import com.pes.entity.AnswerPojo;
 import com.pes.entity.User;
 import com.pes.interceptor.Authority;
+import com.pes.service.AnswerService;
 import com.pes.service.UserService;
 import com.pes.util.AjaxUtil;
 
@@ -41,17 +44,26 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	private static final Logger LOGGER = Logger.getLogger(UserAction.class);
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private AnswerService answerService;
 	private int id;
 	private int pageSize = 5 ;
 	private int totalPages  = 0;
+	private int totalAnswerPages = 0;
 	private int pageNum = 0;
 	private String jsonString;
 	private User user = null;
 	private List<User> users = new ArrayList<User>();
-	
+	private List<AnswerPojo> answers = new ArrayList<AnswerPojo>();
 	public int getPageNum() {
 		return pageNum;
 	}
+	
+	
+	public int getTotalAnswerPages() {
+		return totalAnswerPages;
+	}
+
 
 	public void setPageNum(int pageNum) {
 		this.pageNum = pageNum;
@@ -63,6 +75,23 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 
 	public void setJsonString(String jsonString) {
 		this.jsonString = jsonString;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public List<AnswerPojo> getAnswers() {
+		return answers;
+	}
+	
+	
+	public User getUser() {
+		return user;
 	}
 
 	@Override
@@ -78,10 +107,26 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	}
 	
 	@Action(value="detail", results={
-			@Result(name="userinfo", location="/user/userinfo.jsp", type="redirect")
+			@Result(name="userinfo", location="/user/profile.jsp")
 			})
 	public String detail() {
-		AjaxUtil.ajaxJSONResponse( this.httpSession.getAttribute("loginUser"));
+		if(jsonString == null){
+			user = userService.findById(id);
+			answers = answerService.findAnswersByPage(id, 0, pageSize);
+			totalAnswerPages = answerService.getMaxAnswerPageNo(id, pageSize);
+			System.out.println(totalAnswerPages);
+		}else{
+			System.out.println(jsonString);
+			JSONObject json = JSONObject.parseObject(jsonString);
+			int pageNo = json.getInteger("pageNum");
+			int userId = json.getInteger("userId");
+			System.out.println("pageNo:" + pageNo);
+			ArrayList<AnswerPojo> answers = new ArrayList<AnswerPojo>();
+			answers = (ArrayList<AnswerPojo>) answerService.findAnswersByPage(userId, pageNo, pageSize);
+			jsonString = null;
+			AjaxUtil.ajaxJSONResponse(answers);
+			return NONE;
+		}
 		return "userinfo";
 	}
 	
@@ -90,8 +135,9 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	})
 	public String getAllUsers(){
 		//List<User> users = userService.findAll();
-		JSONObject json = JSONObject.parseObject(jsonString);
-		if(json != null){
+		JSONObject json;
+		if(jsonString != null){
+			json = JSONObject.parseObject(jsonString);
 			pageNum = json.getInteger("pageNum");
 			pageSize = json.getInteger("pageSize");
 		}
@@ -102,8 +148,11 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		System.out.println("find "+users.size()+"users");
 		//System.out.println(userService.findById(18));
 		System.out.println(users);
-		if(json != null)
+		if(jsonString != null){
 			AjaxUtil.ajaxJSONResponse(users);
+			jsonString = null;
+			return NONE;
+		}
 		return "users";
 	}
 	

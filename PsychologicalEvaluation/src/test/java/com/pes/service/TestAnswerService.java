@@ -96,7 +96,10 @@ public class TestAnswerService extends BaseTestTemplate{
     }
     @Test
     public void testCount(){
-    	System.out.println(answerService.getCountInVector(51));
+    	//System.out.println(answerService.findByUserId(20));
+    	//System.out.println(answerService.findTotalRaws(20));
+    	System.out.println(answerService.getMaxAnswerPageNo(20, 5));
+    	//System.out.println(answerService.findAnswersByPage(20, 0, 5));
     }
     
 }

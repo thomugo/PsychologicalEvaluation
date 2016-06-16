@@ -60,6 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
 
 	<body>
+		<s:debug></s:debug>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -231,7 +232,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="${ pageContext.request.contextPath }/logout.action">
 										<i class="icon-off"></i>
 										Logout
 									</a>
@@ -454,7 +455,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="col-xs-12 col-sm-3 center">
 											<div>
 												<span class="profile-picture">
-													<img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="<%=path%>/assets/avatars/profile-pic.jpg" />
+													<img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="<%=path%>/assets/avatars/${user.icon}", height="100" width="90"/>
 												</span>
 
 												<div class="space-4"></div>
@@ -464,7 +465,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 														<a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
 															<i class="icon-circle light-green middle"></i>
 															&nbsp;
-															<span class="white">樊涛声</span>
+															<span class="white">${user.username}</span>
 														</a>
 													</div>
 												</div>
@@ -503,17 +504,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													<div class="profile-info-name"> 用户名 </div>
 
 													<div class="profile-info-value">
-														<span class="editable" id="username">樊涛声</span>
+														<span class="editable" id="username">${user.username }</span>
 													</div>
 												</div>
 
 												<div class="profile-info-row">
-													<div class="profile-info-name"> 坐标 </div>
+													<div class="profile-info-name"> 职业 </div>
 
 													<div class="profile-info-value">
-														<i class="icon-map-marker light-orange bigger-110"></i>
-														<span class="editable" id="country">江苏</span>
-														<span class="editable" id="city">中国</span>
+														<span class="editable" id="vocation">${user.vocation}</span>
 													</div>
 												</div>
 
@@ -521,7 +520,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													<div class="profile-info-name"> 年龄 </div>
 
 													<div class="profile-info-value">
-														<span class="editable" id="age">38</span>
+														<span class="editable" id="age">${user.age }</span>
+													</div>
+												</div>
+												
+												<div class="profile-info-row">
+													<div class="profile-info-name"> 性别 </div>
+
+													<div class="profile-info-value">
+														<span class="editable" id="gender">
+														<s:if test="user.gender==0">
+															男
+														</s:if>
+														<s:else>
+															女
+														</s:else>
+														</span>
 													</div>
 												</div>
 
@@ -529,25 +543,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													<div class="profile-info-name"> Joined </div>
 
 													<div class="profile-info-value">
-														<span class="editable" id="signup">20/06/2010</span>
+														<span class="editable" id="signup">${user.dateTime }</span>
 													</div>
 												</div>
 
-												<div class="profile-info-row">
-													<div class="profile-info-name"> 上次登录 </div>
 
-													<div class="profile-info-value">
-														<span class="editable" id="login">3小时之前</span>
-													</div>
-												</div>
-
-												<div class="profile-info-row">
-													<div class="profile-info-name"> 关于我 </div>
-
-													<div class="profile-info-value">
-														<span class="editable" id="about">Editable as WYSIWYG</span>
-													</div>
-												</div>
+												
 											</div>
 
 											<div class="space-20"></div>
@@ -556,7 +557,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												<div class="widget-header widget-header-small">
 													<h4 class="blue smaller">
 														<i class="icon-rss orange"></i>
-														最近活动
+														最近评测情况
 													</h4>
 
 													<div class="widget-toolbar action-buttons">
@@ -574,15 +575,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												<div class="widget-body">
 													<div class="widget-main padding-8">
 														<div id="profile-feed-1" class="profile-feed">
+															
+															<s:iterator value="answers"  var="answer">
 															<div class="profile-activity clearfix">
 																<div>
-																	<img class="pull-left" alt="Alex Doe's avatar" src="<%=path%>/assets/avatars/avatar5.png" />
-																	<a class="user" href="#"> 樊涛声 </a>
-																	更换了头像。															
+																	<img class="pull-left" alt="Alex Doe's avatar" src="<%=path%>/assets/avatars/${user.icon}" />
+																	<a class="user" href="#"> <s:property value="#answer.title" /> </a>
+																	<br/>
+																	<s:property value="#answer.result" />													
 
 																	<div class="time">
 																		<i class="icon-time bigger-110"></i>
-																		一小时以前
+																		<s:property value="#answer.dateTime" />
 																	</div>
 																</div>
 
@@ -596,195 +600,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																	</a>
 																</div>
 															</div>
+															</s:iterator>
 
-
-															<div class="profile-activity clearfix">
-																<div>
-																	<i class="pull-left thumbicon icon-ok btn-success no-hover"></i>
-																	<a class="user" href="#"> Alex Doe </a>
-																	joined
-																	<a href="#">Country Music</a>
-
-																	group.
-																	<div class="time">
-																		<i class="icon-time bigger-110"></i>
-																		5 hours ago
-																	</div>
-																</div>
-
-																<div class="tools action-buttons">
-																	<a href="#" class="blue">
-																		<i class="icon-pencil bigger-125"></i>
-																	</a>
-
-																	<a href="#" class="red">
-																		<i class="icon-remove bigger-125"></i>
-																	</a>
-																</div>
-															</div>
-
-															<div class="profile-activity clearfix">
-																<div>
-																	<i class="pull-left thumbicon icon-picture btn-info no-hover"></i>
-																	<a class="user" href="#"> Alex Doe </a>
-																	uploaded a new photo.
-																	<a href="#">Take a look</a>
-
-																	<div class="time">
-																		<i class="icon-time bigger-110"></i>
-																		5 hours ago
-																	</div>
-																</div>
-
-																<div class="tools action-buttons">
-																	<a href="#" class="blue">
-																		<i class="icon-pencil bigger-125"></i>
-																	</a>
-
-																	<a href="#" class="red">
-																		<i class="icon-remove bigger-125"></i>
-																	</a>
-																</div>
-															</div>
-
-															<div class="profile-activity clearfix">
-																<div>
-																	<img class="pull-left" alt="David Palms's avatar" src="<%=path%>/assets/avatars/avatar4.png" />
-																	<a class="user" href="#"> David Palms </a>
-
-																	left a comment on Alex's wall.
-																	<div class="time">
-																		<i class="icon-time bigger-110"></i>
-																		8 hours ago
-																	</div>
-																</div>
-
-																<div class="tools action-buttons">
-																	<a href="#" class="blue">
-																		<i class="icon-pencil bigger-125"></i>
-																	</a>
-
-																	<a href="#" class="red">
-																		<i class="icon-remove bigger-125"></i>
-																	</a>
-																</div>
-															</div>
-
-															<div class="profile-activity clearfix">
-																<div>
-																	<i class="pull-left thumbicon icon-edit btn-pink no-hover"></i>
-																	<a class="user" href="#"> Alex Doe </a>
-																	published a new blog post.
-																	<a href="#">Read now</a>
-
-																	<div class="time">
-																		<i class="icon-time bigger-110"></i>
-																		11 hours ago
-																	</div>
-																</div>
-
-																<div class="tools action-buttons">
-																	<a href="#" class="blue">
-																		<i class="icon-pencil bigger-125"></i>
-																	</a>
-
-																	<a href="#" class="red">
-																		<i class="icon-remove bigger-125"></i>
-																	</a>
-																</div>
-															</div>
-
-															<div class="profile-activity clearfix">
-																<div>
-																	<img class="pull-left" alt="Alex Doe's avatar" src="<%=path%>/assets/avatars/avatar5.png" />
-																	<a class="user" href="#"> Alex Doe </a>
-
-																	upgraded his skills.
-																	<div class="time">
-																		<i class="icon-time bigger-110"></i>
-																		12 hours ago
-																	</div>
-																</div>
-
-																<div class="tools action-buttons">
-																	<a href="#" class="blue">
-																		<i class="icon-pencil bigger-125"></i>
-																	</a>
-
-																	<a href="#" class="red">
-																		<i class="icon-remove bigger-125"></i>
-																	</a>
-																</div>
-															</div>
-
-															<div class="profile-activity clearfix">
-																<div>
-																	<i class="pull-left thumbicon icon-key btn-info no-hover"></i>
-																	<a class="user" href="#"> Alex Doe </a>
-
-																	logged in.
-																	<div class="time">
-																		<i class="icon-time bigger-110"></i>
-																		12 hours ago
-																	</div>
-																</div>
-
-																<div class="tools action-buttons">
-																	<a href="#" class="blue">
-																		<i class="icon-pencil bigger-125"></i>
-																	</a>
-
-																	<a href="#" class="red">
-																		<i class="icon-remove bigger-125"></i>
-																	</a>
-																</div>
-															</div>
-
-															<div class="profile-activity clearfix">
-																<div>
-																	<i class="pull-left thumbicon icon-off btn-inverse no-hover"></i>
-																	<a class="user" href="#"> Alex Doe </a>
-
-																	logged out.
-																	<div class="time">
-																		<i class="icon-time bigger-110"></i>
-																		16 hours ago
-																	</div>
-																</div>
-
-																<div class="tools action-buttons">
-																	<a href="#" class="blue">
-																		<i class="icon-pencil bigger-125"></i>
-																	</a>
-
-																	<a href="#" class="red">
-																		<i class="icon-remove bigger-125"></i>
-																	</a>
-																</div>
-															</div>
-
-															<div class="profile-activity clearfix">
-																<div>
-																	<i class="pull-left thumbicon icon-key btn-info no-hover"></i>
-																	<a class="user" href="#"> Alex Doe </a>
-
-																	logged in.
-																	<div class="time">
-																		<i class="icon-time bigger-110"></i>
-																		16 hours ago
-																	</div>
-																</div>
-
-																<div class="tools action-buttons">
-																	<a href="#" class="blue">
-																		<i class="icon-pencil bigger-125"></i>
-																	</a>
-
-																	<a href="#" class="red">
-																		<i class="icon-remove bigger-125"></i>
-																	</a>
-																</div>
-															</div>
+															
 														</div>
 													</div>
 												</div>
@@ -797,8 +615,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<div class="center">
 												<a href="#" class="btn btn-sm btn-primary">
 													<i class="icon-rss bigger-150 middle"></i>
-													<span class="bigger-110">查看更多信息</span>
-
+													<span class="bigger-110" id="more">查看更多信息</span>
+													<input type="hidden" id="pageNum"  value="${pageNum}"/> 
+													<input type="hidden" id="userId"  value="${user.id}"/> 
+													<input type="hidden" id="totalPages"  value="${totalAnswerPages}"/> 
 													<i class="icon-on-right icon-arrow-right"></i>
 												</a>
 											</div>
@@ -870,7 +690,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/x-editable/bootstrap-editable.min.js"></script>
 		<script src="<%=path%>/assets/js/x-editable/ace-editable.min.js"></script>
 		<script src="<%=path%>/assets/js/jquery.maskedinput.min.js"></script>
-
+		<script src="<%=path%>/js/profile.js"></script>
+		<script src="<%=path %>/js/json2.js"></script>
 		<!-- ace scripts -->
 
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>

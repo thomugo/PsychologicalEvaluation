@@ -134,5 +134,12 @@ public class Answer  implements Serializable{
 		}
 		return trueFalseQuestions;
 	}*/
+	@Override
+	public String toString() {
+		return "Answer [id=" + id + ", user=" + user + ", result=" + result
+				+ ", dateTime=" + dateTime + ", questionaire=" + questionaire
+				+ ", optionAnswer=" + optionAnswer + ", choiceQuestions="
+				+ choiceQuestions + "]";
+	}
 	
 }

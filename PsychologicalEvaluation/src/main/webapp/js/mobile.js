@@ -182,7 +182,7 @@ $('#id_ceshi_page').live('pageinit', function() {
 					 alert(jsonString); 
 				$.post("saveAnswer.action", {"jsonString" : jsonString},
 					function (data){
-						alert(data); 
+					$("body").html(data);
 					});	 	
 			});
 		 }

@@ -49,9 +49,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="right">
                     <div id="header_avatar_btn_div">
                 <div class="img">
-                    <a class="avatar" href="<%=path%>/user/login.jsp">
-                        <img src="<%=path%>/image/img155.png" width="60" height="60">
-                    </a>
+               		 <s:if test="loginUser==null">
+               		 	<a href="${ pageContext.request.contextPath }/user/login.jsp">login</a>
+               		 </s:if>
+  					<s:else>
+  						<a class="avatar" href="<%=path%>/user/login.jsp">
+                        <img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60">
+                  	  	</a>
+                  	  	<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
+       				 </s:else>
+                   	 	
                 </div>
             </div>
         

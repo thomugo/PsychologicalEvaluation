@@ -85,7 +85,7 @@ public class ArticleAction extends BaseAction{
 	
 	@Action(value="articleList", results={
 			@Result(name="admin", location="/article/articleList.jsp"),
-			@Result(name="normal", location="/article/articleList.jsp")
+			@Result(name="normal", location="/article/marticleList.jsp")
 	})
 	public String execute() {
 		if(jsonString != null){

@@ -27,8 +27,9 @@ import com.pes.service.OptionService;
 import com.pes.service.QuestionaireService;
 import com.pes.service.RulerService;
 import com.pes.service.UserService;
+import com.pes.util.AjaxUtil;
 
-@Result(name="success", location="/user/test.jsp")
+@Result(name="success", location="/user/result.jsp")
 public class SaveAnswerAction extends BaseAction{
 	private static final Logger LOGGER = Logger.getLogger(SaveAnswerAction.class);
 	@Autowired
@@ -50,6 +51,7 @@ public class SaveAnswerAction extends BaseAction{
 	/*@Autowired
 	private TrueFalseAnswerService trueFalseAnswerService;*/
 	private String jsonString;
+	private int answerId;
 	private Answer answer = new Answer();
 	private Questionaire questionaire ;
 	private Map<ChoiceQuestion, List<Option>> choiceQuestionAnswers = new HashMap<ChoiceQuestion, List<Option>>();
@@ -75,6 +77,22 @@ public class SaveAnswerAction extends BaseAction{
 		return choiceQuestionAnswers;
 	}
 
+	
+	public int getAnswerId() {
+		return answerId;
+	}
+
+
+	public void setAnswerId(int answerId) {
+		this.answerId = answerId;
+	}
+	
+	
+
+	public Answer getAnswer() {
+		return answer;
+	}
+
 
 	/*public Map<TrueFalseQuestion, Integer> getTrueFalseQuestionAnswers() {
 		return trueFalseQuestionAnswers;
@@ -84,16 +102,18 @@ public class SaveAnswerAction extends BaseAction{
 			@Result(name="index", location="/index.jsp")
 	})
 	public String showAnswer(){
-		int userID = 9;
-		int questionaireID = 11;
-		questionaire = questionaireService.get(questionaireID);
-		answer = answerService.findByQuestionaire(userID, questionaireID).get(20);
+		 answer = answerService.get(answerId);
+		 questionaire = answer.getQuestionaire();
+		//questionaire = questionaireService.get(questionaireID);
+		//answer = answerService.findByQuestionaire(userID, questionaireID).get(0);
 		choiceQuestionAnswers = answer.getChoiceQuestions();
 		//trueFalseQuestionAnswers = answer.getTrueFalseQuestions();
 		return "success";
 	}
 	
-	@Action(value="saveAnswer")
+	@Action(value="saveAnswer", results={
+			@Result(name="success", location="/user/result.jsp"),
+			@Result(name="index", location="/index.jsp")})
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
@@ -157,12 +177,15 @@ public class SaveAnswerAction extends BaseAction{
 		}*/
 		answerService.save(answer);
 		HashMap<Integer, Float> scores = answerService.getScores(answer.getId());
+		System.out.println(scores);
 		String result = rulerService.getResult(questionaireId, scores);
+		System.out.println(result);
 		answer.setResult(result);
 		answerService.saveOrUpdate(answer);
 		System.out.println(result);
 		//System.out.println("questionaire:" + questionaire.getTitle());
 		//System.out.println(choiceQuestionAnswers.size());
+		//AjaxUtil.ajaxJSONResponse(answer.getId());
 		return "success";
 		
 	}

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pes.dao.AnswerDao;
 import com.pes.entity.Answer;
+import com.pes.entity.AnswerPojo;
 import com.pes.service.AnswerService;
 
 @Service("answerService")
@@ -91,6 +92,31 @@ public class AnswerServiceImpl implements AnswerService{
 	public HashMap<Integer, Float> getAvgScores(int answerId) {
 		// TODO Auto-generated method stub
 		return answerDao.getAvgScores(answerId);
+	}
+
+	@Override
+	public List<AnswerPojo> findByUserId(int userId) {
+		// TODO Auto-generated method stub
+		return answerDao.findByUserId(userId);
+	}
+
+	@Override
+	public int findTotalRaws(Integer userId) {
+		// TODO Auto-generated method stub
+		return answerDao.findTotalRaws(userId);
+	}
+
+	@Override
+	public int getMaxAnswerPageNo(Integer userId, Integer pageSize) {
+		// TODO Auto-generated method stub
+		return answerDao.getMaxAnswerPageNo(userId, pageSize);
+	}
+
+	@Override
+	public List<AnswerPojo> findAnswersByPage(Integer userId, Integer pageNo,
+			Integer pageSize) {
+		// TODO Auto-generated method stub
+		return answerDao.findAnswersByPage(userId, pageNo, pageSize);
 	}
 
 }

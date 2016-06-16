@@ -1,10 +1,12 @@
 package com.pes.action;
 
 import java.util.ArrayList;
+
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.pes.entity.Ruler;
@@ -54,25 +56,25 @@ public class RulerAction extends BaseAction{
 	})
 	public String fee() throws Exception {
 		// TODO Auto-generated method stub
+		System.err.println(jsonString);
 		JSONObject json = JSONObject.parseObject(jsonString);
 		int questionaireId = json.getInteger("questionaireId");
-		JSONArray vectors = json.getJSONArray("vectors");
-		ArrayList<Ruler> rulers = new ArrayList<Ruler>();
-		for(int i=0; i<vectors.size(); i++){
-			JSONObject vector = vectors.getJSONObject(i);
+		JSONArray rulers = json.getJSONArray("rulers");
+		//ArrayList<Ruler> rulers = new ArrayList<Ruler>();
+		for(int i=0; i<rulers.size(); i++){
+			JSONObject vector = rulers.getJSONObject(i);
 			int vectorId = vector.getInteger("vector");
-			JSONArray answers = vector.getJSONArray("rulers");
-			for(int j=0; j<answers.size(); j++){
-				Ruler ruler =new Ruler(questionaireId, vectorId);
-				JSONObject answer = answers.getJSONObject(j);
-				ruler.setStartScore(answer.getFloatValue("startScore"));
-				ruler.setEndScore(answer.getFloatValue("endScore"));
-				ruler.setRuler(answer.getString("ruler"));
-				rulers.add(ruler);
+			String[] startScores = vector.getString("startScore").split(",");
+			String[] endScores = vector.getString("endScore").split(",");
+			String[] rules = vector.getString("ruler").split(";");
+			for(int j=0; j<startScores.length; j++){
+				Ruler ruler = new Ruler(questionaireId, vectorId);
+				ruler.setStartScore(Float.parseFloat(startScores[j]));
+				ruler.setEndScore(Float.parseFloat(endScores[j]));
+				ruler.setRuler(rules[j]);
+				rulerService.save(ruler);
 			}
-		}
-		for (Ruler ruler : rulers) {
-			rulerService.save(ruler);
+			
 		}
 		return "success";
 	}
