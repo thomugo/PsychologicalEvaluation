@@ -69,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <ul class="pr s_ul6 clears">                
                
                <li>
-                    <a href="<%=path%>/test/mtest.jsp">
+                    <a href="#">
                         <div class="roll">
                             <div class="pr">
                                 <img src="<%=path%>/image/021356cvg7ha82skersh0f.jpg" width="300" height="194"/>

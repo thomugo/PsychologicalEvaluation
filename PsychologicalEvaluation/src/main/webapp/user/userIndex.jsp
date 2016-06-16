@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -63,40 +64,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="sy">
             <div class="sy-banner">
                 <ul class="slides">
-                                                                        <li class="slide">
+                            <li class="slide">
                                 <a href="#"><img src="<%=path%>/image/11123128mksdho3v8bf4a1.jpg"/></a>
                                 <a href="#">
 <!--                                    <h2>--><!--</h2>-->
                                 </a>
                             </li>
-                                                    <li class="slide">
+                            
+                            <li class="slide">
                                 <a href="#"><img src="<%=path%>/image/043034uj6pq30kpw15ddhs.jpg"/></a>
                                 <a href="#">
 <!--                                    <h2>--><!--</h2>-->
                                 </a>
                             </li>
-                                                    <li class="slide">
+                            
+                            <li class="slide">
                                 <a href="#"><img src="<%=path%>/image/031603fo3oqq4giwjkdrsw.jpg"/></a>
                                 <a href="#">
 <!--                                    <h2>--><!--</h2>-->
                                 </a>
                             </li>
-                                                    <li class="slide">
+                            <li class="slide">
                                 <a href="#"><img src="<%=path%>/image/132258qo2ptcxq2nydc91x.jpg"/></a>
                                 <a href="#">
 <!--                                    <h2>--><!--</h2>-->
                                 </a>
                             </li>
-                                                    <li class="slide">
-                                <a href="http://www.xinli001.com/info/100319446"><img src="<%=path%>/image/100242giq2mxfwujjmedwm.jpg"/></a>
-                                <a href="http://www.xinli001.com/info/100319446">
+                             <li class="slide">
+                                <a href="#"><img src="<%=path%>/image/100242giq2mxfwujjmedwm.jpg"/></a>
+                                <a href="#">
 <!--                                    <h2>--><!--</h2>-->
                                 </a>
                             </li>
-                                                            </ul>
+                  </ul>
             </div>
 
-            <div class="sy-new-nav">
+<div class="sy-new-nav">
     <ul>
     <li>
 

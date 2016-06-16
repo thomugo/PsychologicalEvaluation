@@ -138,37 +138,56 @@ $('#id_account_register').live('pageinit', function(){
 		return check;
 	});
 });
-
+	
 $('#id_ceshi_page').live('pageinit', function() {
 	$('#id_start_ceshi').click(function() {
 		if($(this).attr('href') == '#') {
 			$('#id_ceshi_show').hide();
 			$('#id_question_list').show();
 			$('.baidu_share').hide();
-/*			$('div.fmappbanner').hide();*/
+
 			$('.po_footer').hide();
 		}
 	});
+	var j=0;
+	var answer={};		
+	var choiceQuestions=new Array();
 	var labels = $(this).find('label');
 	labels.bind('vclick', function() {
 		var self = $(this),
 			question = self.data('question'),
-			qid = parseInt(self.data('qid')),
-			choice = self.data('choice');
-		var next = $('#id_question_item_' + qid);
-		if(next.length == 1) {
-			$('#id_question_item_' + question).hide();
-			$("#id_prev_" + qid).click(function() {
-				$('#id_question_item_' + qid).hide();
-				$('#id_question_item_' + question).show();
-			});
-			$('#id_question_item_' + qid).show();
-		} else {
-			$('#id_choice').val(choice);
-			$('#id_submit_' + question).button('enable');
+			qid = self.data('qid'),
+			parent= self.data('nodeid'),
+			nextparent=parent+1,
+			choice = self.data('choice');	
+		var map1={};	
+		map1["option"]=choice;
+		map1["question"]=question;
+		if(j<num){
+			choiceQuestions[j++]=map1;			
 		}
+	
+		var next = $('#node_' + nextparent);
+		if(next.length==1){															
+			$('#node_' + parent).hide();
+			$('#node_' + nextparent).show();									
+		 }
+		 else{
+			 $('#id_submit_' + question).button('enable');
+			 $('#id_submit_' + question).click(function(){
+
+					 answer["questionaire"] = id;
+					 answer["choiceQuestions"] = choiceQuestions;
+					 var jsonString = JSON.stringify(answer);
+					 alert(jsonString); 
+				$.post("saveAnswer.action", {"jsonString" : jsonString},
+					function (data){
+						alert(data); 
+					});	 	
+			});
+		 }
 	});
-	$('#id_form').submit(function() {
+/*	$('#id_form').submit(function() {
 		var action = $(this).attr('action');
 		var data = $(this).serialize();
 		$.post(action, data, function(resp) {
@@ -179,7 +198,7 @@ $('#id_ceshi_page').live('pageinit', function() {
 			}
 		});
 		return false;
-	});
+	});*/
 });
 $('#id_ceshi_page').live('pagehide', function(){
 	$(this).remove();

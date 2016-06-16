@@ -2,6 +2,7 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -35,7 +36,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="<%=path%>/js/iscroll.js" ></script>
 </head>
 <body>
-<s:debug></s:debug>
 
 <div data-role="page" id="id_ceshi_page" data-url="<%=path%>/ceshi/357.jsp" data-dom-cache="false">
 
@@ -46,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <h2>测试</h2>
     <div class="right">
         <div class="img">
-                 <a class="avatar" href="http://m.xinli001.com/user">
+                 <a class="avatar" href="#">
                 	<img src="<%=path%>/image/9fe4842afb2c58c2200a1b9ae7a68ca9.png" width="60" height="60">
             	 </a>
         </div>
@@ -77,22 +77,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<br style="clear: both">        
 		</div>
 
-        <form id='id_form' action="<%=path%>/saveAnswer.action" method="post">
+        <div id='id_form' >
             <div id="id_question_list" style="display: none">
-<!--             	<div id="id_question_item_5424" >
-        				<div>当前第1/15题</div>
-                		<fieldset data-role="controlgroup">
-            				<legend>1. 受委屈时会跟他人诉苦？ </legend>
-                            <input type="radio" id="id_choice_12401" name="question-1" value="12401" />
-            				<label for="id_choice_12401" data-question="5424" data-choice="12401" data-qid="5427" data-rid="0">yes</label>
-                        	<input type="radio" id="id_choice_12402" name="question-1" value="12402" />
-            				<label for="id_choice_12402" data-question="5424" data-choice="12402" data-qid="5425" data-rid="0">no</label>
-                    	</fieldset>
-                    	
-        				<div data-role="controlgroup" data-type="horizontal">
-                        	<input type="submit" id="id_submit_5424" disabled="true" value="提交" />
-        				</div>
-    			</div> -->
     			
             </div>
             
@@ -103,7 +89,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         		<div>你相信世界上还有一个你吗？或许我们可以认为在世界的某个角落里还存在着另一个自己。它也许和我们相似，又或者相反。又或许在你的思想里，心里还有另一个自己，它潜伏在你的心中，等待你发现它。我们来听听它说什么。</div>
     			<input type="submit" value="查看测试结果" />
 			</div>                    
-		</form>
+		</div>
     </div>   <!-- content -->
 
     <div class="po_footer">
@@ -121,26 +107,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var num="${choiceQuestions.size()}";
 			$("#title").html(title);
 			$("#description").html(description);
+			var block="block";
+			var none="none";
+			var inline="inline";
 			
 			<c:forEach var="test" items="${choiceQuestions}">
 				var content="${test.content}";
 				var questionid="${test.id}";
 
-				var string="";
+				var string="";	
 							<c:forEach var="option" items="${test.options}">
-	
+								
 								var option="${option.content}";
 								var optionid="${option.id}";
 								string+="<input type='radio' id='id_choice_"+optionid+"' name='question-"+i+"' value='"+optionid+"'/>"
-										+" "
-										+"<label for='id_choice_"+optionid+"' data-question='"+questionid+"' data-choice='"+optionid+"' data-qid='"+(questionid+1)+"' data-rid='0' class='ui-btn ui-fullsize ui-btn-icon-left ui-radio-off ui-corner-top ui-btn-up-c'>"
-										+" "
+										+"<label for='id_choice_"+optionid+"' data-question='"+questionid+"' data-choice='"+optionid+"' data-nodeid='"+i+"' data-qid='"+(parseInt(questionid)+1)+"' data-rid='0' class='ui-btn ui-fullsize ui-btn-icon-left ui-radio-off ui-corner-top ui-btn-up-c'>"
 										+option
-
 										+"</label>";
+								
 							</c:forEach>
 									
-				$("#id_question_list").append("<div id='id_question_item_"+questionid+"'>"
+				$("#id_question_list").append("<div id='node_"+parseInt(i)+"' style='display:"+(i==1?block:none)+"' >"
+										+"<div id='id_question_item_"+questionid+"'>"
 										+" "
 										+"<div>当前第"+i
 										+"/"+num+"题</div>"
@@ -159,9 +147,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										+" "
 										+"<div data-role='controlgroup' data-type='horizontal' class='ui-corner-all ui-controlgroup ui-controlgroup-horizontal'>"
 										+" "
-										+"<input type='button' id='id_prev_"+questionid+"' value='上一题' />"
-										+"<input type='submit' id='id_submit_"+questionid+"' value='提交' />"
+										+"<input type='submit' disabled='true' id='id_submit_"+questionid+"' value='提交' />"
         								+"</div>"									
+										+"</div>"
 										+"</div>");
 
 			</c:forEach>   
@@ -169,30 +157,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 	
 
-<script>
-    var questionnum = 15;
-
-    $('#share_tip').click(function(){
-        $('#share_tip').hide();
-        return false;
-    });
-</script>
 
 <script>
 
 </script>
     <script src="<%=path%>/js/mobile.js" ></script>  
-<script type="text/javascript">
-    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd64469e9d7bdbf03af6f074dffe7f9b5' type='text/javascript'%3E%3C/script%3E"));
 
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-74218902-7', 'auto');
-    ga('send', 'pageview');
-</script>
 </body>
 </html>

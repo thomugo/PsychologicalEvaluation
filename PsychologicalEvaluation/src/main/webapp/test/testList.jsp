@@ -562,7 +562,8 @@ margin-top:5px;
 		</script>
 		<script type="text/javascript">
 				var i=0;
-			<c:forEach var="tests" items="${questionaires}">
+				alert(1);
+<%-- 			<c:forEach var="tests" items="${questionaires}">
 								
 				var id=${tests.id};
 				var title="${tests.title}"
@@ -585,7 +586,7 @@ margin-top:5px;
 									+"</div>"
 									+"</div>");  			
 				
-			</c:forEach>
+			</c:forEach> --%>
 									
 		</script>
 	</body>

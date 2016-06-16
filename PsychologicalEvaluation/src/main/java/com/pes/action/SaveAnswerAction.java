@@ -28,7 +28,7 @@ import com.pes.service.QuestionaireService;
 import com.pes.service.RulerService;
 import com.pes.service.UserService;
 
-@Result(name="success", location="/answer.jsp")
+@Result(name="success", location="/user/test.jsp")
 public class SaveAnswerAction extends BaseAction{
 	private static final Logger LOGGER = Logger.getLogger(SaveAnswerAction.class);
 	@Autowired
@@ -80,7 +80,7 @@ public class SaveAnswerAction extends BaseAction{
 		return trueFalseQuestionAnswers;
 	}*/
 	@Action(value="showAnswer", results={
-			@Result(name="success", location="/answer.jsp"),
+			@Result(name="success", location="/user/result.jsp"),
 			@Result(name="index", location="/index.jsp")
 	})
 	public String showAnswer(){
