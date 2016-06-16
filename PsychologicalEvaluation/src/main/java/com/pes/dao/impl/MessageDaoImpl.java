@@ -35,7 +35,7 @@ public class MessageDaoImpl extends GenericDao2Impl<Message, Integer> implements
 
 	@Override
 	public List<Integer> getOffLineMessagesSenders(int userId) {
-		Query query = getCurrentSession().createQuery("select fromId from Message as a where a.flag = 0 and a.toId = ? ");
+		Query query = getCurrentSession().createQuery("select distinct ( fromId ) from Message as a where a.flag = 0 and a.toId = ? ");
 		query.setInteger(0, userId);
 		return (List<Integer>)query.list();
 	}
@@ -158,5 +158,18 @@ public class MessageDaoImpl extends GenericDao2Impl<Message, Integer> implements
 		query.setInteger(0, fromId);
 		query.setInteger(1, toId);
         query.executeUpdate();  
+	}
+
+	@Override
+	public Message findById(int fromId, int toId) {
+		// TODO Auto-generated method stub
+		String hqlString = "from Message as m where m.flag = 0 and fromId = ? and toId = ? order by m.dateTime desc";
+		 Query query = this.getCurrentSession().createQuery(hqlString);
+		 query.setInteger(0, fromId);
+		 query.setInteger(1, toId);
+		 query.setFirstResult(0);
+		 query.setMaxResults(1);
+		 Message message =  (Message)query.uniqueResult();
+		return message;
 	}
 }

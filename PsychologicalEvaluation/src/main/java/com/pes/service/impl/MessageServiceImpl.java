@@ -176,4 +176,10 @@ public class MessageServiceImpl implements MessageService{
 		messageDao.updateOfflineMessageState(fromId, toId);
 	}
 
+	@Override
+	public Message findById(int fromId, int toId) {
+		// TODO Auto-generated method stub
+		return messageDao.findById(fromId, toId);
+	}
+
 }

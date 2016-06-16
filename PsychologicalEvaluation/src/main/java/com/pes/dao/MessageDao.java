@@ -4,6 +4,7 @@ import java.util.List;
 import com.pes.entity.Message;
 
 public interface MessageDao extends GenericDao2<Message, Integer>{
+	public Message findById(int fromId, int toId);
 	/**
 	 * 获取用戸离线消息
 	 * @fromId 发送者ID
@@ -13,7 +14,7 @@ public interface MessageDao extends GenericDao2<Message, Integer>{
 	public List<Message> getOffLineMessages(int fromId, int toId);
 	
 	/**
-	 * 获取用戸离线消息发送者
+	 * 获取用戸离线消息发送者(去重)
 	 * @userId 	用戸ID
 	 * @return List<Message>
 	 */

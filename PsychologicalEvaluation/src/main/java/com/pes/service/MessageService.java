@@ -1,12 +1,12 @@
 package com.pes.service;
 
-import java.util.Collection;
 import java.util.List;
 
 import com.pes.entity.Message;
 
 public interface MessageService extends GenericService2<Message, Integer>{
-
+	public Message findById(int fromId, int toId);
+	
 	@Deprecated
 	public List<Message> findAll(boolean asc) ;
 

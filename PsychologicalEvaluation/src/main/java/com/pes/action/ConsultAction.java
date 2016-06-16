@@ -30,6 +30,7 @@ public class ConsultAction extends BaseAction{
 	private int unReadBroadCastMessageCount = 0;
 	private int offLineMessageCount = 0;
 	private ArrayList<Message> broadCastMessages = new ArrayList<Message>();
+	private ArrayList<Message> shortOffLineMessages = new ArrayList<Message>();
 	private String jsonString;
 	
 	public int getId() {
@@ -70,16 +71,30 @@ public class ConsultAction extends BaseAction{
 	public ArrayList<Message> getBroadCastMessages() {
 		return broadCastMessages;
 	}
-	
+	public ArrayList<Message> getShortOffLineMessages() {
+		return shortOffLineMessages;
+	}
+
 	@Action(value="chat", results={
 			@Result(name="success", location="/user/consult.jsp")
 	})
 	public String Chat(){
 		target = userService.findById(id);
 		user = (User)httpSession.getAttribute("loginUser");
+		int ID = user.getId();
 		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
 		//broadCastMessages = (ArrayList<Message>)messageService.getUnreadBroadCastMessages(unReadBroadCastMessageCount);
 		offLineMessageCount = messageService.getOffLineMessageCount(user.getId());
+		if(offLineMessageCount > 0){
+			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
+			System.out.println("senders:");
+			System.out.println(senders);
+			for (int sendId : senders) {
+				shortOffLineMessages.add(messageService.findById(sendId, ID));
+			}
+			System.out.println("messages:");
+			System.out.println(shortOffLineMessages);
+		}
 		return "success";
 	}
 	

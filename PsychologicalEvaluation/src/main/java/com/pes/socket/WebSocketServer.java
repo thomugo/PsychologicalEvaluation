@@ -226,7 +226,7 @@ public class WebSocketServer {
 
 	}
 
-	private void sendToBrotherLink(int targetId, int flag, String messageString) {
+	private void sendToBrotherLink(final int targetId, int flag, final String messageString) {
 		if (otherLinks.size() != 0) {// 当有其他兄弟连接时
 			new Thread(// 新建线程将消息加入到同一用户其他连接的消息队列中
 					new Runnable() {

@@ -189,7 +189,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="<%=path%>/assets/avatars/${user.icon}" } alt="Jason's Photo" />
 								<span class="user-info">
 									<small>欢迎光临</small>
 								</span>
@@ -209,7 +209,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="${ pageContext.request.contextPath }/logout.action">
 										<i class="icon-off"></i>
 										退出
 									</a>
