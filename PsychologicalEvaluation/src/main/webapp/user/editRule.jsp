@@ -709,7 +709,7 @@ alert(1);
 						var jsonString = JSON.stringify(questionaire);
 						alert(jsonString);
 						$.post("saveRulers.action", {"jsonString" : jsonString},function(result){
-							alert(result)}
+							$("body").html(result)}
 						);
 					}
 				});								

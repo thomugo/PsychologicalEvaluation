@@ -72,4 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 <!-- Baidu Button END -->
 <br style="clear: both">    </div>
+</div>
+</body>
+</html>
 
