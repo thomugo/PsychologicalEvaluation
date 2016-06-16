@@ -101,6 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
 
 	<body>
+	<s:debug></s:debug>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -542,7 +543,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 															<i class="icon-on-right"></i>
 														</button>																												
 																										
-														<button id="save" type="submit" class="btn btn-success">
+														<button id="save0" type="submit" class="btn btn-success">
 															完成
 															<i class="icon-on-right"></i>
 														</button>
@@ -601,8 +602,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/ace.min.js"></script>
 		<script>
 				var i=1;
-/* 				var questionaireid=${questionaireId};
-				alert(questionaireid); */
+ 				var questionaireid=${Questionaire.id};
+				/* alert(questionaireid); */ 
 			<c:forEach var="vector" items="${vectors}">
 				var vector=${vector};			
  				  $('#vector').append("<div class='vector' id='"+(i++)+"'>"
@@ -612,7 +613,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									+" "
 									+"<input type='text' style='width:43px;font-size:14px;' class='startScore' placeholder='分数'/>"
 									+" —— <input type='text' style='width:43px;font-size:14px;' class='endScore' placeholder='区间'/>"
-									+"<button class='btn addoption addV'>添加维度测评</button>"
+									+"<button class='btn addoptio addV'>添加维度测评</button>"
 									+"</span>"
 									+"</div>");  	 					
 			</c:forEach>
@@ -645,10 +646,10 @@ $(document).ready(function() {
 				});
 			
 			
-				$("#save").click(function(){
+				$("#save0").click(function(){
 
 						//选择题数目
-
+alert(1);
 						var vectorNum=$(".vector").length;
 
 						alert("共有 "+(vectorNum-1)+"维度的评价");
@@ -660,16 +661,15 @@ $(document).ready(function() {
 							var map2={};
 						 	var id=$(".vector").eq(i).attr("id");
 						 	
-						 	var pingjias=$(".vector").eq(i).map(function(){
+						 	var pingjias=$(".vector").eq(i).find(".description").map(function(){
 								
-						 			var pingjia = $(".vector").eq(i).find('.description').val();
-						 				pingjia=$.trim(pingjia);
+						 			var pingjia = $.trim($(this).val());
 						 			if(pingjia.length == 0){	//标记置空
 						 				save = false;
 						 				alert("有未填写的评价！");
 						 			}
 						 		return pingjia;
-						 	}).get().join(',');
+						 	}).get().join(';');
 						 	
 						 	var starts=$(".vector").eq(i).find(".startScore").map(function(){
 					 			var start = $.trim($(this).val());
@@ -701,17 +701,16 @@ $(document).ready(function() {
 						 
 						//封装试卷
 						questionaire["rulers"] = rulers;
-						questionaire["questionaireId"]=${questionaireId};
+						questionaire["questionaireId"]=questionaireid;
 						
-						
-						
+											
 					if(save){
 						//用ajax请求服务器保存数据
 						var jsonString = JSON.stringify(questionaire);
 						alert(jsonString);
 						$.post("saveRulers.action", {"jsonString" : jsonString},function(result){
 							$("body").html(result)}
-						); 
+						);
 					}
 				});								
 });		

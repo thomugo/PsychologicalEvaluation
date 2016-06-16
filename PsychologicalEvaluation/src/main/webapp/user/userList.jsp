@@ -524,7 +524,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var i=0;
 			
 			<c:forEach var="user" items="${users}">
-				grid_data[i++]={username:"${user.username}",id:"${user.id}",email:"${user.email}",age:${user.age},gender:(${user.gender})?'男':'女',phone:${user.phone},dateTime:"${user.dateTime}",vocation:"${user.vocation}"};
+				grid_data[i++]={username:"<a href='detail.action?userid="+${user.id}+"'>"+"${user.username}"+"</a>",id:"${user.id}",email:"${user.email}",age:${user.age},gender:(${user.gender})?'男':'女',phone:${user.phone},dateTime:"${user.dateTime}",vocation:"${user.vocation}"};
 			</c:forEach>
 			
 			jQuery(function($) {
@@ -693,7 +693,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				function style_edit_form(form) {
 					//enable datepicker on "sdate" field and switches for "stock" field
-					form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
+					form.find('input[name=dateTime]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
 						.end().find('input[name=stock]')
 							  .addClass('ace ace-switch ace-switch-5').wrap('<label class="inline" />').after('<span class="lbl"></span>');
 			

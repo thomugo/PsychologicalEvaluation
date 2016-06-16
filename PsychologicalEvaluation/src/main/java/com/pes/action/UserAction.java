@@ -78,7 +78,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	}
 	
 	@Action(value="detail", results={
-			@Result(name="userinfo", location="/user/userinfo.jsp", type="redirect")
+			@Result(name="userinfo", location="/user/profile.jsp", type="redirect")
 			})
 	public String detail() {
 		AjaxUtil.ajaxJSONResponse( this.httpSession.getAttribute("loginUser"));
