@@ -23,9 +23,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="">
 <meta name="format-detection" content="telephone=no">
-<title>心理杂志 - 每天学点心理学与生活</title>
-<meta name="keywords" content="心理杂志，心理月刊，心理学与生活">
-<meta name="description" content="网 - 心理杂志频道分享婚恋两性心理、亲子心理、职场管理心理、心理健康、心理科普等领域文章。">
+<title>心理学从这里开始</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
 <link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css">
 
 <script src="<%=path%>/js/mobile_f4b5a0a094.js" ></script><!--[if lt IE 9]>

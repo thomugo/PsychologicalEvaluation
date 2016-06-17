@@ -509,7 +509,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
-
+		<%-- <script src="<%=path%>/js/deleteUser.js"></script> --%>
 		<script src="<%=path%>/assets/js/date-time/bootstrap-datepicker.min.js"></script>
 		<script src="<%=path%>/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
 		<script src="<%=path%>/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
@@ -577,15 +577,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					loadComplete : function() {
 						var table = this;
 						setTimeout(function(){
-							styleCheckbox(table);
+							//styleCheckbox(table);
 							
-							updateActionIcons(table);
-							updatePagerIcons(table);
-							enableTooltips(table);
+							//updateActionIcons(table);
+							//updatePagerIcons(table);
+							//enableTooltips(table);
 						}, 0);
 					},
 			
-					editurl: $path_base+"/modifyUser.action",//nothing is saved
+					editurl: $path_base+"/deleteUser.action",//nothing is saved
 					caption: "用户信息",
 					autowidth: true
 			

@@ -12,10 +12,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>
-        var pageName = 'mobile/account/login';
-        var sendPwdUrl = 'http://m.xinli001.com/ajax/send-dynamic-pwd';
-    </script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport"
@@ -108,18 +104,6 @@
 
 	</div>
 
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd64469e9d7bdbf03af6f074dffe7f9b5' type='text/javascript'%3E%3C/script%3E"));
-
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','<%=path%>/js/analytics.js', 'ga');
-
-	ga('create', 'UA-74218902-7', 'auto');
-	ga('send', 'pageview');
-</script>
 </div>
 </body>
 

@@ -136,7 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </a>
     </li>    
 	<li>
-        <a href="#" >
+        <a href="<%=path%>/userList.action" >
             <div class="img">
                 <i class="icon icon-fm"></i>
             </div>
@@ -267,114 +267,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <a href="<%=path %>/questionaireList.action">更多测试</a>
                 </div>
                             </div>
-            <div class="hd-list" style="display: none;">
-                <div class="list-head">
-                    参加活动<small> · 广州</small>
-                </div>
-                                <div class="list-body">
-                    <ul>
-                                                <li>
-                            <div class="img">
-                                <a href="#"><img src="<%=path %>/image/870071.jpg"></a>
-                            </div>
-                            <h2><a href="#">行为治疗的个案概念化</a></h2>
-                            <div class="attr">
-                                <i>时间</i><span class="time">2016年05月28日</span>
-                            </div>
-                        </li>
-                                                <li>
-                            <div class="img">
-                                <a href="#"><img src="<%=path %>/image/118311.jpg"></a>
-                            </div>
-                            <h2><a href="#">自杀的心理动力学意义及应对</a></h2>
-                            <div class="attr">
-                                <i>时间</i><span class="time">2016年06月11日</span>
-                            </div>
-                        </li>
-                                                <li>
-                            <div class="img">
-                                <a href="#"><img src="<%=path %>/image/160458/453277.jpg"></a>
-                            </div>
-                            <h2><a href="#">（网络版）NLP销售冠军训练营</a></h2>
-                            <div class="attr">
-                                <i>时间</i><span class="time">2016年05月01日</span>
-                            </div>
-                        </li>
-                                            </ul>
-                </div>
-                <div class="list-foot list-foot1">
-                    <a href="#">更多活动</a>
-                </div>
-                            </div>
 
-            <div class="hd-foot">
-    <p>
-        <a href="<%=path %>/user/feedback.jsp">反馈留言</a>
-    </p>
-    <p>
-        我们的小组<span>心理测评系统</span>
-    </p>
+    		<div class="hd-foot">
+    			<p>
+        			<a href="<%=path %>/user/feedback.jsp">反馈留言</a>
+    			</p>
+    			<p>
+       				 我们的小组<span>心理测评系统</span>
+    			</p>
 
-</div>
-
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd64469e9d7bdbf03af6f074dffe7f9b5' type='text/javascript'%3E%3C/script%3E"));
-
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-74218902-7', 'auto');
-ga('send', 'pageview');
-</script>
+			</div>
         </div>
     </div>
-    
-    <script type="text/javascript">
-        // 导航下面的滚动信息
-        $(".sy-bigNav .broadcast .body").glide({
-            mode: 'vertical',
-            animationTime: 500,
-            arrows: !1,
-            nav: 0
-        });
-        //首页倾诉遮罩
-     /*   function indexMask() {
-            var $mask = $('<div></div>').addClass('mask').show().appendTo($('body'));
-            var $qs = $('.sy-bigNav .up').addClass('maskHighLight');
-            var $qsMask = $('<div class="qs-mask"></div>').html('<h1>电话倾诉、实时低价</h1>' +
-            '<p>向咨询师说出你的烦恼</p>').appendTo($('body'));
-            var qsPos = $qs.offset();
-
-            $qsMask.css({
-                'top': qsPos.top - $('.qs-mask').height(),
-                'left': qsPos.left + $qs.width() / 2 - 175
-            });
-            $mask.on('click', function() {
-                $qsMask.fadeOut(500);
-                $mask.fadeOut(500);
-                $qs.removeClass('maskHighLight');
-                setCookie('indexMask', 'true', 'd7');
-            })
-            $qsMask.on('click', function() {
-                $qsMask.fadeOut(500);
-                $mask.fadeOut(500);
-                $qs.removeClass('maskHighLight');
-                setCookie('indexMask', 'true', 'd7');
-            })
-        }*/
-
-        $(function(){
-            var  indexMaskCookie = getCookie('indexMask')=="true"?true:false;
-            if(!indexMaskCookie){
-                indexMask();
-            }
-        })
-
-    </script>
+   
 </body>
+
 
 </html>
 

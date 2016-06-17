@@ -17,8 +17,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<!-- basic styles -->
-		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
+
 
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="<%=path%>/assets/css/font-awesome-ie7.min.css" />
@@ -35,7 +35,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
-		
+		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />	
+		<link rel="stylesheet" href="<%=path%>/style/website_9efedb4906.css" />	
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="<%=path%>/assets/css/ace-ie.min.css" />
 		<![endif]-->
@@ -55,6 +56,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/html5shiv.js"></script>
 		<script src="<%=path%>/assets/js/respond.min.js"></script>
 		<![endif]-->
+<style type="text/css">
+#zhuanjialist{
+	float:right;
+	margin-top:-250px;
+	margin-right:50px;
+}
+</style>
 	</head>
 
 	<body>
@@ -345,7 +353,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<ul class="submenu">
 								<li>
-									<a href="<%=path%>/questionaire.action">
+									<a href="<%=path%>/questionaireList.action">
 										<i class="icon-double-angle-right"></i>
 										问卷
 									</a>
@@ -470,7 +478,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<div class="row">
 
-									<div class="col-sm-6">
+									<div class="col-sm-6" style="margin-left:60px">
 										<div class="widget-box ">
 											<div class="widget-header">
 												<h4 class="lighter smaller">
@@ -549,12 +557,118 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 														</div>
 													</form>
 													
+													
 												</div><!-- /widget-main -->
 											</div><!-- /widget-body -->
 										</div><!-- /widget-box -->
 									</div><!-- /span -->
 								</div><!-- /row -->
+			<div class="aside">			
+		        <div class="hmod mgb20" id="zhuanjialist">
+		            <div class="head" >
+		                <ul class="nav">
+		                    <li class="selected"><span style="text-decoration:underline;margin-left:85px;">心理专家</span></li>
+		                </ul>
+		            </div>
+		            <div class="body">
+		                    <ul class="hyzj">
+		                        <li>
+		                            <div class="img">
+		                                <nofollow>
+		                                    <a target="_blank" href="http://www.xinli001.com/user/1000056093">
+		                                        <img src="http://image.xinli001.com/20150702/160448/339108.JPG!80" />
+		                                    </a>
+		                                </nofollow>
+		                            </div>
+		                            <div class="text">
+		                                <h2>
+		                                    <nofollow>
+		                                        <a target="_blank" href="http://www.xinli001.com/user/1000056093">蒋琪   </a>
+		                                    </nofollow>
+		                                </h2>
+		                                <h4>心理咨询师 </h4>
+		                                <h5>济南市</h5>
+		                            </div>
+		                        </li>
+		                                                <li>
+		                            <div class="img">
+		                                <nofollow>
+		                                    <a target="_blank" href="http://www.xinli001.com/user/70242723">
+		                                        <img src="http://ossimg.xinli001.com/20160413/7efd92aabd91d204abfb134a2bba0e74.png!80" />
+		                                    </a>
+		                                </nofollow>
+		                            </div>
+		                            <div class="text">
+		                                <h2>
+		                                    <nofollow>
+		                                        <a target="_blank" href="http://www.xinli001.com/user/70242723">彭君 </a>
+		                                    </nofollow>
+		                                </h2>
+		                                <h4>暂无头衔</h4>
+		                                <h5>南宁市</h5>
+		                            </div>
+		                        </li>
+		                                                <li>
+		                            <div class="img">
+		                                <nofollow>
+		                                    <a target="_blank" href="http://www.xinli001.com/user/3510061">
+		                                        <img src="http://image.xinli001.com/20150115/121240/934382.JPG!80" />
+		                                    </a>
+		                                </nofollow>
+		                            </div>
+		                            <div class="text">
+		                                <h2>
+		                                    <nofollow>
+		                                        <a target="_blank" href="http://www.xinli001.com/user/3510061">杨浩波 </a>
+		                                    </nofollow>
+		                                </h2>
+		                                <h4>国家二级心咨师 精神分析师 中美班客体组</h4>
+		                                <h5>长沙市</h5>
+		                            </div>
+		                        </li>
+		                                                <li>
+		                            <div class="img">
+		                                <nofollow>
+		                                    <a target="_blank" href="http://www.xinli001.com/user/271367621">
+		                                        <img src="http://ossimg.xinli001.com/20160328/6568faa2ea1224cdfebccda0d5ea75ac.jpg!80" />
+		                                    </a>
+		                                </nofollow>
+		                            </div>
+		                            <div class="text">
+		                                <h2>
+		                                    <nofollow>
+		                                        <a target="_blank" href="http://www.xinli001.com/user/271367621">张欣</a>
+		                                    </nofollow>
+		                                </h2>
+		                                <h4>国家二级心理师，国家二级婚姻家庭师</h4>
+		                                <h5>哈尔滨市</h5>
+		                            </div>
+		                        </li>
+		                        <li>
+		                            <div class="img">
+		                                <nofollow>
+		                                    <a target="_blank" href="http://www.xinli001.com/user/1000685733">
+		                                        <img src="http://image.xinli001.com/20151117/111150/198882.png!80" />
+		                                    </a>
+		                                </nofollow>
+		                            </div>
+		                            <div class="text">
+		                                <h2>
+		                                    <nofollow>
+		                                        <a target="_blank" href="http://www.xinli001.com/user/1000685733"></a>
+		                                    </nofollow>
+		                                </h2>
+		                                <h4>心理咨询师、医学硕士、职业规划师、教师</h4>
+		                                <h5>沈阳市</h5>
+		                            </div>
+		                        </li>
+		                     </ul>
+		            </div>
+		            <!--//body-->
 
+		        </div>
+    
+        
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
 						</div><!-- /.row -->

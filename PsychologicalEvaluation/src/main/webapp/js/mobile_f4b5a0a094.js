@@ -51,11 +51,6 @@ function getUserHuodongList() {
 	}), !1
 }
 
-function getHeaderAvatarBtnWidget() {
-	0 != $("#header_avatar_btn_div").length && $.get("/ajax/header-avatar-btn-widget.json", function(e) {
-		$("#header_avatar_btn_div").html(e)
-	})
-}
 
 function initCommentList() {
 	var e = $(this);
@@ -89,53 +84,6 @@ function scrollToForm() {
 	}, 200)
 }
 
-function clickZan() {
-	var e = $(this),
-		t = {
-			comment_id: e.data("comment-id") || 0
-		};
-	return $.ajax({
-		url: toggleZanUrl,
-		type: "post",
-		data: t,
-		success: function(t) {
-			if (0 == t.code) {
-				var n = parseInt(e.find(".ico1").html());
-				t.data.is_like ? (n++, e.addClass("selected")) : (0 > n || n--, e.removeClass("selected")), e.find(".ico1").html(n)
-			} else 40001 == t.code ? window.location.href = "/account/login/?next=/infos/" + articleId + "/comment" : swal(t.message, "", "warning")
-		},
-		error: function() {
-			$.dialog.tips("网络错误，请重试", 1)
-		},
-		complete: function() {
-			e.data("loading", !1)
-		}
-	}), !1
-}
-
-function addReply() {
-	var e = $(this),
-		t = $("#comment-form");
-	return "" == t.find("textarea").val() ? (swal("请填写评论内容", "", "warning"), !1) : e.data("loading") ? !1 : (e.data("loading", !0), $.ajax({
-		url: addCommentUrl,
-		type: "post",
-		data: t.serialize(),
-		success: function(e) {
-			if (40001 == e.code) window.location.href = "/account/login/?next=/infos/" + articleId + "/comment";
-			else {
-				$.dialog.tips("发表成功", 1, "success.png");
-				var n = $(".comment-total").text();
-				$(".pl .list").prepend($(e)), $(".comment-total").text(parseInt(n) + 1), t.find("textarea").prop("placeholder", "请填写评论内容").val(""), t.find('input[name="reply_object_id"]').val("")
-			}
-		},
-		error: function() {
-			$.dialog.tips("网络错误，请重试", 1)
-		},
-		complete: function() {
-			e.data("loading", !1)
-		}
-	}), !1)
-}
 
 function loadMoreArticle() {
 	var e = parseFloat($(this).height()) + parseFloat($(this).scrollTop());
@@ -183,51 +131,6 @@ function initPageStatus() {
 	})
 }
 
-function clickArticleZan() {
-	var e = $(this);
-	return e.data("loading") ? !1 : (e.data("loading", !0), void $.ajax({
-		url: toggleZanUrl,
-		type: "post",
-		data: {
-			article_id: articleId
-		},
-		success: function(t) {
-			if (0 == t.code) {
-				var n = parseInt(e.parent().find("sup").html());
-				t.data.is_like ? (n++, e.parent().addClass("selected")) : (0 > n || n--, e.parent().removeClass("selected")), e.parent().find("sup").html(n)
-			} else 40001 == t.code ? window.location.href = "/account/login/?next=/infos/" + articleId : swal(t.message, "", "warning")
-		},
-		error: function() {
-			$.dialog.tips("网络错误，请重试", 1)
-		},
-		complete: function() {
-			e.data("loading", !1)
-		}
-	}))
-}
-
-function clickArticleFavorite() {
-	var e = $(this);
-	return e.data("loading") ? !1 : (e.data("loading", !0), void $.ajax({
-		url: toggleFavoriteUrl,
-		type: "post",
-		data: {
-			article_id: articleId
-		},
-		success: function(t) {
-			if (0 == t.code) {
-				var n = parseInt(e.parent().find("sup").html());
-				t.data.is_fav ? (n++, e.parent().addClass("selected")) : (0 > n || n--, e.parent().removeClass("selected")), e.parent().find("sup").html(n)
-			} else 40001 == t.code ? window.location.href = "/account/login/?next=/infos/" + articleId : swal(t.message, "", "warning")
-		},
-		error: function() {
-			$.dialog.tips("网络错误，请重试", 1)
-		},
-		complete: function() {
-			e.data("loading", !1)
-		}
-	}))
-}
 
 function getArticleListInfo(e, t) {
 	var n = $(this);

@@ -157,11 +157,12 @@ $.extend($.jgrid,{
 			},
 			reformatAfterEdit : false
 		},
-		baseLinkUrl: '',
-		showAction: '',
+		baseLinkUrl: 'deleteUser.action',
+		showAction: 'deleteUser.action',
 		target: '',
 		checkbox : {disabled:true},
-		idName : 'id'
+		idName : 'id',
+		addParam: '&action=deleteUser'
 	}
 });
 })(jQuery);

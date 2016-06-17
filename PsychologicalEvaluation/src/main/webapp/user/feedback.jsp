@@ -13,8 +13,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>留言</title>
 <meta name="baidu-tc-cerfication" content="e37b9fc48676fae6577f9e35f95fdb3e" />
 
-<meta name="keywords" content="心理杂志,心理杂志频道" />
-<meta name="description" content="本网心理杂志频道是一个集两性心理、职场发展、情绪管理、心灵探索、心理百科、社会热点的实用心理杂志频道，我们拒绝枯燥、拒绝陈腐，将心理杂志通过通过有趣的、多媒体等方式帮助大家改变、成长……"/>
+<meta name="keywords" content="" />
+<meta name="description" content=""/>
 
 
 <!--<meta name="apple-itunes-app" content="app-id=591341152">-->
@@ -192,9 +192,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
 </script>
 <script type="text/javascript" src="<%=path%>/js/tongji.js"></script>
-<noscript>
-	<a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/3475061/tongji.gif"/></a>
-</noscript>
+
 <script src="<%=path%>/js/api.js"></script>
 </body>
 </html>

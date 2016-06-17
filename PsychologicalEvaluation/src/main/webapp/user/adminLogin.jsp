@@ -13,18 +13,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>心理测评 管理员登录</title>
+<title>管理员登录</title>
 <meta name="description" content="心理测评系统">
 <meta name="keywords" content="微信公众号，心理测评">
 <meta name="format-detection" content="telephone=no">
 <meta name="format-detection" content="address=no">
 	<link rel="stylesheet" type="text/css" href="<%=path%>/assets/css/bootstrap.min.css">
 
-	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/custom.css">
+	<link rel="stylesheet" type="text/css" href="<%=path%>/style/custom.css">
 
 
-<script src="<%=path%>/js/jquery-1.11.2.min.js"></script>
-<script src="<%=path%>/js/bootstrap.min.js"></script>	
+	
 </head>
   
 <body>
@@ -56,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="col-xs-12">
 		<div class="login-wrapper">
 			<div class="col-xs-12 col-sm-10 col-md-10">
-				<s:form class="form-horizontal" role="form" method="post" action="adminLogin"  id="admin-login-form"> 
+				<div class="form-horizontal" role="form" method="post" action="adminLogin"  id="admin-login-form"> 
 					<div class="form-group">
 						<div class="col-md-offset-2">
 							<h1>管理员登录</h1>
@@ -66,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="form-group">
                         <label for="login-username" class="col-md-4 control-label">管理员账号</label>
                         <div class="col-md-4">
-                        <s:textfield type="text" class="form-control" id="login-username" name="username" placeholder="管理员账号" ></s:textfield>
+                        <input type="text" class="form-control" id="login-username" name="username" placeholder="管理员账号" />
                         </div>
                         <div class="col-md-4">
                         
@@ -82,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="form-group">
                         <label for="login-password" class="col-md-4 control-label">密码</label>
                         <div class="col-md-4">
-                        <s:textfield type="password" class="form-control" id="login-password" name="password" placeholder="管理员密码"  ></s:textfield>
+                        <input type="password" class="form-control" id="login-password" name="password" placeholder="管理员密码"  />
                         </div>
                         <div class="col-md-4">
 	                    	<div class="alert alert-danger hidden" role="alert" id="alert-login-password">
@@ -96,20 +95,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="form-group">
 						<div class="col-md-offset-4 col-md-4 form-btn-group">
 							<button type="submit" name="submit" class="btn btn-primary pull-right button-stripe" id="admin-login-submit">
-								<s:submit class="glyphicon glyphicon-log-in" value="登录" border="none"></s:submit>
+								登录
 							</button>
 						</div>
 					</div>
-				</s:form>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 </div>
 </div>
-
-
-    <script src="<%=path%>/js/validation.js"></script>
-
+	<script src="<%=path%>/js/jquery.min.js"></script>
+	<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
 </body>
 </html>
