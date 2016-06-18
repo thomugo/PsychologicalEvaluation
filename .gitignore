@@ -8,3 +8,6 @@ PsychologicalEvaluation/.settings/*
 *.project
 PsychologicalEvaluation/.project
 PsychologicalEvaluation/.settings/org.eclipse.wst.validation.prefs
+PsychologicalEvaluation/.classpath
+PsychologicalEvaluation/.settings/org.eclipse.wst.validation.prefs
+PsychologicalEvaluation/.settings/org.eclipse.wst.common.project.facet.core.xml
