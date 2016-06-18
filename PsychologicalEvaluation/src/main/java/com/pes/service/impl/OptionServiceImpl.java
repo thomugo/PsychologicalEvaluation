@@ -59,9 +59,9 @@ public class OptionServiceImpl implements OptionService {
 
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
-	public void delete(Integer id) {
+	public void delete(Option entity) {
 		// TODO Auto-generated method stub
-		optionDao.delete(id);
+		optionDao.delete(entity);
 	}
 
 	@Override

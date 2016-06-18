@@ -90,4 +90,11 @@ public class TestUserService extends BaseTestTemplate{
 		Integer id = userService.save(userInfo);
 		System.out.println(id);
 	}
+	
+	@Test
+	public void finduser(){
+		System.out.println(userService.findTotalApplicantRows());
+		//System.out.println(userService.findApplicantByPage(1, 2));
+		System.out.println(userService.findTotalExpertRows());
+	}
 }

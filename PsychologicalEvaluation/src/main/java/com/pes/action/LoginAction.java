@@ -1,28 +1,18 @@
 package com.pes.action;
 
-
-
-
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Namespace;
-import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
-import com.pes.entity.Admin;
 import com.pes.entity.BaseUser;
-import com.pes.entity.User;
-import com.pes.interceptor.Authority;
-import com.pes.service.AdminService;
 import com.pes.service.UserService;
 
 @Results( {
-        @Result(name = "success", location = "/user/userIndex.jsp", type="redirect"),
+        @Result(name = "success", location = "/index.jsp", type="redirect"),
         @Result(name = "error", location = "/false.jsp"),
-        @Result(name = "input", location = "/user/login.jsp"),
+        @Result(name = "input", location = "/login.jsp"),
         @Result(name = "prePage", location = "${prePage}", type="redirectAction")
     })
 public class LoginAction extends  BaseAction{

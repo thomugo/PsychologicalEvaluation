@@ -1,38 +1,18 @@
 package com.pes.action;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
 import org.apache.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.InterceptorRef;
-import org.apache.struts2.convention.annotation.InterceptorRefs;
-import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.convention.annotation.ResultPath;
-import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import sun.tools.tree.ThisExpression;
-
 import com.alibaba.fastjson.JSONObject;
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-import com.opensymphony.xwork2.validator.annotations.EmailValidator;
-import com.opensymphony.xwork2.validator.annotations.ExpressionValidator;
-import com.opensymphony.xwork2.validator.annotations.FieldExpressionValidator;
-import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
-import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
-import com.opensymphony.xwork2.validator.annotations.Validations;
-import com.opensymphony.xwork2.validator.annotations.ValidatorType;
-import com.pes.entity.Answer;
 import com.pes.entity.AnswerPojo;
 import com.pes.entity.User;
-import com.pes.interceptor.Authority;
+import com.pes.entity.UserPojo;
 import com.pes.service.AnswerService;
 import com.pes.service.UserService;
 import com.pes.util.AjaxUtil;
@@ -47,10 +27,12 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	@Autowired
 	private AnswerService answerService;
 	private int id;
-	private int pageSize = 5 ;
+	private int pageSize = 4 ;
 	private int totalPages  = 0;
 	private int totalAnswerPages = 0;
 	private int pageNum = 0;
+	private int totalExpertPageNo = 0;
+	private int totalApplicantPageNo = 0;
 	private String jsonString;
 	private User user = null;
 	private List<User> users = new ArrayList<User>();
@@ -59,11 +41,17 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		return pageNum;
 	}
 	
-	
+	public int getTotalExpertPageNo() {
+		return totalExpertPageNo;
+	}
+
+	public int getTotalApplicantPageNo() {
+		return totalApplicantPageNo;
+	}
+
 	public int getTotalAnswerPages() {
 		return totalAnswerPages;
 	}
-
 
 	public void setPageNum(int pageNum) {
 		this.pageNum = pageNum;
@@ -89,7 +77,6 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		return answers;
 	}
 	
-	
 	public User getUser() {
 		return user;
 	}
@@ -112,7 +99,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	public String detail() {
 		if(jsonString == null){
 			user = userService.findById(id);
-			answers = answerService.findAnswersByPage(id, 0, pageSize);
+			answers = answerService.findAnswersByPage(id, 1, pageSize);
 			totalAnswerPages = answerService.getMaxAnswerPageNo(id, pageSize);
 			System.out.println(totalAnswerPages);
 		}else{
@@ -149,8 +136,8 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		//System.out.println(userService.findById(18));
 		System.out.println(users);
 		if(jsonString != null){
-			AjaxUtil.ajaxJSONResponse(users);
 			jsonString = null;
+			AjaxUtil.ajaxJSONResponse(users);
 			return NONE;
 		}
 		return "users";
@@ -208,5 +195,29 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		return user;
 	}
 	
+	@Action(value="expertUserList")
+	public String expertUser(){
+		if(jsonString != null){
+			JSONObject json = JSONObject.parseObject(jsonString);
+			pageNum = json.getInteger("pageNum");
+			pageSize = json.getInteger("pageSize");
+			ArrayList<UserPojo> experts = (ArrayList<UserPojo>) userService.findExpertByPage(pageNum, pageSize);
+			AjaxUtil.ajaxJSONResponse(experts);
+			jsonString = null;
+		}
+		return NONE;
+	}
+	@Action(value="applicantUserList")
+	public String applicantUser(){
+		if(jsonString != null){
+			JSONObject json = JSONObject.parseObject(jsonString);
+			pageNum = json.getInteger("pageNum");
+			pageSize = json.getInteger("pageSize");
+			ArrayList<User> applicants = (ArrayList<User>) userService.findApplicantByPage(pageNum, pageSize);
+			AjaxUtil.ajaxJSONResponse(applicants);
+			jsonString = null;
+		}
+		return NONE;
+	}
 	
 }

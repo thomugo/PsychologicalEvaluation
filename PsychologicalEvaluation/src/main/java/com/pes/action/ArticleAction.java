@@ -4,28 +4,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-
-import javax.swing.border.TitledBorder;
-
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.alibaba.fastjson.JSONObject;
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ModelDriven;
 import com.pes.entity.Article;
 import com.pes.entity.ArticlePojo;
-import com.pes.entity.Message;
+import com.pes.entity.BaseUser;
 import com.pes.entity.User;
 import com.pes.service.ArticleService;
-import com.pes.service.MessageService;
-import com.pes.service.UserService;
 import com.pes.util.AjaxUtil;
-import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
-import com.sun.tools.javac.resources.compiler;
 
 @ParentPackage("myBasicPackage")
 public class ArticleAction extends BaseAction{
@@ -109,12 +99,17 @@ public class ArticleAction extends BaseAction{
 		articles = articleService.findArticlesByPage(null, null, userName, articleClassName, start, end, pageNo, pageSize);
 		System.out.println("find "+articles.size()+"articles");
 		System.out.println(articles);
-		if(jsonString != null)
+		if(jsonString != null){
+			jsonString = null;
 			AjaxUtil.ajaxJSONResponse(articles);
-		User user = (User)httpSession.getAttribute("loginUser");
+			return NONE;
+		}
+		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
 		if(user.getPrivilege() == 1){
+			System.out.println("admin");
 			return "admin";
 		}else{
+			System.out.println("normal user");
 			return "normal";
 		}
 	}
@@ -145,8 +140,8 @@ public class ArticleAction extends BaseAction{
 			System.out.println("edit article failed");
 			editState = "edit article success";
 		}
+		jsonString = null;
 		AjaxUtil.ajaxJSONResponse(editState);
-		
 		return NONE;
 	}
 	
@@ -158,6 +153,7 @@ public class ArticleAction extends BaseAction{
 			Article article = articleService.findById(id);
 			articleService.remove(article);
 			System.out.println("delete Article "+id);
+			jsonString = null;
 		}
 		return NONE;
 	}

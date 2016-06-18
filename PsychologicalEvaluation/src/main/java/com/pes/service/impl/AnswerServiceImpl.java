@@ -65,9 +65,9 @@ public class AnswerServiceImpl implements AnswerService{
 
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
-	public void delete(Integer id) {
+	public void delete(Answer entity) {
 		// TODO Auto-generated method stub
-		answerDao.delete(id);
+		answerDao.delete(entity);
 	}
 
 	@Override

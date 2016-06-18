@@ -58,9 +58,9 @@ public class QuestionaireServiceImpl implements QuestionaireService {
 
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
-	public void delete(Integer id) {
+	public void delete(Questionaire entity) {
 		// TODO Auto-generated method stub
-		questionDao.delete(id);
+		questionDao.delete(entity);
 	}
 
 	@Override

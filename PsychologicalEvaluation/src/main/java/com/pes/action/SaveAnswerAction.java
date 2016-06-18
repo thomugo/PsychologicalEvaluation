@@ -5,12 +5,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.pes.entity.Answer;
@@ -18,7 +16,6 @@ import com.pes.entity.ChoiceQuestion;
 import com.pes.entity.Option;
 import com.pes.entity.OptionAnswer;
 import com.pes.entity.Questionaire;
-import com.pes.entity.Ruler;
 import com.pes.entity.User;
 import com.pes.service.AnswerService;
 import com.pes.service.ChoiceQuestionService;
@@ -57,7 +54,6 @@ public class SaveAnswerAction extends BaseAction{
 	private Map<ChoiceQuestion, List<Option>> choiceQuestionAnswers = new HashMap<ChoiceQuestion, List<Option>>();
 	//private Map<TrueFalseQuestion, Integer> trueFalseQuestionAnswers = new HashMap<TrueFalseQuestion, Integer>();
 	
-	
 	public String getJsonString() {
 		return jsonString;
 	}
@@ -72,23 +68,18 @@ public class SaveAnswerAction extends BaseAction{
 		return questionaire;
 	}
 
-
 	public Map<ChoiceQuestion, List<Option>> getChoiceQuestionAnswers() {
 		return choiceQuestionAnswers;
 	}
 
-	
 	public int getAnswerId() {
 		return answerId;
 	}
-
 
 	public void setAnswerId(int answerId) {
 		this.answerId = answerId;
 	}
 	
-	
-
 	public Answer getAnswer() {
 		return answer;
 	}
@@ -188,5 +179,13 @@ public class SaveAnswerAction extends BaseAction{
 		//AjaxUtil.ajaxJSONResponse(answer.getId());
 		return "success";
 		
+	}
+	
+	@Action(value="deleteAnswer")
+	public String delete(){
+		System.out.println("delete answer: " + answerId);
+		answerService.delete(answerService.load(answerId));
+		AjaxUtil.ajaxJSONResponse("delete success");
+		return NONE;
 	}
 }

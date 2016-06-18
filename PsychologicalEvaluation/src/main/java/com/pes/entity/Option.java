@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
+//@Table(name="option", catalog="app_psychologic")
 @Table(name="option", catalog="pes")
 public class Option implements Serializable{
 	private Integer id;

@@ -58,9 +58,9 @@ public class ArticleClassServiceImpl implements ArticleClassService{
 
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
-	public void delete(Integer id) {
+	public void delete(ArticleClass entity) {
 		// TODO Auto-generated method stub
-		articleClassDao.delete(id);
+		articleClassDao.delete(entity);
 	}
 
 	@Override

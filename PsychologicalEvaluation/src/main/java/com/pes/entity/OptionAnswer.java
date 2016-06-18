@@ -16,6 +16,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
+//@Table(name="option_answer", catalog="app_psychologic")
 @Table(name="option_answer", catalog="pes")
 public class OptionAnswer implements Serializable{
 	private Integer id;

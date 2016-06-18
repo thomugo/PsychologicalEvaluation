@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
+//@Table(name="user_info", catalog="app_psychologic")
 @Table(name="user_info", catalog="pes")
 public class User extends BaseUser implements Serializable{
 	private int gender;

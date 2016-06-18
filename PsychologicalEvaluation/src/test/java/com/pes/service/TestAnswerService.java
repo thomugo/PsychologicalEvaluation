@@ -13,6 +13,7 @@ import org.springframework.test.context.transaction.AfterTransaction;
 import org.springframework.test.context.transaction.BeforeTransaction;
 
 import com.pes.base.test.BaseTestTemplate;
+import com.pes.dao.AnswerDao;
 import com.pes.entity.Answer;
 import com.pes.entity.ChoiceQuestion;
 import com.pes.entity.OptionAnswer;
@@ -102,4 +103,9 @@ public class TestAnswerService extends BaseTestTemplate{
     	//System.out.println(answerService.findAnswersByPage(20, 0, 5));
     }
     
+    @Test
+    public void delete(){
+    	//Answer answer = answerService.get(1);
+    	//answerService.);
+    }
 }

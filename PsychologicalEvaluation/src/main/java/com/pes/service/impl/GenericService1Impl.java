@@ -48,9 +48,9 @@ GenericService1<T, ID> {
 	}
 
 	@Override
-	public void delete(ID id) {
+	public void delete(T entity) {
 		// TODO Auto-generated method stub
-		genericDao.delete(id);
+		genericDao.delete(entity);
 	}
 
 	@Override

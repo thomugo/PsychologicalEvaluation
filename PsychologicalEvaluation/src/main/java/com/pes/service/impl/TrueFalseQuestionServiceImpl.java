@@ -60,9 +60,9 @@ public class TrueFalseQuestionServiceImpl implements TrueFalseQuestionService {
 
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
-	public void delete(Integer id) {
+	public void delete(TrueFalseQuestion entity) {
 		// TODO Auto-generated method stub
-		trueFalseQuestionDao.delete(id);
+		trueFalseQuestionDao.delete(entity);
 	}
 
 	@Override

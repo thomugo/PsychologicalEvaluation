@@ -9,10 +9,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.pes.dao.UserDao;
-import com.pes.entity.Article;
 import com.pes.entity.User;
 import com.pes.entity.UserPojo;
 
@@ -70,7 +70,7 @@ public class UserDaoImpl  extends GenericDao2Impl<User, Integer> implements User
         // 计算实际每页的条数,如果请求的每页数据条数大于总条数, 则等于总条数   
         int actualPageSize = (pageSize > totalRows) ? totalRows : pageSize;   
         int startRow = (actualPageNo > 0) ? (actualPageNo - 1) * actualPageSize : 0;  
-        Criteria criteria = this.getCurrentSession().createCriteria(Article.class);
+        Criteria criteria = this.getCurrentSession().createCriteria(User.class);
         if(!asc)
         	criteria.addOrder(Order.desc("dateTime"));
         criteria.setFirstResult(startRow).setMaxResults(actualPageSize);
@@ -96,5 +96,100 @@ public class UserDaoImpl  extends GenericDao2Impl<User, Integer> implements User
           users.add(userPojo);
        }
 		return users;
+	}
+
+	@Override
+	public List<UserPojo> findExpertByPage(int pageNo, int pageSize) {
+		final int maxPageNo = findMaxExpertPageNo(pageSize);   
+        final int totalRows = findTotalExpertRows();   
+        // 实际页码   
+        int actualPageNo = (pageNo > maxPageNo) ? maxPageNo : pageNo;  
+        // 计算实际每页的条数,如果请求的每页数据条数大于总条数, 则等于总条数   
+        int actualPageSize = (pageSize > totalRows) ? totalRows : pageSize;   
+        int startRow = (actualPageNo > 0) ? (actualPageNo - 1) * actualPageSize : 0;  
+        Criteria criteria = this.getCurrentSession().createCriteria(User.class);
+        criteria.add(Restrictions.eq("privilege", 3));
+        criteria.setFirstResult(startRow).setMaxResults(actualPageSize);
+	    criteria.setProjection( Projections.projectionList()
+	    		.add( Projections.property("id"), "id" )
+	    		.add( Projections.property("age"), "age")
+	    		.add( Projections.property("phone"), "phone")
+	    		.add( Projections.property("gender"), "gender")
+	    		.add( Projections.property("vocation"), "vocation")
+	    		.add( Projections.property("email"), "email")
+	    		.add( Projections.property("username"), "username"));
+	    ScrollableResults srs = criteria.scroll();
+	    ArrayList<UserPojo> users = new ArrayList<UserPojo>();
+        while(srs.next()){
+          UserPojo userPojo = new UserPojo();
+          userPojo.setId(srs.getInteger(0));
+          userPojo.setAge(srs.getInteger(1));
+          userPojo.setPhone(srs.getString(2));
+          userPojo.setGender(srs.getInteger(3));
+          userPojo.setVocation(srs.getString(4));
+          userPojo.setEmail(srs.getString(5));
+          userPojo.setUsername(srs.getString(6));
+          users.add(userPojo);
+       }
+		return users;
+	}
+
+	@Override
+	public int findTotalExpertRows() {
+		// TODO Auto-generated method stub
+		 String actualHql = "select count(*) from User as u where u.privilege = 3 ";   
+        return ( (Long) this.getCurrentSession().createQuery(actualHql).uniqueResult()).intValue();
+	}
+
+	@Override
+	public int findMaxExpertPageNo(int pageSize) {
+		// TODO Auto-generated method stub
+		int maxPageNo;   
+        // 总记录数   
+        int totalRows = findTotalExpertRows();   
+        if (totalRows > 0) {   
+             maxPageNo = (totalRows % pageSize == 0) ? (totalRows / pageSize)   
+                     : (totalRows / pageSize + 1);   
+         } else {   
+             maxPageNo = 0;   
+         }   
+		return maxPageNo;
+	}
+
+	@Override
+	public List<User> findApplicantByPage(int pageNo, int pageSize) {
+		final int maxPageNo = findMaxApplicantPageNo(pageSize);   
+        final int totalRows = findTotalApplicantRows();   
+        // 实际页码   
+        int actualPageNo = (pageNo > maxPageNo) ? maxPageNo : pageNo;  
+        // 计算实际每页的条数,如果请求的每页数据条数大于总条数, 则等于总条数   
+        int actualPageSize = (pageSize > totalRows) ? totalRows : pageSize;   
+        // 计算请求页码的第一条记录的索引值,如果 
+        Query query = this.getCurrentSession().createQuery("from User as u where u.privilege = 4 ");
+        int startRow = (actualPageNo > 0) ? (actualPageNo - 1) * actualPageSize : 0;  
+        query.setFirstResult(startRow);
+        query.setMaxResults(actualPageSize);
+        return (List<User>) query.list();   
+	}
+
+	@Override
+	public int findTotalApplicantRows() {
+		// TODO Auto-generated method stub
+		String actualHql = "select count(*) from User as u where u.privilege = 4 ";   
+        return ( (Long) this.getCurrentSession().createQuery(actualHql).uniqueResult()).intValue();
+	}
+
+	@Override
+	public int findMaxApplicantPageNo(int pageSize) {
+		// TODO Auto-generated method stub
+		int maxPageNo;   
+        int totalRows = findTotalApplicantRows();   
+        if (totalRows > 0) {   
+             maxPageNo = (totalRows % pageSize == 0) ? (totalRows / pageSize)   
+                     : (totalRows / pageSize + 1);   
+         } else {   
+             maxPageNo = 0;   
+         }   
+		return maxPageNo;
 	}
 }

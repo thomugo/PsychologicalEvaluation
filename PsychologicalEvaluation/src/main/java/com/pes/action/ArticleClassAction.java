@@ -55,7 +55,7 @@ public class ArticleClassAction extends BaseAction {
 		for(int i=0; i< articleClassListJSON.size(); i++){
 			int id = articleClassListJSON.getInteger(i);
 			System.out.println("delete articleClassID=" + id );
-			articleService.delete(id);
+			articleService.delete(articleService.load(id));
 		}
 		return NONE;
 	}

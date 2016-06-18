@@ -8,8 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
+//@Table(name="article_class", catalog="app_psychologic")
 @Table(name="article_class", catalog="pes")
 public class ArticleClass implements Serializable{
 	private Integer id;

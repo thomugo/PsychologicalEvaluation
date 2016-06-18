@@ -16,7 +16,7 @@ public interface GenericDao1 <T, PK extends Serializable>  {
 	
 	void saveOrUpdate(T entity);
 	
-	void delete(PK id);
+	void delete(T entity);
 	
 	void flush();
 	
