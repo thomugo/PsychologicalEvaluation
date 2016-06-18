@@ -20,9 +20,9 @@ import com.pes.service.AdminService;
 import com.pes.service.UserService;
 
 @Results( {
-        @Result(name = "success", location = "/user/userIndex.jsp", type="redirect"),
+        @Result(name = "success", location = "/index.jsp", type="redirect"),
         @Result(name = "error", location = "/false.jsp"),
-        @Result(name = "input", location = "/user/login.jsp"),
+        @Result(name = "input", location = "/login.jsp"),
         @Result(name = "prePage", location = "${prePage}", type="redirectAction")
     })
 public class LoginAction extends  BaseAction{

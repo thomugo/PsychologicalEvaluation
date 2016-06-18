@@ -72,9 +72,9 @@ public class GenericDao1Impl <T, ID extends Serializable> implements GenericDao1
 	}
 
 	@Override
-	public void delete(ID id) {
+	public void delete(T entity) {
 		// TODO Auto-generated method stub
-		this.getCurrentSession().delete(id);
+		this.getCurrentSession().delete(entity);
 	}
 
 	@Override

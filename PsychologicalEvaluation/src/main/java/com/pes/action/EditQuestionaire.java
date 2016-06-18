@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.pes.entity.BaseUser;
 import com.pes.entity.ChoiceQuestion;
 import com.pes.entity.Option;
 import com.pes.entity.Questionaire;
@@ -82,6 +83,7 @@ public class EditQuestionaire extends BaseAction {
 			JSONObject question = choiceList.getJSONObject(i);
 			String question_content = question.getString("question");
 			int question_vector = question.getInteger("vector");
+			//int question_vector = 0;
 			//System.out.println("ChoiceQuestion=" + question_content);
 			ChoiceQuestion choiceQuestion = new ChoiceQuestion(question_content);
 			choiceQuestion.setVector(question_vector);
@@ -139,9 +141,11 @@ public class EditQuestionaire extends BaseAction {
 		questionaires = (ArrayList<Questionaire>)questionaireService.findQuestionairesByPage(title, note, pageNo, pageSize, false);
 		
 		if(jsonString != null){
+			jsonString = null;
 			AjaxUtil.ajaxJSONResponse(questionaires);
+			return NONE;
 		}
-		User user = (User)httpSession.getAttribute("loginUser");
+		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
 		if(user.getPrivilege() == 1){
 			return "admin";
 		}

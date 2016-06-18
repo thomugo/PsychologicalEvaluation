@@ -16,6 +16,7 @@ import javax.persistence.Table;
  * @flag 消息状态：0/未读; 1/已读; 4/无效消息; 5/广播消息
  */
 @Entity
+//@Table(name="message", catalog="app_psychologic")
 @Table(name="message", catalog="pes")
 public class Message implements Serializable{
 	private int id;

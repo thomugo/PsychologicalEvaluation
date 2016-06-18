@@ -55,9 +55,9 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
-	public void delete(Integer id) {
+	public void delete(Category entity) {
 		// TODO Auto-generated method stub
-		categoryDao.delete(id);
+		categoryDao.delete(entity);
 	}
 
 	@Override

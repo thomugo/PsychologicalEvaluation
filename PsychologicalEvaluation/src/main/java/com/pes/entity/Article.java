@@ -22,6 +22,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.BatchSize;
 
 @Entity
+//@Table(name="article", catalog="app_psychologic")
 @Table(name="article", catalog="pes")
 public class Article implements Serializable{
 	private Integer id;

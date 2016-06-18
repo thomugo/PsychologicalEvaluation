@@ -18,6 +18,7 @@ import javax.persistence.Table;
 
 
 @Entity
+//@Table(name="question_cate" , catalog="app_psychologic")
 @Table(name="question_cate" , catalog="pes")
 public class Category implements Serializable{
 

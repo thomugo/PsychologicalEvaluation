@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
+//@Table(name="true_false_answer", catalog="app_psychologic")
 @Table(name="true_false_answer", catalog="pes")
 public class TrueFalseAnswer implements Serializable{
 	private Integer id;

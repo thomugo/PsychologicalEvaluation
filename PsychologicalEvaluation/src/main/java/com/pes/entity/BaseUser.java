@@ -13,7 +13,7 @@ public class BaseUser {
 	protected String username;
 	protected String password;
 	protected String email;
-	protected int privilege;
+	protected int privilege;    //1:超级用户 /3:专家用户 / 4:专家申请者用户 /5：普通用户
 	protected int broadcast; //用户已看广播数；
 	protected String icon;
 	

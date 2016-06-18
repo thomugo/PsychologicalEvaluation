@@ -19,9 +19,8 @@ import com.pes.service.AdminService;
 import com.pes.service.UserService;
 
 @Results( {
-        @Result(name = "success", location = "/index.jsp", type="redirect"),
-        @Result(name = "error", location = "/false.jsp"),
-        @Result(name = "input", location = "/user/adminLogin.jsp"),
+        @Result(name = "success", location = "/WEB-INF/content/user/index.jsp"),
+        @Result(name = "input", location = "/adminLogin.jsp"),
         @Result(name = "prePage", location = "${prePage}", type="redirectAction")
     })
 //使用EL表达式时要注意确保prePage在值栈中（即prePage的get方法）

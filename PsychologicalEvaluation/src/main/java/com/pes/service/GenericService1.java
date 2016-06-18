@@ -17,7 +17,7 @@ public interface GenericService1 <T, ID extends Serializable>{
 
 	void saveOrUpdate(T entity);
 
-	void delete(ID id);
+	void delete(T entity);
 
 	void flush();
 }

@@ -24,6 +24,7 @@ import org.hibernate.action.internal.OrphanRemovalAction;
 import org.hibernate.annotations.BatchSize;
 
 @Entity
+//@Table(name="choice_question" , catalog="app_psychologic")
 @Table(name="choice_question" , catalog="pes")
 public class ChoiceQuestion implements Serializable{
 	private Integer id;

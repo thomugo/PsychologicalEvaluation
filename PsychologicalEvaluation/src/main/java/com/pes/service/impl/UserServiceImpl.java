@@ -115,5 +115,41 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return userInfoDao.findBaseUserByPage(pageNo, pageSize, order);
 	}
+
+	@Override
+	public List<UserPojo> findExpertByPage(int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		return userInfoDao.findExpertByPage(pageNo, pageSize);
+	}
+
+	@Override
+	public int findTotalExpertRows() {
+		// TODO Auto-generated method stub
+		return userInfoDao.findTotalExpertRows();
+	}
+
+	@Override
+	public int findMaxExpertPageNo(int pageSize) {
+		// TODO Auto-generated method stub
+		return userInfoDao.findMaxExpertPageNo(pageSize);
+	}
+
+	@Override
+	public List<User> findApplicantByPage(int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		return userInfoDao.findApplicantByPage(pageNo, pageSize);
+	}
+
+	@Override
+	public int findTotalApplicantRows() {
+		// TODO Auto-generated method stub
+		return userInfoDao.findTotalApplicantRows();
+	}
+
+	@Override
+	public int findMaxApplicantPageNo(int pageSize) {
+		// TODO Auto-generated method stub
+		return userInfoDao.findMaxApplicantPageNo(pageSize);
+	}
 	
 }

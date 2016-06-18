@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.BatchSize;
 
 @Entity
+//@Table(name="questionaire", catalog="app_psychologic")
 @Table(name="questionaire", catalog="pes")
 public class Questionaire implements Serializable{
 	private Integer id;

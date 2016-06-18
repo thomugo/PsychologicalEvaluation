@@ -36,7 +36,7 @@ public class RulerDaoImpl extends GenericDao1Impl<Ruler, Integer> implements Rul
         criteria.add( Restrictions.eq("questionaireId", questionaireId));
         criteria.add( Restrictions.eq("vector", vector));
         criteria.add( Restrictions.ge("endScore", score));
-        criteria.add( Restrictions.le("startScore", score));
+        criteria.add( Restrictions.lt("startScore", score));
         criteria.setProjection(Projections.property("ruler"));
         String result = criteria.uniqueResult().toString();
         System.out.println(result);

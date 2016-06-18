@@ -32,6 +32,7 @@ import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 import com.pes.entity.Answer;
 import com.pes.entity.AnswerPojo;
 import com.pes.entity.User;
+import com.pes.entity.UserPojo;
 import com.pes.interceptor.Authority;
 import com.pes.service.AnswerService;
 import com.pes.service.UserService;
@@ -47,10 +48,12 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	@Autowired
 	private AnswerService answerService;
 	private int id;
-	private int pageSize = 5 ;
+	private int pageSize = 4 ;
 	private int totalPages  = 0;
 	private int totalAnswerPages = 0;
 	private int pageNum = 0;
+	private int totalExpertPageNo = 0;
+	private int totalApplicantPageNo = 0;
 	private String jsonString;
 	private User user = null;
 	private List<User> users = new ArrayList<User>();
@@ -59,11 +62,17 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		return pageNum;
 	}
 	
-	
+	public int getTotalExpertPageNo() {
+		return totalExpertPageNo;
+	}
+
+	public int getTotalApplicantPageNo() {
+		return totalApplicantPageNo;
+	}
+
 	public int getTotalAnswerPages() {
 		return totalAnswerPages;
 	}
-
 
 	public void setPageNum(int pageNum) {
 		this.pageNum = pageNum;
@@ -112,7 +121,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	public String detail() {
 		if(jsonString == null){
 			user = userService.findById(id);
-			answers = answerService.findAnswersByPage(id, 0, pageSize);
+			answers = answerService.findAnswersByPage(id, 1, pageSize);
 			totalAnswerPages = answerService.getMaxAnswerPageNo(id, pageSize);
 			System.out.println(totalAnswerPages);
 		}else{
@@ -149,8 +158,8 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		//System.out.println(userService.findById(18));
 		System.out.println(users);
 		if(jsonString != null){
-			AjaxUtil.ajaxJSONResponse(users);
 			jsonString = null;
+			AjaxUtil.ajaxJSONResponse(users);
 			return NONE;
 		}
 		return "users";
@@ -208,5 +217,29 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		return user;
 	}
 	
+	@Action(value="expertUserList")
+	public String expertUser(){
+		if(jsonString != null){
+			JSONObject json = JSONObject.parseObject(jsonString);
+			pageNum = json.getInteger("pageNum");
+			pageSize = json.getInteger("pageSize");
+			ArrayList<UserPojo> experts = (ArrayList<UserPojo>) userService.findExpertByPage(pageNum, pageSize);
+			AjaxUtil.ajaxJSONResponse(experts);
+			jsonString = null;
+		}
+		return NONE;
+	}
+	@Action(value="applicantUserList")
+	public String applicantUser(){
+		if(jsonString != null){
+			JSONObject json = JSONObject.parseObject(jsonString);
+			pageNum = json.getInteger("pageNum");
+			pageSize = json.getInteger("pageSize");
+			ArrayList<User> applicants = (ArrayList<User>) userService.findApplicantByPage(pageNum, pageSize);
+			AjaxUtil.ajaxJSONResponse(applicants);
+			jsonString = null;
+		}
+		return NONE;
+	}
 	
 }

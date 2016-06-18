@@ -18,6 +18,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 import com.pes.entity.Article;
 import com.pes.entity.ArticlePojo;
+import com.pes.entity.BaseUser;
 import com.pes.entity.Message;
 import com.pes.entity.User;
 import com.pes.service.ArticleService;
@@ -109,12 +110,17 @@ public class ArticleAction extends BaseAction{
 		articles = articleService.findArticlesByPage(null, null, userName, articleClassName, start, end, pageNo, pageSize);
 		System.out.println("find "+articles.size()+"articles");
 		System.out.println(articles);
-		if(jsonString != null)
+		if(jsonString != null){
+			jsonString = null;
 			AjaxUtil.ajaxJSONResponse(articles);
-		User user = (User)httpSession.getAttribute("loginUser");
+			return NONE;
+		}
+		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
 		if(user.getPrivilege() == 1){
+			System.out.println("admin");
 			return "admin";
 		}else{
+			System.out.println("normal user");
 			return "normal";
 		}
 	}
@@ -145,8 +151,8 @@ public class ArticleAction extends BaseAction{
 			System.out.println("edit article failed");
 			editState = "edit article success";
 		}
+		jsonString = null;
 		AjaxUtil.ajaxJSONResponse(editState);
-		
 		return NONE;
 	}
 	
@@ -158,6 +164,7 @@ public class ArticleAction extends BaseAction{
 			Article article = articleService.findById(id);
 			articleService.remove(article);
 			System.out.println("delete Article "+id);
+			jsonString = null;
 		}
 		return NONE;
 	}

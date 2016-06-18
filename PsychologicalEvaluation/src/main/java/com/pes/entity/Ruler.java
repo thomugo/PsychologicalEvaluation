@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
+//@Table(name="rule" , catalog="app_psychologic")
 @Table(name="rule" , catalog="pes")
 public class Ruler implements Serializable{
 	private Integer id;

@@ -60,9 +60,9 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService {
 
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
-	public void delete(Integer id) {
+	public void delete(ChoiceQuestion entity) {
 		// TODO Auto-generated method stub
-		choiceQuestionDao.delete(id);
+		choiceQuestionDao.delete(entity);
 	}
 
 	@Override

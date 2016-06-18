@@ -189,4 +189,12 @@ public class SaveAnswerAction extends BaseAction{
 		return "success";
 		
 	}
+	
+	@Action(value="deleteAnswer")
+	public String delete(){
+		System.out.println("delete answer: " + answerId);
+		answerService.delete(answerService.load(answerId));
+		AjaxUtil.ajaxJSONResponse("delete success");
+		return NONE;
+	}
 }

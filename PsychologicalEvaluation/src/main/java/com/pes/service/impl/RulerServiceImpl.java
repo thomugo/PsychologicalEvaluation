@@ -64,9 +64,9 @@ public class RulerServiceImpl implements RulerService {
 
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
-	public void delete(Integer id) {
+	public void delete(Ruler entity) {
 		// TODO Auto-generated method stub
-		rulerDao.delete(id);
+		rulerDao.delete(entity);
 	}
 
 	@Override
