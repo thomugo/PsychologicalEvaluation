@@ -61,6 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<body>
 		<s:debug></s:debug>
+		<input type="hidden" value="<%=basePath %>" id="basePath">
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -133,7 +134,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</li>
 
 						<li class="green">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="">
 								<i class="icon-envelope icon-animated-vertical"></i>
 								<span class="badge badge-success">5</span>
 							</a>
@@ -481,10 +482,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 														给他(她)发消息
 													</a>
 
-													<a class="btn btn-link" href="#">
-														<i class="icon-globe bigger-125 blue"></i>
-														www.alexdoe.com
-													</a>
 												</div>
 
 												<div class="space-6"></div>
@@ -559,7 +556,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 														<i class="icon-rss orange"></i>
 														最近评测情况
 													</h4>
-
+													<input type="hidden" value = "${user.icon }" id="icon">
+													<input type="hidden" value="<%=path%>"  id="path">
+													
 													<div class="widget-toolbar action-buttons">
 														<a href="#" data-action="reload">
 															<i class="icon-refresh blue"></i>
@@ -577,7 +576,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 														<div id="profile-feed-1" class="profile-feed">
 															
 															<s:iterator value="answers"  var="answer">
-															<div class="profile-activity clearfix">
+															<div class="profile-activity clearfix answer" >
 																<div>
 																	<img class="pull-left" alt="Alex Doe's avatar" src="<%=path%>/assets/avatars/${user.icon}" />
 																	<a class="user" href="#"> <s:property value="#answer.title" /> </a>
@@ -591,12 +590,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																</div>
 
 																<div class="tools action-buttons">
+																	<a href="<%=basePath %>getResultExcel.action?answerId=${answer.id}" class="green">
+																		<i class="icon-download-alt bigger-125"></i>
+																	</a>
+																	
 																	<a href="#" class="blue">
 																		<i class="icon-pencil bigger-125"></i>
 																	</a>
-
-																	<a href="#" class="red">
-																		<i class="icon-remove bigger-125"></i>
+																	
+																	<a href="#" class="red" >
+																		<i class="icon-remove bigger-125" id="${answer.id }"></i>
 																	</a>
 																</div>
 															</div>
@@ -613,14 +616,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<div class="space-6"></div>
 
 											<div class="center">
-												<a href="#" class="btn btn-sm btn-primary">
+												<i href="" class="btn btn-sm btn-primary">
 													<i class="icon-rss bigger-150 middle"></i>
 													<span class="bigger-110" id="more">查看更多信息</span>
 													<input type="hidden" id="pageNum"  value="${pageNum}"/> 
 													<input type="hidden" id="userId"  value="${user.id}"/> 
 													<input type="hidden" id="totalPages"  value="${totalAnswerPages}"/> 
 													<i class="icon-on-right icon-arrow-right"></i>
-												</a>
+												</i>
 											</div>
 										</div>
 									</div>
