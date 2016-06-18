@@ -62,7 +62,7 @@ public class ArticleClassAction extends BaseAction {
 
 	@Override
 	@Action(value="articleClassList", results={
-			@Result(name="articleClassList", location="/article/artileClassDemo.jsp")
+			@Result(name="articleClassList", location="/WEB-INF/article/artileClassDemo.jsp")
 			})
 	public String execute() {
 		JSONObject json = JSONObject.parseObject(jsonString);

@@ -1,26 +1,22 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<title>管理员</title>
-		<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
-  		<a href="${ pageContext.request.contextPath }/user/login.jsp">login</a>
-  		<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
-  		<s:debug></s:debug>
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
 		<!-- basic styles -->
-
 		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
 
@@ -29,8 +25,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<![endif]-->
 
 		<!-- page specific plugin styles -->
-
-		<link rel="stylesheet" href="<%=path%>/assets/css/select2.css" />
 
 		<!-- fonts -->
 
@@ -58,33 +52,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/html5shiv.js"></script>
 		<script src="<%=path%>/assets/js/respond.min.js"></script>
 		<![endif]-->
-	<style type="text/css">
-	.ques{
-		margin-left:23.0%;
-		margin-top:15px;
-		font-size:15px;
-	}
-	.queslabel{
-		margin-left:-1px;
-		letter-spacing:0px;
-		color:#468847;
-	}
-	.mystyle{
-
-		margin-left:22.2%;
-		margin-top:15px;
-		font-size:15px;
-	}
-	.option{
-		margin-left:-1px;
-		letter-spacing:0px;
-		color:#468847;
-	}
-	</style>
 	</head>
 
 	<body>
-	<input type="hidden" id="basePath" value="<%=basePath%>">
+<%-- 		<s:debug></s:debug> --%>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -102,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<div class="navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
-					
+
 						<li class="purple">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-bell-alt icon-animated-bell"></i>
@@ -181,7 +152,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<li>
 									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+										<img src="/PsychologicalEvaluation/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Alex:</span>
@@ -198,7 +169,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<li>
 									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+										<img src="/PsychologicalEvaluation/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Susan:</span>
@@ -215,7 +186,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<li>
 									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+										<img src="/PsychologicalEvaluation/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Bob:</span>
@@ -241,7 +212,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="<%=path%>/assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="/PsychologicalEvaluation/assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>欢迎光临</small>
 								</span>
@@ -325,12 +296,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div><!-- #sidebar-shortcuts -->
 
 					<ul class="nav nav-list">
-						<li >
+						<li>
 							<a href="<%=path%>/index.jsp">
 								<i class="icon-dashboard"></i>
 								<span class="menu-text"> 控制台 </span>
 							</a>
-						</li>
+						</li>						
 
 						<li>
 							<a href="#" class="dropdown-toggle">
@@ -341,12 +312,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</a>
 
 							<ul class="submenu">
-								<li>
-									<a href="${ pageContext.request.contextPath }/userList.action">
-										<i class="icon-double-angle-right"></i>
+						<li>
+							<a href="${ pageContext.request.contextPath }/userList.action">
+										<i class="icon-double-angle-right"></i>			
 										用户列表
-									</a>
-								</li>
+							</a>
+
+						</li>
 
 								<li>
 									<a href="<%=path%>/user/profile.jsp">
@@ -355,9 +327,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</a>
 								</li>
 							</ul>
-						</li>
+						</li>						
 
-						<li class="active open">
+						<li class='active open'>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-edit"></i>
 								<span class="menu-text"> 编辑 </span>
@@ -373,29 +345,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</a>
 								</li>
 								
-								<li class="active">
-									<a href="<%=path%>/user/editQuestionaire.jsp">
+								<li>
+									<a href="<%=path%>/questionaire.action">
 										<i class="icon-double-angle-right"></i>
 										添加测评问卷
 									</a>
 								</li>
 
-								<li>
-									<a href="<%=path%>/article/articleList.action">
+								<li class='active'>
+									<a href="<%=path%>/articleList.action">
 										<i class="icon-double-angle-right"></i>
 										文章
 									</a>
-								</li>	
+								</li>								
 
 								<li>
-									<a href="<%=path%>/user/push.jsp">
+									<a href="<%=path%>/article.action">
 										<i class="icon-double-angle-right"></i>
 										文章推送
 									</a>
 								</li>
 
 							</ul>
-						</li>							
+						</li>						
 
 						<li>
 							<a href="<%=path%>/user/userFeedback.jsp">
@@ -403,7 +375,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<span class="menu-text"> 用户反馈 </span>
 							</a>
 						</li>
-
+						
 						<li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-file-alt"></i>
@@ -431,17 +403,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										500错误页面
 									</a>
 								</li>
+
+								<li>
+									<a href="<%=path%>/blank.jsp">
+										<i class="icon-double-angle-right"></i>
+										空白页面
+									</a>
+								</li>
 								
 								<li>
 									<a href="<%=path%>/user/file.jsp">
 										<i class="icon-double-angle-right"></i>
 										文件上传
 									</a>
-								</li>									
+								</li>								
 							</ul>
-						</li>										
+						</li>						
 					</ul><!-- /.nav-list -->
-					
+
 				</div>
 
 				<div class="main-content">
@@ -455,12 +434,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<i class="icon-home home-icon"></i>
 								<a href="#">首页</a>
 							</li>
-
-							<li>
-								<a href="#">编辑</a>
-							</li>
-							<li class="active">添加测评问卷</li>
+							<li class="active">控制台</li>
 						</ul><!-- .breadcrumb -->
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="查找 ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div><!-- #nav-search -->
 					</div>
 
 					<div class="page-content">
@@ -469,90 +453,171 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
 
-								<div class="hr hr-18 hr-double dotted"></div>
+								<div class="alert alert-block alert-success">
 
-								<div class="row-fluid">
-									<div class="span12">
-										<div class="widget-box">
-											<div class="widget-header widget-header-blue widget-header-flat">
-												<h4 class="lighter"><small>我来出题目</small></h4>
+									欢迎使用
+									<strong class="green">
+										我们的后台管理系统
+										<small>(v1.2)</small>
+									</strong>	
+								</div>
 
+								<div class="row">
+
+									<div class="col-sm-6">
+										<div class="widget-box ">
+											<div class="widget-header">
+												<h4 class="lighter smaller">
+													<i class="icon-comment blue"></i>
+													会话
+												</h4>
 											</div>
 
 											<div class="widget-body">
-												<div class="widget-main">							
-													
-													<div class="step-content row-fluid position-relative" id="step-container">
-														<div class="step-pane active" id="step1">
-
-															<div class="form-horizontal" id="sample-form" >
-																<div class="form-group has-warning">
-																	<label class="col-xs-12 col-sm-3 control-label no-padding-right">问卷名</label>
-
-																	<div class="col-xs-12 col-sm-5">
-																		<span class="block input-icon input-icon-right">
-																			<input type="text" id="inputWarning" class="width-100" />
-																
-																		</span>
-																	</div>
-																</div>
-
-																<div class="form-group has-error">
-																	<label class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right" >问卷说明</label>
-
-																	<div class="col-xs-12 col-sm-5">
-																		<span class="block input-icon input-icon-right">
-																			<textarea rows="4" class="width-100" id='describtion'></textarea>																			
-																		</span>
-																	</div>
-																</div>
-																
-																<div class="choicequestion" >																
-																	<div class="form-group has-success">
-																		<hr/>																	
-																		<!-- <label class="col-xs-12 col-sm-3 control-label no-padding-right">问题</label> -->
-																		<div class="ques">
-																			<span class="queslabel">问题
-																			
-																			<input type="text"  style='width:400px;' class="question1" /><input type='text' style='width:45px;font-size:14px;' class='vector' placeholder='维度'/>
-																			</span>
-																		</div>	
-																	</div>
-
-																	<div class="choiceoption">
-																		<div class="mystyle">											
-																			<span class='option'>选项</span>
-																									
-																			<input type='text' style='width:267px;'/><input type='text' style='width:45px;font-size:14px;' class='fenzhi' placeholder='分值'/>									
-																			<button class="btn addoption">添加选项</button>
-																		</div>
-																																																																																																																																																																														
-																	</div>																	
-																</div>															
+												<div class="widget-main no-padding">
+													<div class="dialogs">
+														<div class="itemdiv dialogdiv">
+															<div class="user">
+																<img alt="一个妹子's Avatar" src="<%=path%>/assets/avatars/avatar1.png" />
 															</div>
-														</div>										
-												
+
+															<div class="body">
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="green">4秒钟前</span>
+																</div>
+
+																<div class="name">
+																	<a href="#">一个妹子</a>
+																</div>
+																<div class="text">大家好啊</div>
+
+																<div class="tools">
+																	<a href="#" class="btn btn-minier btn-info">
+																		<i class="icon-only icon-share-alt"></i>
+																	</a>
+																</div>
+															</div>
+														</div>
+
+														<div class="itemdiv dialogdiv">
+															<div class="user">
+																<img alt="玉姐's Avatar" src="<%=path%>/assets/avatars/avatar.png" />
+															</div>
+
+															<div class="body">
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="blue">38秒以前</span>
+																</div>
+
+																<div class="name">
+																	<a href="#">玉姐</a>
+																</div>
+																<div class="text">框架很好用嘛</div>
+
+																<div class="tools">
+																	<a href="#" class="btn btn-minier btn-info">
+																		<i class="icon-only icon-share-alt"></i>
+																	</a>
+																</div>
+															</div>
+														</div>
+
+														<div class="itemdiv dialogdiv">
+															<div class="user">
+																<img alt="谷雨's Avatar" src="<%=path%>/assets/avatars/user.jpg" />
+															</div>
+
+															<div class="body">
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="orange">2分钟以前</span>
+																</div>
+
+																<div class="name">
+																	<a href="#">谷雨</a>
+																	<span class="label label-info arrowed arrowed-in-right">管理员</span>
+																</div>
+																<div class="text">欢迎大家使用我们做的后台管理系统.</div>
+
+																<div class="tools">
+																	<a href="#" class="btn btn-minier btn-info">
+																		<i class="icon-only icon-share-alt"></i>
+																	</a>
+																</div>
+															</div>
+														</div>
+
+														<div class="itemdiv dialogdiv">
+															<div class="user">
+																<img alt="豪哥's Avatar" src="<%=path%>/assets/avatars/avatar4.png" />
+															</div>
+
+															<div class="body">
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="grey">3分钟以前</span>
+																</div>
+
+																<div class="name">
+																	<a href="#">豪哥</a>
+																</div>
+																<div class="text">大家多提提BUG</div>
+
+																<div class="tools">
+																	<a href="#" class="btn btn-minier btn-info">
+																		<i class="icon-only icon-share-alt"></i>
+																	</a>
+																</div>
+															</div>
+														</div>
+
+														<div class="itemdiv dialogdiv">
+															<div class="user">
+																<img alt="一个妹子's Avatar" src="<%=path%>/assets/avatars/avatar1.png" />
+															</div>
+
+															<div class="body">
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="green">4分钟以前</span>
+																</div>
+
+																<div class="name">
+																	<a href="#">一个妹子</a>
+																</div>
+																<div class="text">继续支持我们做的后台系统</div>
+
+																<div class="tools">
+																	<a href="#" class="btn btn-minier btn-info">
+																		<i class="icon-only icon-share-alt"></i>
+																	</a>
+																</div>
+															</div>
+														</div>
 													</div>
 
-													<hr />
-													<div class="row-fluid wizard-actions">	
-														<button id="addquestion1" class="btn btn-success">
-															添加问题
-															<i class="icon-on-right"></i>
-														</button>																												
-																										
-														<button id="save" type="submit" class="btn btn-success">
-															完成
-															<i class="icon-on-right"></i>
-														</button>
-																												
-													</div>
+													<form>
+														<div class="form-actions">
+															<div class="input-group">
+																<input placeholder="在这里输入信息 ..." type="text" class="form-control" name="message" />
+																<span class="input-group-btn">
+																	<button class="btn btn-sm btn-info no-radius" type="button">
+																		<i class="icon-share-alt"></i>
+																		发送
+																	</button>
+																</span>
+															</div>
+														</div>
+													</form>
 												</div><!-- /widget-main -->
 											</div><!-- /widget-body -->
-										</div>
-									</div>
-								</div>
+										</div><!-- /widget-box -->
+									</div><!-- /span -->
+								</div><!-- /row -->
 
+								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
 						</div><!-- /.row -->
 					</div><!-- /.page-content -->
@@ -573,6 +638,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- <![endif]-->
 
+		<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<![endif]-->
 
 		<!--[if !IE]> -->
 
@@ -583,18 +651,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- <![endif]-->
 
 		<!--[if IE]>
-<script type="text/javascript">
- window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
-</script>
-<![endif]-->
+		<script type="text/javascript">
+			 window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
+		</script>
+		<![endif]-->
 
 		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
-
+		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
-  		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/editQuestionaire.js"></script>
+
+		<!--[if lte IE 8]>
+		  <script src="<%=path%>/assets/js/excanvas.min.js"></script>
+		<![endif]-->
 
 
 		<!-- ace scripts -->
@@ -602,10 +671,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
 		<script src="<%=path%>/assets/js/ace.min.js"></script>
 
-
-		<!-- ace scripts -->
-
 		<!-- inline scripts related to this page -->
+
 	</body>
 </html>
 

@@ -348,7 +348,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 								
 								<li>
-									<a href="<%=path%>/user/editQuestionaire.jsp">
+									<a href="<%=path%>/questionaire.action">
 										<i class="icon-double-angle-right"></i>
 										编辑测评问卷
 									</a>
@@ -362,7 +362,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>	
 
 								<li>
-									<a href="<%=path%>/user/push.jsp">
+									<a href="<%=path%>/article.action">
 										<i class="icon-double-angle-right"></i>
 										文章推送
 									</a>
@@ -372,7 +372,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</li>						
 
 						<li>
-							<a href="<%=path%>/user/userFeedback.jsp">
+							<a href="<%=path%>/feedback.action">
 								<i class="icon-text-width"></i>
 								<span class="menu-text"> 用户反馈 </span>
 							</a>

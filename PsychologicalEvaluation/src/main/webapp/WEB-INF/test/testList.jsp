@@ -2,6 +2,7 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -349,7 +350,7 @@ margin-top:5px;
 							</a>
 
 							<ul class="submenu">
-								<li>
+								<li class="active">
 									<a href="<%=path%>/questionaireList.action">
 										<i class="icon-double-angle-right"></i>
 										问卷
@@ -357,21 +358,21 @@ margin-top:5px;
 								</li>
 								
 								<li>
-									<a href="<%=path%>/user/editQuestionaire.jsp">
+									<a href="<%=path%>/questionaire.action">
 										<i class="icon-double-angle-right"></i>
 										添加测评问卷
 									</a>
 								</li>
 								
-								<li class="active">
-									<a href="<%=path%>/article/articleList.action">
+								<li>
+									<a href="<%=path%>/articleList.action">
 										<i class="icon-double-angle-right"></i>
 										文章
 									</a>
 								</li>								
 
 								<li>
-									<a href="<%=path%>/user/push.jsp">
+									<a href="<%=path%>/article.action">
 										<i class="icon-double-angle-right"></i>
 										文章推送
 									</a>
@@ -440,7 +441,7 @@ margin-top:5px;
 							</li>
 
 							<li class="active">
-								<a href="#">全部文章</a>
+								<a href="#">全部问卷</a>
 							</li>
 
 						</ul><!-- .breadcrumb -->
@@ -458,7 +459,7 @@ margin-top:5px;
 					<div class="page-content">
 						<div class="page-header">
 							<h1>
-								全部文章
+								全部问卷
 
 							</h1>
 						</div><!-- /.page-header -->
@@ -474,7 +475,7 @@ margin-top:5px;
 											<div class="space-8"></div>
 
 											<div id="faq-list-1" class="panel-group accordion-style1 accordion-style2">
-												<div class="panel panel-default" id='article'>
+												<div class="panel panel-default" id='testList'>
 													<div class="panel-heading">
 														<a id='title' href="#content" data-toggle="collapse" class="accordion-toggle collapsed">
 														
@@ -555,17 +556,14 @@ margin-top:5px;
 		</script>
 		<script type="text/javascript">
 				var i=0;
-			<c:forEach var="article" items="${articles}">
-				
-				
-				var title="${article.title}";
-				//alert(title);
-				var userName = "${article.userName}";
-				var className = "${article.className}";
-				var dateTime ="${article.dateTime}";
-				var id=${article.id}
- 				 $('#article').append("<div class='panel-heading'>"
-									+"<a href='#content"+i+"' data-toggle='collapse' class='accordion-toggle collapsed'>"
+
+ 			<c:forEach var="tests" items="${questionaires}">
+
+				var id=${tests.id};
+				var title="${tests.title}"
+				var description = "${tests.note}";
+ 				 $('#testList').append("<div class='panel-heading'>"
+									+"<a id='title' href='#content"+i+"' data-toggle='collapse' class='accordion-toggle collapsed'>"
 									+"<i class='icon-chevron-left pull-right' data-icon-hide='icon-chevron-down' data-icon-show='icon-chevron-left'></i>"
 									+"<i class='icon-user bigger-130'></i>"
 									+"&nbsp;&nbsp;&nbsp;"
@@ -574,12 +572,15 @@ margin-top:5px;
 									+"</div>"
 									+"<div class='panel-collapse collapse' id='content"+(i++)+"'>"
 									+"<div class='panel-body'>"
-									+"<a href='/PsychologicalEvaluation/articleDetail.action?id=" + id + "'>作者："+userName+className+dateTime+"</a>"
+									+"<a href='<%=path%>/test?id="
+									+id
+									+"'>"
+									+description
+									+"</a>"
 									+"</div>"
 									+"</div>");  			
-				
-			</c:forEach>
-									
+			</c:forEach>	
+
 		</script>
 	</body>
 </html>

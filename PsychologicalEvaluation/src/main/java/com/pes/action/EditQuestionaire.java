@@ -22,7 +22,7 @@ import com.pes.util.AjaxUtil;
 
 @ParentPackage("myBasicPackage")
 @Action(value="editQuestionaire")
-@Result(name="success", location="/user/editRule.jsp")
+@Result(name="success", location="/WEB-INF/user/editRule.jsp")
 public class EditQuestionaire extends BaseAction {
 	private static final Logger LOGGER = Logger.getLogger(EditQuestionaire.class);
 	@Autowired
@@ -57,7 +57,6 @@ public class EditQuestionaire extends BaseAction {
 	public Questionaire getQuestionaire() {
 		return questionaire;
 	}
-	
 	
 	public ArrayList<Questionaire> getQuestionaires() {
 		return questionaires;
@@ -124,8 +123,8 @@ public class EditQuestionaire extends BaseAction {
 		return "success";
 	}
 	@Action(value="questionaireList", results={
-			@Result(name="success", location="/test/mtestList.jsp"),
-			@Result(name="admin", location="/test/testList.jsp")
+			@Result(name="success", location="/WEB-INF/test/mtestList.jsp"),
+			@Result(name="admin", location="/WEB-INF/test/testList.jsp")
 	})
 	public String questionaireList(){
 		if(jsonString != null){

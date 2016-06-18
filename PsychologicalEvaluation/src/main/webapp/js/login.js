@@ -7,8 +7,6 @@ $(function(){
 		$(hide).addClass("hidden");
 	}		
 	
-	
-	
 	$("#admin-login-submit").click(function(){
 		var login={};
 		var username=$.trim($("#login-username").val());
@@ -27,9 +25,11 @@ $(function(){
 			login["username"]=username;
 			login["password"]=password;
 			var jsonString= JSON.stringify(login);
-			alert(jsonString);
+			//alert(jsonString);
 			$.post(basePath+"adminLogin.action",{"jsonString":jsonString},function(result){
 				/*密码错误或用户名不存在*/
+				//alert(result);
+				$("body").html(result);
 			});
 		}
 	});

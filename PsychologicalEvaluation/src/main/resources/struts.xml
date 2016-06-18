@@ -43,8 +43,8 @@
 		</interceptors>
 		<default-interceptor-ref name="myStack"></default-interceptor-ref>
 		<global-results>
-			<result name="login">/user/login.jsp</result>
-			<result name="adminLogin">/user/adminLogin.jsp</result>
+			<result name="login">/login.jsp</result>
+			<result name="adminLogin">/adminLogin.jsp</result>
 			<result name="error404">/error-404.jsp</result>
 			<result name="error500">/error-500.jsp</result>
 			<result name="blank">/blank.jsp</result>

@@ -1,22 +1,16 @@
 package com.pes.action;
 
-
-
 import java.util.Date;
-
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.opensymphony.xwork2.ModelDriven;
 import com.pes.entity.User;
 import com.pes.service.UserService;
-import com.pes.util.AjaxUtil;
-
 
 @Results( {
         @Result(name = "success", location = "/index.jsp"),
-        @Result(name = "input", location = "/user/registe.jsp")
+        @Result(name = "input", location = "/registe.jsp")
     })
 public class RegisteAction extends BaseAction implements ModelDriven<User>{
 	@Autowired

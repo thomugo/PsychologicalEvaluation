@@ -83,7 +83,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 
 	@Override
 	@Action(value="user", results={
-			@Result(name="userinfo", location="/user/userinfo.jsp")
+			@Result(name="userinfo", location="/WEB-INF/user/userinfo.jsp")
 			})
 	public String execute() throws Exception {
 		user = (User) this.httpSession.getAttribute("loginUser");
@@ -94,7 +94,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	}
 	
 	@Action(value="detail", results={
-			@Result(name="userinfo", location="/user/profile.jsp")
+			@Result(name="userinfo", location="/WEB-INF/user/profile.jsp")
 			})
 	public String detail() {
 		if(jsonString == null){
@@ -118,7 +118,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	}
 	
 	@Action(value="userList", results={
-			@Result(name="users", location="/user/userList.jsp")
+			@Result(name="users", location="/WEB-INF/user/userList.jsp")
 	})
 	public String getAllUsers(){
 		//List<User> users = userService.findAll();

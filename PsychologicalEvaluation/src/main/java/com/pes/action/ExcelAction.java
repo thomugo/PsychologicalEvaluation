@@ -9,15 +9,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -25,9 +22,8 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.pes.entity.Answer;
-import com.pes.entity.ArticlePojo;
+import com.pes.entity.BaseUser;
 import com.pes.entity.ChoiceQuestion;
 import com.pes.entity.Option;
 import com.pes.entity.Questionaire;
@@ -53,7 +49,7 @@ public class ExcelAction extends BaseAction{
 	private RulerService rulerService;
 	private Answer answer;
 	private Questionaire questionaire;
-	private User user;
+	private BaseUser user;
 	private HashMap<Integer, Float> scores;
 	private HashMap<Integer, Integer> questionaireCount;
 	private HashMap<Integer, Float> avgScores;
@@ -72,7 +68,8 @@ public class ExcelAction extends BaseAction{
 
 	@Override
 	public String execute() throws Exception {
-		user = (User)httpSession.getAttribute("loginUser");
+		user = (BaseUser)httpSession.getAttribute("loginUser");
+		System.out.println(user);
 		Answer answer = answerService.get(answerId);
 		questionaire = answer.getQuestionaire();
 		int questionaireId = questionaire.getId();

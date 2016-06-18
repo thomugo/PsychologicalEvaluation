@@ -3,7 +3,6 @@ package com.pes.action;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -77,7 +76,6 @@ public class MessageAction extends BaseAction {
 		messages.put("broadcastMessages", broadCastMessages);
 		messages.put("offlineMessages", offlineMessages);
 		AjaxUtil.ajaxJSONResponse(messages);
-
 		return NONE;
 
 	}

@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -18,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- basic styles -->
 
-		<link href="<%=path%>/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
@@ -42,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
 
 		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="<%=path%>/assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
 
 		<!-- inline styles related to this page -->
@@ -54,12 +55,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
-		<script src="<%=path%>/assets/js/html5shiv.js"></script>
-		<script src="<%=path%>/assets/js/respond.min.js"></script>
-		<![endif]-->
+			<script src="<%=path%>/assets/js/respond.min.js"></script>
+		<!--[endif]-->
+<style type="text/css">
+#grid-table th{
+	text-align:center;
+}
+</style>
 	</head>
 
 	<body>
+		<s:debug></s:debug>
 		<input type="hidden" id="basePath" value="<%=basePath%>">
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
@@ -78,7 +84,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<div class="navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
-					
 						<li class="purple">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-bell-alt icon-animated-bell"></i>
@@ -207,7 +212,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="<%=path%>/consult.action">
+									<a href="inbox.html">
 										See all messages
 										<i class="icon-arrow-right"></i>
 									</a>
@@ -308,7 +313,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</a>
 						</li>
 
-						<li>
+						<li class="active open">
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-list"></i>
 								<span class="menu-text"> 用户管理 </span>
@@ -317,8 +322,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</a>
 
 							<ul class="submenu">
-								<li>
-									<a href="${ pageContext.request.contextPath }/userList.action">
+								<li class="active">
+									<a href="<%=path%>/userList.action">
 										<i class="icon-double-angle-right"></i>
 										用户列表
 									</a>
@@ -333,7 +338,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</ul>
 						</li>
 
-						<li class="active open">
+						<li >
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-edit"></i>
 								<span class="menu-text"> 编辑 </span>
@@ -350,9 +355,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 								
 								<li>
-									<a href="<%=path%>/user/editQuestionaire.jsp">
+									<a href="<%=path%>/questionaire.action">
 										<i class="icon-double-angle-right"></i>
-										添加测评问卷
+										编辑测评问卷
 									</a>
 								</li>
 
@@ -361,20 +366,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<i class="icon-double-angle-right"></i>
 										文章
 									</a>
-								</li>	
+								</li>
 
-								<li class="active">
-									<a href="<%=path%>/user/push.jsp">
+								<li>
+									<a href="<%=path%>/article.action">
 										<i class="icon-double-angle-right"></i>
 										文章推送
 									</a>
 								</li>
 
 							</ul>
-						</li>							
+						</li>						
 
 						<li>
-							<a href="<%=path%>/user/userFeedback.jsp">
+							<a href="<%=path%>/feedback.action">
 								<i class="icon-text-width"></i>
 								<span class="menu-text"> 用户反馈 </span>
 							</a>
@@ -407,13 +412,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										500错误页面
 									</a>
 								</li>
-								
+
 								<li>
 									<a href="<%=path%>/user/file.jsp">
 										<i class="icon-double-angle-right"></i>
 										文件上传
 									</a>
-								</li>									
+								</li>													
 							</ul>
 						</li>										
 					</ul><!-- /.nav-list -->
@@ -429,13 +434,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home home-icon"></i>
-								<a href="#">首页</a>
+								<a href="<%=path%>/index.jsp">首页</a>
 							</li>
-
-							<li>
-								<a href="#">编辑</a>
-							</li>
-							<li class="active">文章推送</li>
+							<li class="active">用户管理</li>
 						</ul><!-- .breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -447,59 +448,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</form>
 						</div><!-- #nav-search -->
 					</div>
-
 					<div class="page-content">
 
 						<div class="row">
-									<div class="col-sm-12">
-										<h4 class="header blue">写点啥</h4>
-
-										<div class="widget-box">
-											<div class="widget-header widget-header-small  header-color-green">
-												<div class="widget-toolbar">
-													<a href="#" data-action="collapse">
-														<i class="icon-chevron-up"></i>
-													</a>
-												</div>
-											</div>
-
-											<div class="widget-body">
-												<div class="widget-main no-padding">
-													<textarea class="wysiwyg-editor" id="editor2" style='width:99%'></textarea><!--编辑区  -->
-												</div>
-
-												<div class="widget-toolbox padding-4 clearfix">
-													<input type='text' id='wz_title' style='width:200px;font-size:15px;'  placeholder='文章标题'/>
-													<select id='wz-class'>
-														<option value='class0'>生活</option>
-														<option value='class1'>工作</option>
-														<option value='class2'>情感</option>
-														<option value='class3'>学习</option>
-														<option value='class4'>其他</option>
-													</select>
-													<div class="btn-group pull-right">
-														<button class="btn btn-sm btn-danger" id = "wz_save">
-															<i class="icon-save bigger-125"></i>
-															保存
-														</button>
-
-														<button class="btn btn-sm btn-success" id="push">
-															<i class="icon-globe bigger-125"></i>
-															发布
-															<i class="icon-arrow-right icon-on-right bigger-125"></i>
-														</button>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-								</div>
-
+							<div class="col-xs-12">
+								<table id="grid-table"></table>
+									
+								<div id="grid-pager"></div>
 								<script type="text/javascript">
-									var $path_assets = "assets";//this will be used in loading jQuery UI if needed!
+									var $path_base = "<%=path%>/";//this will be used in gritter alerts containing images
 								</script>
-
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
 						</div><!-- /.row -->
@@ -510,19 +468,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
 				<i class="icon-double-angle-up icon-only bigger-110"></i>
-			</a>
+			</a>	
 		</div><!-- /.main-container -->
-
+		
 		<!-- basic scripts -->
-
+	<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
+	<script type="text/javascript" src="<%=path%>/js/user.js"></script>
+	<script type="text/javascript" src="<%=path%>/js/json2.js"></script>	
 		<!--[if !IE]> -->
 
 
 		<!-- <![endif]-->
 
 		<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<![endif]-->
+			<script src="<%=path%>/js/jquery.min.js"></script>
+		<!--[endif]-->
 
 		<!--[if !IE]> -->
 
@@ -532,141 +492,278 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- <![endif]-->
 
-		<!--[if IE]>
+		<!--[if IE]-->
 <script type="text/javascript">
  window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
 </script>
-<![endif]-->
+<!--  [endif]-->
 
-		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='<%=path%>/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script>
+
 		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
 		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
+		<%-- <script src="<%=path%>/js/deleteUser.js"></script> --%>
+		<script src="<%=path%>/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+		<script src="<%=path%>/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
+		<script src="<%=path%>/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
 
-  		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/push.js"></script>
 		<!-- ace scripts -->
 
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
 		<script src="<%=path%>/assets/js/ace.min.js"></script>
 
-		<!-- inline scripts related to this page -->
-
 		<script type="text/javascript">
-			jQuery(function($){
-	
-	function showErrorAlert (reason, detail) {
-		var msg='';
-		if (reason==='unsupported-file-type') { msg = "Unsupported format " +detail; }
-		else {
-			console.log("error uploading file", reason, detail);
-		}
-		$('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>'+ 
-		 '<strong>File upload error</strong> '+msg+' </div>').prependTo('#alerts');
-	}
+	var basePath = $("#basePath").val();
+			var grid_data=[];
+			var i=0;
+			
+			<c:forEach var="user" items="${users}">
+				grid_data[i++]={username:"<a href='"+basePath+"detail.action?id="+${user.id}+"'>"+"${user.username}"+"</a>",id:"${user.id}",email:"${user.email}",age:${user.age},gender:(${user.gender})?'男':'女',phone:${user.phone},dateTime:"${user.dateTime}",vocation:"${user.vocation}"};
+			</c:forEach>
+			
+			jQuery(function($) {
+				var grid_selector = "#grid-table";
+				var pager_selector = "#grid-pager";
+			
+				jQuery(grid_selector).jqGrid({
+					
+					data: grid_data,
+					datatype: "local",
+					height: 250,
+					colNames:['操作', 'ID','用户名','电子邮箱', '联系电话', '注册日期','性别','年龄','职业'],
+					colModel:[
+						{name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
+							formatter:'actions', 
+							formatoptions:{ 
+								keys:true,
+								
+								delOptions:{recreateForm: true, beforeShowForm:beforeDeleteCallback},
+							}
+						},
+						{name:'id',index:'id', width:90, sorttype:"int", editable: true},
 
-	
-	$('#editor2').css({'height':'200px'}).ace_wysiwyg({
-		toolbar_place: function(toolbar) {
-			return $(this).closest('.widget-box').find('.widget-header').prepend(toolbar).children(0).addClass('inline');
-		},
-		toolbar:
-		[
-			'加粗',
-			{name:'italic' , title:'斜体'},
-			'删除线',
-			null,
-			'insertunorderedlist',
-			'insertorderedlist',
-			null,
-			'justifyleft',
-			'justifycenter',
-			'justifyright'
-		],
-		speech_button:false
-	});
+						{name:'username',index:'username', width:90,editable: true,editoptions:{size:"20",maxlength:"30"}},
 
+						{name:'email',index:'email', width:150,editable: true,editoptions:{size:"20",maxlength:"30"}},
 
-	$('[data-toggle="buttons"] .btn').on('click', function(e){
-		var target = $(this).find('input[type=radio]');
-		var which = parseInt(target.val());
-		var toolbar = $('#editor1').prev().get(0);
-		if(which == 1 || which == 2 || which == 3) {
-			toolbar.className = toolbar.className.replace(/wysiwyg\-style(1|2)/g , '');
-			if(which == 1) $(toolbar).addClass('wysiwyg-style1');
-			else if(which == 2) $(toolbar).addClass('wysiwyg-style2');
-		}
-	});
+						{name:'phone',index:'phone', width:110,editable: true,editoptions:{size:"20",maxlength:"25"}},
 
-
-	
-
-	//Add Image Resize Functionality to Chrome and Safari
-	//webkit browsers don't have image resize functionality when content is editable
-	//so let's add something using jQuery UI resizable
-	//another option would be opening a dialog for user to enter dimensions.
-	if ( typeof jQuery.ui !== 'undefined' && /applewebkit/.test(navigator.userAgent.toLowerCase()) ) {
-		
-		var lastResizableImg = null;
-		function destroyResizable() {
-			if(lastResizableImg == null) return;
-			lastResizableImg.resizable( "destroy" );
-			lastResizableImg.removeData('resizable');
-			lastResizableImg = null;
-		}
-
-		var enableImageResize = function() {
-			$('.wysiwyg-editor')
-			.on('mousedown', function(e) {
-				var target = $(e.target);
-				if( e.target instanceof HTMLImageElement ) {
-					if( !target.data('resizable') ) {
-						target.resizable({
-							aspectRatio: e.target.width / e.target.height,
-						});
-						target.data('resizable', true);
+						{name:'dateTime',index:'dateTime',width:150, editable:true, sorttype:"date",unformat: pickDate},
 						
-						if( lastResizableImg != null ) {//disable previous resizable image
-							lastResizableImg.resizable( "destroy" );
-							lastResizableImg.removeData('resizable');
+						{name:'gender',index:'gender', width:40, editable: true,edittype:"select",editoptions:{value:"FE:男;IN:女"}},
+						
+						{name:'age',index:'age', width:40, editable: true,editoptions:{size:"20",maxlength:"25"}},						
+						
+						{name:'vocation',index:'vocation', width:130,editable: true,editoptions:{size:"25",maxlength:"30"}}
+					], 						
+			
+					viewrecords : true,
+					rowNum:10,
+					rowList:[10,20,30],
+					pager : pager_selector,
+					altRows: true,
+					//toppager: true,
+					
+					multiselect: true,
+					//multikey: "ctrlKey",
+			        multiboxonly: true,
+			
+					loadComplete : function() {
+						var table = this;
+						setTimeout(function(){
+							//styleCheckbox(table);
+							
+							//updateActionIcons(table);
+							//updatePagerIcons(table);
+							//enableTooltips(table);
+						}, 0);
+					},
+			
+					editurl: $path_base+"/deleteUser.action",//nothing is saved
+					caption: "用户信息",
+					autowidth: true
+			
+				});
+			
+				function aceSwitch( cellvalue, options, cell ) {
+					setTimeout(function(){
+						$(cell) .find('input[type=checkbox]')
+								.wrap('<label class="inline" />')
+							.addClass('ace ace-switch ace-switch-5')
+							.after('<span class="lbl"></span>');
+					}, 0);
+				}
+				//enable datepicker
+				function pickDate( cellvalue, options, cell ) {
+					setTimeout(function(){
+						$(cell) .find('input[type=text]')
+								.datepicker({format:'yyyy-mm-dd' , autoclose:true}); 
+					}, 0);
+				}
+			
+			
+				//navButtons
+				jQuery(grid_selector).jqGrid('navGrid',pager_selector,
+					{ 	//navbar options
+						edit: true,
+						editicon : 'icon-pencil blue',
+						add: true,
+						addicon : 'icon-plus-sign purple',
+						del: true,
+						delicon : 'icon-trash red',
+						search: true,
+						searchicon : 'icon-search orange',
+						refresh: true,
+						refreshicon : 'icon-refresh green',
+						view: true,
+						viewicon : 'icon-zoom-in grey',
+					},
+					{
+						//edit record form
+						//closeAfterEdit: true,
+						recreateForm: true,
+						beforeShowForm : function(e) {
+							var form = $(e[0]);
+							form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+							style_edit_form(form);
 						}
-						lastResizableImg = target;
+					},
+					{
+						//new record form
+						closeAfterAdd: true,
+						recreateForm: true,
+						viewPagerButtons: false,
+						beforeShowForm : function(e) {
+							var form = $(e[0]);
+							form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+							style_edit_form(form);
+						}
+					},
+					{
+						//delete record form
+						recreateForm: true,
+						beforeShowForm : function(e) {
+							var form = $(e[0]);
+							if(form.data('styled')) return false;
+							
+							form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+							style_delete_form(form);
+							
+							form.data('styled', true);
+						},
+						onClick : function(e) {
+							alert(1);
+						}
+					},
+					{
+						//search form
+						recreateForm: true,
+						afterShowSearch: function(e){
+							var form = $(e[0]);
+							form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+							style_search_form(form);
+						},
+						afterRedraw: function(){
+							style_search_filters($(this));
+						},
+						
+						multipleSearch: true,
+						/**
+						multipleGroup:true,
+						showQuery: true
+						*/
+					},
+					{
+						//view record form
+						recreateForm: true,
+						beforeShowForm: function(e){
+							var form = $(e[0]);
+							form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+						}
 					}
+				)
+			
+			
+				
+				function style_edit_form(form) {
+					//enable datepicker on "sdate" field and switches for "stock" field
+					form.find('input[name=dateTime]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
+						.end().find('input[name=stock]')
+							  .addClass('ace ace-switch ace-switch-5').wrap('<label class="inline" />').after('<span class="lbl"></span>');
+			
+					//update buttons classes
+					var buttons = form.next().find('.EditButton .fm-button');
+					buttons.addClass('btn btn-sm').find('[class*="-icon"]').remove();//ui-icon, s-icon
+					buttons.eq(0).addClass('btn-primary').prepend('<i class="icon-ok"></i>');
+					buttons.eq(1).prepend('<i class="icon-remove"></i>')
+					
+					buttons = form.next().find('.navButton a');
+					buttons.find('.ui-icon').remove();
+					buttons.eq(0).append('<i class="icon-chevron-left"></i>');
+					buttons.eq(1).append('<i class="icon-chevron-right"></i>');		
 				}
-			})
-			.on('click', function(e) {
-				if( lastResizableImg != null && !(e.target instanceof HTMLImageElement) ) {
-					destroyResizable();
+			
+				function style_delete_form(form) {
+					var buttons = form.next().find('.EditButton .fm-button');
+					buttons.addClass('btn btn-sm').find('[class*="-icon"]').remove();//ui-icon, s-icon
+					buttons.eq(0).addClass('btn-danger').prepend('<i class="icon-trash"></i>');
+					buttons.eq(1).prepend('<i class="icon-remove"></i>')
 				}
-			})
-			.on('keydown', function() {
-				destroyResizable();
+				
+				function style_search_filters(form) {
+					form.find('.delete-rule').val('X');
+					form.find('.add-rule').addClass('btn btn-xs btn-primary');
+					form.find('.add-group').addClass('btn btn-xs btn-success');
+					form.find('.delete-group').addClass('btn btn-xs btn-danger');
+				}
+				function style_search_form(form) {
+					var dialog = form.closest('.ui-jqdialog');
+					var buttons = dialog.find('.EditTable')
+					buttons.find('.EditButton a[id*="_reset"]').addClass('btn btn-sm btn-info').find('.ui-icon').attr('class', 'icon-retweet');
+					buttons.find('.EditButton a[id*="_query"]').addClass('btn btn-sm btn-inverse').find('.ui-icon').attr('class', 'icon-comment-alt');
+					buttons.find('.EditButton a[id*="_search"]').addClass('btn btn-sm btn-purple').find('.ui-icon').attr('class', 'icon-search');
+				}
+				
+				function beforeDeleteCallback(e) {
+					var form = $(e[0]);
+					if(form.data('styled')) return false;
+					
+					form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+					style_delete_form(form);
+					
+					form.data('styled', true);
+				}
+				
+				function beforeEditCallback(e) {
+					var form = $(e[0]);
+					form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+					style_edit_form(form);
+				}
+				
+				//replace icons with FontAwesome icons like above
+				function updatePagerIcons(table) {
+					var replacement = 
+					{
+						'ui-icon-seek-first' : 'icon-double-angle-left bigger-140',
+						'ui-icon-seek-prev' : 'icon-angle-left bigger-140',
+						'ui-icon-seek-next' : 'icon-angle-right bigger-140',
+						'ui-icon-seek-end' : 'icon-double-angle-right bigger-140'
+					};
+					$('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
+						var icon = $(this);
+						var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+						
+						if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+					})
+				}
+			
+				function enableTooltips(table) {
+					$('.navtable .ui-pg-button').tooltip({container:'body'});
+					$(table).find('.ui-pg-div').tooltip({container:'body'});
+				}
+						
 			});
-	    }
-		
-		enableImageResize();
-
-		/**
-		//or we can load the jQuery UI dynamically only if needed
-		if (typeof jQuery.ui !== 'undefined') enableImageResize();
-		else {//load jQuery UI if not loaded
-			$.getScript($path_assets+"/js/jquery-ui-1.10.3.custom.min.js", function(data, textStatus, jqxhr) {
-				if('ontouchend' in document) {//also load touch-punch for touch devices
-					$.getScript($path_assets+"/js/jquery.ui.touch-punch.min.js", function(data, textStatus, jqxhr) {
-						enableImageResize();
-					});
-				} else	enableImageResize();
-			});
-		}
-		*/
-	}
-
-
-});
 		</script>
 	</body>
 </html>

@@ -16,10 +16,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
 		<!-- basic styles -->
-
-		<link href="<%=path%>/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
@@ -27,10 +25,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<![endif]-->
 
 		<!-- page specific plugin styles -->
-
-		<link rel="stylesheet" href="<%=path%>/assets/css/jquery-ui-1.10.3.full.min.css" />
-		<link rel="stylesheet" href="<%=path%>/assets/css/datepicker.css" />
-		<link rel="stylesheet" href="<%=path%>/assets/css/ui.jqgrid.css" />
 
 		<!-- fonts -->
 
@@ -41,25 +35,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
-		<link rel="stylesheet" href="<%=path%>/style/website_9efedb4906.css" />
+		
 		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="<%=path%>/assets/css/ace-ie.min.css" />
 		<![endif]-->
 
-		<!-- page specific plugin styles -->
-
-		<!--[if lte IE 8]-->
-		  <link rel="stylesheet" href="<%=path%>/assets/css/ace-ie.min.css" />
-		<!-- [endif]-->
-
 		<!-- inline styles related to this page -->
-
+		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
 		<!-- ace settings handler -->
 
-		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
-		
 		
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
@@ -67,19 +51,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/html5shiv.js"></script>
 		<script src="<%=path%>/assets/js/respond.min.js"></script>
 		<![endif]-->
-<style type="text/css">
-#zhuanjialist{
-	float:right;
-	margin-top:-250px;
-	margin-right:50px;
-}
-</style>
 	</head>
 
 	<body>
 		<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
-  		<a href="${ pageContext.request.contextPath }/user/adminLogin.jsp">login</a>
+  		<a href="${ pageContext.request.contextPath }/user/login.jsp">login</a>
   		<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
+  		<input type="hidden" id="userId"  value="${sessionScope.loginUser.id}"/> 
+  		<input type="hidden" id="username"  value="${sessionScope.loginUser.username}"/> 
+  		<input type="hidden" id="userIcon"  value="${sessionScope.loginUser.icon}"/> 
+  		<input type="hidden" id="targetId"  value="${target.id}"/> 
+  		<input type="hidden" id="targetIcon"  value="${target.icon}"/> 
+  		<input type="hidden" id="targetUsername"  value="${target.username}"/> 
+  		<input type="hidden" id="basePath" value="<%=basePath%>">
 		<s:debug></s:debug>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
@@ -102,13 +86,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li class="purple">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-bell-alt icon-animated-bell"></i>
-								<span class="badge badge-important">8</span>
+								<span class="badge badge-important" id="broadcast">${unReadBroadCastMessageCount}</span>
 							</a>
 
 							<ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
 								<li class="dropdown-header">
 									<i class="icon-warning-sign"></i>
-									8 Notifications
+									${unReadBroadCastMessageCount}条通知
 								</li>
 
 								<li>
@@ -116,47 +100,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="clearfix">
 											<span class="pull-left">
 												<i class="btn btn-xs no-hover btn-pink icon-comment"></i>
-												New Comments
+												系统通知
 											</span>
-											<span class="pull-right badge badge-info">+12</span>
+											<span class="pull-right badge badge-info">+${unReadBroadCastMessageCount}</span>
 										</div>
 									</a>
 								</li>
 
 								<li>
 									<a href="#">
-										<i class="btn btn-xs btn-primary icon-user"></i>
-										Bob just signed up as an editor ...
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<div class="clearfix">
-											<span class="pull-left">
-												<i class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>
-												New Orders
-											</span>
-											<span class="pull-right badge badge-success">+8</span>
-										</div>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<div class="clearfix">
-											<span class="pull-left">
-												<i class="btn btn-xs no-hover btn-info icon-twitter"></i>
-												Followers
-											</span>
-											<span class="pull-right badge badge-info">+11</span>
-										</div>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										See all notifications
+										查看所有通知
 										<i class="icon-arrow-right"></i>
 									</a>
 								</li>
@@ -166,27 +119,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li class="green">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-envelope icon-animated-vertical"></i>
-								<span class="badge badge-success">5</span>
+								<span class="badge badge-success" id="offLineMessage">${offLineMessageCount}</span>
 							</a>
 
 							<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
 								<li class="dropdown-header">
 									<i class="icon-envelope-alt"></i>
-									5 Messages
+									${offLineMessageCount}条消息
 								</li>
 
 								<li>
 									<a href="#">
-										<img src="/PsychologicalEvaluation/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+										<img src="<%=path%>/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Alex:</span>
-												Ciao sociis natoque penatibus et auctor ...
+												不知道写啥 ...
 											</span>
 
 											<span class="msg-time">
 												<i class="icon-time"></i>
-												<span>a moment ago</span>
+												<span>1分钟以前</span>
 											</span>
 										</span>
 									</a>
@@ -194,16 +147,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<li>
 									<a href="#">
-										<img src="/PsychologicalEvaluation/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+										<img src="<%=path%>/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Susan:</span>
-												Vestibulum id ligula porta felis euismod ...
+												不知道翻译...
 											</span>
 
 											<span class="msg-time">
 												<i class="icon-time"></i>
-												<span>20 minutes ago</span>
+												<span>20分钟以前</span>
 											</span>
 										</span>
 									</a>
@@ -211,24 +164,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<li>
 									<a href="#">
-										<img src="/PsychologicalEvaluation/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+										<img src="<%=path%>/assets/avatars/avatar4.png" class="msg-photo" alt="谷雨's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
-												<span class="blue">Bob:</span>
-												Nullam quis risus eget urna mollis ornare ...
+												<span class="blue">谷雨:</span>
+												到底是不是英文 ...
 											</span>
 
 											<span class="msg-time">
 												<i class="icon-time"></i>
-												<span>3:15 pm</span>
+												<span>下午3:15</span>
 											</span>
 										</span>
 									</a>
 								</li>
 
 								<li>
-									<a href="<%=path%>/consult.action">
-										See all messages
+									<a href="#">
+										查看所有消息
 										<i class="icon-arrow-right"></i>
 									</a>
 								</li>
@@ -237,7 +190,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="/PsychologicalEvaluation/assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>欢迎光临</small>
 								</span>
@@ -249,23 +202,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li>
 									<a href="#">
 										<i class="icon-cog"></i>
-										Settings
+										设置
 									</a>
 								</li>
 
-								<li>
-									<a href="#">
-										<i class="icon-user"></i>
-										Profile
-									</a>
-								</li>
 
 								<li class="divider"></li>
 
 								<li>
-									<a href="${ pageContext.request.contextPath }/logout.action">
+									<a href="#">
 										<i class="icon-off"></i>
-										Logout
+										退出
 									</a>
 								</li>
 							</ul>
@@ -371,7 +318,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 								
 								<li>
-									<a href="<%=path%>/user/editQuestionaire.jsp">
+									<a href="<%=path%>/questionaire.action">
 										<i class="icon-double-angle-right"></i>
 										添加测评问卷
 									</a>
@@ -385,7 +332,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>								
 
 								<li>
-									<a href="<%=path%>/user/push.jsp">
+									<a href="<%=path%>/article.action">
 										<i class="icon-double-angle-right"></i>
 										文章推送
 									</a>
@@ -482,7 +429,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<div class="row">
 
-									<div class="col-sm-6" style="margin-left:60px">
+									<div class="col-sm-6">
 										<div class="widget-box ">
 											<div class="widget-header">
 												<h4 class="lighter smaller">
@@ -519,38 +466,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																	</a>
 																</div>
 															</div>
-														</div>
-
-
-														<div class="itemdiv dialogdiv">
-															<div class="user">
-																<img alt="一个妹子's Avatar" src="<%=path%>/assets/avatars/avatar1.png" />
-															</div>
-
-															<div class="body">
-																<div class="time">
-																	<i class="icon-time"></i>
-																	<span class="green">4分钟以前</span>
-																</div>
-																<div class="name">
-																	<a href="#">一个妹子</a>
-																</div>
-																<div class="text">继续支持我们做的后台系统</div>
-																<div class="tools">
-																	<a href="#" class="btn btn-minier btn-info">
-																		<i class="icon-only icon-share-alt"></i>
-																	</a>
-																</div>
-															</div><!-- body -->
-														</div><!-- itemdiv -->
-														
+														</div>														
 														
 													</div><!-- dialogs -->
 
-													<form>
+													<div ="send">
 														<div class="form-actions">
 															<div class="input-group">
-																<input placeholder="在这里输入信息 ..." type="text" class="form-control" name="message" />
+																<input placeholder="在这里输入信息 ..." type="text" class="form-control" name="message" id="message"/>
 																<span class="input-group-btn">
 																	<button class="btn btn-sm btn-info no-radius" type="button" id="send">
 																		<i class="icon-share-alt" ></i>
@@ -559,120 +482,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																</span>
 															</div>
 														</div>
-													</form>
-													
+													</div>
 													
 												</div><!-- /widget-main -->
 											</div><!-- /widget-body -->
 										</div><!-- /widget-box -->
 									</div><!-- /span -->
 								</div><!-- /row -->
-			<div class="aside">			
-		        <div class="hmod mgb20" id="zhuanjialist">
-		            <div class="head" >
-		                <ul class="nav">
-		                    <li class="selected"><span style="text-decoration:underline;margin-left:85px;">心理专家</span></li>
-		                </ul>
-		            </div>
-		            <div class="body">
-		                    <ul class="hyzj">
-		                        <li>
-		                            <div class="img">
-		                                <nofollow>
-		                                    <a target="_blank" href="http://www.xinli001.com/user/1000056093">
-		                                        <img src="http://image.xinli001.com/20150702/160448/339108.JPG!80" />
-		                                    </a>
-		                                </nofollow>
-		                            </div>
-		                            <div class="text">
-		                                <h2>
-		                                    <nofollow>
-		                                        <a target="_blank" href="http://www.xinli001.com/user/1000056093">蒋琪   </a>
-		                                    </nofollow>
-		                                </h2>
-		                                <h4>心理咨询师 </h4>
-		                                <h5>济南市</h5>
-		                            </div>
-		                        </li>
-		                                                <li>
-		                            <div class="img">
-		                                <nofollow>
-		                                    <a target="_blank" href="http://www.xinli001.com/user/70242723">
-		                                        <img src="http://ossimg.xinli001.com/20160413/7efd92aabd91d204abfb134a2bba0e74.png!80" />
-		                                    </a>
-		                                </nofollow>
-		                            </div>
-		                            <div class="text">
-		                                <h2>
-		                                    <nofollow>
-		                                        <a target="_blank" href="http://www.xinli001.com/user/70242723">彭君 </a>
-		                                    </nofollow>
-		                                </h2>
-		                                <h4>暂无头衔</h4>
-		                                <h5>南宁市</h5>
-		                            </div>
-		                        </li>
-		                                                <li>
-		                            <div class="img">
-		                                <nofollow>
-		                                    <a target="_blank" href="http://www.xinli001.com/user/3510061">
-		                                        <img src="http://image.xinli001.com/20150115/121240/934382.JPG!80" />
-		                                    </a>
-		                                </nofollow>
-		                            </div>
-		                            <div class="text">
-		                                <h2>
-		                                    <nofollow>
-		                                        <a target="_blank" href="http://www.xinli001.com/user/3510061">杨浩波 </a>
-		                                    </nofollow>
-		                                </h2>
-		                                <h4>国家二级心咨师 精神分析师 中美班客体组</h4>
-		                                <h5>长沙市</h5>
-		                            </div>
-		                        </li>
-		                                                <li>
-		                            <div class="img">
-		                                <nofollow>
-		                                    <a target="_blank" href="http://www.xinli001.com/user/271367621">
-		                                        <img src="http://ossimg.xinli001.com/20160328/6568faa2ea1224cdfebccda0d5ea75ac.jpg!80" />
-		                                    </a>
-		                                </nofollow>
-		                            </div>
-		                            <div class="text">
-		                                <h2>
-		                                    <nofollow>
-		                                        <a target="_blank" href="http://www.xinli001.com/user/271367621">张欣</a>
-		                                    </nofollow>
-		                                </h2>
-		                                <h4>国家二级心理师，国家二级婚姻家庭师</h4>
-		                                <h5>哈尔滨市</h5>
-		                            </div>
-		                        </li>
-		                        <li>
-		                            <div class="img">
-		                                <nofollow>
-		                                    <a target="_blank" href="http://www.xinli001.com/user/1000685733">
-		                                        <img src="http://image.xinli001.com/20151117/111150/198882.png!80" />
-		                                    </a>
-		                                </nofollow>
-		                            </div>
-		                            <div class="text">
-		                                <h2>
-		                                    <nofollow>
-		                                        <a target="_blank" href="http://www.xinli001.com/user/1000685733"></a>
-		                                    </nofollow>
-		                                </h2>
-		                                <h4>心理咨询师、医学硕士、职业规划师、教师</h4>
-		                                <h5>沈阳市</h5>
-		                            </div>
-		                        </li>
-		                     </ul>
-		            </div>
-		            <!--//body-->
 
-		        </div>
-    
-        
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
 						</div><!-- /.row -->
@@ -689,28 +506,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- basic scripts -->
 
 		<!--[if !IE]> -->
-
-
-
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<![endif]-->
-
-		<!--[if !IE]> -->
-
-		<script type="text/javascript">
-			window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
-		</script>
-
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-		<script type="text/javascript">
-			 window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
-		</script>
-		<![endif]-->
+		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
 
 		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
 		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
@@ -722,13 +518,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<![endif]-->
 
 
+		<script src="<%=path%>/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+		<script src="<%=path%>/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
+		<script src="<%=path%>/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
 		<!-- ace scripts -->
 
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
 		<script src="<%=path%>/assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
+				
+		<script type="text/javascript" src="<%=path%>/assets/js/ace-extra.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
 
+		<script type="text/javascript" src="<%=path%>/js/consult.js"></script>
 	</body>
 </html>
 

@@ -1,12 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- basic styles -->
 
-		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />
+		<link href="<%=path%>/assets/css/bootstrap.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
@@ -44,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
 
 		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="<%=path%>/assets/css/ace-ie.min.css" />
 		<![endif]-->
 
 		<!-- inline styles related to this page -->
@@ -62,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
 
 	<body>
-		<s:debug></s:debug>
+		<input type="hidden" id="basePath" value="<%=basePath%>">
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -80,6 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<div class="navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
+					
 						<li class="purple">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-bell-alt icon-animated-bell"></i>
@@ -334,7 +333,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</ul>
 						</li>
 
-						<li class='active open'>
+						<li class="active open">
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-edit"></i>
 								<span class="menu-text"> 编辑 </span>
@@ -343,15 +342,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</a>
 
 							<ul class="submenu">
-								<li class="active">
-									<a href="<%=path%>/Questionaire.action">
+								<li>
+									<a href="<%=path%>/questionaireList.action">
 										<i class="icon-double-angle-right"></i>
 										问卷
 									</a>
 								</li>
 								
 								<li>
-									<a href="<%=path%>/user/editQuestionaire.jsp">
+									<a href="<%=path%>/questionaire.action">
 										<i class="icon-double-angle-right"></i>
 										添加测评问卷
 									</a>
@@ -362,24 +361,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<i class="icon-double-angle-right"></i>
 										文章
 									</a>
-								</li>
-								
-								<li>
-									<a href="<%=path%>/user/push.jsp">
+								</li>	
+
+								<li class="active">
+									<a href="<%=path%>/article.action">
 										<i class="icon-double-angle-right"></i>
 										文章推送
 									</a>
 								</li>
 
 							</ul>
-						</li>						
+						</li>							
 
 						<li>
-							<a href="<%=path%>/user/userFeedback.jsp">
+							<a href="<%=path%>/feedback.action">
 								<i class="icon-text-width"></i>
 								<span class="menu-text"> 用户反馈 </span>
 							</a>
-						</li>	
+						</li>
 
 						<li>
 							<a href="#" class="dropdown-toggle">
@@ -408,20 +407,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										500错误页面
 									</a>
 								</li>
-
-								<li>
-									<a href="<%=path%>/blank.jsp">
-										<i class="icon-double-angle-right"></i>
-										空白页面
-									</a>
-								</li>
 								
 								<li>
 									<a href="<%=path%>/user/file.jsp">
 										<i class="icon-double-angle-right"></i>
 										文件上传
 									</a>
-								</li>								
+								</li>									
 							</ul>
 						</li>										
 					</ul><!-- /.nav-list -->
@@ -440,10 +432,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<a href="#">首页</a>
 							</li>
 
-							<li class="active">
-								<a href="#">用户反馈</a>
+							<li>
+								<a href="#">编辑</a>
 							</li>
-
+							<li class="active">文章推送</li>
 						</ul><!-- .breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -457,64 +449,56 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 
 					<div class="page-content">
-						<div class="page-header">
-							<h1>
-								问卷集
-
-							</h1>
-						</div><!-- /.page-header -->
 
 						<div class="row">
-							<div class="col-xs-12">
-								<!-- PAGE CONTENT BEGINS -->
+									<div class="col-sm-12">
+										<h4 class="header blue">写点啥</h4>
 
-								<div class="tabbable">
-									<div class="tab-content no-border padding-24">
-										<div id="faq-tab-1" class="tab-pane fade in active">
+										<div class="widget-box">
+											<div class="widget-header widget-header-small  header-color-green">
+												<div class="widget-toolbar">
+													<a href="#" data-action="collapse">
+														<i class="icon-chevron-up"></i>
+													</a>
+												</div>
+											</div>
 
-											<div class="space-8"></div>
+											<div class="widget-body">
+												<div class="widget-main no-padding">
+													<textarea class="wysiwyg-editor" id="editor2" style='width:99%'></textarea><!--编辑区  -->
+												</div>
 
-											<div id="faq-list-1" class="panel-group accordion-style1 accordion-style2">
-												<div class="panel panel-default">
-													<div class="panel-heading">
-														<a href="#faq-1-1" data-parent="#faq-list-1" data-toggle="collapse" class="accordion-toggle collapsed">
-															<i class="icon-chevron-left pull-right" data-icon-hide="icon-chevron-down" data-icon-show="icon-chevron-left"></i>
+												<div class="widget-toolbox padding-4 clearfix">
+													<input type='text' id='wz_title' style='width:200px;font-size:15px;'  placeholder='文章标题'/>
+													<select id='wz-class'>
+														<option value='class0'>生活</option>
+														<option value='class1'>工作</option>
+														<option value='class2'>情感</option>
+														<option value='class3'>学习</option>
+														<option value='class4'>其他</option>
+													</select>
+													<div class="btn-group pull-right">
+														<button class="btn btn-sm btn-danger" id = "wz_save">
+															<i class="icon-save bigger-125"></i>
+															保存
+														</button>
 
-															<i class="icon-user bigger-130"></i>
-															问卷一
-														</a>
-													</div>
-
-													<div class="panel-collapse collapse" id="faq-1-1">
-														<div class="panel-body">
-															恩恩，恩恩。
-														</div>
+														<button class="btn btn-sm btn-success" id="push">
+															<i class="icon-globe bigger-125"></i>
+															发布
+															<i class="icon-arrow-right icon-on-right bigger-125"></i>
+														</button>
 													</div>
 												</div>
-												
-												<div class="panel panel-default">
-													<div class="panel-heading">
-														<a href="#faq-1-2" data-parent="#faq-list-1" data-toggle="collapse" class="accordion-toggle collapsed">
-															<i class="icon-chevron-left pull-right" data-icon-hide="icon-chevron-down" data-icon-show="icon-chevron-left"></i>
-
-															<i class="icon-user bigger-130"></i>
-															
-														</a>
-													</div>
-
-													<div class="panel-collapse collapse" id="faq-1-2">
-														<div class="panel-body">
-															
-														</div>
-													</div>
-												</div>												
-
-											</div><!-- faq -->
-											
-											
-										</div><!-- table-content -->
+											</div>
+										</div>
 									</div>
+
 								</div>
+
+								<script type="text/javascript">
+									var $path_assets = "assets";//this will be used in loading jQuery UI if needed!
+								</script>
 
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
@@ -533,11 +517,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!--[if !IE]> -->
 
+
 		<!-- <![endif]-->
 
 		<!--[if IE]>
-			<script src="<%=path%>/jquery.min.js"></script>
-		<![endif]-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<![endif]-->
 
 		<!--[if !IE]> -->
 
@@ -553,47 +538,135 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 <![endif]-->
 
-		<script type="text/javascript" src="<%=path%>/assets/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='<%=path%>/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
+		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
+
   		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
 		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
-
+		<script type="text/javascript" src="<%=path%>/js/push.js"></script>
 		<!-- ace scripts -->
 
-		<script type="text/javascript" src="<%=path%>/assets/js/ace-elements.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/assets/js/ace.min.js"></script>
+		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
+		<script src="<%=path%>/assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
 
 		<script type="text/javascript">
-			jQuery(function($) {
-				$('.accordion').on('hide', function (e) {
-					$(e.target).prev().children(0).addClass('collapsed');
-				})
-				$('.accordion').on('show', function (e) {
-					$(e.target).prev().children(0).removeClass('collapsed');
-				})
-			});
-		</script>
-		<script type="text/javascript">
-			var article=[];
-			var i=0;
-			
-			<c:forEach var="user" items="${users}">
-				
-				article[i++]={age:${user.age},gender:${user.gender},phone:${user.phone},dateTime:"${user.dateTime}",vocation:"${user.vocation}"};
-				
-			</c:forEach>
+			jQuery(function($){
+	
+	function showErrorAlert (reason, detail) {
+		var msg='';
+		if (reason==='unsupported-file-type') { msg = "Unsupported format " +detail; }
+		else {
+			console.log("error uploading file", reason, detail);
+		}
+		$('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>'+ 
+		 '<strong>File upload error</strong> '+msg+' </div>').prependTo('#alerts');
+	}
+
+	
+	$('#editor2').css({'height':'200px'}).ace_wysiwyg({
+		toolbar_place: function(toolbar) {
+			return $(this).closest('.widget-box').find('.widget-header').prepend(toolbar).children(0).addClass('inline');
+		},
+		toolbar:
+		[
+			'加粗',
+			{name:'italic' , title:'斜体'},
+			'删除线',
+			null,
+			'insertunorderedlist',
+			'insertorderedlist',
+			null,
+			'justifyleft',
+			'justifycenter',
+			'justifyright'
+		],
+		speech_button:false
+	});
+
+
+	$('[data-toggle="buttons"] .btn').on('click', function(e){
+		var target = $(this).find('input[type=radio]');
+		var which = parseInt(target.val());
+		var toolbar = $('#editor1').prev().get(0);
+		if(which == 1 || which == 2 || which == 3) {
+			toolbar.className = toolbar.className.replace(/wysiwyg\-style(1|2)/g , '');
+			if(which == 1) $(toolbar).addClass('wysiwyg-style1');
+			else if(which == 2) $(toolbar).addClass('wysiwyg-style2');
+		}
+	});
+
+
+	
+
+	//Add Image Resize Functionality to Chrome and Safari
+	//webkit browsers don't have image resize functionality when content is editable
+	//so let's add something using jQuery UI resizable
+	//another option would be opening a dialog for user to enter dimensions.
+	if ( typeof jQuery.ui !== 'undefined' && /applewebkit/.test(navigator.userAgent.toLowerCase()) ) {
+		
+		var lastResizableImg = null;
+		function destroyResizable() {
+			if(lastResizableImg == null) return;
+			lastResizableImg.resizable( "destroy" );
+			lastResizableImg.removeData('resizable');
+			lastResizableImg = null;
+		}
+
+		var enableImageResize = function() {
+			$('.wysiwyg-editor')
+			.on('mousedown', function(e) {
+				var target = $(e.target);
+				if( e.target instanceof HTMLImageElement ) {
+					if( !target.data('resizable') ) {
+						target.resizable({
+							aspectRatio: e.target.width / e.target.height,
+						});
+						target.data('resizable', true);
 						
-/* 			window.onload=funtion(){
-				var length=${questionaire.size()};
-					for(var i=0;i<length;i++){
-					$('#')
-					
+						if( lastResizableImg != null ) {//disable previous resizable image
+							lastResizableImg.resizable( "destroy" );
+							lastResizableImg.removeData('resizable');
+						}
+						lastResizableImg = target;
 					}
-			}; */
-			
+				}
+			})
+			.on('click', function(e) {
+				if( lastResizableImg != null && !(e.target instanceof HTMLImageElement) ) {
+					destroyResizable();
+				}
+			})
+			.on('keydown', function() {
+				destroyResizable();
+			});
+	    }
+		
+		enableImageResize();
+
+		/**
+		//or we can load the jQuery UI dynamically only if needed
+		if (typeof jQuery.ui !== 'undefined') enableImageResize();
+		else {//load jQuery UI if not loaded
+			$.getScript($path_assets+"/js/jquery-ui-1.10.3.custom.min.js", function(data, textStatus, jqxhr) {
+				if('ontouchend' in document) {//also load touch-punch for touch devices
+					$.getScript($path_assets+"/js/jquery.ui.touch-punch.min.js", function(data, textStatus, jqxhr) {
+						enableImageResize();
+					});
+				} else	enableImageResize();
+			});
+		}
+		*/
+	}
+
+
+});
 		</script>
 	</body>
 </html>

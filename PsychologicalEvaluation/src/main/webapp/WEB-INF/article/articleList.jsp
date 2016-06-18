@@ -1,22 +1,25 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<title>管理员</title>
+
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 		<!-- basic styles -->
+
 		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
 
@@ -25,6 +28,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<![endif]-->
 
 		<!-- page specific plugin styles -->
+
+		<link rel="stylesheet" href="<%=path%>/assets/css/jquery-ui-1.10.3.full.min.css" />
+		<link rel="stylesheet" href="<%=path%>/assets/css/datepicker.css" />
+		<link rel="stylesheet" href="<%=path%>/assets/css/ui.jqgrid.css" />
 
 		<!-- fonts -->
 
@@ -35,36 +42,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
-		
+
 		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="<%=path%>/assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
 
 		<!-- inline styles related to this page -->
-		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
+
 		<!-- ace settings handler -->
 
-		
+		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
+
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
 		<script src="<%=path%>/assets/js/html5shiv.js"></script>
 		<script src="<%=path%>/assets/js/respond.min.js"></script>
 		<![endif]-->
+<style type="text/css">
+.panel-heading{
+margin-top:5px;
+}
+
+</style>
 	</head>
 
 	<body>
-		<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
-  		<a href="${ pageContext.request.contextPath }/user/login.jsp">login</a>
-  		<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
-  		<input type="hidden" id="userId"  value="${sessionScope.loginUser.id}"/> 
-  		<input type="hidden" id="username"  value="${sessionScope.loginUser.username}"/> 
-  		<input type="hidden" id="userIcon"  value="${sessionScope.loginUser.icon}"/> 
-  		<input type="hidden" id="targetId"  value="${target.id}"/> 
-  		<input type="hidden" id="targetIcon"  value="${target.icon}"/> 
-  		<input type="hidden" id="targetUsername"  value="${target.username}"/> 
-  		<input type="hidden" id="basePath" value="<%=basePath%>">
-		<s:debug></s:debug>
+	<s:debug></s:debug>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -82,17 +86,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<div class="navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
-
 						<li class="purple">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-bell-alt icon-animated-bell"></i>
-								<span class="badge badge-important" id="broadcast">${unReadBroadCastMessageCount}</span>
+								<span class="badge badge-important">8</span>
 							</a>
 
 							<ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
 								<li class="dropdown-header">
 									<i class="icon-warning-sign"></i>
-									${unReadBroadCastMessageCount}条通知
+									8 Notifications
 								</li>
 
 								<li>
@@ -100,16 +103,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="clearfix">
 											<span class="pull-left">
 												<i class="btn btn-xs no-hover btn-pink icon-comment"></i>
-												系统通知
+												New Comments
 											</span>
-											<span class="pull-right badge badge-info">+${unReadBroadCastMessageCount}</span>
+											<span class="pull-right badge badge-info">+12</span>
 										</div>
 									</a>
 								</li>
 
 								<li>
 									<a href="#">
-										查看所有通知
+										<i class="btn btn-xs btn-primary icon-user"></i>
+										Bob just signed up as an editor ...
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<div class="clearfix">
+											<span class="pull-left">
+												<i class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>
+												New Orders
+											</span>
+											<span class="pull-right badge badge-success">+8</span>
+										</div>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<div class="clearfix">
+											<span class="pull-left">
+												<i class="btn btn-xs no-hover btn-info icon-twitter"></i>
+												Followers
+											</span>
+											<span class="pull-right badge badge-info">+11</span>
+										</div>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										See all notifications
 										<i class="icon-arrow-right"></i>
 									</a>
 								</li>
@@ -119,13 +153,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li class="green">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-envelope icon-animated-vertical"></i>
-								<span class="badge badge-success" id="offLineMessage">${offLineMessageCount}</span>
+								<span class="badge badge-success">5</span>
 							</a>
 
 							<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
 								<li class="dropdown-header">
 									<i class="icon-envelope-alt"></i>
-									${offLineMessageCount}条消息
+									5 Messages
 								</li>
 
 								<li>
@@ -134,12 +168,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Alex:</span>
-												不知道写啥 ...
+												Ciao sociis natoque penatibus et auctor ...
 											</span>
 
 											<span class="msg-time">
 												<i class="icon-time"></i>
-												<span>1分钟以前</span>
+												<span>a moment ago</span>
 											</span>
 										</span>
 									</a>
@@ -151,12 +185,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Susan:</span>
-												不知道翻译...
+												Vestibulum id ligula porta felis euismod ...
 											</span>
 
 											<span class="msg-time">
 												<i class="icon-time"></i>
-												<span>20分钟以前</span>
+												<span>20 minutes ago</span>
 											</span>
 										</span>
 									</a>
@@ -164,24 +198,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<li>
 									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar4.png" class="msg-photo" alt="谷雨's Avatar" />
+										<img src="<%=path%>/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
-												<span class="blue">谷雨:</span>
-												到底是不是英文 ...
+												<span class="blue">Bob:</span>
+												Nullam quis risus eget urna mollis ornare ...
 											</span>
 
 											<span class="msg-time">
 												<i class="icon-time"></i>
-												<span>下午3:15</span>
+												<span>3:15 pm</span>
 											</span>
 										</span>
 									</a>
 								</li>
 
 								<li>
-									<a href="#">
-										查看所有消息
+									<a href="inbox.html">
+										See all messages
 										<i class="icon-arrow-right"></i>
 									</a>
 								</li>
@@ -190,7 +224,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="<%=path%>/assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>欢迎光临</small>
 								</span>
@@ -202,17 +236,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li>
 									<a href="#">
 										<i class="icon-cog"></i>
-										设置
+										Settings
 									</a>
 								</li>
 
+								<li>
+									<a href="#">
+										<i class="icon-user"></i>
+										Profile
+									</a>
+								</li>
 
 								<li class="divider"></li>
 
 								<li>
 									<a href="#">
 										<i class="icon-off"></i>
-										退出
+										Logout
 									</a>
 								</li>
 							</ul>
@@ -268,12 +308,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div><!-- #sidebar-shortcuts -->
 
 					<ul class="nav nav-list">
-						<li class="active">
+						<li >
 							<a href="<%=path%>/index.jsp">
 								<i class="icon-dashboard"></i>
 								<span class="menu-text"> 控制台 </span>
 							</a>
-						</li>						
+						</li>
 
 						<li>
 							<a href="#" class="dropdown-toggle">
@@ -284,13 +324,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</a>
 
 							<ul class="submenu">
-						<li>
-							<a href="${ pageContext.request.contextPath }/userList.action">
-										<i class="icon-double-angle-right"></i>			
+								<li>
+									<a href="${ pageContext.request.contextPath }/userList.action">
+										<i class="icon-double-angle-right"></i>
 										用户列表
-							</a>
-
-						</li>
+									</a>
+								</li>
 
 								<li>
 									<a href="<%=path%>/user/profile.jsp">
@@ -299,9 +338,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</a>
 								</li>
 							</ul>
-						</li>						
+						</li>
 
-						<li >
+						<li class='active open'>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-edit"></i>
 								<span class="menu-text"> 编辑 </span>
@@ -318,13 +357,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 								
 								<li>
-									<a href="<%=path%>/user/editQuestionaire.jsp">
+									<a href="<%=path%>/questionaire.action">
 										<i class="icon-double-angle-right"></i>
 										添加测评问卷
 									</a>
 								</li>
-
-								<li>
+								
+								<li class="active">
 									<a href="<%=path%>/articleList.action">
 										<i class="icon-double-angle-right"></i>
 										文章
@@ -332,7 +371,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>								
 
 								<li>
-									<a href="<%=path%>/user/push.jsp">
+									<a href="<%=path%>/article.action">
 										<i class="icon-double-angle-right"></i>
 										文章推送
 									</a>
@@ -346,8 +385,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<i class="icon-text-width"></i>
 								<span class="menu-text"> 用户反馈 </span>
 							</a>
-						</li>
-						
+						</li>	
+
 						<li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-file-alt"></i>
@@ -383,7 +422,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</a>
 								</li>								
 							</ul>
-						</li>						
+						</li>										
 					</ul><!-- /.nav-list -->
 
 				</div>
@@ -399,7 +438,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<i class="icon-home home-icon"></i>
 								<a href="#">首页</a>
 							</li>
-							<li class="active">控制台</li>
+
+							<li class="active">
+								<a href="#">全部文章</a>
+							</li>
+
 						</ul><!-- .breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -413,82 +456,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 
 					<div class="page-content">
+						<div class="page-header">
+							<h1>
+								全部文章
+
+							</h1>
+						</div><!-- /.page-header -->
 
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
 
-								<div class="alert alert-block alert-success">
+								<div class="tabbable">
+									<div class="tab-content no-border padding-24">
+										<div id="faq-tab-1" class="tab-pane fade in active">
 
-									欢迎使用
-									<strong class="green">
-										我们的后台管理系统
-										<small>(v1.2)</small>
-									</strong>	
-								</div>
+											<div class="space-8"></div>
 
-								<div class="row">
-
-									<div class="col-sm-6">
-										<div class="widget-box ">
-											<div class="widget-header">
-												<h4 class="lighter smaller">
-													<i class="icon-comment blue"></i>
-													会话
-												</h4>
-											</div>
-
-											<div class="widget-body">
-												<div class="widget-main no-padding">
-													<div class="dialogs">
+											<div id="faq-list-1" class="panel-group accordion-style1 accordion-style2">
+												<div class="panel panel-default" id='article'>
+													<div class="panel-heading">
+														<a id='title' href="#content" data-toggle="collapse" class="accordion-toggle collapsed">
 														
+															<i class="icon-chevron-left pull-right" data-icon-hide="icon-chevron-down" data-icon-show="icon-chevron-left"></i>
 
-														<div class="itemdiv dialogdiv">
-															<div class="user">
-																<img alt="谷雨's Avatar" src="<%=path%>/assets/avatars/user.jpg" />
-															</div>
+															<i class="icon-user bigger-130"></i>
+														&nbsp;&nbsp;问卷一	
+														</a>
+													</div>
 
-															<div class="body">
-																<div class="time">
-																	<i class="icon-time"></i>
-																	<span class="orange">2分钟以前</span>
-																</div>
-
-																<div class="name">
-																	<a href="#">谷雨</a>
-																	<span class="label label-info arrowed arrowed-in-right">管理员</span>
-																</div>
-																<div class="text">欢迎大家使用我们做的后台管理系统.</div>
-
-																<div class="tools">
-																	<a href="#" class="btn btn-minier btn-info">
-																		<i class="icon-only icon-share-alt"></i>
-																	</a>
-																</div>
-															</div>
-														</div>														
-														
-													</div><!-- dialogs -->
-
-													<div ="send">
-														<div class="form-actions">
-															<div class="input-group">
-																<input placeholder="在这里输入信息 ..." type="text" class="form-control" name="message" id="message"/>
-																<span class="input-group-btn">
-																	<button class="btn btn-sm btn-info no-radius" type="button" id="send">
-																		<i class="icon-share-alt" ></i>
-																		发送
-																	</button>
-																</span>
-															</div>
+													<div class="panel-collapse collapse" id="content">
+														<div class="panel-body">
+															恩恩，恩恩。
 														</div>
 													</div>
-													
-												</div><!-- /widget-main -->
-											</div><!-- /widget-body -->
-										</div><!-- /widget-box -->
-									</div><!-- /span -->
-								</div><!-- /row -->
+												</div>												
+
+											</div><!-- faq -->
+											
+											
+										</div><!-- table-content -->
+									</div>
+								</div>
 
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
@@ -506,32 +515,71 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- basic scripts -->
 
 		<!--[if !IE]> -->
-		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
 
-		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
-		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
+		<!-- <![endif]-->
 
-		<!-- page specific plugin scripts -->
-
-		<!--[if lte IE 8]>
-		  <script src="<%=path%>/assets/js/excanvas.min.js"></script>
+		<!--[if IE]>
+			<script src="<%=path%>/js/jquery.min.js"></script>
 		<![endif]-->
 
+		<!--[if !IE]> -->
 
-		<script src="<%=path%>/assets/js/date-time/bootstrap-datepicker.min.js"></script>
-		<script src="<%=path%>/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
-		<script src="<%=path%>/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+
+<![endif]-->
+		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/assets/js/bootstrap.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+  		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
+
+
 		<!-- ace scripts -->
 
-		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
-		<script src="<%=path%>/assets/js/ace.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/assets/js/ace-elements.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
-				
-		<script type="text/javascript" src="<%=path%>/assets/js/ace-extra.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
 
-		<script type="text/javascript" src="<%=path%>/js/consult.js"></script>
+		<script type="text/javascript">
+			jQuery(function($) {
+				$('.accordion').on('hide', function (e) {
+					$(e.target).prev().children(0).addClass('collapsed');
+				})
+				$('.accordion').on('show', function (e) {
+					$(e.target).prev().children(0).removeClass('collapsed');
+				})
+			});
+		</script>
+		<script type="text/javascript">
+				var i=0;
+			<c:forEach var="article" items="${articles}">
+				
+				
+				var title="${article.title}";
+				//alert(title);
+				var userName = "${article.userName}";
+				var className = "${article.className}";
+				var dateTime ="${article.dateTime}";
+				var id=${article.id}
+ 				 $('#article').append("<div class='panel-heading'>"
+									+"<a href='#content"+i+"' data-toggle='collapse' class='accordion-toggle collapsed'>"
+									+"<i class='icon-chevron-left pull-right' data-icon-hide='icon-chevron-down' data-icon-show='icon-chevron-left'></i>"
+									+"<i class='icon-user bigger-130'></i>"
+									+"&nbsp;&nbsp;&nbsp;"
+									+title
+									+"</a>"	
+									+"</div>"
+									+"<div class='panel-collapse collapse' id='content"+(i++)+"'>"
+									+"<div class='panel-body'>"
+									+"<a href='/PsychologicalEvaluation/articleDetail.action?id=" + id + "'>作者："+userName+className+dateTime+"</a>"
+									+"</div>"
+									+"</div>");  			
+				
+			</c:forEach>
+									
+		</script>
 	</body>
 </html>
-

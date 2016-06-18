@@ -26,7 +26,7 @@ import com.pes.service.RulerService;
 import com.pes.service.UserService;
 import com.pes.util.AjaxUtil;
 
-@Result(name="success", location="/user/result.jsp")
+@Result(name="success", location="/WEB-INF/user/result.jsp")
 public class SaveAnswerAction extends BaseAction{
 	private static final Logger LOGGER = Logger.getLogger(SaveAnswerAction.class);
 	@Autowired
@@ -58,11 +58,9 @@ public class SaveAnswerAction extends BaseAction{
 		return jsonString;
 	}
 	
-	
 	public void setJsonString(String jsonString) {
 		this.jsonString = jsonString;
 	}
-
 
 	public Questionaire getQuestionaire() {
 		return questionaire;
@@ -84,12 +82,11 @@ public class SaveAnswerAction extends BaseAction{
 		return answer;
 	}
 
-
 	/*public Map<TrueFalseQuestion, Integer> getTrueFalseQuestionAnswers() {
 		return trueFalseQuestionAnswers;
 	}*/
 	@Action(value="showAnswer", results={
-			@Result(name="success", location="/user/result.jsp"),
+			@Result(name="success", location="/WEB-INF/user/result.jsp"),
 			@Result(name="index", location="/index.jsp")
 	})
 	public String showAnswer(){
@@ -103,7 +100,7 @@ public class SaveAnswerAction extends BaseAction{
 	}
 	
 	@Action(value="saveAnswer", results={
-			@Result(name="success", location="/user/result.jsp"),
+			@Result(name="success", location="/WEB-INF/user/result.jsp"),
 			@Result(name="index", location="/index.jsp")})
 	@Override
 	public String execute() throws Exception {
