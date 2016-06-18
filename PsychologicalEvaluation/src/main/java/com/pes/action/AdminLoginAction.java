@@ -54,7 +54,7 @@ public class AdminLoginAction extends  BaseAction{
 	public void setJsonString(String jsonString) {
 		this.jsonString = jsonString;
 	}
-	
+		
 	@Action(value="adminLogin")
 	public String execute()
 	{
@@ -66,6 +66,7 @@ public class AdminLoginAction extends  BaseAction{
 		password = json.getString("password");
 		System.out.println("admin: "+ username+password);
 		Admin admin =  new Admin(username, password);
+		System.out.println("test");
 		if(!adminService.validate(admin))
 		{
 			this.addActionError("密码错误！");
