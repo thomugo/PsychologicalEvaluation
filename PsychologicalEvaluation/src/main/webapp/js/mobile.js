@@ -1,3 +1,4 @@
+var basePath = $("#basePath").val();
 function infosPageInit(){
 	var indexPage=$(this),loading=false
 	getmore=indexPage.find('li.get-more')
@@ -81,63 +82,6 @@ function checkLoginForm() {
 	return check;
 }
 
-$('#id_account_register').live('pageinit', function(){
-	var page=$(this), form=page.find('form');
-	form.submit(function(){
-		var self=$(this),check=true;
-		var username=$.trim(self.find('#id_username').val());
-		if(username==''){
-			self.find('#id_username_msg').html('请输入邮箱');
-			check=false;
-		}else{
-			$.ajax({
-				url:'/account/check-username/?username='+encodeURI(username)+'&t='+(new Date()).getTime(),
-				async:false,
-				success: function(data){
-					if(!data.status){
-						self.find('#id_username_msg').html('该邮箱已经被注册');
-						check = false;
-					}else{
-						self.find('#id_username_msg').html('');
-					}
-				}
-			});
-		}
-		var nickname=$.trim(self.find('#id_nickname').val());
-		if(nickname==''){
-			self.find('#id_nickname_msg').html('请输入昵称');
-			check=false;
-		}else{
-			$.ajax({
-				url:'/account/check-nickname/?nickname='+encodeURI(nickname)+'&t='+(new Date()).getTime(),
-				async:false,
-				success: function(data){
-					if(!data.status){
-						self.find('#id_nickname_msg').html('该昵称已经存在');
-						check = false;
-					}else{
-						self.find('#id_nickname_msg').html('');
-					}
-				}
-			});
-		}
-		var password1=$.trim(self.find('#id_password1').val());
-		if(password1==''){
-			self.find('#id_password1_msg').html('请输入密码');
-			check=false;
-		}else{
-			self.find('#id_password1_msg').html('');
-		}
-		var password2=$.trim(self.find('#id_password2').val());
-		if(password1!='' && password2!=password1){
-			self.find('#id_password2_msg').html('两次密码输入不相同');
-			check=false;
-		}else{
-			self.find('#id_password2_msg').html('');
-		}
-		return check;
-	});
-});
 	
 $('#id_ceshi_page').live('pageinit', function() {
 	$('#id_start_ceshi').click(function() {
@@ -180,7 +124,7 @@ $('#id_ceshi_page').live('pageinit', function() {
 					 answer["choiceQuestions"] = choiceQuestions;
 					 var jsonString = JSON.stringify(answer);
 					 alert(jsonString); 
-				$.post("saveAnswer.action", {"jsonString" : jsonString},
+				$.post(basePath+"saveAnswer.action", {"jsonString" : jsonString},
 					function (data){
 					$("body").html(data);
 					});	 	

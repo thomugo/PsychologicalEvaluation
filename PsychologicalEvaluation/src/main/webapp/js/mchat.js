@@ -1,5 +1,6 @@
 //EL表达式在单独的文件中不起作用
-$(document).ready(
+$(document)
+		.ready(
 				function() {
 					
 					var ID = $("#userId").val();
@@ -81,26 +82,12 @@ $(document).ready(
 						//alert(date.toLocaleString());
 						
 						$('.dialogs').append(
-								"<div class='itemdiv dialogdiv'>"
-									+"<div class='user'>"
-									+"<img  src='/PsychologicalEvaluation/assets/avatars/"+ targetIcon + " '/>"
-										+"</div>"
-								+"<div class='body'>"
-								+"	<div class='time'>"
-										+"<i class='icon-time'></i>"
-										+"<span class='orange'>" + date.toLocaleString() + "</span>"
-								+"</div>"
-								+"<div class='name'>"
-										+"<span class='label label-info arrowed arrowed-in-right'>"+ targetUsername +"</span>"
-								+"</div>"
-								+	"<div class='text'>"+ messageobj.content +"</div>"
-								+	"<div class='tools'>"
-										+"<a href='#' class='btn btn-minier btn-info'>"
-										+"<i class='icon-only icon-share-alt'></i>"
-										+"</a>"
-									+"</div>"
-								+"</div>"
-							+"</div>"
+								"<div class='chatcontent'>"
+								+"	<div>"
+										+date.toLocaleString()
+								  +"</div>"
+										+ targetUsername
+								+":"+messageobj.content+"</div>"
 						);
 						
 					});
@@ -110,26 +97,12 @@ $(document).ready(
 						var icon = ICON;
 						var myDate = new Date();
 						$('.dialogs').append(
-								"<div class='itemdiv dialogdiv'>"
-									+"<div class='user'>"
-									+"<img  src='/PsychologicalEvaluation/assets/avatars/"+ icon+ " '/>"
-										+"</div>"
-								+"<div class='body'>"
-								+"	<div class='time'>"
-										+"<i class='icon-time'></i>"
-										+"<span class='green'>"+ myDate.toLocaleString()+"</span>"
-								+"</div>"
-								+"<div class='name'>"
-										+"<span class='label label-info arrowed arrowed-in-right'>" + USERNAME + "</span>"
-								+"</div>"
-								+	"<div class='text'>"+ messageString +"</div>"
-								+	"<div class='tools'>"
-										+"<a href='#' class='btn btn-minier btn-info'>"
-										+"<i class='icon-only icon-share-alt'></i>"
-										+"</a>"
-									+"</div>"
-								+"</div>"
-							+"</div>"
+								"<div class='chatcontent'>"
+								+"	<div>"
+										+ myDate.toLocaleString()
+								  +"</div>"
+									+ USERNAME
+								+":"+messageString+"</div>"
 						);
 						
 					});

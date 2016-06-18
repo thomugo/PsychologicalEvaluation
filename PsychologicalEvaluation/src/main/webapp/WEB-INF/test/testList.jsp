@@ -2,6 +2,7 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -59,10 +60,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/html5shiv.js"></script>
 		<script src="<%=path%>/assets/js/respond.min.js"></script>
 		<![endif]-->
+<style type="text/css">
+.panel-heading{
+margin-top:5px;
+}
+
+</style>
 	</head>
 
 	<body>
-		<s:debug></s:debug>
+	<s:debug></s:debug>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -208,7 +215,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="<%=path%>/consult.action">
+									<a href="inbox.html">
 										See all messages
 										<i class="icon-arrow-right"></i>
 									</a>
@@ -344,28 +351,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<ul class="submenu">
 								<li class="active">
-									<a href="<%=path%>/Questionaire.action">
+									<a href="<%=path%>/questionaireList.action">
 										<i class="icon-double-angle-right"></i>
 										问卷
 									</a>
 								</li>
 								
 								<li>
-									<a href="<%=path%>/user/editQuestionaire.jsp">
+									<a href="<%=path%>/questionaire.action">
 										<i class="icon-double-angle-right"></i>
 										添加测评问卷
 									</a>
 								</li>
-
+								
 								<li>
 									<a href="<%=path%>/articleList.action">
 										<i class="icon-double-angle-right"></i>
 										文章
 									</a>
-								</li>
-								
+								</li>								
+
 								<li>
-									<a href="<%=path%>/user/push.jsp">
+									<a href="<%=path%>/article.action">
 										<i class="icon-double-angle-right"></i>
 										文章推送
 									</a>
@@ -408,13 +415,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										500错误页面
 									</a>
 								</li>
-
-								<li>
-									<a href="<%=path%>/blank.jsp">
-										<i class="icon-double-angle-right"></i>
-										空白页面
-									</a>
-								</li>
 								
 								<li>
 									<a href="<%=path%>/user/file.jsp">
@@ -441,7 +441,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</li>
 
 							<li class="active">
-								<a href="#">用户反馈</a>
+								<a href="#">全部问卷</a>
 							</li>
 
 						</ul><!-- .breadcrumb -->
@@ -459,7 +459,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="page-content">
 						<div class="page-header">
 							<h1>
-								问卷集
+								全部问卷
 
 							</h1>
 						</div><!-- /.page-header -->
@@ -475,36 +475,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<div class="space-8"></div>
 
 											<div id="faq-list-1" class="panel-group accordion-style1 accordion-style2">
-												<div class="panel panel-default">
+												<div class="panel panel-default" id='testList'>
 													<div class="panel-heading">
-														<a href="#faq-1-1" data-parent="#faq-list-1" data-toggle="collapse" class="accordion-toggle collapsed">
+														<a id='title' href="#content" data-toggle="collapse" class="accordion-toggle collapsed">
+														
 															<i class="icon-chevron-left pull-right" data-icon-hide="icon-chevron-down" data-icon-show="icon-chevron-left"></i>
 
 															<i class="icon-user bigger-130"></i>
-															问卷一
+														&nbsp;&nbsp;问卷一	
 														</a>
 													</div>
 
-													<div class="panel-collapse collapse" id="faq-1-1">
+													<div class="panel-collapse collapse" id="content">
 														<div class="panel-body">
 															恩恩，恩恩。
-														</div>
-													</div>
-												</div>
-												
-												<div class="panel panel-default">
-													<div class="panel-heading">
-														<a href="#faq-1-2" data-parent="#faq-list-1" data-toggle="collapse" class="accordion-toggle collapsed">
-															<i class="icon-chevron-left pull-right" data-icon-hide="icon-chevron-down" data-icon-show="icon-chevron-left"></i>
-
-															<i class="icon-user bigger-130"></i>
-															
-														</a>
-													</div>
-
-													<div class="panel-collapse collapse" id="faq-1-2">
-														<div class="panel-body">
-															
 														</div>
 													</div>
 												</div>												
@@ -536,28 +520,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- <![endif]-->
 
 		<!--[if IE]>
-			<script src="<%=path%>/jquery.min.js"></script>
+			<script src="<%=path%>/js/jquery.min.js"></script>
 		<![endif]-->
 
 		<!--[if !IE]> -->
 
-		<script type="text/javascript">
-			window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
-		</script>
-
 		<!-- <![endif]-->
 
 		<!--[if IE]>
-<script type="text/javascript">
- window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
-</script>
-<![endif]-->
 
+<![endif]-->
+		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
 		<script type="text/javascript" src="<%=path%>/assets/js/bootstrap.min.js"></script>
 
 		<!-- page specific plugin scripts -->
   		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
+
 
 		<!-- ace scripts -->
 
@@ -577,23 +555,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});
 		</script>
 		<script type="text/javascript">
-			var article=[];
-			var i=0;
-			
-			<c:forEach var="user" items="${users}">
-				
-				article[i++]={age:${user.age},gender:${user.gender},phone:${user.phone},dateTime:"${user.dateTime}",vocation:"${user.vocation}"};
-				
-			</c:forEach>
-						
-/* 			window.onload=funtion(){
-				var length=${questionaire.size()};
-					for(var i=0;i<length;i++){
-					$('#')
-					
-					}
-			}; */
-			
+				var i=0;
+
+ 			<c:forEach var="tests" items="${questionaires}">
+
+				var id=${tests.id};
+				var title="${tests.title}"
+				var description = "${tests.note}";
+ 				 $('#testList').append("<div class='panel-heading'>"
+									+"<a id='title' href='#content"+i+"' data-toggle='collapse' class='accordion-toggle collapsed'>"
+									+"<i class='icon-chevron-left pull-right' data-icon-hide='icon-chevron-down' data-icon-show='icon-chevron-left'></i>"
+									+"<i class='icon-user bigger-130'></i>"
+									+"&nbsp;&nbsp;&nbsp;"
+									+title
+									+"</a>"	
+									+"</div>"
+									+"<div class='panel-collapse collapse' id='content"+(i++)+"'>"
+									+"<div class='panel-body'>"
+									+"<a href='<%=path%>/test?id="
+									+id
+									+"'>"
+									+description
+									+"</a>"
+									+"</div>"
+									+"</div>");  			
+			</c:forEach>	
+
 		</script>
 	</body>
 </html>

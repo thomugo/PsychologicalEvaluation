@@ -23,9 +23,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="">
 <meta name="format-detection" content="telephone=no">
-<title>心理杂志 - 每天学点心理学与生活</title>
-<meta name="keywords" content="心理杂志，心理月刊，心理学与生活">
-<meta name="description" content="网 - 心理杂志频道分享婚恋两性心理、亲子心理、职场管理心理、心理健康、心理科普等领域文章。">
+<title>心理学从这里开始</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
 <link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css">
 
 <script src="<%=path%>/js/mobile_f4b5a0a094.js" ></script><!--[if lt IE 9]>
@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script></head>
 
 <body>
-<s:debug></s:debug>
+		<input type="hidden" id="basePath" value="<%=basePath%>">
 <div class="layout">
   	<div class="header ">
     	<div class="left">
@@ -69,23 +69,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>
                     
                     <li>
-                        <a href="#">婚恋</a>
+                        <span>婚恋</span>
                     </li>
                     
                     <li>
-                        <a href="#">亲子</a>
+                        <span>亲子</span>
                     </li>
                     
                     <li>
-                        <a href="#">职场</a>
+                        <span>职场</span>
                     </li>
                                             
                     <li>
-                        <a href="#">健康</a>
+                        <span>健康</span>
                     </li>
                     
                     <li>
-                        <a href="#">科普</a>
+                        <span>科普</span>
                     </li>
                 </ul>
             </div>
@@ -93,8 +93,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="wz-banner">
                 <ul class="slides">
                         <li class="slide">
-                            <a href="http://www.xinli001.com/info/100320543"><img src="http://ossimg.xinli001.com/20160527/dd5c0b984d85a0373a9ce687e911d87a.png"/></a>
-                            <a href="http://www.xinli001.com/info/100320543"><h2>中国学生第一次哈佛毕业演讲：哈佛教会我们敢于改变世界</h2></a>
+                            <a href="<%=path%>/article/marticle.jsp"><img src="http://ossimg.xinli001.com/20160527/dd5c0b984d85a0373a9ce687e911d87a.png"/></a>
+                            <a href="<%=path%>/article/marticle.jsp"><h2>中国学生第一次哈佛毕业演讲：哈佛教会我们敢于改变世界</h2></a>
                         </li>
                         <li class="slide">
                             <a href="http://www.xinli001.com/info/100320345"><img src="http://ossimg.xinli001.com/20160526/a22fea65786bf0a85fcfb21ed2256f50.png"/></a>
@@ -121,7 +121,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <ul>
                 <li>
     				<div class="img">
-        				<a href="http://m.xinli001.com/info/100319150"><img src="http://image.xinli001.com/20160525/084105vdf8dm4p7e6fvycf.jpg!180x120"/></a>
+        				<a href="<%=path%>/article/marticle.jsp"><img src="http://image.xinli001.com/20160525/084105vdf8dm4p7e6fvycf.jpg!180x120"/></a>
     				</div>
     				<div class="text">
         				<div class="desc">
@@ -159,6 +159,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </span>
 		<script type="text/javascript">
+			var basePath = $("#basePath").val();
 				var i=0;
 			<c:forEach var="article" items="${articles}">
 				
@@ -178,7 +179,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									+" "
 									+"<div class='desc'>"
 									+" "
-									+"<a href='/PsychologicalEvaluation/articleDetail.action?id=" + id + "'>"+title+"</a>"
+									+"<a href='"+basePath+"articleDetail.action?id=" + id + "'>"+title+"</a>"
 									+"</div>"	
 									+"<div class='info'>"
 									+" <span>"+userName+"</span>"

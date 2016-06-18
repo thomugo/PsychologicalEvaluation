@@ -1,22 +1,21 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-  <head>
-    <base href="<%=basePath%>">
-    
+<!DOCTYPE html>
+<html lang="en">
+	<head>
 		<meta charset="utf-8" />
 		<title>管理员</title>
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
 		<!-- basic styles -->
 		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
@@ -52,9 +51,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/html5shiv.js"></script>
 		<script src="<%=path%>/assets/js/respond.min.js"></script>
 		<![endif]-->
-</head>
-	<body>
+	</head>
 
+	<body>
+		<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
+  		<a href="${ pageContext.request.contextPath }/user/login.jsp">login</a>
+  		<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
+  		<input type="hidden" id="userId"  value="${sessionScope.loginUser.id}"/> 
+  		<input type="hidden" id="username"  value="${sessionScope.loginUser.username}"/> 
+  		<input type="hidden" id="userIcon"  value="${sessionScope.loginUser.icon}"/> 
+  		<input type="hidden" id="targetId"  value="${target.id}"/> 
+  		<input type="hidden" id="targetIcon"  value="${target.icon}"/> 
+  		<input type="hidden" id="targetUsername"  value="${target.username}"/> 
+  		<input type="hidden" id="basePath" value="<%=basePath%>">
+		<s:debug></s:debug>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -153,7 +163,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<span>
+									<a href="#">
 										<img src="<%=path%>/assets/avatars/avatar4.png" class="msg-photo" alt="谷雨's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
@@ -166,7 +176,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												<span>下午3:15</span>
 											</span>
 										</span>
-									</span>
+									</a>
 								</li>
 
 								<li>
@@ -180,7 +190,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="<%=path%>/assets/avatars/${user.icon}" } alt="Jason's Photo" />
+								<img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>欢迎光临</small>
 								</span>
@@ -200,7 +210,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li class="divider"></li>
 
 								<li>
-									<a href="${ pageContext.request.contextPath }/logout.action">
+									<a href="#">
 										<i class="icon-off"></i>
 										退出
 									</a>
@@ -301,14 +311,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<ul class="submenu">
 								<li>
-									<a href="<%=path%>/Questionaire.action">
+									<a href="<%=path%>/questionaireList.action">
 										<i class="icon-double-angle-right"></i>
 										问卷
 									</a>
 								</li>
 								
 								<li>
-									<a href="<%=path%>/user/editQuestionaire.jsp">
+									<a href="<%=path%>/questionaire.action">
 										<i class="icon-double-angle-right"></i>
 										添加测评问卷
 									</a>
@@ -322,7 +332,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>								
 
 								<li>
-									<a href="<%=path%>/user/push.jsp">
+									<a href="<%=path%>/article.action">
 										<i class="icon-double-angle-right"></i>
 										文章推送
 									</a>
@@ -365,13 +375,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										500错误页面
 									</a>
 								</li>
-
-								<li>
-									<a href="<%=path%>/user/blank.jsp">
-										<i class="icon-double-angle-right"></i>
-										空白页面
-									</a>
-								</li>
 								
 								<li>
 									<a href="<%=path%>/user/file.jsp">
@@ -387,9 +390,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<div class="main-content">
 					<div class="breadcrumbs" id="breadcrumbs">
-<%-- 						<script type="text/javascript">
+						<script type="text/javascript">
 							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
-						</script> --%>
+						</script>
 
 						<ul class="breadcrumb">
 							<li>
@@ -452,7 +455,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																</div>
 
 																<div class="name">
-																	<span >谷雨</span>
+																	<a href="#">谷雨</a>
 																	<span class="label label-info arrowed arrowed-in-right">管理员</span>
 																</div>
 																<div class="text">欢迎大家使用我们做的后台管理系统.</div>
@@ -463,50 +466,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																	</a>
 																</div>
 															</div>
-														</div>
-
-
-														<div class="itemdiv dialogdiv">
-															<div class="user">
-																<img alt="一个妹子's Avatar" src="<%=path%>/assets/avatars/avatar1.png" />
-															</div>
-
-															<div class="body">
-																<div class="time">
-																	<i class="icon-time"></i>
-																	<span class="green">4分钟以前</span>
-																</div>
-																<div class="name">
-																	<span>一个妹子</span>
-																</div>
-																<div class="text">继续支持我们做的后台系统</div>
-																<div class="tools">
-																	<a href="#" class="btn btn-minier btn-info">
-																		<i class="icon-only icon-share-alt"></i>
-																	</a>
-																</div>
-															</div><!-- body -->
-														</div><!-- itemdiv -->
-															<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
-													  		<a href="${ pageContext.request.contextPath }/user/login.jsp">login</a>
-													  		<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
-													  		<input type="hidden" id="userId"  value="${sessionScope.loginUser.id}"/> 
-													  		<input type="hidden" id="username"  value="${sessionScope.loginUser.username}"/> 
-													  		<input type="hidden" id="userIcon"  value="${sessionScope.loginUser.icon}"/> 
-													  		<input type="hidden" id="targetId"  value="${target.id}"/> 
-													  		<input type="hidden" id="targetIcon"  value="${target.icon}"/> 
-													  		<input type="hidden" id="targetUsername"  value="${target.username}"/> 
-															<s:debug></s:debug>														
-															<div>
-													
-													  			<input type="hidden" class="${loginUser.id}" id = "target">
-													    		<p>
-													        		<input type="text" placeholder="type and press enter to chat" id="chat" />
-													    		</p>
-													    		<div id="console-container">
-													        		<div id="console"></div>
-													    		</div>
-															</div>														
+														</div>														
+														
 													</div><!-- dialogs -->
 
 													<div ="send">
@@ -545,29 +506,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- basic scripts -->
 
 		<!--[if !IE]> -->
+		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
 
-
-
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-			<script src="<%=path%>/js/jquery.min.js"></script>
-		<![endif]-->
-
-		<!--[if !IE]> -->
-
-		<script type="text/javascript">
-			window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
-		</script>
-
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-		<script type="text/javascript">
-			 window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
-		</script>
-		<![endif]-->
-
+		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
 		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
@@ -576,116 +517,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  <script src="<%=path%>/assets/js/excanvas.min.js"></script>
 		<![endif]-->
 
-		<script src="<%=path%>/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-		<script src="<%=path%>/assets/js/jquery.slimscroll.min.js"></script>
-		<script src="<%=path%>/assets/js/flot/jquery.flot.min.js"></script>
-		<script src="<%=path%>/assets/js/flot/jquery.flot.resize.min.js"></script>
-		<script src="<%=path%>/assets/js/date-time/bootstrap-datepicker.min.js"></script>
 
+		<script src="<%=path%>/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+		<script src="<%=path%>/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
+		<script src="<%=path%>/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
 		<!-- ace scripts -->
 
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
 		<script src="<%=path%>/assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
-
-		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
+				
+		<script type="text/javascript" src="<%=path%>/assets/js/ace-extra.min.js"></script>
 		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
-< 		<script type="text/javascript" src="<%=path%>/js/consult.js"></script> 
+
+		<script type="text/javascript" src="<%=path%>/js/consult.js"></script>
 	</body>
-
-    <script language="JavaScript">
-        "use strict";
-		var id = ${loginUser.id};
-		var name="${loginUser.username}";
-			alert("用户:"+ name);
-			//alert("什么鬼啊！");
-        var Chat = {};
-
-        Chat.socket = null;
-
-        Chat.connect = (function(host) {
-            if ('WebSocket' in window) {
-                Chat.socket = new WebSocket(host);
-            } else if ('MozWebSocket' in window) {
-                Chat.socket = new MozWebSocket(host);
-            } else {
-                Console.log('错误: 浏览器不支持websocket聊天.');
-                return;
-            }
-
-            Chat.socket.onopen = function () {
-                Console.log('提示 : 聊天链接已建立');
-                document.getElementById('chat').onkeydown = function(event) {
-                    if (event.keyCode == 13) {
-                        Chat.sendMessage();
-                    }
-                };
-            };
-
-            Chat.socket.onclose = function () {
-                document.getElementById('chat').onkeydown = null;
-                Console.log('提示: 聊天已关闭.');
-            };
-
-            Chat.socket.onmessage = function (message) {
-                Console.log(message.data);
-            };
-        });
-
-        Chat.initialize = function() {
-            if (window.location.protocol == 'http:') {
-                Chat.connect('ws://localhost:8080/PsychologicalEvaluation/consult');
-            } else {
-                Chat.connect('wss://localhost:8080/PsychologicalEvaluation/consult');
-            }
-        };
-
-        Chat.sendMessage = (function() {
-            var message = document.getElementById('chat').value;
-            var map = {};
-            var targetId=18;
-            var flag = 5;  //0： 未读消息（默认值）/ 4 ：无效消息（测试连接使用）/5：广播消息
-            if(id == 18)
-            	targetId = 20;
-            else
-               targetId=18;
-            if (message != '') {
-            	map["message"] = message;
-            	map["targetId"] = targetId;
-            	map["onChat"] = true;
-            	map["flag"] = flag;
-            	var jsonString = JSON.stringify(map);
-                Chat.socket.send(jsonString);
-                document.getElementById('chat').value = '';
-            }
-        });
-
-        var Console = {};
-
-        Console.log = (function(message) {
-            var console = document.getElementById('console');
-            var p = document.createElement('p');
-            p.style.wordWrap = 'break-word';
-            p.innerHTML = message;
-            console.appendChild(p);
-            while (console.childNodes.length > 25) {
-                console.removeChild(console.firstChild);
-            }
-            console.scrollTop = console.scrollHeight;
-        });
-
-        Chat.initialize();
-
-        document.addEventListener("DOMContentLoaded", function() {
-            // Remove elements with "noscript" class - <noscript> is not allowed in XHTML
-            var noscripts = document.getElementsByClassName("noscript");
-            for (var i = 0; i < noscripts.length; i++) {
-                noscripts[i].parentNode.removeChild(noscripts[i]);
-            }
-        }, false);
-
-    </script>
-
 </html>
+

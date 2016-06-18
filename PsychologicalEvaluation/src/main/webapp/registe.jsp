@@ -5,6 +5,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -12,22 +13,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>心理测评 用户注册</title>
+<title>心理学从这里开始 用户注册</title>
 <meta name="description" content="心理测评系统">
 <meta name="keywords" content="微信公众号，心理测评">
 <meta name="format-detection" content="telephone=no">
 <meta name="format-detection" content="address=no">
-	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/reset.css">
-	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/custom.css">
-	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/dialog.css">
+	<link rel="stylesheet" type="text/css" href="<%=path%>/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="<%=path%>/style/reset.css">
+	<link rel="stylesheet" type="text/css" href="<%=path%>/style/custom.css">
 <!--[if lt IE 9]>
     <script src="js/html5.js"></script>
 <![endif]-->
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="<%=path%>/js/jquery.min.js"></script>
+<script src="<%=path%>/assets/js/bootstrap.min.js"></script>	
 </head>
 <body>
+<input type="hidden" id="basePath" value="<%=basePath%>">
+
 	<div class="main-container">
 		<header>
 			<div role="navigation" class="navbar navbar-default topnav">
@@ -39,24 +41,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			              <span class="icon-bar"></span>
 			              <span class="icon-bar"></span>
 			            </button>
-			            <a href="jsp/users/index.jsp" class="navbar-brand">心理测评</a>
 			        </div>
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
-							<li class="" id="index-li"><a href="index.jsp">首页</a></li>
+							<li class="" id="index-li"><a href="<%=path%>/user/userIndex.jsp">首页</a></li>
 						</ul>
-						<div class="navbar-right">
-							<ul class="nav navbar-nav">
-								
-									
-									
-									
-										<li class="" id="register-li"><a href="user/login.jsp">登录</a></li>
-										<li class="" id="login-li"><a href="index.jsp">返回主页</a></li>
-									
-								
-							</ul>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -66,9 +55,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="col-xs-12">
         <div class="register-wrapper">
             <div class="col-md-offset-2 col-xs-12 col-sm-10 col-md-8">
-                <form class="form-horizontal" role="form" method="post" action="userReg.do" id="registe-form">
+                <div class="form-horizontal" role="form" id="registe-form">
 	                <div class="form-group">
-                        <h1>注册 <small>欢迎加入注册账户来享受我们的服务。</small></h1>
+                        <h1>注册 </h1>
                         <hr>
 	                </div>
 	                <div class="form-group">
@@ -140,6 +129,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    	<div class="alert hidden" role="alert" id="alert-email-ok"></div>
 	                    </div>
 	                </div>
+	                
+	                <div class="form-group">
+	                    <label for="age" class="col-md-3 control-label">年龄</label>
+	                    <div class="col-md-4">
+	                    <input type="text" class="form-control" id="age" name="age" placeholder="输入年龄" autocomplete="off">
+	                    </div>
+	                    <div class="col-md-5">
+	                    	<div class="alert alert-danger hidden" role="alert" id="alert-age">
+	                    		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;&nbsp;
+	                    		<span id="alert-age-message"></span>
+	                    	</div>
+	                    	<div class="alert hidden" role="alert" id="alert-age-ok"></div>
+	                    </div>
+	                </div>	 
+	                               
+	                <div class="form-group">
+	                    <label for="vocation" class="col-md-3 control-label">职业</label>
+	                    <div class="col-md-4">
+	                    <input type="text" class="form-control" id="vocation" name="vocation" placeholder="输入职业" autocomplete="off">
+	                    </div>
+	                    <div class="col-md-5">
+	                    	<div class="alert alert-danger hidden" role="alert" id="alert-vocation">
+	                    		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;&nbsp;
+	                    		<span id="alert-vocation-message"></span>
+	                    	</div>
+	                    	<div class="alert hidden" role="alert" id="alert-vocation-ok"></div>
+	                    </div>
+	                </div>
 
 	                <div class="form-group">
 	                    <div class="col-md-7 form-btn-group">
@@ -148,7 +165,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <samp></samp>
 	                    </div>
 	                </div>
-	            </form>
+	            </div>
             </div>
         </div>
     </div>
@@ -158,11 +175,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <footer>
         <div class="container">
-            <p><strong>试手</strong> &copy; 2016 All Rights Reserved <a class="links" href="user/adminLogin.jsp">进入后台</a></p>
+            <p>我们的小组 <a class="links" href="<%=path%>/user/adminLogin.jsp">进入后台</a></p>
         </div>
     </footer>
-    <script src="js/dialog.js"></script>
-    <script src="js/validation.js"></script>
-	<script src="js/location.js"></script>
+
+	<script src="<%=path%>/js/registe.js"></script>
 </body>
 </html>

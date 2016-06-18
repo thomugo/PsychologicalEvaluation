@@ -2,13 +2,11 @@ package com.pes.action;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -16,7 +14,6 @@ import com.pes.entity.BaseUser;
 import com.pes.entity.ChoiceQuestion;
 import com.pes.entity.Option;
 import com.pes.entity.Questionaire;
-import com.pes.entity.User;
 import com.pes.interceptor.Authority;
 import com.pes.service.ChoiceQuestionService;
 import com.pes.service.QuestionaireService;
@@ -25,7 +22,7 @@ import com.pes.util.AjaxUtil;
 
 @ParentPackage("myBasicPackage")
 @Action(value="editQuestionaire")
-@Result(name="success", location="/user/editRule.jsp")
+@Result(name="success", location="/WEB-INF/user/editRule.jsp")
 public class EditQuestionaire extends BaseAction {
 	private static final Logger LOGGER = Logger.getLogger(EditQuestionaire.class);
 	@Autowired
@@ -60,7 +57,6 @@ public class EditQuestionaire extends BaseAction {
 	public Questionaire getQuestionaire() {
 		return questionaire;
 	}
-	
 	
 	public ArrayList<Questionaire> getQuestionaires() {
 		return questionaires;
@@ -127,8 +123,8 @@ public class EditQuestionaire extends BaseAction {
 		return "success";
 	}
 	@Action(value="questionaireList", results={
-			@Result(name="success", location="/test/mtestList.jsp"),
-			@Result(name="admin", location="/test/testList.jsp")
+			@Result(name="success", location="/WEB-INF/test/mtestList.jsp"),
+			@Result(name="admin", location="/WEB-INF/test/testList.jsp")
 	})
 	public String questionaireList(){
 		if(jsonString != null){

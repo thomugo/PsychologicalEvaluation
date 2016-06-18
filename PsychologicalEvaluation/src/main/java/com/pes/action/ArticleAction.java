@@ -1,32 +1,19 @@
 package com.pes.action;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-
-import javax.swing.border.TitledBorder;
-
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.alibaba.fastjson.JSONObject;
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ModelDriven;
 import com.pes.entity.Article;
 import com.pes.entity.ArticlePojo;
 import com.pes.entity.BaseUser;
-import com.pes.entity.Message;
 import com.pes.entity.User;
 import com.pes.service.ArticleService;
-import com.pes.service.MessageService;
-import com.pes.service.UserService;
 import com.pes.util.AjaxUtil;
-import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
-import com.sun.tools.javac.resources.compiler;
 
 @ParentPackage("myBasicPackage")
 public class ArticleAction extends BaseAction{
@@ -46,7 +33,6 @@ public class ArticleAction extends BaseAction{
 	private String jsonString;
 	private List<ArticlePojo> articles = null;
 	
-
 	public int getId() {
 		return id;
 	}
@@ -85,8 +71,8 @@ public class ArticleAction extends BaseAction{
 	}
 	
 	@Action(value="articleList", results={
-			@Result(name="admin", location="/article/articleList.jsp"),
-			@Result(name="normal", location="/article/marticleList.jsp")
+			@Result(name="admin", location="/WEB-INF/article/articleList.jsp"),
+			@Result(name="normal", location="/WEB-INF/article/marticleList.jsp")
 	})
 	public String execute() {
 		if(jsonString != null){
@@ -170,13 +156,20 @@ public class ArticleAction extends BaseAction{
 	}
 	
 	@Action(value="articleDetail", results={
-			@Result(name="articleinfo", location="/article/marticle.jsp")
+			@Result(name="articleinfo", location="/WEB-INF/article/marticle.jsp")
 			})
 	public String detail(){
 		article = articleService.findById(id);
 		System.out.println(article);
 		//ActionContext.getContext().getValueStack().push(article);
 		return "articleinfo";
+	}
+	
+	@Action(value="article", results={
+			@Result(name="success", location="/WEB-INF/user/push.jsp")
+			})
+	public String push(){
+		return "success";
 	}
 
 }

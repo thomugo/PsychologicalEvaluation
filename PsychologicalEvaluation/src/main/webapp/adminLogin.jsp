@@ -19,15 +19,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="format-detection" content="telephone=no">
 <meta name="format-detection" content="address=no">
 	<link rel="stylesheet" type="text/css" href="<%=path%>/assets/css/bootstrap.min.css">
-
-	<link rel="stylesheet" type="text/css" href="<%=path%>/styles/custom.css">
-
-
-<script src="<%=path%>/js/jquery-1.11.2.min.js"></script>
-<script src="<%=path%>/js/bootstrap.min.js"></script>	
+	<link rel="stylesheet" type="text/css" href="<%=path%>/style/reset.css">
+	<link rel="stylesheet" type="text/css" href="<%=path%>/style/custom.css">
+<!--[if lt IE 9]>
+    <script src="js/html5.js"></script>
+<![endif]-->
+<script src="<%=path%>/js/jquery.min.js"></script>
+<script src="<%=path%>/assets/js/bootstrap.min.js"></script>	
 </head>
   
 <body>
+<input type="hidden" id="basePath" value="<%=basePath%>">
 	<div class="main-container">
 		<header>
 			<div role="navigation" class="navbar navbar-default topnav">
@@ -39,14 +41,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			              <span class="icon-bar"></span>
 			              <span class="icon-bar"></span>
 			            </button>
-						<span class="navbar-brand">心理测评 后台</span>
-					</div>
-					<div id="navbar" class="navbar-collapse collapse">
-						<div class="navbar-right">
-							<ul class="nav navbar-nav">										
-								 <li class="" id="index-li"><a href="<%=path%>/index.jsp">返回主页</a></li>															
-							</ul>
-						</div>
+			        </div>
+			        <div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+							<li class="" id="index-li"><a href="<%=path%>/user/userIndex.jsp">首页</a></li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -56,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="col-xs-12">
 		<div class="login-wrapper">
 			<div class="col-xs-12 col-sm-10 col-md-10">
-				<s:form class="form-horizontal" role="form" method="post" action="adminLogin"  id="admin-login-form"> 
+				<div class="form-horizontal" role="form" id="admin-login-form"> 
 					<div class="form-group">
 						<div class="col-md-offset-2">
 							<h1>管理员登录</h1>
@@ -66,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="form-group">
                         <label for="login-username" class="col-md-4 control-label">管理员账号</label>
                         <div class="col-md-4">
-                        <s:textfield type="text" class="form-control" id="login-username" name="username" placeholder="管理员账号" ></s:textfield>
+                        <input type="text" class="form-control" id="login-username" name="login-username" placeholder="管理员账号" autocomplete="off">
                         </div>
                         <div class="col-md-4">
                         
@@ -82,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="form-group">
                         <label for="login-password" class="col-md-4 control-label">密码</label>
                         <div class="col-md-4">
-                        <s:textfield type="password" class="form-control" id="login-password" name="password" placeholder="管理员密码"  ></s:textfield>
+                        <input type="password" class="form-control" id="login-password" name="login-password" placeholder="密码长度不小于6位" autocomplete="off">
                         </div>
                         <div class="col-md-4">
 	                    	<div class="alert alert-danger hidden" role="alert" id="alert-login-password">
@@ -96,11 +95,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="form-group">
 						<div class="col-md-offset-4 col-md-4 form-btn-group">
 							<button type="submit" name="submit" class="btn btn-primary pull-right button-stripe" id="admin-login-submit">
-								<s:submit class="glyphicon glyphicon-log-in" value="登录" border="none"></s:submit>
+								<span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;登录
 							</button>
 						</div>
 					</div>
-				</s:form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -108,8 +107,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 </div>
 
-
-    <script src="<%=path%>/js/validation.js"></script>
-
+    <footer>
+        <div class="container" style="text-align:center;">
+            <p>我们的小组 </p>
+        </div>
+    </footer>
+<script type="text/javascript" src="<%=path%>/js/login.js"></script>
 </body>
 </html>

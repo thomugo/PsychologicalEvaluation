@@ -1,12 +1,10 @@
 package com.pes.action;
 
 import java.util.ArrayList;
-
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.pes.entity.Ruler;
@@ -15,7 +13,7 @@ import com.pes.service.QuestionaireService;
 import com.pes.service.RulerService;
 
 @Action(value="editRulers")
-@Result(name="success", location="/user/editRule.jsp")
+@Result(name="success", location="/WEB-INF/user/editRule.jsp")
 public class RulerAction extends BaseAction{
 	private static final Logger LOGGER = Logger.getLogger(RulerAction.class);
 	@Autowired
@@ -52,7 +50,7 @@ public class RulerAction extends BaseAction{
 	}
 	
 	@Action(value="saveRulers", results={
-			@Result(name="success", location="/index.jsp")
+			@Result(name="success", location="/WEB-INF/user/index.jsp")
 	})
 	public String fee() throws Exception {
 		// TODO Auto-generated method stub

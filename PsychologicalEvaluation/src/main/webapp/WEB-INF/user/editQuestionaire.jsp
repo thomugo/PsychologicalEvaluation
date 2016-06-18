@@ -11,30 +11,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<head>
 		<meta charset="utf-8" />
 		<title>管理员</title>
+		<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
+  		<a href="${ pageContext.request.contextPath }/user/login.jsp">login</a>
+  		<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
+  		<s:debug></s:debug>
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 		<!-- basic styles -->
 
-		<link href="<%=path%>/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
-		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		  <link rel="stylesheet" href="<%=path%>/assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
 
 		<!-- page specific plugin styles -->
 
+		<link rel="stylesheet" href="<%=path%>/assets/css/select2.css" />
+
 		<!-- fonts -->
 
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+		<link rel="stylesheet" href="<%=path%>/style/family.css" />
 
 		<!-- ace styles -->
 
-		<link rel="stylesheet" href="assets/css/ace.min.css" />
-		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="<%=path%>/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="<%=path%>/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
 
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="<%=path%>/assets/css/ace-ie.min.css" />
@@ -52,9 +58,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/html5shiv.js"></script>
 		<script src="<%=path%>/assets/js/respond.min.js"></script>
 		<![endif]-->
+	<style type="text/css">
+	.ques{
+		margin-left:23.0%;
+		margin-top:15px;
+		font-size:15px;
+	}
+	.queslabel{
+		margin-left:-1px;
+		letter-spacing:0px;
+		color:#468847;
+	}
+	.mystyle{
+
+		margin-left:22.2%;
+		margin-top:15px;
+		font-size:15px;
+	}
+	.option{
+		margin-left:-1px;
+		letter-spacing:0px;
+		color:#468847;
+	}
+	</style>
 	</head>
 
 	<body>
+	<input type="hidden" id="basePath" value="<%=basePath%>">
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -65,14 +95,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a href="#" class="navbar-brand">
 						<small>
 							<i class="icon-leaf"></i>
-							我们的小组
+							我们的小组-管理员后台
 						</small>
 					</a><!-- /.brand -->
 				</div><!-- /.navbar-header -->
 
 				<div class="navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
-						
+					
 						<li class="purple">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-bell-alt icon-animated-bell"></i>
@@ -327,7 +357,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</ul>
 						</li>
 
-						<li >
+						<li class="active open">
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-edit"></i>
 								<span class="menu-text"> 编辑 </span>
@@ -343,8 +373,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</a>
 								</li>
 								
-								<li>
-									<a href="<%=path%>/user/editQuestionaire.jsp">
+								<li class="active">
+									<a href="<%=path%>/questionaire.action">
 										<i class="icon-double-angle-right"></i>
 										添加测评问卷
 									</a>
@@ -358,23 +388,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>	
 
 								<li>
-									<a href="<%=path%>/user/push.jsp">
+									<a href="<%=path%>/article.action">
 										<i class="icon-double-angle-right"></i>
 										文章推送
 									</a>
 								</li>
 
 							</ul>
-						</li>						
+						</li>							
 
 						<li>
-							<a href="<%=path%>/user/userFeedback.jsp">
+							<a href="<%=path%>/feedback.action">
 								<i class="icon-text-width"></i>
 								<span class="menu-text"> 用户反馈 </span>
 							</a>
 						</li>
 
-						<li class="active open">
+						<li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-file-alt"></i>
 
@@ -401,23 +431,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										500错误页面
 									</a>
 								</li>
-
-								<li class='active'>
-									<a href="<%=path%>/blank.jsp">
-										<i class="icon-double-angle-right"></i>
-										空白页面
-									</a>
-								</li>
-
+								
 								<li>
 									<a href="<%=path%>/user/file.jsp">
 										<i class="icon-double-angle-right"></i>
 										文件上传
 									</a>
-								</li>													
+								</li>									
 							</ul>
 						</li>										
 					</ul><!-- /.nav-list -->
+					
 				</div>
 
 				<div class="main-content">
@@ -433,31 +457,107 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</li>
 
 							<li>
-								<a href="#">其他页面</a>
+								<a href="#">编辑</a>
 							</li>
-							<li class="active">白页</li>
+							<li class="active">添加测评问卷</li>
 						</ul><!-- .breadcrumb -->
-
-						<div class="nav-search" id="nav-search">
-							<form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="查找 ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="icon-search nav-search-icon"></i>
-								</span>
-							</form>
-						</div><!-- #nav-search -->
 					</div>
 
 					<div class="page-content">
+
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
 
-								<!-- PAGE CONTENT ENDS -->
+								<div class="hr hr-18 hr-double dotted"></div>
+
+								<div class="row-fluid">
+									<div class="span12">
+										<div class="widget-box">
+											<div class="widget-header widget-header-blue widget-header-flat">
+												<h4 class="lighter"><small>我来出题目</small></h4>
+
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main">							
+													
+													<div class="step-content row-fluid position-relative" id="step-container">
+														<div class="step-pane active" id="step1">
+
+															<div class="form-horizontal" id="sample-form" >
+																<div class="form-group has-warning">
+																	<label class="col-xs-12 col-sm-3 control-label no-padding-right">问卷名</label>
+
+																	<div class="col-xs-12 col-sm-5">
+																		<span class="block input-icon input-icon-right">
+																			<input type="text" id="inputWarning" class="width-100" />
+																
+																		</span>
+																	</div>
+																</div>
+
+																<div class="form-group has-error">
+																	<label class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right" >问卷说明</label>
+
+																	<div class="col-xs-12 col-sm-5">
+																		<span class="block input-icon input-icon-right">
+																			<textarea rows="4" class="width-100" id='describtion'></textarea>																			
+																		</span>
+																	</div>
+																</div>
+																
+																<div class="choicequestion" >																
+																	<div class="form-group has-success">
+																		<hr/>																	
+																		<!-- <label class="col-xs-12 col-sm-3 control-label no-padding-right">问题</label> -->
+																		<div class="ques">
+																			<span class="queslabel">问题
+																			
+																			<input type="text"  style='width:400px;' class="question1" /><input type='text' style='width:45px;font-size:14px;' class='vector' placeholder='维度'/>
+																			</span>
+																		</div>	
+																	</div>
+
+																	<div class="choiceoption">
+																		<div class="mystyle">											
+																			<span class='option'>选项</span>
+																									
+																			<input type='text' style='width:267px;'/><input type='text' style='width:45px;font-size:14px;' class='fenzhi' placeholder='分值'/>									
+																			<button class="btn addoption">添加选项</button>
+																		</div>
+																																																																																																																																																																														
+																	</div>																	
+																</div>															
+															</div>
+														</div>										
+												
+													</div>
+
+													<hr />
+													<div class="row-fluid wizard-actions">	
+														<button id="addquestion1" class="btn btn-success">
+															添加问题
+															<i class="icon-on-right"></i>
+														</button>																												
+																										
+														<button id="save" type="submit" class="btn btn-success">
+															完成
+															<i class="icon-on-right"></i>
+														</button>
+																												
+													</div>
+												</div><!-- /widget-main -->
+											</div><!-- /widget-body -->
+										</div>
+									</div>
+								</div>
+
 							</div><!-- /.col -->
 						</div><!-- /.row -->
 					</div><!-- /.page-content -->
 				</div><!-- /.main-content -->
+
 			</div><!-- /.main-container-inner -->
 
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
@@ -470,11 +570,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!--[if !IE]> -->
 
 
+
 		<!-- <![endif]-->
 
-		<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<![endif]-->
 
 		<!--[if !IE]> -->
 
@@ -490,19 +588,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 <![endif]-->
 
-		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='<%=path%>/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script>
 		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
-		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
+
 
 		<!-- page specific plugin scripts -->
+  		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/editQuestionaire.js"></script>
+
 
 		<!-- ace scripts -->
 
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
 		<script src="<%=path%>/assets/js/ace.min.js"></script>
 
+
+		<!-- ace scripts -->
+
 		<!-- inline scripts related to this page -->
 	</body>
 </html>
+

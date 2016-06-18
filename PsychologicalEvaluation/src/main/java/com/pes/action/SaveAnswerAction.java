@@ -5,12 +5,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.pes.entity.Answer;
@@ -18,7 +16,6 @@ import com.pes.entity.ChoiceQuestion;
 import com.pes.entity.Option;
 import com.pes.entity.OptionAnswer;
 import com.pes.entity.Questionaire;
-import com.pes.entity.Ruler;
 import com.pes.entity.User;
 import com.pes.service.AnswerService;
 import com.pes.service.ChoiceQuestionService;
@@ -29,7 +26,7 @@ import com.pes.service.RulerService;
 import com.pes.service.UserService;
 import com.pes.util.AjaxUtil;
 
-@Result(name="success", location="/user/result.jsp")
+@Result(name="success", location="/WEB-INF/user/result.jsp")
 public class SaveAnswerAction extends BaseAction{
 	private static final Logger LOGGER = Logger.getLogger(SaveAnswerAction.class);
 	@Autowired
@@ -57,48 +54,39 @@ public class SaveAnswerAction extends BaseAction{
 	private Map<ChoiceQuestion, List<Option>> choiceQuestionAnswers = new HashMap<ChoiceQuestion, List<Option>>();
 	//private Map<TrueFalseQuestion, Integer> trueFalseQuestionAnswers = new HashMap<TrueFalseQuestion, Integer>();
 	
-	
 	public String getJsonString() {
 		return jsonString;
 	}
-	
 	
 	public void setJsonString(String jsonString) {
 		this.jsonString = jsonString;
 	}
 
-
 	public Questionaire getQuestionaire() {
 		return questionaire;
 	}
-
 
 	public Map<ChoiceQuestion, List<Option>> getChoiceQuestionAnswers() {
 		return choiceQuestionAnswers;
 	}
 
-	
 	public int getAnswerId() {
 		return answerId;
 	}
-
 
 	public void setAnswerId(int answerId) {
 		this.answerId = answerId;
 	}
 	
-	
-
 	public Answer getAnswer() {
 		return answer;
 	}
-
 
 	/*public Map<TrueFalseQuestion, Integer> getTrueFalseQuestionAnswers() {
 		return trueFalseQuestionAnswers;
 	}*/
 	@Action(value="showAnswer", results={
-			@Result(name="success", location="/user/result.jsp"),
+			@Result(name="success", location="/WEB-INF/user/result.jsp"),
 			@Result(name="index", location="/index.jsp")
 	})
 	public String showAnswer(){
@@ -112,7 +100,7 @@ public class SaveAnswerAction extends BaseAction{
 	}
 	
 	@Action(value="saveAnswer", results={
-			@Result(name="success", location="/user/result.jsp"),
+			@Result(name="success", location="/WEB-INF/user/result.jsp"),
 			@Result(name="index", location="/index.jsp")})
 	@Override
 	public String execute() throws Exception {

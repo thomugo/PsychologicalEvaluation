@@ -1,39 +1,18 @@
 package com.pes.action;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
 import org.apache.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.InterceptorRef;
-import org.apache.struts2.convention.annotation.InterceptorRefs;
-import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.convention.annotation.ResultPath;
-import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import sun.tools.tree.ThisExpression;
-
 import com.alibaba.fastjson.JSONObject;
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-import com.opensymphony.xwork2.validator.annotations.EmailValidator;
-import com.opensymphony.xwork2.validator.annotations.ExpressionValidator;
-import com.opensymphony.xwork2.validator.annotations.FieldExpressionValidator;
-import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
-import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
-import com.opensymphony.xwork2.validator.annotations.Validations;
-import com.opensymphony.xwork2.validator.annotations.ValidatorType;
-import com.pes.entity.Answer;
 import com.pes.entity.AnswerPojo;
 import com.pes.entity.User;
 import com.pes.entity.UserPojo;
-import com.pes.interceptor.Authority;
 import com.pes.service.AnswerService;
 import com.pes.service.UserService;
 import com.pes.util.AjaxUtil;
@@ -98,14 +77,13 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		return answers;
 	}
 	
-	
 	public User getUser() {
 		return user;
 	}
 
 	@Override
 	@Action(value="user", results={
-			@Result(name="userinfo", location="/user/userinfo.jsp")
+			@Result(name="userinfo", location="/WEB-INF/user/userinfo.jsp")
 			})
 	public String execute() throws Exception {
 		user = (User) this.httpSession.getAttribute("loginUser");
@@ -116,7 +94,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	}
 	
 	@Action(value="detail", results={
-			@Result(name="userinfo", location="/user/profile.jsp")
+			@Result(name="userinfo", location="/WEB-INF/user/profile.jsp")
 			})
 	public String detail() {
 		if(jsonString == null){
@@ -140,7 +118,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	}
 	
 	@Action(value="userList", results={
-			@Result(name="users", location="/user/userList.jsp")
+			@Result(name="users", location="/WEB-INF/user/userList.jsp")
 	})
 	public String getAllUsers(){
 		//List<User> users = userService.findAll();

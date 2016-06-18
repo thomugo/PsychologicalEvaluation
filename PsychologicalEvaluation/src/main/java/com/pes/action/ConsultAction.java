@@ -2,22 +2,19 @@ package com.pes.action;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.alibaba.fastjson.JSONObject;
 import com.pes.entity.BaseUser;
 import com.pes.entity.Message;
 import com.pes.entity.User;
 import com.pes.service.MessageService;
 import com.pes.service.UserService;
-import com.pes.util.AjaxUtil;
 
 @ParentPackage("myBasicPackage")
-@Result(name="success", location="/user/consult.jsp")
+@Result(name="success", location="/chat/mchat.jsp")
 public class ConsultAction extends BaseAction{
 	@Autowired 
 	private UserService userService;
@@ -76,7 +73,7 @@ public class ConsultAction extends BaseAction{
 	}
 
 	@Action(value="chat", results={
-			@Result(name="success", location="/user/consult.jsp")
+			@Result(name="success", location="/WEB-INF/chat/mchat.jsp")
 	})
 	public String Chat(){
 		target = userService.findById(id);

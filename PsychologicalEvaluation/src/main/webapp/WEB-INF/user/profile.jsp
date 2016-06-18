@@ -340,7 +340,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 								
 								<li>
-									<a href="<%=path%>/user/editQuestionaire.jsp">
+									<a href="<%=path%>/questionaire.action">
 										<i class="icon-double-angle-right"></i>
 										添加测评问卷
 									</a>
@@ -354,7 +354,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>	
 
 								<li>
-									<a href="<%=path%>/user/push.jsp">
+									<a href="<%=path%>/article.action">
 										<i class="icon-double-angle-right"></i>
 										文章推送
 									</a>
@@ -364,7 +364,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</li>							
 
 						<li>
-							<a href="<%=path%>/user/userFeedback.jsp">
+							<a href="<%=path%>/feedback.action">
 								<i class="icon-text-width"></i>
 								<span class="menu-text"> 用户反馈 </span>
 							</a>
@@ -395,13 +395,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<a href="<%=path%>/error-500.jsp">
 										<i class="icon-double-angle-right"></i>
 										500错误页面
-									</a>
-								</li>
-
-								<li>
-									<a href="<%=path%>/blank.jsp">
-										<i class="icon-double-angle-right"></i>
-										空白页面
 									</a>
 								</li>
 

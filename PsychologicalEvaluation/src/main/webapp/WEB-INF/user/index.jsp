@@ -1,25 +1,25 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<title>管理员</title>
-
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 		<!-- basic styles -->
 
-		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css"/>
+		<link href="<%=path%>/assets/css/bootstrap.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
@@ -41,31 +41,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
-
+		<link rel="stylesheet" href="<%=path%>/style/website_9efedb4906.css" />
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
+
+		<!-- page specific plugin styles -->
+
+		<!--[if lte IE 8]-->
+		  <link rel="stylesheet" href="<%=path%>/assets/css/ace-ie.min.css" />
+		<!-- [endif]-->
 
 		<!-- inline styles related to this page -->
 
 		<!-- ace settings handler -->
 
 		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
-
+		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
+		
+		
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
-			<script src="<%=path%>/assets/js/respond.min.js"></script>
-		<!--[endif]-->
+		<script src="<%=path%>/assets/js/html5shiv.js"></script>
+		<script src="<%=path%>/assets/js/respond.min.js"></script>
+		<![endif]-->
 <style type="text/css">
-#grid-table th{
-	text-align:center;
+#zhuanjialist{
+	float:right;
+	margin-top:-250px;
+	margin-right:50px;
 }
 </style>
 	</head>
 
 	<body>
-	<s:debug></s:debug>
+		<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
+  		<a href="${ pageContext.request.contextPath }/user/adminLogin.jsp">login</a>
+  		<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
+		<s:debug></s:debug>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -83,6 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<div class="navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
+
 						<li class="purple">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-bell-alt icon-animated-bell"></i>
@@ -161,7 +177,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<li>
 									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+										<img src="/PsychologicalEvaluation/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Alex:</span>
@@ -178,7 +194,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<li>
 									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+										<img src="/PsychologicalEvaluation/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Susan:</span>
@@ -195,7 +211,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<li>
 									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+										<img src="/PsychologicalEvaluation/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Bob:</span>
@@ -211,7 +227,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="inbox.html">
+									<a href="<%=path%>/consult.action">
 										See all messages
 										<i class="icon-arrow-right"></i>
 									</a>
@@ -221,7 +237,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="<%=path%>/assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="/PsychologicalEvaluation/assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>欢迎光临</small>
 								</span>
@@ -247,7 +263,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="${ pageContext.request.contextPath }/logout.action">
 										<i class="icon-off"></i>
 										Logout
 									</a>
@@ -305,14 +321,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div><!-- #sidebar-shortcuts -->
 
 					<ul class="nav nav-list">
-						<li >
+						<li class="active">
 							<a href="<%=path%>/index.jsp">
 								<i class="icon-dashboard"></i>
 								<span class="menu-text"> 控制台 </span>
 							</a>
-						</li>
+						</li>						
 
-						<li class="active open">
+						<li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-list"></i>
 								<span class="menu-text"> 用户管理 </span>
@@ -321,12 +337,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</a>
 
 							<ul class="submenu">
-								<li class="active">
-									<a href="<%=path%>/userList.action">
-										<i class="icon-double-angle-right"></i>
+						<li>
+							<a href="${ pageContext.request.contextPath }/userList.action">
+										<i class="icon-double-angle-right"></i>			
 										用户列表
-									</a>
-								</li>
+							</a>
+
+						</li>
 
 								<li>
 									<a href="<%=path%>/user/profile.jsp">
@@ -335,7 +352,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</a>
 								</li>
 							</ul>
-						</li>
+						</li>						
 
 						<li >
 							<a href="#" class="dropdown-toggle">
@@ -354,9 +371,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 								
 								<li>
-									<a href="<%=path%>/user/editQuestionaire.jsp">
+									<a href="<%=path%>/questionaire.action">
 										<i class="icon-double-angle-right"></i>
-										编辑测评问卷
+										添加测评问卷
 									</a>
 								</li>
 
@@ -365,10 +382,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<i class="icon-double-angle-right"></i>
 										文章
 									</a>
-								</li>
+								</li>								
 
 								<li>
-									<a href="<%=path%>/user/push.jsp">
+									<a href="<%=path%>/article.action">
 										<i class="icon-double-angle-right"></i>
 										文章推送
 									</a>
@@ -378,12 +395,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</li>						
 
 						<li>
-							<a href="<%=path%>/user/userFeedback.jsp">
+							<a href="<%=path%>/feedback.action">
 								<i class="icon-text-width"></i>
 								<span class="menu-text"> 用户反馈 </span>
 							</a>
 						</li>
-
+						
 						<li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-file-alt"></i>
@@ -411,22 +428,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										500错误页面
 									</a>
 								</li>
-
-								<li>
-									<a href="<%=path%>/blank.jsp">
-										<i class="icon-double-angle-right"></i>
-										空白页面
-									</a>
-								</li>
-
+								
 								<li>
 									<a href="<%=path%>/user/file.jsp">
 										<i class="icon-double-angle-right"></i>
 										文件上传
 									</a>
-								</li>													
+								</li>								
 							</ul>
-						</li>										
+						</li>						
 					</ul><!-- /.nav-list -->
 
 				</div>
@@ -440,9 +450,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home home-icon"></i>
-								<a href="<%=path%>/index.jsp">首页</a>
+								<a href="#">首页</a>
 							</li>
-							<li class="active">用户管理</li>
+							<li class="active">控制台</li>
 						</ul><!-- .breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -454,16 +464,215 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</form>
 						</div><!-- #nav-search -->
 					</div>
+
 					<div class="page-content">
 
 						<div class="row">
 							<div class="col-xs-12">
-								<table id="grid-table"></table>
-									
-								<div id="grid-pager"></div>
-								<script type="text/javascript">
-									var $path_base = "<%=path%>/";//this will be used in gritter alerts containing images
-								</script>
+								<!-- PAGE CONTENT BEGINS -->
+
+								<div class="alert alert-block alert-success">
+
+									欢迎使用
+									<strong class="green">
+										我们的后台管理系统
+										<small>(v1.2)</small>
+									</strong>	
+								</div>
+
+								<div class="row">
+
+									<div class="col-sm-6" style="margin-left:60px">
+										<div class="widget-box ">
+											<div class="widget-header">
+												<h4 class="lighter smaller">
+													<i class="icon-comment blue"></i>
+													会话
+												</h4>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main no-padding">
+													<div class="dialogs">
+														
+
+														<div class="itemdiv dialogdiv">
+															<div class="user">
+																<img alt="谷雨's Avatar" src="<%=path%>/assets/avatars/user.jpg" />
+															</div>
+
+															<div class="body">
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="orange">2分钟以前</span>
+																</div>
+
+																<div class="name">
+																	<a href="#">谷雨</a>
+																	<span class="label label-info arrowed arrowed-in-right">管理员</span>
+																</div>
+																<div class="text">欢迎大家使用我们做的后台管理系统.</div>
+
+																<div class="tools">
+																	<a href="#" class="btn btn-minier btn-info">
+																		<i class="icon-only icon-share-alt"></i>
+																	</a>
+																</div>
+															</div>
+														</div>
+
+
+														<div class="itemdiv dialogdiv">
+															<div class="user">
+																<img alt="一个妹子's Avatar" src="<%=path%>/assets/avatars/avatar1.png" />
+															</div>
+
+															<div class="body">
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="green">4分钟以前</span>
+																</div>
+																<div class="name">
+																	<a href="#">一个妹子</a>
+																</div>
+																<div class="text">继续支持我们做的后台系统</div>
+																<div class="tools">
+																	<a href="#" class="btn btn-minier btn-info">
+																		<i class="icon-only icon-share-alt"></i>
+																	</a>
+																</div>
+															</div><!-- body -->
+														</div><!-- itemdiv -->
+														
+														
+													</div><!-- dialogs -->
+
+													<form>
+														<div class="form-actions">
+															<div class="input-group">
+																<input placeholder="在这里输入信息 ..." type="text" class="form-control" name="message" />
+																<span class="input-group-btn">
+																	<button class="btn btn-sm btn-info no-radius" type="button" id="send">
+																		<i class="icon-share-alt" ></i>
+																		发送
+																	</button>
+																</span>
+															</div>
+														</div>
+													</form>
+													
+													
+												</div><!-- /widget-main -->
+											</div><!-- /widget-body -->
+										</div><!-- /widget-box -->
+									</div><!-- /span -->
+								</div><!-- /row -->
+			<div class="aside">			
+		        <div class="hmod mgb20" id="zhuanjialist">
+		            <div class="head" >
+		                <ul class="nav">
+		                    <li class="selected"><span style="text-decoration:underline;margin-left:85px;">心理专家</span></li>
+		                </ul>
+		            </div>
+		            <div class="body">
+		                    <ul class="hyzj">
+		                        <li>
+		                            <div class="img">
+		                                <nofollow>
+		                                    <a target="_blank" href="http://www.xinli001.com/user/1000056093">
+		                                        <img src="http://image.xinli001.com/20150702/160448/339108.JPG!80" />
+		                                    </a>
+		                                </nofollow>
+		                            </div>
+		                            <div class="text">
+		                                <h2>
+		                                    <nofollow>
+		                                        <a target="_blank" href="http://www.xinli001.com/user/1000056093">蒋琪   </a>
+		                                    </nofollow>
+		                                </h2>
+		                                <h4>心理咨询师 </h4>
+		                                <h5>济南市</h5>
+		                            </div>
+		                        </li>
+		                                                <li>
+		                            <div class="img">
+		                                <nofollow>
+		                                    <a target="_blank" href="http://www.xinli001.com/user/70242723">
+		                                        <img src="http://ossimg.xinli001.com/20160413/7efd92aabd91d204abfb134a2bba0e74.png!80" />
+		                                    </a>
+		                                </nofollow>
+		                            </div>
+		                            <div class="text">
+		                                <h2>
+		                                    <nofollow>
+		                                        <a target="_blank" href="http://www.xinli001.com/user/70242723">彭君 </a>
+		                                    </nofollow>
+		                                </h2>
+		                                <h4>暂无头衔</h4>
+		                                <h5>南宁市</h5>
+		                            </div>
+		                        </li>
+		                                                <li>
+		                            <div class="img">
+		                                <nofollow>
+		                                    <a target="_blank" href="http://www.xinli001.com/user/3510061">
+		                                        <img src="http://image.xinli001.com/20150115/121240/934382.JPG!80" />
+		                                    </a>
+		                                </nofollow>
+		                            </div>
+		                            <div class="text">
+		                                <h2>
+		                                    <nofollow>
+		                                        <a target="_blank" href="http://www.xinli001.com/user/3510061">杨浩波 </a>
+		                                    </nofollow>
+		                                </h2>
+		                                <h4>国家二级心咨师 精神分析师 中美班客体组</h4>
+		                                <h5>长沙市</h5>
+		                            </div>
+		                        </li>
+		                                                <li>
+		                            <div class="img">
+		                                <nofollow>
+		                                    <a target="_blank" href="http://www.xinli001.com/user/271367621">
+		                                        <img src="http://ossimg.xinli001.com/20160328/6568faa2ea1224cdfebccda0d5ea75ac.jpg!80" />
+		                                    </a>
+		                                </nofollow>
+		                            </div>
+		                            <div class="text">
+		                                <h2>
+		                                    <nofollow>
+		                                        <a target="_blank" href="http://www.xinli001.com/user/271367621">张欣</a>
+		                                    </nofollow>
+		                                </h2>
+		                                <h4>国家二级心理师，国家二级婚姻家庭师</h4>
+		                                <h5>哈尔滨市</h5>
+		                            </div>
+		                        </li>
+		                        <li>
+		                            <div class="img">
+		                                <nofollow>
+		                                    <a target="_blank" href="http://www.xinli001.com/user/1000685733">
+		                                        <img src="http://image.xinli001.com/20151117/111150/198882.png!80" />
+		                                    </a>
+		                                </nofollow>
+		                            </div>
+		                            <div class="text">
+		                                <h2>
+		                                    <nofollow>
+		                                        <a target="_blank" href="http://www.xinli001.com/user/1000685733"></a>
+		                                    </nofollow>
+		                                </h2>
+		                                <h4>心理咨询师、医学硕士、职业规划师、教师</h4>
+		                                <h5>沈阳市</h5>
+		                            </div>
+		                        </li>
+		                     </ul>
+		            </div>
+		            <!--//body-->
+
+		        </div>
+    
+        
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
 						</div><!-- /.row -->
@@ -474,21 +683,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
 				<i class="icon-double-angle-up icon-only bigger-110"></i>
-			</a>	
+			</a>
 		</div><!-- /.main-container -->
-		
+
 		<!-- basic scripts -->
-	<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
-	<script type="text/javascript" src="<%=path%>/js/user.js"></script>
-	<script type="text/javascript" src="<%=path%>/js/json2.js"></script>	
+
 		<!--[if !IE]> -->
+
 
 
 		<!-- <![endif]-->
 
 		<!--[if IE]>
-			<script src="<%=path%>/js/jquery.min.js"></script>
-		<!--[endif]-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<![endif]-->
 
 		<!--[if !IE]> -->
 
@@ -498,277 +706,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- <![endif]-->
 
-		<!--[if IE]-->
-<script type="text/javascript">
- window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
-</script>
-<!--  [endif]-->
-
+		<!--[if IE]>
+		<script type="text/javascript">
+			 window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
+		</script>
+		<![endif]-->
 
 		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
 		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
 
-		<script src="<%=path%>/assets/js/date-time/bootstrap-datepicker.min.js"></script>
-		<script src="<%=path%>/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
-		<script src="<%=path%>/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
+		<!--[if lte IE 8]>
+		  <script src="<%=path%>/assets/js/excanvas.min.js"></script>
+		<![endif]-->
+
 
 		<!-- ace scripts -->
 
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
 		<script src="<%=path%>/assets/js/ace.min.js"></script>
 
-		<script type="text/javascript">
-			var grid_data=[];
-			var i=0;
-			
-			<c:forEach var="user" items="${users}">
-				grid_data[i++]={username:"<a href='detail.action?userid="+${user.id}+"'>"+"${user.username}"+"</a>",id:"${user.id}",email:"${user.email}",age:${user.age},gender:(${user.gender})?'男':'女',phone:${user.phone},dateTime:"${user.dateTime}",vocation:"${user.vocation}"};
-			</c:forEach>
-			
-			jQuery(function($) {
-				var grid_selector = "#grid-table";
-				var pager_selector = "#grid-pager";
-			
-				jQuery(grid_selector).jqGrid({
-					
-					data: grid_data,
-					datatype: "local",
-					height: 250,
-					colNames:['操作', 'ID','用户名','电子邮箱', '联系电话', '注册日期','性别','年龄','职业'],
-					colModel:[
-						{name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
-							formatter:'actions', 
-							formatoptions:{ 
-								keys:true,
-								
-								delOptions:{recreateForm: true, beforeShowForm:beforeDeleteCallback},
-							}
-						},
-						{name:'id',index:'id', width:90, sorttype:"int", editable: true},
+		<!-- inline scripts related to this page -->
 
-						{name:'username',index:'username', width:90,editable: true,editoptions:{size:"20",maxlength:"30"}},
-
-						{name:'email',index:'email', width:150,editable: true,editoptions:{size:"20",maxlength:"30"}},
-
-						{name:'phone',index:'phone', width:110,editable: true,editoptions:{size:"20",maxlength:"25"}},
-
-						{name:'dateTime',index:'dateTime',width:150, editable:true, sorttype:"date",unformat: pickDate},
-						
-						{name:'gender',index:'gender', width:40, editable: true,edittype:"select",editoptions:{value:"FE:男;IN:女"}},
-						
-						{name:'age',index:'age', width:40, editable: true,editoptions:{size:"20",maxlength:"25"}},						
-						
-						{name:'vocation',index:'vocation', width:130,editable: true,editoptions:{size:"25",maxlength:"30"}}
-					], 						
-			
-					viewrecords : true,
-					rowNum:10,
-					rowList:[10,20,30],
-					pager : pager_selector,
-					altRows: true,
-					//toppager: true,
-					
-					multiselect: true,
-					//multikey: "ctrlKey",
-			        multiboxonly: true,
-			
-					loadComplete : function() {
-						var table = this;
-						setTimeout(function(){
-							styleCheckbox(table);
-							
-							updateActionIcons(table);
-							updatePagerIcons(table);
-							enableTooltips(table);
-						}, 0);
-					},
-			
-					editurl: $path_base+"/modifyUser.action",//nothing is saved
-					caption: "用户信息",
-					autowidth: true
-			
-				});
-			
-				function aceSwitch( cellvalue, options, cell ) {
-					setTimeout(function(){
-						$(cell) .find('input[type=checkbox]')
-								.wrap('<label class="inline" />')
-							.addClass('ace ace-switch ace-switch-5')
-							.after('<span class="lbl"></span>');
-					}, 0);
-				}
-				//enable datepicker
-				function pickDate( cellvalue, options, cell ) {
-					setTimeout(function(){
-						$(cell) .find('input[type=text]')
-								.datepicker({format:'yyyy-mm-dd' , autoclose:true}); 
-					}, 0);
-				}
-			
-			
-				//navButtons
-				jQuery(grid_selector).jqGrid('navGrid',pager_selector,
-					{ 	//navbar options
-						edit: true,
-						editicon : 'icon-pencil blue',
-						add: true,
-						addicon : 'icon-plus-sign purple',
-						del: true,
-						delicon : 'icon-trash red',
-						search: true,
-						searchicon : 'icon-search orange',
-						refresh: true,
-						refreshicon : 'icon-refresh green',
-						view: true,
-						viewicon : 'icon-zoom-in grey',
-					},
-					{
-						//edit record form
-						//closeAfterEdit: true,
-						recreateForm: true,
-						beforeShowForm : function(e) {
-							var form = $(e[0]);
-							form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-							style_edit_form(form);
-						}
-					},
-					{
-						//new record form
-						closeAfterAdd: true,
-						recreateForm: true,
-						viewPagerButtons: false,
-						beforeShowForm : function(e) {
-							var form = $(e[0]);
-							form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-							style_edit_form(form);
-						}
-					},
-					{
-						//delete record form
-						recreateForm: true,
-						beforeShowForm : function(e) {
-							var form = $(e[0]);
-							if(form.data('styled')) return false;
-							
-							form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-							style_delete_form(form);
-							
-							form.data('styled', true);
-						},
-						onClick : function(e) {
-							alert(1);
-						}
-					},
-					{
-						//search form
-						recreateForm: true,
-						afterShowSearch: function(e){
-							var form = $(e[0]);
-							form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
-							style_search_form(form);
-						},
-						afterRedraw: function(){
-							style_search_filters($(this));
-						},
-						
-						multipleSearch: true,
-						/**
-						multipleGroup:true,
-						showQuery: true
-						*/
-					},
-					{
-						//view record form
-						recreateForm: true,
-						beforeShowForm: function(e){
-							var form = $(e[0]);
-							form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
-						}
-					}
-				)
-			
-			
-				
-				function style_edit_form(form) {
-					//enable datepicker on "sdate" field and switches for "stock" field
-					form.find('input[name=dateTime]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
-						.end().find('input[name=stock]')
-							  .addClass('ace ace-switch ace-switch-5').wrap('<label class="inline" />').after('<span class="lbl"></span>');
-			
-					//update buttons classes
-					var buttons = form.next().find('.EditButton .fm-button');
-					buttons.addClass('btn btn-sm').find('[class*="-icon"]').remove();//ui-icon, s-icon
-					buttons.eq(0).addClass('btn-primary').prepend('<i class="icon-ok"></i>');
-					buttons.eq(1).prepend('<i class="icon-remove"></i>')
-					
-					buttons = form.next().find('.navButton a');
-					buttons.find('.ui-icon').remove();
-					buttons.eq(0).append('<i class="icon-chevron-left"></i>');
-					buttons.eq(1).append('<i class="icon-chevron-right"></i>');		
-				}
-			
-				function style_delete_form(form) {
-					var buttons = form.next().find('.EditButton .fm-button');
-					buttons.addClass('btn btn-sm').find('[class*="-icon"]').remove();//ui-icon, s-icon
-					buttons.eq(0).addClass('btn-danger').prepend('<i class="icon-trash"></i>');
-					buttons.eq(1).prepend('<i class="icon-remove"></i>')
-				}
-				
-				function style_search_filters(form) {
-					form.find('.delete-rule').val('X');
-					form.find('.add-rule').addClass('btn btn-xs btn-primary');
-					form.find('.add-group').addClass('btn btn-xs btn-success');
-					form.find('.delete-group').addClass('btn btn-xs btn-danger');
-				}
-				function style_search_form(form) {
-					var dialog = form.closest('.ui-jqdialog');
-					var buttons = dialog.find('.EditTable')
-					buttons.find('.EditButton a[id*="_reset"]').addClass('btn btn-sm btn-info').find('.ui-icon').attr('class', 'icon-retweet');
-					buttons.find('.EditButton a[id*="_query"]').addClass('btn btn-sm btn-inverse').find('.ui-icon').attr('class', 'icon-comment-alt');
-					buttons.find('.EditButton a[id*="_search"]').addClass('btn btn-sm btn-purple').find('.ui-icon').attr('class', 'icon-search');
-				}
-				
-				function beforeDeleteCallback(e) {
-					var form = $(e[0]);
-					if(form.data('styled')) return false;
-					
-					form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-					style_delete_form(form);
-					
-					form.data('styled', true);
-				}
-				
-				function beforeEditCallback(e) {
-					var form = $(e[0]);
-					form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-					style_edit_form(form);
-				}
-				
-				//replace icons with FontAwesome icons like above
-				function updatePagerIcons(table) {
-					var replacement = 
-					{
-						'ui-icon-seek-first' : 'icon-double-angle-left bigger-140',
-						'ui-icon-seek-prev' : 'icon-angle-left bigger-140',
-						'ui-icon-seek-next' : 'icon-angle-right bigger-140',
-						'ui-icon-seek-end' : 'icon-double-angle-right bigger-140'
-					};
-					$('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
-						var icon = $(this);
-						var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
-						
-						if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
-					})
-				}
-			
-				function enableTooltips(table) {
-					$('.navtable .ui-pg-button').tooltip({container:'body'});
-					$(table).find('.ui-pg-div').tooltip({container:'body'});
-				}
-						
-			});
-		</script>
 	</body>
 </html>
+
