@@ -16,15 +16,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!-- basic styles -->
-		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
 
+		<!-- basic styles -->
+
+		<link href="<%=path%>/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="<%=path%>/assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
 
 		<!-- page specific plugin styles -->
+
+		<link rel="stylesheet" href="<%=path%>/assets/css/jquery-ui-1.10.3.full.min.css" />
+		<link rel="stylesheet" href="<%=path%>/assets/css/datepicker.css" />
+		<link rel="stylesheet" href="<%=path%>/assets/css/ui.jqgrid.css" />
 
 		<!-- fonts -->
 
@@ -35,11 +41,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
-		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />	
-		<link rel="stylesheet" href="<%=path%>/style/website_9efedb4906.css" />	
+		<link rel="stylesheet" href="<%=path%>/style/website_9efedb4906.css" />
 		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="<%=path%>/assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
+
+		<!-- page specific plugin styles -->
+
+		<!--[if lte IE 8]-->
+		  <link rel="stylesheet" href="<%=path%>/assets/css/ace-ie.min.css" />
+		<!-- [endif]-->
 
 		<!-- inline styles related to this page -->
 
@@ -415,13 +426,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<a href="<%=path%>/error-500.jsp">
 										<i class="icon-double-angle-right"></i>
 										500错误页面
-									</a>
-								</li>
-
-								<li>
-									<a href="<%=path%>/blank.jsp">
-										<i class="icon-double-angle-right"></i>
-										空白页面
 									</a>
 								</li>
 								

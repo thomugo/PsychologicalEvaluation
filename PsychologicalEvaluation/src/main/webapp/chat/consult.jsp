@@ -63,6 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		<input type="hidden" id="targetId"  value="${target.id}"/> 
   		<input type="hidden" id="targetIcon"  value="${target.icon}"/> 
   		<input type="hidden" id="targetUsername"  value="${target.username}"/> 
+  		<input type="hidden" id="basePath" value="<%=basePath%>">
 		<s:debug></s:debug>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
@@ -310,7 +311,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<ul class="submenu">
 								<li>
-									<a href="<%=path%>/user/Questionaire.action">
+									<a href="<%=path%>/questionaireList.action">
 										<i class="icon-double-angle-right"></i>
 										问卷
 									</a>
@@ -324,7 +325,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="<%=path%>/article/articleList.action">
+									<a href="<%=path%>/articleList.action">
 										<i class="icon-double-angle-right"></i>
 										文章
 									</a>
@@ -372,13 +373,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<a href="<%=path%>/error-500.jsp">
 										<i class="icon-double-angle-right"></i>
 										500错误页面
-									</a>
-								</li>
-
-								<li>
-									<a href="<%=path%>/user/blank.jsp">
-										<i class="icon-double-angle-right"></i>
-										空白页面
 									</a>
 								</li>
 								
@@ -512,28 +506,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- basic scripts -->
 
 		<!--[if !IE]> -->
-
-
-
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-			<script src="<%=path%>/js/jquery.min.js"></script>
-		<![endif]-->
-
-		<!--[if !IE]> -->
-
-		<script type="text/javascript">
-			window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
-		</script>
-
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-		<script type="text/javascript">
-			 window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
-		</script>
-		<![endif]-->
+		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
 
 		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
 		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
@@ -544,10 +517,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  <script src="<%=path%>/assets/js/excanvas.min.js"></script>
 		<![endif]-->
 
-		<script src="<%=path%>/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-		<script src="<%=path%>/assets/js/jquery.slimscroll.min.js"></script>
-		<script src="<%=path%>/assets/js/flot/jquery.flot.min.js"></script>
-		<script src="<%=path%>/assets/js/flot/jquery.flot.resize.min.js"></script>
+
 		<script src="<%=path%>/assets/js/date-time/bootstrap-datepicker.min.js"></script>
 		<script src="<%=path%>/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
 		<script src="<%=path%>/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
@@ -560,7 +530,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 		<script type="text/javascript" src="<%=path%>/assets/js/ace-extra.min.js"></script>
 		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
+
 		<script type="text/javascript" src="<%=path%>/js/consult.js"></script>
 	</body>
 </html>

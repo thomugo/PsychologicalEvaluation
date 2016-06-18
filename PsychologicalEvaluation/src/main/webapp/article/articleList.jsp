@@ -414,13 +414,6 @@ margin-top:5px;
 										500错误页面
 									</a>
 								</li>
-
-								<li>
-									<a href="<%=path%>/blank.jsp">
-										<i class="icon-double-angle-right"></i>
-										空白页面
-									</a>
-								</li>
 								
 								<li>
 									<a href="<%=path%>/user/file.jsp">

@@ -2,6 +2,7 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -414,13 +415,6 @@ margin-top:5px;
 										500错误页面
 									</a>
 								</li>
-
-								<li>
-									<a href="<%=path%>/blank.jsp">
-										<i class="icon-double-angle-right"></i>
-										空白页面
-									</a>
-								</li>
 								
 								<li>
 									<a href="<%=path%>/user/file.jsp">
@@ -562,8 +556,8 @@ margin-top:5px;
 		</script>
 		<script type="text/javascript">
 				var i=0;
-				alert(1);
-<%-- 			<c:forEach var="tests" items="${questionaires}">
+				
+ 			<c:forEach var="tests" items="${questionaires}">
 								
 				var id=${tests.id};
 				var title="${tests.title}"
@@ -578,16 +572,14 @@ margin-top:5px;
 									+"</div>"
 									+"<div class='panel-collapse collapse' id='content"+(i++)+"'>"
 									+"<div class='panel-body'>"
-									+"<a href='<%=path%>/questionaire?id="
+									+"<a href='<%=path%>/test?id="
 									+id
 									+"'>"
 									+description
 									+"</a>"
 									+"</div>"
 									+"</div>");  			
-				
-			</c:forEach> --%>
-									
+			</c:forEach>	
 		</script>
 	</body>
 </html>

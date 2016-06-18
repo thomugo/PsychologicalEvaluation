@@ -398,13 +398,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="<%=path%>/blank.jsp">
-										<i class="icon-double-angle-right"></i>
-										空白页面
-									</a>
-								</li>
-
-								<li>
 									<a href="<%=path%>/user/file.jsp">
 										<i class="icon-double-angle-right"></i>
 										文件上传

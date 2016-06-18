@@ -60,6 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
 
 	<body>
+		<input type="hidden" id="basePath" value="<%=basePath%>">
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -404,13 +405,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<a href="<%=path%>/error-500.jsp">
 										<i class="icon-double-angle-right"></i>
 										500错误页面
-									</a>
-								</li>
-
-								<li>
-									<a href="<%=path%>/blank.jsp">
-										<i class="icon-double-angle-right"></i>
-										空白页面
 									</a>
 								</li>
 								

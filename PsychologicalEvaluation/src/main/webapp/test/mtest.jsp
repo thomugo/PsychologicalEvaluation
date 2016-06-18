@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="<%=path%>/js/iscroll.js" ></script>
 </head>
 <body>
-
+		<input type="hidden" id="basePath" value="<%=basePath%>">
 <div data-role="page" id="id_ceshi_page" data-url="<%=path%>/ceshi/357.jsp" data-dom-cache="false">
 
     <div class="header">

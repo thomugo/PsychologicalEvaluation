@@ -65,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
 
 	<body>
-	<s:debug></s:debug>
+<input type="hidden" id="basePath" value="<%=basePath%>">
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -413,13 +413,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="<%=path%>/blank.jsp">
-										<i class="icon-double-angle-right"></i>
-										空白页面
-									</a>
-								</li>
-
-								<li>
 									<a href="<%=path%>/user/file.jsp">
 										<i class="icon-double-angle-right"></i>
 										文件上传
@@ -520,11 +513,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/ace.min.js"></script>
 
 		<script type="text/javascript">
+	var basePath = $("#basePath").val();
 			var grid_data=[];
 			var i=0;
 			
 			<c:forEach var="user" items="${users}">
-				grid_data[i++]={username:"<a href='detail.action?userid="+${user.id}+"'>"+"${user.username}"+"</a>",id:"${user.id}",email:"${user.email}",age:${user.age},gender:(${user.gender})?'男':'女',phone:${user.phone},dateTime:"${user.dateTime}",vocation:"${user.vocation}"};
+				grid_data[i++]={username:"<a href='"+basePath+"detail.action?userid="+${user.id}+"'>"+"${user.username}"+"</a>",id:"${user.id}",email:"${user.email}",age:${user.age},gender:(${user.gender})?'男':'女',phone:${user.phone},dateTime:"${user.dateTime}",vocation:"${user.vocation}"};
 			</c:forEach>
 			
 			jQuery(function($) {

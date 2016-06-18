@@ -30,6 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <body>
 <s:debug></s:debug>
+<input type="hidden" id="basePath" value="<%=basePath%>">
 	<div class="layout">
 		<div class="header ">
     		<div class="left">
@@ -100,6 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	</p>
 	</div>
 <script type="text/javascript">
+	var basePath = $("#basePath").val();
 	<c:forEach var="user" items="${users}"> 
 		var name="${user.username}";
 		var vocation="${user.vocation}";
@@ -109,7 +111,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								+"<div class='avatar'><img src='http://ossimg.xinli001.com/20160321/614b26dae32b86c7c33e24b8360f2d8f.png!80'></div>"
 							    +"</div><div class='right'>"
 							    +"<div class='text'>"
-							    +"<p><span class='name'>"+"<a href='chat.action?id="+id+"'>"+name+"</a></span>"
+							    +"<p><span class='name'>"+"<a href='"+basePath+"chat.action?id="+id+"'>"+name+"</a></span>"
 							    +"<span class='title'>"+vocation+"</span></p>"
 							    +"<p class='desc'>你来或者不来，我一直都会在这里！</p>"
 							    +"<ul class='tags'>"

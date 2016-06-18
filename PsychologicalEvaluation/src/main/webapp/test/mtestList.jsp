@@ -25,6 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="<%=path%>/style/app-ad.re.css"></head>
 <body>
 <s:debug></s:debug>
+		<input type="hidden" id="basePath" value="<%=basePath%>">
 <div id="main_body">
     <div class="header">
         <div class="left">
@@ -137,6 +138,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path %>/js/api.js"></script>
 	
 	<script type="text/javascript">
+		var basePath = $("#basePath").val();
 			var i=0;
 		<c:forEach var="tests" items="${questionaires}">
 
@@ -145,11 +147,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var description = "${tests.note}";
 
 			$("#mtestList").append("<dl>"
-									+"<a href='<%=path%>/test.action?id="
+									+"<a href='"+basePath+"test.action?id="
 									+id
 									+"'>"
 									+"<dt>"
-									+"<img src='<%=path%>/image/021356cvg7ha82skersh0f.jpg' width='50' height='50' alt='"
+									+"<img src='"+basePath+"image/021356cvg7ha82skersh0f.jpg' width='50' height='50' alt='"
 									+title
 									+"'/>"
 									+"</dt>"
@@ -168,75 +170,3 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	</body>
 </html>
-
-	
-	<script type="text/javascript" src="<%=path %>/js/touchslider_min.js">
-	</script>
-	
-<script type="text/javascript">
-    $('a[name=index]').attr('href', '').attr('class', 'aactive');
-    $('#more').click(function(){
-        if($('#toplist').css('display')!='none')
-        {
-            $('#toplist').hide();
-        }
-        else
-        {
-            $('#toplist').show();
-        }
-    });
-    for(n=1;n<2;n++){
-        var page='pagenavi'+n;
-        var mslide='slider'+n;
-        var mtitle='emtitle'+n;
-        arrdiv = 'arrdiv' + n;
-        var pd=document.getElementById(page);
-        if(!pd) break;
-        var as=pd.getElementsByTagName('a');
-        var tt=new TouchSlider({id:mslide,'auto':'-1',fx:'ease-out',direction:'left',speed:300,timeout:2000,'before':function(index){
-            var as=document.getElementById(this.page).getElementsByTagName('a');
-            as[this.p].className='';
-            as[index].className='active';
-            this.p=index;
-        }});
-        tt.page = page;
-        tt.p = 0;
-        for(var i=0;i<as.length;i++){
-            (function(){
-                var j=i;
-                as[j].tt = tt;
-                as[j].onclick=function(){
-                    this.tt.slide(j);
-                    return false;
-                };
-            })();
-        }
-    }
-</script>
-
-<script type="text/javascript">
-    var curr_page=1, nomore=false, islock=false;
-    function load_more() {
-        if(nomore) {
-            return;
-        }
-        if(islock) {
-            return;
-        }
-        islock = true;
-        curr_page++;
-        $(".load_more").html('加载中...');
-        $.get(itemsUrl,{page:curr_page},function(data){
-            islock = false;
-            if($.trim(data).length > 0){
-                $('.list_box').append(data);
-                $(".load_more").html('查看更多');
-            }else{
-                $(".load_more").remove();
-                nomore=true;
-            }
-        });
-        return false;
-    }
-    $(".load_more").click(load_more);
-</script>

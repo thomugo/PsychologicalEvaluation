@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script></head>
 
 <body>
-<s:debug></s:debug>
+		<input type="hidden" id="basePath" value="<%=basePath%>">
 <div class="layout">
   	<div class="header ">
     	<div class="left">
@@ -69,23 +69,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>
                     
                     <li>
-                        <a href="#">婚恋</a>
+                        <span>婚恋</span>
                     </li>
                     
                     <li>
-                        <a href="#">亲子</a>
+                        <span>亲子</span>
                     </li>
                     
                     <li>
-                        <a href="#">职场</a>
+                        <span>职场</span>
                     </li>
                                             
                     <li>
-                        <a href="#">健康</a>
+                        <span>健康</span>
                     </li>
                     
                     <li>
-                        <a href="#">科普</a>
+                        <span>科普</span>
                     </li>
                 </ul>
             </div>
@@ -93,8 +93,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="wz-banner">
                 <ul class="slides">
                         <li class="slide">
-                            <a href="http://www.xinli001.com/info/100320543"><img src="http://ossimg.xinli001.com/20160527/dd5c0b984d85a0373a9ce687e911d87a.png"/></a>
-                            <a href="http://www.xinli001.com/info/100320543"><h2>中国学生第一次哈佛毕业演讲：哈佛教会我们敢于改变世界</h2></a>
+                            <a href="<%=path%>/article/marticle.jsp"><img src="http://ossimg.xinli001.com/20160527/dd5c0b984d85a0373a9ce687e911d87a.png"/></a>
+                            <a href="<%=path%>/article/marticle.jsp"><h2>中国学生第一次哈佛毕业演讲：哈佛教会我们敢于改变世界</h2></a>
                         </li>
                         <li class="slide">
                             <a href="http://www.xinli001.com/info/100320345"><img src="http://ossimg.xinli001.com/20160526/a22fea65786bf0a85fcfb21ed2256f50.png"/></a>
@@ -121,7 +121,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <ul>
                 <li>
     				<div class="img">
-        				<a href="http://m.xinli001.com/info/100319150"><img src="http://image.xinli001.com/20160525/084105vdf8dm4p7e6fvycf.jpg!180x120"/></a>
+        				<a href="<%=path%>/article/marticle.jsp"><img src="http://image.xinli001.com/20160525/084105vdf8dm4p7e6fvycf.jpg!180x120"/></a>
     				</div>
     				<div class="text">
         				<div class="desc">
@@ -159,6 +159,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </span>
 		<script type="text/javascript">
+			var basePath = $("#basePath").val();
 				var i=0;
 			<c:forEach var="article" items="${articles}">
 				
@@ -178,7 +179,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									+" "
 									+"<div class='desc'>"
 									+" "
-									+"<a href='/PsychologicalEvaluation/articleDetail.action?id=" + id + "'>"+title+"</a>"
+									+"<a href='"+basePath+"articleDetail.action?id=" + id + "'>"+title+"</a>"
 									+"</div>"	
 									+"<div class='info'>"
 									+" <span>"+userName+"</span>"

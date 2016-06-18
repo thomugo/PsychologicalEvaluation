@@ -101,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
 
 	<body>
-	<s:debug></s:debug>
+	<input type="hidden" id="basePath" value="<%=basePath%>">
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -448,13 +448,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										500错误页面
 									</a>
 								</li>
-
-								<li>
-									<a href="<%=path%>/blank.jsp">
-										<i class="icon-double-angle-right"></i>
-										空白页面
-									</a>
-								</li>
 								
 								<li>
 									<a href="<%=path%>/user/file.jsp">
@@ -620,6 +613,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</script>
 		
 		<script>
+			var basePath = $("#basePath").val();
 var save = true;
 $(document).ready(function() {
 				//添加选择题
@@ -708,7 +702,7 @@ alert(1);
 						//用ajax请求服务器保存数据
 						var jsonString = JSON.stringify(questionaire);
 						alert(jsonString);
-						$.post("saveRulers.action", {"jsonString" : jsonString},function(result){
+						$.post(basePath+"saveRulers.action", {"jsonString" : jsonString},function(result){
 							$("body").html(result)}
 						);
 					}
