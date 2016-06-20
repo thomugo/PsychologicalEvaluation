@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="main_body">
     <div class="header">
         <div class="left">
-            <a href="<%=path%>/user/userIndex.jsp" class="ico ico-back icon"></a>
+            <a href="<%=path%>/index.jsp" class="ico ico-back icon"></a>
         </div>
         <h2>留言</h2>
         <div class="right">
@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<nav>
 			
 			
-			<a href="<%=path%>/user/userIndex.jsp" class="bg">
+			<a href="<%=path%>/index.jsp" class="bg">
 				<span>首页</span>
 			</a>
 			
@@ -109,29 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </div>
 <script src="<%=path%>/js/jquery.min.js"></script>
-<script>
-var USERINFO_URL = "/userinfo/";
-$.get(USERINFO_URL, {t:$.now()}, function(resp) {
-	$('#userspan2').html(resp.data2);
-});
-var avatarUrl = "http://m.xinli001.com/ajax/user-auth.json";
-$.get(avatarUrl, {t:$.now()}, function(resp) {
-    if(resp.data && parseInt(resp.data.id) > 0){
-        $('.header .avatar img').prop('src',resp.data.avatar);
-    }
-});
-</script>
 
-<script>
-    $(function() {
-        if($('script[src$="app.ad.js"]').length<1){
-            $("<script>").attr({"src":"<%=path%>/js/app.ad.min.js"}).appendTo($("body"));
-        }else{
-            console.log("Already loaded app.ad.js.");
-        }
-    });
-    $('.s_header nav').css('position', 'initial');
-</script>
 
 
 <script>
@@ -166,32 +144,6 @@ $('#form1').submit(function(){
 	return false;
 });
 </script>
-
-
-<span style="display: none">
-	<script type="text/javascript" src="<%=path%>/js/tongji.js"></script>
-	<noscript>
-		<a href="http://www.linezing.com">
-			<img src="http://img.tongji.linezing.com/2646296/tongji.gif"/>
-		</a>
-	</noscript>
-</span>
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd64469e9d7bdbf03af6f074dffe7f9b5' type='text/javascript'%3E%3C/script%3E"));
-</script>
-</span>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','<%=path%>/js/analytics.js','ga');
-
-  ga('create', 'UA-74218902-7', 'auto');
-  ga('send', 'pageview');
-
-</script>
-<script type="text/javascript" src="<%=path%>/js/tongji.js"></script>
 
 <script src="<%=path%>/js/api.js"></script>
 </body>

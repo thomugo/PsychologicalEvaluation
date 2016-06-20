@@ -47,39 +47,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </style>
 </head>
 <body>
-		<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
-  		<a href="${ pageContext.request.contextPath }/user/login.jsp">login</a>
-  		<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
   		<input type="hidden" id="userId"  value="${sessionScope.loginUser.id}"/> 
   		<input type="hidden" id="username"  value="${sessionScope.loginUser.username}"/> 
   		<input type="hidden" id="userIcon"  value="${sessionScope.loginUser.icon}"/> 
   		<input type="hidden" id="targetId"  value="${target.id}"/> 
   		<input type="hidden" id="targetIcon"  value="${target.icon}"/> 
   		<input type="hidden" id="targetUsername"  value="${target.username}"/> 
-		<s:debug></s:debug>
 		
 <div id="main_body">
     <div class="header">
-        <h2>聊天</h2>
-
+	    	<div class="left">
+	                <a href="<%=path%>/index.jsp" class="ico ico-back icon"></a>       
+	    	</div>    
+	        <h2>聊天</h2>
+    		<div class="right">
+                <div class="img">                		
+               		 <s:if test="#session.loginUser==null" ><!--用户未登录  -->
+               		 	<a class="avatar" href="<%=path%>/login.jsp">
+               		 		<img src="<%=path%>/image/img155.png" width="60" height="60">
+               		 		
+               		 	</a>
+               		 </s:if>
+  					 <s:else>						<!--用户已登录  -->
+  						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
+                        	<img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60">
+                  	  	</a>
+       				  </s:else>       				                 	 	
+                </div>
+            
+            </div><!-- right -->
     </div>
 
 	 <header class="s_header" style="display: none;">
 		<nav>
 			
 			
-			<a href="<%=path%>/user/userIndex.jsp" class="bg">
+			<a href="<%=path%>/index.jsp" class="bg">
 				<span>首页</span>
-			</a>
-			
-			
-			
-			
-			
-			<span id="more">心理导航</span>
-			
-			
-			<span style="font-size: 1.4rem">留言</span>
+			</a>			
 		</nav>
 	</header>
 	

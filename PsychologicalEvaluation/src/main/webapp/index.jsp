@@ -27,156 +27,130 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="description" content="">
 <link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css">
 
-<script src="<%=path%>/js/mobile_f4b5a0a094.js" ></script><!--[if lt IE 9]>
-<script src="http://lapp.xinli001.com/jsmin/html5.min.js" ></script><!--[endif]-->
-<script>
-    var postUserMessageUrl = 'http://m.xinli001.com/ajax/post-user-message.json';
-    $(function() {
-        if($('script[src$="app.ad.js"]').length<1){
-            $("<script>").attr({"src":"<%=path%>/js/app.ad.min.js"}).appendTo($("body"));
-        }else{
-            console.log("Already loaded app.ad.js.");
-        }
-    });
-</script></head>
+<script src="<%=path%>/js/mobile_f4b5a0a094.js" ></script>
+
+</head>
 <body>
     <div class="layout">
-                         <div class="header ">
-    <div class="left">
-        
-            </div>
-        <h2>心理学，从这里开始</h2>
-    <div class="right">
-                    <div id="header_avatar_btn_div">
-                <div class="img">
-               		 <s:if test="loginUser==null">
-               		 	<a href="${ pageContext.request.contextPath }/login.jsp">login</a>
+        <div class="header ">
+        	<h2>心理学，从这里开始</h2> 
+    		<div class="right">
+                <div class="img">                		
+               		 <s:if test="#session.loginUser==null" ><!--用户未登录  -->
+               		 	<a class="avatar" href="<%=path%>/login.jsp">
+               		 		<img src="<%=path%>/image/img155.png" width="60" height="60">
+               		 		
+               		 	</a>
                		 </s:if>
-  					<s:else>
-  						<a class="avatar" href="<%=path%>/login.jsp">
-                        <img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60">
+  					 <s:else>						<!--用户已登录  -->
+  						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
+                        	<img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60">
                   	  	</a>
-                  	  	<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
-       				 </s:else>
-                   	 	
+       				  </s:else>       				                 	 	
                 </div>
-            </div>
-        
-        
-        
-        
-            </div>
-
-</div>
+            
+            </div><!-- right -->
+        </div><!-- header -->
+	
+	
         <div class="sy">
-            <div class="sy-banner">
+        <div class="sy-banner">
                 <ul class="slides">
                             <li class="slide">
                                 <a href="#"><img src="<%=path%>/image/11123128mksdho3v8bf4a1.jpg"/></a>
-                                <a href="#">
-<!--                                    <h2>--><!--</h2>-->
-                                </a>
+ 
                             </li>
                             
                             <li class="slide">
                                 <a href="#"><img src="<%=path%>/image/043034uj6pq30kpw15ddhs.jpg"/></a>
-                                <a href="#">
-<!--                                    <h2>--><!--</h2>-->
-                                </a>
+
                             </li>
                             
                             <li class="slide">
                                 <a href="#"><img src="<%=path%>/image/031603fo3oqq4giwjkdrsw.jpg"/></a>
-                                <a href="#">
-<!--                                    <h2>--><!--</h2>-->
-                                </a>
+ 
                             </li>
                             <li class="slide">
                                 <a href="#"><img src="<%=path%>/image/132258qo2ptcxq2nydc91x.jpg"/></a>
-                                <a href="#">
-<!--                                    <h2>--><!--</h2>-->
-                                </a>
                             </li>
                              <li class="slide">
                                 <a href="#"><img src="<%=path%>/image/100242giq2mxfwujjmedwm.jpg"/></a>
-                                <a href="#">
-<!--                                    <h2>--><!--</h2>-->
-                                </a>
+
                             </li>
                   </ul>
             </div>
 
-<div class="sy-new-nav">
-    <ul>
-    <li>
+		<div class="sy-new-nav">
+	    			<ul>
+	    				<li>
+							<a href="<%=path%>/articleList.action" >
+	            				<div class="img">
+	                				<i class="icon icon-article"></i>
+	            				</div>
+	            			<h2>读文章</h2>
+	       					 </a>
+	    				</li>
+	    				
+	    				<li>
+	        				<a href="<%=path%>/questionaireList.action" >
+	            				<div class="img">
+	                				<i class="icon icon-ceshi"></i>
+	            				</div>
+	            			<h2>做测试</h2>
+	        				</a>
+	    				</li>
+	    				
+	    				<li>
+	        				<span >
+	            				<div class="img">
+	                				<i class="icon icon-fm"></i>
+	            				</div>
+	            				<h2>听歌</h2>
+	        				</span>
+	    				</li>
+	    				    
+						<li>
+					        <a href="<%=path%>/expertUserList.action" >
+					            <div class="img">
+					                <i class="icon icon-fm"></i>
+					            </div>
+					            <h2>交流</h2>
+					        </a>
+					    </li>
+	    			</ul>
+			</div>
 
-        <a href="<%=path%>/articleList.action" >
-            <div class="img">
-                <i class="icon icon-article"></i>
-            </div>
-            <h2>读文章</h2>
-        </a>
-    </li>
-    <li>
-
-        <a href="<%=path%>/questionaireList.action" >
-            <div class="img">
-                <i class="icon icon-ceshi"></i>
-            </div>
-            <h2>做测试</h2>
-        </a>
-    </li>
-    <li>
-
-        <a href="" >
-            <div class="img">
-                <i class="icon icon-fm"></i>
-            </div>
-            <h2>听FM</h2>
-        </a>
-    </li>    
-	<li>
-        <a href="<%=path%>/userList.action" >
-            <div class="img">
-                <i class="icon icon-fm"></i>
-            </div>
-            <h2>交流</h2>
-        </a>
-    </li>
-    </ul>
-</div>
-
-<div class="sy-bigNav">
-    <div class="left actionArea">
-        <a href="#">
-            <h1>预约咨询</h1>
-            <p>5000位专业咨询师
-                <br/>等你来约</p>
-            <i class="icon icon-yuyue"></i>
-        </a>
-    </div>
-    <div class="right">
-        <div class="up actionArea">
-            <a href="<%=path%>/user/chat.jsp">
-                <span>
-                    <h1>即时倾诉</h1>
-                    <p>心情不好马上倾诉</p>
-                </span>
-                <i class="icon icon-qs"></i>
-            </a>
-        </div>
-        <div class="down actionArea">
-            <a href="#">
-                <span>
-                    <h1>话题咨询</h1>
-                    <p>最热门的生活话题</p>
-                </span>
-                <i class="icon icon-wenda"></i>
-            </a>
-        </div>
-    </div>
-</div>
-             <div class="wz-list">
+		<div class="sy-bigNav">
+		    <div class="left actionArea">
+		        <a href="#">
+		            <h1>预约咨询</h1>
+		            <p>5000位专业咨询师
+		                <br/>等你来约</p>
+		            <i class="icon icon-yuyue"></i>
+		        </a>
+		    </div>
+		    <div class="right">
+		        <div class="up actionArea">
+		            <a href="<%=path%>/user/chat.jsp">
+		                <span>
+		                    <h1>即时倾诉</h1>
+		                    <p>心情不好马上倾诉</p>
+		                </span>
+		                <i class="icon icon-qs"></i>
+		            </a>
+		        </div>
+		        <div class="down actionArea">
+		            <a href="#">
+		                <span>
+		                    <h1>话题咨询</h1>
+		                    <p>最热门的生活话题</p>
+		                </span>
+		                <i class="icon icon-wenda"></i>
+		            </a>
+		        </div>
+		    </div>
+		</div>
+        <div class="wz-list">
                 <div class="list-head">
                   	  看文章
                 </div>
@@ -205,48 +179,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <a href="<%=path %>/articleList.action"> 更多文章</a>
                 </div>
              </div>
-
-            <div class="zj-list" style="display: none;">
+		<div class="zj-list" style="display: none;">
                 <div class="list-head">
                     	约专家
                 </div>
-                                <div class="list-body">
+                <div class="list-body">
                     <ul>
-                                                <li>
+                        <li>
                             <a href="#">
                                 <div class="img">
                                     <img src="<%=path %>/image/339108.JPG"/>
                                 </div>
                                 <h2>蒋琪</h2>
-<!--                                <h4>--><!--</h4>-->
                             </a>
                         </li>
-                                                <li>
+                                                
+                        <li>
                             <a href="#">
                                 <div class="img">
                                     <img src="<%=path %>/image/7efd92aabd91d204abfb134a2bba0e74.png"/>
                                 </div>
                                 <h2>彭君</h2>
-<!--                                <h4>--><!--</h4>-->
                             </a>
                         </li>
-                                                <li>
+                        
+                        <li>
                             <a href="#">
                                 <div class="img">
                                     <img src="<%=path %>/image/934382.JPG"/>
                                 </div>
                                 <h2>杨浩波</h2>
-<!--                                <h4>--><!--</h4>-->
                             </a>
                         </li>
-                                            </ul>
+                    </ul>
                 </div>
+                
                 <div class="list-foot">
                      <a href="#">更多专家</a>
                 </div>
-                            </div>
-
-            <div class="cs-list">
+            </div>
+		<div class="cs-list">
                 <div class="list-head">
                     	做测试
                 </div>
@@ -263,25 +235,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </li>
                    </ul>
                 </div>
+                
                 <div class="list-foot">
                     <a href="<%=path %>/questionaireList.action">更多测试</a>
                 </div>
-                            </div>
-
-    		<div class="hd-foot">
-    			<p>
-        			<a href="<%=path %>/user/feedback.jsp">反馈留言</a>
-    			</p>
-    			<p>
-       				 我们的小组<span>心理测评系统</span>
-    			</p>
+            </div>
+		<div class="hd-foot">
+	    			<p>
+	        			<a href="<%=path %>/feedback.action">反馈留言</a>
+	    			</p>
+	    			
+	    			<p>
+	       				 我们的小组<span>心理测评系统</span>
+	    			</p>
 
 			</div>
-        </div>
+    </div>
     </div>
    
 </body>
-
-
 </html>
 

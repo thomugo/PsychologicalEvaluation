@@ -26,6 +26,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <![endif]-->
 <script src="<%=path%>/js/jquery.min.js"></script>
 <script src="<%=path%>/assets/js/bootstrap.min.js"></script>	
+<style type="text/css">
+.style1{
+	margin-top:8px;
+	margin-left:5px;
+	padding-left:10px;
+	padding-right:1px;
+}
+input .style1{
+margin-left:30px;
+}
+lable .style1{
+	margin-right:10px;
+}
+
+</style>
 </head>
 <body>
 <input type="hidden" id="basePath" value="<%=basePath%>">
@@ -44,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        </div>
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
-							<li class="" id="index-li"><a href="<%=path%>/user/userIndex.jsp">首页</a></li>
+							<li class="" id="index-li"><a href="<%=path%>/index.jsp">首页</a></li>
 						</ul>
 					</div>
 				</div>
@@ -55,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="col-xs-12">
         <div class="register-wrapper">
             <div class="col-md-offset-2 col-xs-12 col-sm-10 col-md-8">
-                <div class="form-horizontal" role="form" id="registe-form">
+                <s:form class="form-horizontal" method="post" action="/registe.action" role="form" id="registe-form" onsubmit="return checkform()">
 	                <div class="form-group">
                         <h1>注册 </h1>
                         <hr>
@@ -63,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                <div class="form-group">
 	                    <label for="registe-username" class="col-md-3 control-label">用户名</label>
 	                    <div class="col-md-4">
-	                    <input type="text" class="form-control" id="registe-username" name="registe-username" placeholder="输入用户名" autocomplete="off">
+	                    <s:textfield type="text" class="form-control" id="registe-username" name="username" placeholder="输入用户名" autocomplete="off"></s:textfield>
 	                    </div>
 	                    <div class="col-md-5">
 	                    	<div class="alert alert-danger hidden" role="alert" id="alert-username">
@@ -77,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                <div class="form-group">
 	                    <label for="registe_password" class="col-md-3 control-label">密码</label>
 	                    <div class="col-md-4">
-	                    <input type="password" class="form-control" id="registe_password" name="password" placeholder="密码长度不小于6位" autocomplete="off">
+	                    <s:textfield type="password" class="form-control" id="registe_password" name="password" placeholder="密码长度不小于4位" autocomplete="off"></s:textfield>
 	                    </div>
 	                    <div class="col-md-5">
 	                    	<div class="alert alert-danger hidden" role="alert" id="alert-password">
@@ -91,7 +106,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                <div class="form-group">
 	                    <label for="registe_repassword" class="col-md-3 control-label">确认密码</label>
 	                    <div class="col-md-4">
-	                    <input type="password" class="form-control" id="registe_repassword" name="repassword" placeholder="密码长度不小于6位" autocomplete="off">
+	                    <s:textfield type="password" class="form-control" id="registe_repassword" name="repassword" placeholder="密码长度不小于4位" autocomplete="off"></s:textfield>
 	                    </div>
 	                    <div class="col-md-5">
 	                    	<div class="alert alert-danger hidden" role="alert" id="alert-repassword">
@@ -105,7 +120,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                <div class="form-group">
 	                    <label for="telenumber" class="col-md-3 control-label">手机号码</label>
 	                    <div class="col-md-4">
-	                    <input type="text" class="form-control" id="telenumber" name="telenumber" placeholder="输入手机号码" autocomplete="off">
+	                    <s:textfield type="text" class="form-control" id="telenumber" name="phone" placeholder="输入手机号码" autocomplete="off"></s:textfield>
 	                    </div>
 	                    <div class="col-md-5">
 	                    	<div class="alert alert-danger hidden" role="alert" id="alert-telenumber">
@@ -119,7 +134,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                <div class="form-group">
 	                    <label for="email" class="col-md-3 control-label">邮箱</label>
 	                    <div class="col-md-4">
-	                    <input type="text" class="form-control" id="email" name="email" placeholder="输入邮箱地址" autocomplete="off">
+	                    <s:textfield type="text" class="form-control" id="email" name="email" placeholder="输入邮箱地址" autocomplete="off"></s:textfield>
 	                    </div>
 	                    <div class="col-md-5">
 	                    	<div class="alert alert-danger hidden" role="alert" id="alert-email">
@@ -133,7 +148,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                <div class="form-group">
 	                    <label for="age" class="col-md-3 control-label">年龄</label>
 	                    <div class="col-md-4">
-	                    <input type="text" class="form-control" id="age" name="age" placeholder="输入年龄" autocomplete="off">
+	                    <s:textfield type="text" class="form-control" id="age" name="age" placeholder="输入年龄" autocomplete="off"></s:textfield>
 	                    </div>
 	                    <div class="col-md-5">
 	                    	<div class="alert alert-danger hidden" role="alert" id="alert-age">
@@ -147,7 +162,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                <div class="form-group">
 	                    <label for="vocation" class="col-md-3 control-label">职业</label>
 	                    <div class="col-md-4">
-	                    <input type="text" class="form-control" id="vocation" name="vocation" placeholder="输入职业" autocomplete="off">
+	                    <s:textfield type="text" class="form-control" id="vocation" name="vocation" placeholder="输入职业" autocomplete="off"></s:textfield>
 	                    </div>
 	                    <div class="col-md-5">
 	                    	<div class="alert alert-danger hidden" role="alert" id="alert-vocation">
@@ -157,15 +172,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    	<div class="alert hidden" role="alert" id="alert-vocation-ok"></div>
 	                    </div>
 	                </div>
+	                
+	                <div class="form-group">
+	                    <label for="gender" class="col-md-3 control-label">性别</label>
+	                    <div class="col-md-4" class="style">
+	                    <!-- <input type="radio" class="form-control" id="gender" name="gender" autocomplete="off"/> -->
+	                    	<s:radio list="#{'0':'男','1':'女'}" name="gender" value="0" class="style1"></s:radio>
+	                    </div>
+	                    <div class="col-md-5">
+	                    	<div class="alert alert-danger hidden" role="alert" id="alert-gender">
+	                    		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;&nbsp;
+	                    		<span id="alert-gender-message"></span>
+	                    	</div>
+	                    	<div class="alert hidden" role="alert" id="alert-gender-ok"></div>
+	                    </div>
+	                </div>	                
 
 	                <div class="form-group">
 	                    <div class="col-md-7 form-btn-group">
-	                    <button type="submit" name="submit" class="btn btn-primary pull-right button-stripe" id="register-submit">
-	                    <span class="glyphicon glyphicon-plane"></span>&nbsp;&nbsp;立即注册</button>
-	                    <samp></samp>
+	                    <s:submit value="立即注册" type="button"  name="submit" class="btn btn-primary pull-right button-stripe" id="register-submit"></s:submit>
+	                   <%--  <span class="glyphicon glyphicon-plane"></span>&nbsp;&nbsp;立即注册</button> --%>
 	                    </div>
 	                </div>
-	            </div>
+	            </s:form>
             </div>
         </div>
     </div>
@@ -175,10 +204,107 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <footer>
         <div class="container">
-            <p>我们的小组 <a class="links" href="<%=path%>/user/adminLogin.jsp">进入后台</a></p>
+            <p>我们的小组 <a class="links" href="<%=path%>/adminLogin.jsp">进入后台</a></p>
         </div>
     </footer>
+<script>
+	function showandhide(show, hide) {
+		$(show).removeClass("hidden");
+		$(hide).addClass("hidden");
+	}
+	
+	function checkform(){
+	
+		var	send=true;
+		var uname=$.trim($("#registe-username").val());
 
+		var pwd=$.trim($("#registe_password").val());
+		var repwd=$.trim($("#registe_repassword").val());
+		var tel=$.trim($("#telenumber").val());
+		var email=$.trim($("#email").val());
+		var age=$.trim($("#age").val());
+		var vocation=$.trim($("#vocation").val());
+		
+		if(uname.length==0){
+			send=false;
+			$("#alert-username").text("用户名不能为空");
+			showandhide("#alert-username","#alert-username-ok");
+			
+		}else if(uname.length<4){
+			send=false;
+			$("#alert-username").text("用户名不能少于4位");
+			showandhide("#alert-username","#alert-username-ok");
+			
+		}
+		
+		if(pwd.length==0){
+			send=false;
+			$("#alert-password").text("密码不能为空");
+			showandhide("#alert-password","#alert-password-ok");
+			
+		}else if(pwd.length<4){
+			send=false;
+			$("#alert-password").text("密码不能少于4位");
+			showandhide("#alert-password","#alert-password-ok");
+
+		}
+		
+		if(repwd.length==0){
+			send=false;
+			$("#alert-password").text("密码不能为空");
+			showandhide("#alert-password","#alert-password-ok");
+			
+		}else if(repwd.length<4){
+			send=false;
+			$("#alert-password").text("密码不能少于4位");
+			showandhide("#alert-password","#alert-password-ok");
+			
+		}else if(repwd!=pwd){
+			send=false;
+			$("#alert-repassword").text("密码与第一次输入不一致");
+			showandhide("#alert-repassword","#alert-repassword-ok");
+			
+		}
+		
+		if(tel.length==0){
+			send=false;
+			$("#alert-telenumber").text("手机号码不能为空");
+			showandhide("#alert-telenumber","#alert-telenumber-ok");
+			
+		}else if(tel.length!=11){
+			send=false;
+			$("#alert-telenumber").text("手机号码长度不正确");
+			showandhide("#alert-telenumber","#alert-telenumber-ok");
+			
+		}
+		
+		if(email.length==0){
+			send=false;
+			$("#alert-email").text("邮箱不能为空");
+			showandhide("#alert-email","#alert-email-ok");
+			
+		}
+		
+		if(age.length==0){
+			send=false;
+			$("#alert-age").text("年龄不能为空");
+			showandhide("#alert-age","#alert-age-ok");
+			
+		}
+		
+		if(vocation.length==0){
+			send=false;
+			$("#alert-vocation").text("职业不能为空");
+			showandhide("#alert-vocation","#alert-vocation-ok");
+			
+		}
+		if(send==false){
+			return false;
+		}else{
+			return true;
+		}		
+	}
+</script>
 	<script src="<%=path%>/js/registe.js"></script>
 </body>
 </html>

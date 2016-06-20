@@ -37,6 +37,8 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	private User user = null;
 	private List<User> users = new ArrayList<User>();
 	private List<AnswerPojo> answers = new ArrayList<AnswerPojo>();
+	private ArrayList<UserPojo> experts = new ArrayList<UserPojo>();
+	private ArrayList<User> applicants = new ArrayList<User>();
 	public int getPageNum() {
 		return pageNum;
 	}
@@ -79,6 +81,15 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	
 	public User getUser() {
 		return user;
+	}
+	
+	
+	public ArrayList<UserPojo> getExperts() {
+		return experts;
+	}
+
+	public ArrayList<User> getApplicants() {
+		return applicants;
 	}
 
 	@Override
@@ -188,6 +199,8 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		totalPages = userService.getMaxPageNo(pageSize);
 		return totalPages;
 	}
+	
+	
 
 	@Override
 	public com.pes.entity.User getModel() {
@@ -195,17 +208,23 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		return user;
 	}
 	
-	@Action(value="expertUserList")
+	@Action(value="expertUserList",results={
+			@Result(name="expert", location="/WEB-INF/chat/mchatList.jsp")
+	})
 	public String expertUser(){
 		if(jsonString != null){
 			JSONObject json = JSONObject.parseObject(jsonString);
 			pageNum = json.getInteger("pageNum");
 			pageSize = json.getInteger("pageSize");
-			ArrayList<UserPojo> experts = (ArrayList<UserPojo>) userService.findExpertByPage(pageNum, pageSize);
+		}
+		experts = (ArrayList<UserPojo>) userService.findExpertByPage(pageNum, pageSize);
+		if(jsonString != null){
 			AjaxUtil.ajaxJSONResponse(experts);
 			jsonString = null;
+			return NONE;
 		}
-		return NONE;
+		
+		return "expert";
 	}
 	@Action(value="applicantUserList")
 	public String applicantUser(){
@@ -213,7 +232,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 			JSONObject json = JSONObject.parseObject(jsonString);
 			pageNum = json.getInteger("pageNum");
 			pageSize = json.getInteger("pageSize");
-			ArrayList<User> applicants = (ArrayList<User>) userService.findApplicantByPage(pageNum, pageSize);
+			applicants = (ArrayList<User>) userService.findApplicantByPage(pageNum, pageSize);
 			AjaxUtil.ajaxJSONResponse(applicants);
 			jsonString = null;
 		}

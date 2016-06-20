@@ -1,13 +1,22 @@
 $(function(){
 	var basePath = $("#basePath").val();
-	var send=true;
 	
 	function showandhide(show, hide) {
 		$(show).removeClass("hidden");
 		$(hide).addClass("hidden");
-	}		
+	}	
+	
+	$("#login-username").keyup(function(){
+		showandhide("#alert-login-username-ok","#alert-login-username");
+	});
+	
+	$("#login-password").keyup(function(){
+		showandhide("#alert-login-password-ok","#alert-login-password");
+	});
+	
 	
 	$("#admin-login-submit").click(function(){
+		var send=true;
 		var login={};
 		var username=$.trim($("#login-username").val());
 		var password=$.trim($("#login-password").val());

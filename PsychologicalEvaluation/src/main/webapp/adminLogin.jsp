@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        </div>
 			        <div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
-							<li class="" id="index-li"><a href="<%=path%>/user/userIndex.jsp">首页</a></li>
+							<li class="" id="index-li"><a href="<%=path%>/index.jsp">首页</a></li>
 						</ul>
 					</div>
 				</div>

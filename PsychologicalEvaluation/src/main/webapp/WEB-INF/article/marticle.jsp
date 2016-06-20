@@ -28,15 +28,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=path%>/js/html5.min.js" ></script><![endif]-->
 <script>
 
-</script>    <style>
-        body{
-            font-family: 'Source Sans Pro', 'Oxygen', sans-serif !important;
-        }
-    </style>
+</script>    
+<style>
+body{
+font-family: 'Source Sans Pro', 'Oxygen', sans-serif !important;
+}
+</style>
 </head>
 
 <body>
-<s:debug></s:debug>
 <div class="layout">
                     
     <div class="header ">
@@ -45,14 +45,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         		<h2>文章详情</h2>
     		<div class="right">
-                    <a href="javascript:void(0);" class="fx icon"></a>
-            </div>
+                <div class="img">                		
+               		 <s:if test="#session.loginUser==null" ><!--用户未登录  -->
+               		 	<a class="avatar" href="<%=path%>/login.jsp">
+               		 		<img src="<%=path%>/image/img155.png" width="60" height="60">
+               		 		
+               		 	</a>
+               		 </s:if>
+  					 <s:else>						<!--用户已登录  -->
+  						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
+                        	<img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60">
+                  	  	</a>
+       				  </s:else>       				                 	 	
+                </div>
+            
+            </div><!-- right -->        		
 	</div>
 
     <div class="details" style="padding-bottom: 88px;">
 		<div class="head">
             <div class="img">
-                <a href="http://m.xinli001.com/user/5393875"><img src="http://image.xinli001.com/20150619/fbba49ed2a9158141db608dbbef76531.jpg!80"></a>
+                <span><img src="http://image.xinli001.com/20150619/fbba49ed2a9158141db608dbbef76531.jpg!80"></span>
             </div>
             <div class="text">
                 <div class="hd">
@@ -94,10 +107,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
 
 </div>
-<span style="display: none">
-<!--    <script type="text/javascript" src="http://js.tongji.linezing.com/2646296/tongji.js"></script>-->
-<!--    <noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2646296/tongji.gif"/></a></noscript>-->
-</span>
+
 	<script type="text/javascript">
 
 			var author="${article.userName}";
@@ -129,7 +139,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("#content").text(content);
 			$("#time").text(time); 
 			$("#articleclass").text(articleclass);
-
 	</script>
 </body>
 

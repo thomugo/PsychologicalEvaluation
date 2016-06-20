@@ -9,7 +9,7 @@ import com.pes.entity.User;
 import com.pes.service.UserService;
 
 @Results( {
-        @Result(name = "success", location = "/index.jsp"),
+        @Result(name = "success", location = "/index.jsp", type="redirect"),
         @Result(name = "input", location = "/registe.jsp")
     })
 public class RegisteAction extends BaseAction implements ModelDriven<User>{

@@ -10,12 +10,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html>
 <head>
-    <script>
-        var pageName = 'mobile/article/list';
-        var articleListUrl = "http://m.xinli001.com/ajax/article-list.json";
-        var slug = "";
-        var tag = "";
-    </script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" >
@@ -28,36 +22,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="description" content="">
 <link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css">
 
-<script src="<%=path%>/js/mobile_f4b5a0a094.js" ></script><!--[if lt IE 9]>
-<script src="http://lapp.xinli001.com/jsmin/html5.min.js" ></script><![endif]-->
-<script>
-    var postUserMessageUrl = 'http://m.xinli001.com/ajax/post-user-message.json';
-    $(function() {
-        if($('script[src$="app.ad.js"]').length<1){
-            $("<script>").attr({"src":"http://lapp.xinli001.com/jsmin/app.ad.min.js"}).appendTo($("body"));
-        }else{
-            console.log("Already loaded app.ad.js.");
-        }
-    });
-</script></head>
+<script src="<%=path%>/js/mobile_f4b5a0a094.js" ></script>
+</head>
 
 <body>
 		<input type="hidden" id="basePath" value="<%=basePath%>">
 <div class="layout">
   	<div class="header ">
     	<div class="left">
-                <a href="<%=path%>/user/userIndex.jsp" class="ico ico-back icon"></a>       
+                <a href="<%=path%>/index.jsp" class="ico ico-back icon"></a>       
     	</div>
         <h2>文章</h2>
-    	<div class="right">
-           <div id="header_avatar_btn_div">
-                <div class="img">
-                    <a class="avatar" href="<%=path%>/user/login.jsp">
-                        <img src="<%=path%>/image/img155.png" width="60" height="60">
-                    </a>
+    		<div class="right">
+                <div class="img">                		
+               		 <s:if test="#session.loginUser==null" ><!--用户未登录  -->
+               		 	<a class="avatar" href="<%=path%>/login.jsp">
+               		 		<img src="<%=path%>/image/img155.png" width="60" height="60">
+               		 		
+               		 	</a>
+               		 </s:if>
+  					 <s:else>						<!--用户已登录  -->
+  						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
+                        	<img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60">
+                  	  	</a>
+       				  </s:else>       				                 	 	
                 </div>
-            </div>
-		</div>
+            
+            </div><!-- right -->
 	</div>
 	
     <div class="article-new">
@@ -93,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="wz-banner">
                 <ul class="slides">
                         <li class="slide">
-                            <a href="<%=path%>/article/marticle.jsp"><img src="http://ossimg.xinli001.com/20160527/dd5c0b984d85a0373a9ce687e911d87a.png"/></a>
+                            <a href="<%=path%>/articleDetail.action?id=1"><img src="http://ossimg.xinli001.com/20160527/dd5c0b984d85a0373a9ce687e911d87a.png"/></a>
                             <a href="<%=path%>/article/marticle.jsp"><h2>中国学生第一次哈佛毕业演讲：哈佛教会我们敢于改变世界</h2></a>
                         </li>
                         <li class="slide">
@@ -118,23 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         
         <div class="body" id="article-list">
-            <ul>
-                <li>
-    				<div class="img">
-        				<a href="<%=path%>/article/marticle.jsp"><img src="http://image.xinli001.com/20160525/084105vdf8dm4p7e6fvycf.jpg!180x120"/></a>
-    				</div>
-    				<div class="text">
-        				<div class="desc">
-            				<a href="<%=path%>/article/marticle.jsp">孩子，我宁愿你不那么乖</a>
-        				</div>
-        				<div class="info">
-                        	<span>西格玛.心视界</span>
-                        <dl>
-                			<dd><a href="javascript:void(0);"><i class="ico1">11</i></a></dd>
-                			<dd><a href="javascript:void(0);"><i class="ico2">747</i></a></dd>
-            			</dl>
-            	</li> 
-            </ul>
+
     	</div>                                   
 </div>
 
@@ -148,7 +123,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
         <div class="hd-foot">
     		<p>
-        		<a href="http://m.xinli001.com/feedback/">反馈留言</a>
+        		<a href="<%=path%>/feedback.action">反馈留言</a>
     		</p>
     		<p>
         		我们的小组<span>心理测评</span>
@@ -187,33 +162,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									+"</ul>");  			
 				
 			</c:forEach>
-<%-- 	    
-        				<div class="desc">
-            				<a href="<%=path%>/article/marticle.jsp">孩子，我宁愿你不那么乖</a>
-        				</div>
-        				<div class="info">
-                        	<span>西格玛.心视界</span>
-                        <dl>
-                			<dd><a href="javascript:void(0);"><i class="ico1">11</i></a></dd>
-                			<dd><a href="javascript:void(0);"><i class="ico2">747</i></a></dd>
-            			</dl>
-            	</li> 
-            </ul> --%>								
-		</script>
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd64469e9d7bdbf03af6f074dffe7f9b5' type='text/javascript'%3E%3C/script%3E"));
-
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-74218902-7', 'auto');
-ga('send', 'pageview');
-</script>  
-  
-</div>
+	</script>
+   
 </div>
 
 </body>

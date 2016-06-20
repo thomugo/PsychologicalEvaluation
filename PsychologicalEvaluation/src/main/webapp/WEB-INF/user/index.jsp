@@ -80,7 +80,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
   		<a href="${ pageContext.request.contextPath }/user/adminLogin.jsp">login</a>
   		<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
-		<s:debug></s:debug>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -285,7 +284,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="menu-text"></span>
 				</a>
 
-				<div class="sidebar" id="sidebar">
+				<div class="sidebar" id="sidebar" style="margin-top:0px;">
 					<script type="text/javascript">
 						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
 					</script>
@@ -416,7 +415,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<ul class="submenu">
 
 								<li>
-									<a href="<%=path%>/user/error-404.jsp">
+									<a href="<%=path%>/error-404.jsp">
 										<i class="icon-double-angle-right"></i>
 										404错误页面
 									</a>
@@ -430,7 +429,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 								
 								<li>
-									<a href="<%=path%>/user/file.jsp">
+									<a href="<%=path%>/file.action">
 										<i class="icon-double-angle-right"></i>
 										文件上传
 									</a>
@@ -681,9 +680,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			</div><!-- /.main-container-inner -->
 
-			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-				<i class="icon-double-angle-up icon-only bigger-110"></i>
-			</a>
 		</div><!-- /.main-container -->
 
 		<!-- basic scripts -->

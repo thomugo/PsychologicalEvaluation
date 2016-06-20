@@ -300,7 +300,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 					<ul class="nav nav-list">
 						<li >
-							<a href="<%=path%>/index.jsp">
+							<a href="<%=path%>/index.action">
 								<i class="icon-dashboard"></i>
 								<span class="menu-text"> 控制台 </span>
 							</a>

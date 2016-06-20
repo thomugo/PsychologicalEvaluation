@@ -302,7 +302,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 					<ul class="nav nav-list">
 						<li >
-							<a href="<%=path%>/index.jsp">
+							<a href="<%=path%>/index.action">
 								<i class="icon-dashboard"></i>
 								<span class="menu-text"> 控制台 </span>
 							</a>
@@ -508,9 +508,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			</div><!-- /.main-container-inner -->
 
-			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-				<i class="icon-double-angle-up icon-only bigger-110"></i>
-			</a>
 		</div><!-- /.main-container -->
 
 		<!-- basic scripts -->

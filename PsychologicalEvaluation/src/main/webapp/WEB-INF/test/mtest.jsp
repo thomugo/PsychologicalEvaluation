@@ -22,36 +22,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="<%=path%>/style/jquery.mobile.min.css">
     <link rel="stylesheet" href="<%=path%>/style/mobile1.css">    
     <link rel="stylesheet" href="<%=path%>/style/app-ad.re.css">
-    <link rel="stylesheet" href="<%=path%>/style/csshare.min.css">    
+    <link rel="stylesheet" href="<%=path%>/style/csshare.min.css">  
+	<link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css"> 
+	   
     <script src="<%=path%>/js/jquery.min.js"></script>
-    <script>
-        $(document).bind("mobileinit", function(){
-            $.mobile.page.prototype.options.backBtnText = "返回";
-            $.mobile.page.prototype.options.addBackBtn= true;
-            $.mobile.ajaxEnabled = false;
-        });
-    </script>
+
     <script src="<%=path%>/js/jquery.mobile.min.js"></script>
   
     <script src="<%=path%>/js/iscroll.js" ></script>
 </head>
 <body>
-		<input type="hidden" id="basePath" value="<%=basePath%>">
+		
 <div data-role="page" id="id_ceshi_page" data-url="<%=path%>/ceshi/357.jsp" data-dom-cache="false">
-
+	<input type="hidden" id="basePath" value="<%=basePath%>">
     <div class="header">
-    <div class="left">
-        <a href="<%=path%>/questionaireList.action" class="ico ico-back icon"></a>
-    </div>
-    <h2>测试</h2>
-    <div class="right">
-        <div class="img">
-                 <a class="avatar" href="#">
-                	<img src="<%=path%>/image/9fe4842afb2c58c2200a1b9ae7a68ca9.png" width="60" height="60">
-            	 </a>
-        </div>
-    </div>
-</div>
+    		<div class="left">
+        		<a href="<%=path%>/questionaireList.action" class="ico ico-back icon"></a>
+    		</div>
+    		<h2>测试</h2>
+    		<div class="right">
+                <div class="img">                		
+               		 <s:if test="#session.loginUser==null" ><!--用户未登录  -->
+               		 	<a class="avatar" href="<%=path%>/login.jsp">
+               		 		<img src="<%=path%>/image/img155.png" width="60" height="60">
+               		 		
+               		 	</a>
+               		 </s:if>
+  					 <s:else>						<!--用户已登录  -->
+  						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
+                        	<img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60">
+                  	  	</a>
+       				  </s:else>       				                 	 	
+                </div>            
+            </div><!-- right -->
+	</div>
     <div data-role="content" >
         <h1 class="po_title" id="title">世界上另一个自己会对你说什么？</h1>
         <br>
@@ -62,20 +66,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <a href="#" id="id_start_ceshi">开始测试</a>
             
         	</div>
-        <div class="baidu_share">
-            <!-- Baidu Button BEGIN -->
-			<div id="share_label" style="border-bottom: none">
-    
-			</div>
-
-			<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=603462" ></script>
-			<script type="text/javascript" id="bdshell_js"></script>
-<script type="text/javascript">
-    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
-</script>
-			<!-- Baidu Button END -->
-			<br style="clear: both">        
-		</div>
 
         <div id='id_form' >
             <div id="id_question_list" style="display: none">
@@ -90,14 +80,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			<input type="submit" value="查看测试结果" />
 			</div>                    
 		</div>
+		
     </div>   <!-- content -->
 
     <div class="po_footer">
             <a title="测试列表" class="po_list" href="<%=path%>/questionaireList.action">测试列表</a>
-    </div></div><!-- /page -->
-
-	<div class="share_tip" id="share_tip">
-	</div>
+    </div>
+    
+</div><!-- /page -->
 
 <script type="text/javascript">
   			var i=1;
@@ -156,11 +146,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </script>
 	
-
-
-<script>
-
-</script>
     <script src="<%=path%>/js/mobile.js" ></script>  
 
 </body>

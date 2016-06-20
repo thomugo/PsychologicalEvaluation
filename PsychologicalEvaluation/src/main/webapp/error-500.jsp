@@ -110,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												返回
 											</a>
 
-											<a href="<%=path%>/index.jsp" class="btn btn-primary">
+											<a href="<%=path%>/index.action" class="btn btn-primary">
 												<i class="icon-dashboard"></i>
 												主页
 											</a>

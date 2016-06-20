@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="">
 <meta name="format-detection" content="telephone=no">
-<title>心理测评</title>
+<title>心理学从这里开始</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <link rel="stylesheet" href="http://lapp.xinli001.com/dist/mobile_421d115e12.css">
@@ -29,14 +29,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="<%=path%>/js/jquery.min.js" ></script></head>
 
 <body>
-<s:debug></s:debug>
 <input type="hidden" id="basePath" value="<%=basePath%>">
 	<div class="layout">
 		<div class="header ">
     		<div class="left">
-                <a href="<%=path%>/user/userIndex.jsp" class="ico ico-back icon"></a>
+                <a href="<%=path%>/index.jsp" class="ico ico-back icon"></a>
             </div>
         	<h2>即时倾诉</h2>
+    		<div class="right">
+                <div class="img">                		
+               		 <s:if test="#session.loginUser==null" ><!--用户未登录  -->
+               		 	<a class="avatar" href="<%=path%>/login.jsp">
+               		 		<img src="<%=path%>/image/img155.png" width="60" height="60">
+               		 		
+               		 	</a>
+               		 </s:if>
+  					 <s:else>						<!--用户已登录  -->
+  						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
+                        	<img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60">
+                  	  	</a>
+       				  </s:else>       				                 	 	
+                </div>
+            
+            </div><!-- right -->        	
 		</div>    <!-- 倾诉动态 -->
     <!-- 倾诉动态 -->
 
@@ -55,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <li class="five">求安慰</li>
                     <li class="six">失恋</li>
                     <li class="seven">秘密</li>
-<!--    
+    
                 </ul>
             </div>
             <div class="foot">
@@ -94,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- 在线倾听专家 -->
     <div class="hd-foot">
     	<p>
-        	<a href="<%=path %>/user/feedback.jsp">反馈留言</a>
+        	<a href="<%=path %>/feedback.action">反馈留言</a>
     	</p>
     	<p>
         	我们的小组<span>心理测评系统</span>
@@ -102,7 +117,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 <script type="text/javascript">
 	var basePath = $("#basePath").val();
-	<c:forEach var="user" items="${users}"> 
+	<c:forEach var="user" items="${experts}"> 
 		var name="${user.username}";
 		var vocation="${user.vocation}";
 		var id="${user.id}";
