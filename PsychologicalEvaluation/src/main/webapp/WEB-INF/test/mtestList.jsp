@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="<%=path%>/style/app-ad.re.css">
 </head>
 <body>
-
+<s:debug></s:debug>
 		
 <div id="main_body">
 	<input type="hidden" id="basePath" value="<%=basePath%>">

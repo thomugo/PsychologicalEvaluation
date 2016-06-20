@@ -22,7 +22,7 @@ public class ArticleAction extends BaseAction{
 	private ArticleService articleService;
 	private int id;
 	private Article article;
-	private String articleClassName = "class0";
+	private String articleClassName = null;
 	private String title = null;
 	private String userName = null;
 	private Date start = null;
@@ -95,7 +95,7 @@ public class ArticleAction extends BaseAction{
 		}
 		articles = articleService.findArticlesByPage(null, null, userName, articleClassName, start, end, pageNo, pageSize);
 		System.out.println("find "+articles.size()+"articles");
-		System.out.println(articles);
+		//System.out.println(articles);
 		if(jsonString != null){
 			jsonString = null;
 			AjaxUtil.ajaxJSONResponse(articles);
@@ -114,6 +114,7 @@ public class ArticleAction extends BaseAction{
 	@Action(value = "editArticle")
 	public String editArticle()
 	{
+		//System.out.println(jsonString);
 		JSONObject json = JSONObject.parseObject(jsonString);
 		String title = json.getString("title");
 		String content = json.getString("content");
@@ -123,7 +124,7 @@ public class ArticleAction extends BaseAction{
 		article.setContent(content);
 		article.setDateTime(new Date());
 		article.setTitle(title);
-		User user = (User)httpSession.getAttribute("loginUser");
+		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
 		article.setUserId(user.getId());
 		article.setUserName(user.getUsername());
 		String editState;
@@ -138,6 +139,7 @@ public class ArticleAction extends BaseAction{
 			editState = "edit article success";
 		}
 		jsonString = null;
+		System.out.println(user.getUsername() + "edited an article named :" + title);
 		AjaxUtil.ajaxJSONResponse(editState);
 		return NONE;
 	}

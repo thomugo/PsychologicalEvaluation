@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 import com.pes.entity.AnswerPojo;
+import com.pes.entity.BaseUser;
 import com.pes.entity.User;
 import com.pes.entity.UserPojo;
 import com.pes.service.AnswerService;
@@ -176,10 +177,11 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	}
 	
 	@Action(value="logout", results={
-			@Result(name="index", location="/index.jsp")
+			@Result(name="index", location="/index.jsp", type="redirect")
 	})
 	public String logout(){
-		System.out.println("logout!!");
+		BaseUser loginUser = (BaseUser) httpSession.getAttribute("loginUser");
+		System.out.println(loginUser.getUsername()+" logout!!");
 		this.httpSession.removeAttribute("loginUser");;
 		return "index";
 	}

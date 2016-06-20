@@ -18,12 +18,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 	<meta content="yes" name="apple-mobile-web-app-capable" />
 	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
-	<meta content="telephone=no" name="format-detection" />    
+	<meta content="telephone=no" name="format-detection" />   
+	<link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css"> 	 
 	<link rel="stylesheet" href="<%=path%>/style/jquery.mobile.min.css">
+    <link rel="stylesheet" href="<%=path%>/style/qz_home.css">    
     <link rel="stylesheet" href="<%=path%>/style/mobile1.css">    
     <link rel="stylesheet" href="<%=path%>/style/app-ad.re.css">
     <link rel="stylesheet" href="<%=path%>/style/csshare.min.css">  
-	<link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css"> 
+
 	   
     <script src="<%=path%>/js/jquery.min.js"></script>
 
@@ -33,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 		
-<div data-role="page" id="id_ceshi_page" data-url="<%=path%>/ceshi/357.jsp" data-dom-cache="false">
+<div data-role="page" id="id_ceshi_page" >
 	<input type="hidden" id="basePath" value="<%=basePath%>">
     <div class="header">
     		<div class="left">

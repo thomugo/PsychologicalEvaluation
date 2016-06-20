@@ -28,17 +28,16 @@ $("#wz_save").click(function(){
 			
 		}
 	
-	article["wz_title"] = title;
-	article["wz_class"] = wz_class;
-	article["wz_content"] = content;
+	article["title"] = title;
+	article["className"] = wz_class;
+	article["content"] = content;
 	if(save){
 		//用ajax请求服务器保存数据
-		
 		var jsonString = JSON.stringify(article);
 		alert(jsonString);
-		$.post("push.action", {"jsonString" : jsonString},
-				function (){ 
-					alert("保存成功2"); 
+		$.post("editArticle.action", {"jsonString" : jsonString},
+				function (data){ 
+					alert(data); 
 		}); 
 	}
 });
