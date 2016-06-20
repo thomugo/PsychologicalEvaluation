@@ -9,7 +9,7 @@ import com.pes.entity.User;
 import com.pes.service.UserService;
 
 @Results( {
-        @Result(name = "success", location = "/index.jsp"),
+        @Result(name = "success", location = "/index.jsp", type="redirect"),
         @Result(name = "input", location = "/registe.jsp")
     })
 public class RegisteAction extends BaseAction implements ModelDriven<User>{
@@ -26,7 +26,16 @@ public class RegisteAction extends BaseAction implements ModelDriven<User>{
 	}
 	public String execute()
 	{
+		String iconsman[] = {"avatar.png","avatar4.png","avatar5.png"};
+		String iconswoman[] = {"avatar1.png","avatar3.png"};
 		userInfo.setDateTime(new Date());
+		if(userInfo.getGender() == 0){//man
+			int index=(int)(Math.random()*3);
+			userInfo.setIcon(iconsman[index]);
+		}else{
+			int index=(int)(Math.random()*2);
+			userInfo.setIcon(iconswoman[index]);
+		}
 		Integer id = 0;
 		id = userService.save(userInfo);
 		System.out.println("add success");

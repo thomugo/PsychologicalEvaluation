@@ -55,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="col-xs-12">
 		<div class="login-wrapper">
 			<div class="col-xs-12 col-sm-10 col-md-10">
-				<div class="form-horizontal" role="form" id="admin-login-form"> 
+				<s:form class="form-horizontal" role="form" id="admin-login-form" action="adminLogin" method="post" > 
 					<div class="form-group">
 						<div class="col-md-offset-2">
 							<h1>管理员登录</h1>
@@ -65,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="form-group">
                         <label for="login-username" class="col-md-4 control-label">管理员账号</label>
                         <div class="col-md-4">
-                        <input type="text" class="form-control" id="login-username" name="login-username" placeholder="管理员账号" autocomplete="off">
+                        <s:textfield type="text" class="form-control" id="login-username" name="username" placeholder="管理员账号" autocomplete="off"></s:textfield>
                         </div>
                         <div class="col-md-4">
                         
@@ -81,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="form-group">
                         <label for="login-password" class="col-md-4 control-label">密码</label>
                         <div class="col-md-4">
-                        <input type="password" class="form-control" id="login-password" name="login-password" placeholder="密码长度不小于6位" autocomplete="off">
+                        <s:textfield type="password" class="form-control" id="login-password" name="password" placeholder="密码长度不小于6位" autocomplete="off"></s:textfield>
                         </div>
                         <div class="col-md-4">
 	                    	<div class="alert alert-danger hidden" role="alert" id="alert-login-password">
@@ -94,12 +94,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 					<div class="form-group">
 						<div class="col-md-offset-4 col-md-4 form-btn-group">
-							<button type="submit" name="submit" class="btn btn-primary pull-right button-stripe" id="admin-login-submit">
+							<button   type="submit" class="btn btn-primary pull-right button-stripe" id="admin-login-submit" >
 								<span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;登录
 							</button>
+				
 						</div>
 					</div>
-				</div>
+				</s:form>
+				
 			</div>
 		</div>
 	</div>

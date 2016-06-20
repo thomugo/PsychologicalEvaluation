@@ -2,15 +2,18 @@ package com.pes.action;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.alibaba.fastjson.JSONObject;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 import com.pes.entity.AnswerPojo;
+import com.pes.entity.BaseUser;
 import com.pes.entity.User;
 import com.pes.entity.UserPojo;
 import com.pes.service.AnswerService;
@@ -168,7 +171,8 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 			@Result(name="index", location="/index.jsp")
 	})
 	public String logout(){
-		System.out.println("logout!!");
+		BaseUser loginUser = (BaseUser) httpSession.getAttribute("loginUser");
+		System.out.println(loginUser.getUsername()+" logout!!");
 		this.httpSession.removeAttribute("loginUser");;
 		return "index";
 	}

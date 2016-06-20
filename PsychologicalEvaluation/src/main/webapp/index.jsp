@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="right">
                     <div id="header_avatar_btn_div">
                 <div class="img">
-               		 <s:if test="loginUser==null">
+               		 <s:if test="#session.loginUser==null">
                		 	<a href="${ pageContext.request.contextPath }/login.jsp">login</a>
                		 </s:if>
   					<s:else>

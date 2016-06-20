@@ -1,22 +1,16 @@
 package com.pes.entity;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
-
-import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 //@Table(name="user_info", catalog="app_psychologic")
 @Table(name="user_info", catalog="pes")
 public class User extends BaseUser implements Serializable{
-	private int gender;
+	private int gender;  //0:男  ；1：女
 	private int age;
 	private String vocation;
 	private String phone;
