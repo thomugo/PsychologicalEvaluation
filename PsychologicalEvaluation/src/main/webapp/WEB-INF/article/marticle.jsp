@@ -37,7 +37,6 @@ font-family: 'Source Sans Pro', 'Oxygen', sans-serif !important;
 </head>
 
 <body>
-<s:debug></s:debug>
 <div class="layout">
                     
     <div class="header ">

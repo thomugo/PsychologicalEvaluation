@@ -131,7 +131,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    </div>
 		    <div class="right">
 		        <div class="up actionArea">
-		            <a href="<%=path%>/user/chat.jsp">
+		            <a href="<%=path%>/expertUserList.action">
 		                <span>
 		                    <h1>即时倾诉</h1>
 		                    <p>心情不好马上倾诉</p>
@@ -158,11 +158,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <ul>
                         <li>
                             <div class="img">
-                                <a href="#"><img src="<%=path %>/image/0710264ee7ydh4165s37en.jpg"></a>
+                                <a href="<%=path %>/articleList.action"><img src="<%=path %>/image/0710264ee7ydh4165s37en.jpg"></a>
                             </div>
                             <div class="text">
                                 <div class="desc">
-                                    <a href="#">武志红：出轨家庭不愿离婚的真实原因到底是什么？</a>
+                                    <a href="<%=path %>/articleList.action">武志红：出轨家庭不愿离婚的真实原因到底是什么？</a>
                                 </div>
                                 <div class="info">
                                     <span>婚恋专栏·壹心理</span>
@@ -178,46 +178,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="list-foot">
                     <a href="<%=path %>/articleList.action"> 更多文章</a>
                 </div>
-             </div>
-		<div class="zj-list" style="display: none;">
-                <div class="list-head">
-                    	约专家
-                </div>
-                <div class="list-body">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                <div class="img">
-                                    <img src="<%=path %>/image/339108.JPG"/>
-                                </div>
-                                <h2>蒋琪</h2>
-                            </a>
-                        </li>
-                                                
-                        <li>
-                            <a href="#">
-                                <div class="img">
-                                    <img src="<%=path %>/image/7efd92aabd91d204abfb134a2bba0e74.png"/>
-                                </div>
-                                <h2>彭君</h2>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="#">
-                                <div class="img">
-                                    <img src="<%=path %>/image/934382.JPG"/>
-                                </div>
-                                <h2>杨浩波</h2>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="list-foot">
-                     <a href="#">更多专家</a>
-                </div>
-            </div>
+        </div>
+
 		<div class="cs-list">
                 <div class="list-head">
                     	做测试
@@ -226,10 +188,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <ul>
                         <li>
                             <div class="img">
-                                <a href="<%=path %>/test/mtest.jsp"><img src="<%=path %>/image/021356cvg7ha82skersh0f.jpg"/></a>
+                                <a href="<%=path %>/questionaireList.action"><img src="<%=path %>/image/021356cvg7ha82skersh0f.jpg"/></a>
                             </div>
                             <div class="text">
-                                <h2><a href="<%=path %>/test/mtest.jsp">世界上另一个自己会对你说什么？</a></h2>
+                                <h2><a href="<%=path %>/questionaireList.action">世界上另一个自己会对你说什么？</a></h2>
                                 <h4><i class="icon icon-user-small"></i>119325</h4>
                             </div>
                         </li>
@@ -239,14 +201,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="list-foot">
                     <a href="<%=path %>/questionaireList.action">更多测试</a>
                 </div>
-            </div>
+        </div>
 		<div class="hd-foot">
 	    			<p>
 	        			<a href="<%=path %>/feedback.action">反馈留言</a>
 	    			</p>
 	    			
 	    			<p>
-	       				 我们的小组<span>心理测评系统</span>
+	       				 我们的小组<span>_心理测评系统</span>
 	    			</p>
 
 			</div>

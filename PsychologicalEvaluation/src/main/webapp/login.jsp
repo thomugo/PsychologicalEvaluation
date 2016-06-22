@@ -2,10 +2,8 @@
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
 
@@ -53,7 +51,8 @@
 	                </div>
 	                <div class="rowArea logInTip">
 	                    <ul>
-	                        <li>您如果<span class="t-blue">忘记密码</span>，请用电脑登陆我们的心理测评系统网站找回密码。</li>
+	                        <li>您如果<span class="t-blue">忘记密码</span>，请用电脑登陆我们的心理测评系统网站找回密码</li>
+							<li>使用电脑注册请点击<span class="t-blue"><a href="<%=path%>/registe.jsp">这里</a></span></li>	                        
 	                    </ul>
 	                </div>
 	                <div class="rowArea">
@@ -69,8 +68,8 @@
 					
 					<div class="body">
 						<ul>
-							<li class="wb"><a href="#"><i class="icon-other-login"></i>微博登录</a></li>
-							<li class="qq"><a href="#"><i class="icon-other-login"></i>QQ登录</a></li>
+							<li class="wb"><a ><i class="icon-other-login"></i>微博登录</a></li>
+							<li class="qq"><a ><i class="icon-other-login"></i>QQ登录</a></li>
 						</ul>
 					</div>
 				</div>

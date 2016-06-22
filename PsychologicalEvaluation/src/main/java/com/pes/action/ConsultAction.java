@@ -14,7 +14,7 @@ import com.pes.service.MessageService;
 import com.pes.service.UserService;
 
 @ParentPackage("myBasicPackage")
-@Result(name="success", location="/chat/mchat.jsp")
+@Result(name="success", location="/test.jsp")
 public class ConsultAction extends BaseAction{
 	@Autowired 
 	private UserService userService;
@@ -73,7 +73,7 @@ public class ConsultAction extends BaseAction{
 	}
 
 	@Action(value="chat", results={
-			@Result(name="success", location="/WEB-INF/chat/mchat.jsp")
+			@Result(name="success", location="/consult.jsp")
 	})
 	public String Chat(){
 		target = userService.findById(id);

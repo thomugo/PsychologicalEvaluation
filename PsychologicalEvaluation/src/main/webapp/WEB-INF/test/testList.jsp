@@ -69,7 +69,6 @@ margin-top:5px;
 	</head>
 
 	<body>
-	<s:debug></s:debug>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}

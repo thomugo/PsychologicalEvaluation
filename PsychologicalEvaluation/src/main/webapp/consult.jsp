@@ -54,9 +54,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
 
 	<body>
-		<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
-  		<a href="${ pageContext.request.contextPath }/user/login.jsp">login</a>
-  		<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
   		<input type="hidden" id="userId"  value="${sessionScope.loginUser.id}"/> 
   		<input type="hidden" id="username"  value="${sessionScope.loginUser.username}"/> 
   		<input type="hidden" id="userIcon"  value="${sessionScope.loginUser.icon}"/> 
@@ -64,7 +61,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		<input type="hidden" id="targetIcon"  value="${target.icon}"/> 
   		<input type="hidden" id="targetUsername"  value="${target.username}"/> 
   		<input type="hidden" id="basePath" value="<%=basePath%>">
-		<s:debug></s:debug>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -96,11 +92,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="#">
+									<a href="<%=path%>/getOffLineMessage.action">
 										<div class="clearfix">
 											<span class="pull-left">
 												<i class="btn btn-xs no-hover btn-pink icon-comment"></i>
-												系统通知
+												未读消息
 											</span>
 											<span class="pull-right badge badge-info">+${unReadBroadCastMessageCount}</span>
 										</div>
@@ -108,7 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="#">
+									<a href="<%=path%>/getOffLineMessage.action">
 										查看所有通知
 										<i class="icon-arrow-right"></i>
 									</a>
@@ -180,7 +176,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="#">
+									<a href="<%=path%>/getOffLineMessage.action">
 										查看所有消息
 										<i class="icon-arrow-right"></i>
 									</a>
@@ -210,7 +206,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="<%=path%>/logout.action">
 										<i class="icon-off"></i>
 										退出
 									</a>
@@ -269,7 +265,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 					<ul class="nav nav-list">
 						<li class="active">
-							<a href="<%=path%>/index.jsp">
+							<a href="<%=path%>/index.action">
 								<i class="icon-dashboard"></i>
 								<span class="menu-text"> 控制台 </span>
 							</a>
@@ -354,7 +350,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<span class="menu-text">
 									其他页面
-									<span class="badge badge-primary ">4</span>
+									<span class="badge badge-primary ">3</span>
 								</span>
 
 								<b class="arrow icon-angle-down"></b>

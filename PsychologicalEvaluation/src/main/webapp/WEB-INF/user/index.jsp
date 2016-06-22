@@ -70,16 +70,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <style type="text/css">
 #zhuanjialist{
 	float:right;
-	margin-top:-250px;
+	margin-top:-280px;
 	margin-right:50px;
 }
 </style>
 	</head>
 
 	<body>
-		<h3>${(empty loginUser)?'您还没有登陆':'已经登陆' }</h3>
-  		<a href="${ pageContext.request.contextPath }/user/adminLogin.jsp">login</a>
-  		<a href="${ pageContext.request.contextPath }/logout.action">logout</a>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -98,70 +95,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
 
-						<li class="purple">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<i class="icon-bell-alt icon-animated-bell"></i>
-								<span class="badge badge-important">8</span>
-							</a>
-
-							<ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-								<li class="dropdown-header">
-									<i class="icon-warning-sign"></i>
-									8 Notifications
-								</li>
-
-								<li>
-									<a href="#">
-										<div class="clearfix">
-											<span class="pull-left">
-												<i class="btn btn-xs no-hover btn-pink icon-comment"></i>
-												New Comments
-											</span>
-											<span class="pull-right badge badge-info">+12</span>
-										</div>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<i class="btn btn-xs btn-primary icon-user"></i>
-										Bob just signed up as an editor ...
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<div class="clearfix">
-											<span class="pull-left">
-												<i class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>
-												New Orders
-											</span>
-											<span class="pull-right badge badge-success">+8</span>
-										</div>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<div class="clearfix">
-											<span class="pull-left">
-												<i class="btn btn-xs no-hover btn-info icon-twitter"></i>
-												Followers
-											</span>
-											<span class="pull-right badge badge-info">+11</span>
-										</div>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										See all notifications
-										<i class="icon-arrow-right"></i>
-									</a>
-								</li>
-							</ul>
-						</li>
-
 						<li class="green">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-envelope icon-animated-vertical"></i>
@@ -176,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<li>
 									<a href="#">
-										<img src="/PsychologicalEvaluation/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+										<img src="<%=path%>/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Alex:</span>
@@ -193,7 +126,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<li>
 									<a href="#">
-										<img src="/PsychologicalEvaluation/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+										<img src="<%=path%>/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Susan:</span>
@@ -210,7 +143,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<li>
 									<a href="#">
-										<img src="/PsychologicalEvaluation/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+										<img src="<%=path%>/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Bob:</span>
@@ -226,8 +159,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="<%=path%>/consult.action">
-										See all messages
+									<a href="<%=path%>/getOffLineMessage.action">
+										查看所有消息
 										<i class="icon-arrow-right"></i>
 									</a>
 								</li>
@@ -248,14 +181,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li>
 									<a href="#">
 										<i class="icon-cog"></i>
-										Settings
+										设置
 									</a>
 								</li>
 
 								<li>
 									<a href="#">
 										<i class="icon-user"></i>
-										Profile
+										个人
 									</a>
 								</li>
 
@@ -264,10 +197,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li>
 									<a href="${ pageContext.request.contextPath }/logout.action">
 										<i class="icon-off"></i>
-										Logout
+										登出
 									</a>
 								</li>
 							</ul>
+							
+							
 						</li>
 					</ul><!-- /.ace-nav -->
 				</div><!-- /.navbar-header -->
@@ -321,7 +256,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 					<ul class="nav nav-list">
 						<li class="active">
-							<a href="<%=path%>/index.jsp">
+							<a href="<%=path%>/index.action">
 								<i class="icon-dashboard"></i>
 								<span class="menu-text"> 控制台 </span>
 							</a>
@@ -406,7 +341,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<span class="menu-text">
 									其他页面
-									<span class="badge badge-primary ">4</span>
+									<span class="badge badge-primary ">3</span>
 								</span>
 
 								<b class="arrow icon-angle-down"></b>
@@ -477,200 +412,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										我们的后台管理系统
 										<small>(v1.2)</small>
 									</strong>	
-								</div>
-
-								<div class="row">
-
-									<div class="col-sm-6" style="margin-left:60px">
-										<div class="widget-box ">
-											<div class="widget-header">
-												<h4 class="lighter smaller">
-													<i class="icon-comment blue"></i>
-													会话
-												</h4>
-											</div>
-
-											<div class="widget-body">
-												<div class="widget-main no-padding">
-													<div class="dialogs">
-														
-
-														<div class="itemdiv dialogdiv">
-															<div class="user">
-																<img alt="谷雨's Avatar" src="<%=path%>/assets/avatars/user.jpg" />
-															</div>
-
-															<div class="body">
-																<div class="time">
-																	<i class="icon-time"></i>
-																	<span class="orange">2分钟以前</span>
-																</div>
-
-																<div class="name">
-																	<a href="#">谷雨</a>
-																	<span class="label label-info arrowed arrowed-in-right">管理员</span>
-																</div>
-																<div class="text">欢迎大家使用我们做的后台管理系统.</div>
-
-																<div class="tools">
-																	<a href="#" class="btn btn-minier btn-info">
-																		<i class="icon-only icon-share-alt"></i>
-																	</a>
-																</div>
-															</div>
-														</div>
-
-
-														<div class="itemdiv dialogdiv">
-															<div class="user">
-																<img alt="一个妹子's Avatar" src="<%=path%>/assets/avatars/avatar1.png" />
-															</div>
-
-															<div class="body">
-																<div class="time">
-																	<i class="icon-time"></i>
-																	<span class="green">4分钟以前</span>
-																</div>
-																<div class="name">
-																	<a href="#">一个妹子</a>
-																</div>
-																<div class="text">继续支持我们做的后台系统</div>
-																<div class="tools">
-																	<a href="#" class="btn btn-minier btn-info">
-																		<i class="icon-only icon-share-alt"></i>
-																	</a>
-																</div>
-															</div><!-- body -->
-														</div><!-- itemdiv -->
-														
-														
-													</div><!-- dialogs -->
-
-													<form>
-														<div class="form-actions">
-															<div class="input-group">
-																<input placeholder="在这里输入信息 ..." type="text" class="form-control" name="message" />
-																<span class="input-group-btn">
-																	<button class="btn btn-sm btn-info no-radius" type="button" id="send">
-																		<i class="icon-share-alt" ></i>
-																		发送
-																	</button>
-																</span>
-															</div>
-														</div>
-													</form>
-													
-													
-												</div><!-- /widget-main -->
-											</div><!-- /widget-body -->
-										</div><!-- /widget-box -->
-									</div><!-- /span -->
-								</div><!-- /row -->
-			<div class="aside">			
-		        <div class="hmod mgb20" id="zhuanjialist">
-		            <div class="head" >
-		                <ul class="nav">
-		                    <li class="selected"><span style="text-decoration:underline;margin-left:85px;">心理专家</span></li>
-		                </ul>
-		            </div>
-		            <div class="body">
-		                    <ul class="hyzj">
-		                        <li>
-		                            <div class="img">
-		                                <nofollow>
-		                                    <a target="_blank" href="http://www.xinli001.com/user/1000056093">
-		                                        <img src="http://image.xinli001.com/20150702/160448/339108.JPG!80" />
-		                                    </a>
-		                                </nofollow>
-		                            </div>
-		                            <div class="text">
-		                                <h2>
-		                                    <nofollow>
-		                                        <a target="_blank" href="http://www.xinli001.com/user/1000056093">蒋琪   </a>
-		                                    </nofollow>
-		                                </h2>
-		                                <h4>心理咨询师 </h4>
-		                                <h5>济南市</h5>
-		                            </div>
-		                        </li>
-		                                                <li>
-		                            <div class="img">
-		                                <nofollow>
-		                                    <a target="_blank" href="http://www.xinli001.com/user/70242723">
-		                                        <img src="http://ossimg.xinli001.com/20160413/7efd92aabd91d204abfb134a2bba0e74.png!80" />
-		                                    </a>
-		                                </nofollow>
-		                            </div>
-		                            <div class="text">
-		                                <h2>
-		                                    <nofollow>
-		                                        <a target="_blank" href="http://www.xinli001.com/user/70242723">彭君 </a>
-		                                    </nofollow>
-		                                </h2>
-		                                <h4>暂无头衔</h4>
-		                                <h5>南宁市</h5>
-		                            </div>
-		                        </li>
-		                                                <li>
-		                            <div class="img">
-		                                <nofollow>
-		                                    <a target="_blank" href="http://www.xinli001.com/user/3510061">
-		                                        <img src="http://image.xinli001.com/20150115/121240/934382.JPG!80" />
-		                                    </a>
-		                                </nofollow>
-		                            </div>
-		                            <div class="text">
-		                                <h2>
-		                                    <nofollow>
-		                                        <a target="_blank" href="http://www.xinli001.com/user/3510061">杨浩波 </a>
-		                                    </nofollow>
-		                                </h2>
-		                                <h4>国家二级心咨师 精神分析师 中美班客体组</h4>
-		                                <h5>长沙市</h5>
-		                            </div>
-		                        </li>
-		                                                <li>
-		                            <div class="img">
-		                                <nofollow>
-		                                    <a target="_blank" href="http://www.xinli001.com/user/271367621">
-		                                        <img src="http://ossimg.xinli001.com/20160328/6568faa2ea1224cdfebccda0d5ea75ac.jpg!80" />
-		                                    </a>
-		                                </nofollow>
-		                            </div>
-		                            <div class="text">
-		                                <h2>
-		                                    <nofollow>
-		                                        <a target="_blank" href="http://www.xinli001.com/user/271367621">张欣</a>
-		                                    </nofollow>
-		                                </h2>
-		                                <h4>国家二级心理师，国家二级婚姻家庭师</h4>
-		                                <h5>哈尔滨市</h5>
-		                            </div>
-		                        </li>
-		                        <li>
-		                            <div class="img">
-		                                <nofollow>
-		                                    <a target="_blank" href="http://www.xinli001.com/user/1000685733">
-		                                        <img src="http://image.xinli001.com/20151117/111150/198882.png!80" />
-		                                    </a>
-		                                </nofollow>
-		                            </div>
-		                            <div class="text">
-		                                <h2>
-		                                    <nofollow>
-		                                        <a target="_blank" href="http://www.xinli001.com/user/1000685733"></a>
-		                                    </nofollow>
-		                                </h2>
-		                                <h4>心理咨询师、医学硕士、职业规划师、教师</h4>
-		                                <h5>沈阳市</h5>
-		                            </div>
-		                        </li>
-		                     </ul>
-		            </div>
-		            <!--//body-->
-
-		        </div>
-    
+								</div> 
         
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->

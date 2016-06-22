@@ -1,5 +1,6 @@
 $(function(){
 	var basePath = $("#basePath").val();
+
 	
 	function showandhide(show, hide) {
 		$(show).removeClass("hidden");

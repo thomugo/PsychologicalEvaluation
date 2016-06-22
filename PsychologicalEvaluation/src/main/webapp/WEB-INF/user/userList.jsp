@@ -62,10 +62,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	text-align:center;
 }
 </style>
-	</head>
+</head>
 
-	<body>
-		<s:debug></s:debug>
+<body>
 		<input type="hidden" id="basePath" value="<%=basePath%>">
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
@@ -391,7 +390,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<span class="menu-text">
 									其他页面
-									<span class="badge badge-primary ">4</span>
+									<span class="badge badge-primary ">3</span>
 								</span>
 
 								<b class="arrow icon-angle-down"></b>
@@ -519,7 +518,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var i=0;
 			
 			<c:forEach var="user" items="${users}">
-				grid_data[i++]={username:"<a href='"+basePath+"detail.action?id="+${user.id}+"'>"+"${user.username}"+"</a>",id:"${user.id}",email:"${user.email}",age:${user.age},gender:(${user.gender})?'男':'女',phone:${user.phone},dateTime:"${user.dateTime}",vocation:"${user.vocation}"};
+				grid_data[i++]={username:"<a href='"+basePath+"detail.action?id="+${user.id}+"'>"+"${user.username}"+"</a>",id:"${user.id}",email:"${user.email}",age:${user.age},gender:(${user.gender})?'女':'男',phone:${user.phone},dateTime:"${user.dateTime}",vocation:"${user.vocation}"};
 			</c:forEach>
 			
 			jQuery(function($) {

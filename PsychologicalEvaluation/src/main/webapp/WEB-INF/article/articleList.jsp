@@ -563,7 +563,7 @@ margin-top:5px;
 				var userName = "${article.userName}";
 				var className = "${article.className}";
 				var dateTime ="${article.dateTime}";
-				var id=${article.id}
+				var id=${article.id};
  				 $('#article').append("<div class='panel-heading'>"
 									+"<a href='#content"+i+"' data-toggle='collapse' class='accordion-toggle collapsed'>"
 									+"<i class='icon-chevron-left pull-right' data-icon-hide='icon-chevron-down' data-icon-show='icon-chevron-left'></i>"

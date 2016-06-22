@@ -70,7 +70,7 @@ lable .style1{
     <div class="col-xs-12">
         <div class="register-wrapper">
             <div class="col-md-offset-2 col-xs-12 col-sm-10 col-md-8">
-                <s:form class="form-horizontal" method="post" action="/registe.action" role="form" id="registe-form" onsubmit="return checkform()">
+                <s:form class="form-horizontal" method="post" action="registe" role="form" id="registe-form" onsubmit="return checkform()">
 	                <div class="form-group">
                         <h1>注册 </h1>
                         <hr>
@@ -208,10 +208,17 @@ lable .style1{
         </div>
     </footer>
 <script>
+	var text="${errors.username}";
 	function showandhide(show, hide) {
 		$(show).removeClass("hidden");
 		$(hide).addClass("hidden");
 	}
+	
+		if(text){
+			send=false;
+			$("#alert-username").text("用户名已存在");
+			showandhide("#alert-username","#alert-username-ok");
+		}
 	
 	function checkform(){
 	
@@ -225,6 +232,7 @@ lable .style1{
 		var age=$.trim($("#age").val());
 		var vocation=$.trim($("#vocation").val());
 		
+		
 		if(uname.length==0){
 			send=false;
 			$("#alert-username").text("用户名不能为空");
@@ -234,7 +242,7 @@ lable .style1{
 			send=false;
 			$("#alert-username").text("用户名不能少于4位");
 			showandhide("#alert-username","#alert-username-ok");
-			
+				
 		}
 		
 		if(pwd.length==0){
@@ -244,26 +252,24 @@ lable .style1{
 			
 		}else if(pwd.length<4){
 			send=false;
+			alert(pwd.length);
 			$("#alert-password").text("密码不能少于4位");
 			showandhide("#alert-password","#alert-password-ok");
 
-		}
-		
-		if(repwd.length==0){
-			send=false;
-			$("#alert-password").text("密码不能为空");
-			showandhide("#alert-password","#alert-password-ok");
+		}else if(repwd.length==0){
+				send=false;
+				$("#alert-repassword").text("密码不能为空");
+				showandhide("#alert-repassword","#alert-repassword-ok");
 			
-		}else if(repwd.length<4){
-			send=false;
-			$("#alert-password").text("密码不能少于4位");
-			showandhide("#alert-password","#alert-password-ok");
+			}else if(repwd.length<4){
+				send=false;
+				$("#alert-repassword").text("密码不能少于4位");
+				showandhide("#alert-repassword","#alert-repassword-ok");
 			
-		}else if(repwd!=pwd){
-			send=false;
-			$("#alert-repassword").text("密码与第一次输入不一致");
-			showandhide("#alert-repassword","#alert-repassword-ok");
-			
+			}else if(repwd!=pwd){
+				send=false;
+				$("#alert-repassword").text("密码与第一次输入不一致");
+				showandhide("#alert-repassword","#alert-repassword-ok");		
 		}
 		
 		if(tel.length==0){
@@ -298,11 +304,7 @@ lable .style1{
 			showandhide("#alert-vocation","#alert-vocation-ok");
 			
 		}
-		if(send==false){
-			return false;
-		}else{
-			return true;
-		}		
+		return send;		
 	}
 </script>
 	<script src="<%=path%>/js/registe.js"></script>

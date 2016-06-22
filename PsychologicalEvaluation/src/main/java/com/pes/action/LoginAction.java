@@ -11,6 +11,7 @@ import com.pes.service.UserService;
 
 @Results( {
         @Result(name = "success", location = "/index.jsp", type="redirect"),
+        @Result(name = "admin", location = "index.action", type="redirectAction"),
         @Result(name = "error", location = "/false.jsp"),
         @Result(name = "input", location = "/login.jsp"),
         @Result(name = "prePage", location = "${prePage}", type="redirectAction")
@@ -70,7 +71,11 @@ public class LoginAction extends  BaseAction{
 	        session.remove("prePage");
 	        if (prePage == null) {
 	        	//不是拦截器跳转到登陆页面的，直接访问的登陆页面
-	        	return "success";
+	        	if(user.getPrivilege() == 3){
+	        		return "admin";
+	        	}else{
+	        		return "success";
+	        	}
 	        }else {
 				return "prePage";
 			}
