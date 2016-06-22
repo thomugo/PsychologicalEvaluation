@@ -112,13 +112,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<img src="<%=path%>/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
-												<span class="blue">Alex:</span>
-												Ciao sociis natoque penatibus et auctor ...
+												<span class="blue">谷雨:</span>
+												你好 ...
 											</span>
 
 											<span class="msg-time">
 												<i class="icon-time"></i>
-												<span>a moment ago</span>
+												<span>1分钟以前</span>
 											</span>
 										</span>
 									</a>
@@ -129,13 +129,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<img src="<%=path%>/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
-												<span class="blue">Susan:</span>
-												Vestibulum id ligula porta felis euismod ...
+												<span class="blue">peiyu:</span>
+												hello ...
 											</span>
 
 											<span class="msg-time">
 												<i class="icon-time"></i>
-												<span>20 minutes ago</span>
+												<span>20 分钟以前</span>
 											</span>
 										</span>
 									</a>
@@ -146,20 +146,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<img src="<%=path%>/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
-												<span class="blue">Bob:</span>
-												Nullam quis risus eget urna mollis ornare ...
+												<span class="blue">haohao:</span>
+												what ...
 											</span>
 
 											<span class="msg-time">
 												<i class="icon-time"></i>
-												<span>3:15 pm</span>
+												<span>11:35 </span>
 											</span>
 										</span>
 									</a>
 								</li>
 
 								<li>
-									<a href="<%=path%>/getOffLineMessage.action">
+									<a href="<%=path%>/recent.action">
 										查看所有消息
 										<i class="icon-arrow-right"></i>
 									</a>

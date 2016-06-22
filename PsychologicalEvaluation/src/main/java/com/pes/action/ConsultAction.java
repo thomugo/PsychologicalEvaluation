@@ -135,7 +135,7 @@ public class ConsultAction extends BaseAction{
 	
 	
 	@Action(value="recent", results={
-			@Result(name="recent", location="/consult.jsp")
+			@Result(name="recent", location="/WEB-INF/chat/chatList.jsp")
 	})
 	public String getRecentUser(){
 		if(user == null){
@@ -144,6 +144,7 @@ public class ConsultAction extends BaseAction{
 		int id = user.getId();
 		rescentUserCount = messageService.getRescentUsersCount(user.getId());
 		ArrayList< Integer> list = (ArrayList<Integer>) messageService.getRescentUsersByPage(pageNo, pageSize, user.getId());
+		recentUsers.clear();
 		recentUsers = (ArrayList<UserPojo>) userService.findResentUsers(list);
 		for (UserPojo pojo : recentUsers) {
 			recentUserMessages.clear();
