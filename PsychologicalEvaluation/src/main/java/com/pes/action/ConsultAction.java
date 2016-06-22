@@ -2,13 +2,17 @@ package com.pes.action;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.alibaba.fastjson.JSONObject;
 import com.pes.entity.BaseUser;
 import com.pes.entity.Message;
+import com.pes.entity.User;
+import com.pes.entity.UserMessage;
 import com.pes.entity.UserPojo;
 import com.pes.service.MessageService;
 import com.pes.service.UserService;
@@ -30,16 +34,17 @@ public class ConsultAction extends BaseAction{
 	private int pageSize = 5;
 	private int rescentUserCount = 0;
 	private ArrayList<Message> broadCastMessages = new ArrayList<Message>();
-	private ArrayList<Message> shortOffLineMessages = new ArrayList<Message>();
-	private ArrayList<UserPojo> recentUsers = new ArrayList<UserPojo>();
-	private ArrayList<Message> recentUserMessages = new ArrayList<Message>();
+	private ArrayList<UserMessage> offLineUserMessages = new ArrayList<UserMessage>();
+	private ArrayList<UserMessage> recentUserMessages = new ArrayList<UserMessage>();
+	//private ArrayList<Message> shortOffLineMessages = new ArrayList<Message>();
+	//private ArrayList<UserPojo> recentUsers = new ArrayList<UserPojo>();
+	//private ArrayList<Message> recentUserMessages = new ArrayList<Message>();
 	private String jsonString;
 	
-	
-	public ArrayList<UserPojo> getRecentUsers() {
-		return recentUsers;
+	public ArrayList<UserMessage> getOffLineUserMessages() {
+		return offLineUserMessages;
 	}
-	public ArrayList<Message> getRecentUserMessages() {
+	public ArrayList<UserMessage> getRecentUserMessages() {
 		return recentUserMessages;
 	}
 	public int getId() {
@@ -71,9 +76,6 @@ public class ConsultAction extends BaseAction{
 	public int getRescentUserCount() {
 		return rescentUserCount;
 	}
-	public ArrayList<UserPojo> getCesentUsers() {
-		return recentUsers;
-	}
 	public int getUnReadBroadCastMessageCount() {
 		return unReadBroadCastMessageCount;
 	}
@@ -95,9 +97,7 @@ public class ConsultAction extends BaseAction{
 	public ArrayList<Message> getBroadCastMessages() {
 		return broadCastMessages;
 	}
-	public ArrayList<Message> getShortOffLineMessages() {
-		return shortOffLineMessages;
-	}
+	
 
 	@Action(value="chat", results={
 			@Result(name="normal", location="/WEB-INF/chat/consult.jsp"),
@@ -108,24 +108,24 @@ public class ConsultAction extends BaseAction{
 		user = (BaseUser)httpSession.getAttribute("loginUser");
 		int ID = user.getId();
 		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
-		//broadCastMessages = (ArrayList<Message>)messageService.getUnreadBroadCastMessages(unReadBroadCastMessageCount);
 		offLineMessageCount = messageService.getOffLineMessageCount(ID);
-		//System.out.println("offlinemessagecount:" + offLineMessageCount);
 		if(offLineMessageCount > 0){
 			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
-			//System.out.println("senders:");
-			//System.out.println(senders);
 			for (int sendId : senders) {
-				shortOffLineMessages.add(messageService.findById(sendId, ID));
+				UserMessage userMessage = new UserMessage();
+				User pojo = userService.findById(sendId);
+				userMessage.setUserId(sendId);
+				userMessage.setUsername(pojo.getUsername());
+				userMessage.setIcon(pojo.getIcon());
+				Message message =messageService.findById(sendId, ID);
+				userMessage.setContent(message.getContent());
+				userMessage.setDateTime(message.getDateTime());
+				userMessage.setFlag(message.getFlag());
+				userMessage.setMessageId(message.getId());
+				offLineUserMessages.add(userMessage);
 			}
-			//System.out.println("messages:");
-			//System.out.println(shortOffLineMessages);
 		}
 		if(user.getPrivilege() <= 3){
-			rescentUserCount = messageService.getRescentUsersCount(user.getId());
-			ArrayList< Integer> list = (ArrayList<Integer>) messageService.getRescentUsersByPage(pageNo, pageSize, ID);
-			recentUsers = (ArrayList<UserPojo>) userService.findResentUsers(list);
-			System.out.println(recentUsers);
 			return "admin";
 		}else{
 			return "normal";
@@ -141,13 +141,21 @@ public class ConsultAction extends BaseAction{
 		if(user == null){
 			user = (BaseUser)httpSession.getAttribute("loginUser");
 		}
-		int id = user.getId();
+		int ID= user.getId();
 		rescentUserCount = messageService.getRescentUsersCount(user.getId());
 		ArrayList< Integer> list = (ArrayList<Integer>) messageService.getRescentUsersByPage(pageNo, pageSize, user.getId());
-		recentUsers = (ArrayList<UserPojo>) userService.findResentUsers(list);
-		for (UserPojo pojo : recentUsers) {
-			recentUserMessages.clear();
-			recentUserMessages.add(messageService.findLatestMessage(pojo.getId(), id));
+		for (Integer sendId : list) {
+			UserMessage userMessage = new UserMessage();
+			User pojo = userService.findById(sendId);
+			userMessage.setUserId(sendId);
+			userMessage.setUsername(pojo.getUsername());
+			userMessage.setIcon(pojo.getIcon());
+			Message message =messageService.findById(sendId, ID);
+			userMessage.setContent(message.getContent());
+			userMessage.setDateTime(message.getDateTime());
+			userMessage.setFlag(message.getFlag());
+			userMessage.setMessageId(message.getId());
+			recentUserMessages.add(userMessage);
 		}
 		pageNo = 0;
 		return "recent";

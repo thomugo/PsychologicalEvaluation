@@ -1,18 +1,24 @@
 package com.pes.action;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.alibaba.fastjson.JSONObject;
 import com.pes.entity.Article;
 import com.pes.entity.ArticlePojo;
 import com.pes.entity.BaseUser;
+import com.pes.entity.Message;
 import com.pes.entity.User;
+import com.pes.entity.UserPojo;
 import com.pes.service.ArticleService;
+import com.pes.service.MessageService;
 import com.pes.util.AjaxUtil;
 
 @ParentPackage("myBasicPackage")
@@ -32,7 +38,25 @@ public class ArticleAction extends BaseAction{
 	private int pageNo = 0;
 	private String jsonString;
 	private List<ArticlePojo> articles = null;
+	@Autowired
+	private MessageService messageService;
+	private int unReadBroadCastMessageCount = 0;
+	private int offLineMessageCount = 0;
+	private ArrayList<Message> shortOffLineMessages = new ArrayList<Message>();
+	private ArrayList<UserPojo> recentUsers = new ArrayList<UserPojo>();
 	
+	public int getUnReadBroadCastMessageCount() {
+		return unReadBroadCastMessageCount;
+	}
+
+	public int getOffLineMessageCount() {
+		return offLineMessageCount;
+	}
+
+	public ArrayList<Message> getShortOffLineMessages() {
+		return shortOffLineMessages;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -102,6 +126,16 @@ public class ArticleAction extends BaseAction{
 			return NONE;
 		}
 		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
+		int ID = user.getId();
+		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
+		offLineMessageCount = messageService.getOffLineMessageCount(ID);
+		if(offLineMessageCount > 0){
+			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
+			for (int sendId : senders) {
+				shortOffLineMessages.add(messageService.findById(sendId, ID));
+			}
+		}
+		
 		if(user.getPrivilege() == 1){
 			System.out.println("admin");
 			return "admin";
