@@ -305,7 +305,10 @@ public class WebSocketServer {
 			return cache.get(id);
 		} else {
 			targets = onlineUsers.get(id);
-			cache.put(id, targets);
+			if(targets != null){
+				cache.put(id, targets);
+			}
+			
 		}
 		return targets;
 	}
