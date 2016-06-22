@@ -23,12 +23,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="keywords" content="">
 <meta name="description" content="">
 <link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css">
-
+<script src="<%=path%>/js/jquery.min.js"></script>
 <script src="<%=path%>/js/mobile_f4b5a0a094.js" ></script><!--[if lt IE 9]>
 <script src="<%=path%>/js/html5.min.js" ></script><![endif]-->
-<script>
 
-</script>    
 <style>
 body{
 font-family: 'Source Sans Pro', 'Oxygen', sans-serif !important;
@@ -87,7 +85,7 @@ font-family: 'Source Sans Pro', 'Oxygen', sans-serif !important;
             <div class="bd"><!--文章正文  -->
 				<p  style="text-align: center;"><img src="http://ossimg.xinli001.com/20160525/dbd3914f7729d71b2ef55f2b2d77e9af.jpg"title="2117175167858568.jpg"alt="deklofenak151000178.jpg"/></p>
 				<p >文：<span id='t_author'></span></p>
-				<p id='content'>我们要允许孩子慢慢来，因为成长需要一个过程，所以，我宁愿他现在不那么乖！</p>           
+				<pre id='content'><s:property value="article.content " escape="false"></s:property></pre>           
 			</div>
             <div class="ft">
                  <div class="tags">
@@ -107,14 +105,14 @@ font-family: 'Source Sans Pro', 'Oxygen', sans-serif !important;
     </div>
 
 </div>
-
-	<script type="text/javascript">
-
+<script type="text/javascript">
+	
 			var author="${article.userName}";
  			var time="${article.dateTime}";
-			var content="${article.content}";
+			//var content="";
 			var title="${article.title}";
 			var articleclass="${article.className}"; 
+			//alert(time);
 			if(articleclass=="class0"){
 				articleclass="生活";
 			}
@@ -133,14 +131,13 @@ font-family: 'Source Sans Pro', 'Oxygen', sans-serif !important;
  			else{
  				articleclass="生活";
  			}
+ 			
 			$("#author").text(author);
 			$("#title").text(title);
 			$("#t_author").text(author);
-			$("#content").text(content);
 			$("#time").text(time); 
-			$("#articleclass").text(articleclass);
-	</script>
+			
+	</script>   
 </body>
-
 </html>
 

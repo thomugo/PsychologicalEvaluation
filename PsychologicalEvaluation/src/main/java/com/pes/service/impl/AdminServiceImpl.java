@@ -2,12 +2,10 @@ package com.pes.service.impl;
 
 import java.util.Collection;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.annotation.Propagation;
-
 import com.pes.entity.Admin;
 import com.pes.service.AdminService;
 import com.pes.dao.AdminDao;
@@ -25,8 +23,8 @@ public class AdminServiceImpl implements AdminService{
 	private AdminDao adminDao;
 
 	@Override
-	public boolean validate(Admin admin) {
-		return adminDao.validate(admin);
+	public Admin validate(String username, String password) {
+		return adminDao.validate(username, password);
 	}
 
 	@Override

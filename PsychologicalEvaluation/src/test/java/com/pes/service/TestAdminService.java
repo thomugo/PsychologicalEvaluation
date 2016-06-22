@@ -69,6 +69,6 @@ public class TestAdminService extends BaseTestTemplate{
 		Admin admin = new Admin();
     	admin.setUsername("thomugo");
     	admin.setPassword("haohao");
-    	System.out.println(adminService.validate(admin));
+ 
 	}
 }

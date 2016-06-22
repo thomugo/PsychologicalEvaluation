@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.fastjson.JSONObject;
 import com.pes.entity.BaseUser;
 import com.pes.entity.Message;
-import com.pes.entity.User;
+import com.pes.entity.UserPojo;
 import com.pes.service.MessageService;
 import com.pes.service.UserService;
 
@@ -21,15 +21,27 @@ public class ConsultAction extends BaseAction{
 	@Autowired
 	private MessageService messageService;
 	private BaseUser target;
-	private User user;
+	private BaseUser user;
 	private int id;
 	private int fromId;
 	private int unReadBroadCastMessageCount = 0;
 	private int offLineMessageCount = 0;
+	private int pageNo = 1;
+	private int pageSize = 5;
+	private int rescentUserCount = 0;
 	private ArrayList<Message> broadCastMessages = new ArrayList<Message>();
 	private ArrayList<Message> shortOffLineMessages = new ArrayList<Message>();
+	private ArrayList<UserPojo> recentUsers = new ArrayList<UserPojo>();
+	private ArrayList<Message> recentUserMessages = new ArrayList<Message>();
 	private String jsonString;
 	
+	
+	public ArrayList<UserPojo> getRecentUsers() {
+		return recentUsers;
+	}
+	public ArrayList<Message> getRecentUserMessages() {
+		return recentUserMessages;
+	}
 	public int getId() {
 		return id;
 	}
@@ -47,6 +59,21 @@ public class ConsultAction extends BaseAction{
 		return target;
 	}
 	
+	public int getPageNo() {
+		return pageNo;
+	}
+	public void setPageNo(int pageNo){
+		this.pageNo = pageNo;
+	}
+	public int getPageSize() {
+		return pageSize;
+	}
+	public int getRescentUserCount() {
+		return rescentUserCount;
+	}
+	public ArrayList<UserPojo> getCesentUsers() {
+		return recentUsers;
+	}
 	public int getUnReadBroadCastMessageCount() {
 		return unReadBroadCastMessageCount;
 	}
@@ -73,26 +100,58 @@ public class ConsultAction extends BaseAction{
 	}
 
 	@Action(value="chat", results={
-			@Result(name="success", location="/consult.jsp")
+			@Result(name="normal", location="/WEB-INF/chat/consult.jsp"),
+			@Result(name="admin", location="/consult.jsp")
 	})
 	public String Chat(){
 		target = userService.findById(id);
-		user = (User)httpSession.getAttribute("loginUser");
+		user = (BaseUser)httpSession.getAttribute("loginUser");
 		int ID = user.getId();
 		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
 		//broadCastMessages = (ArrayList<Message>)messageService.getUnreadBroadCastMessages(unReadBroadCastMessageCount);
-		offLineMessageCount = messageService.getOffLineMessageCount(user.getId());
+		offLineMessageCount = messageService.getOffLineMessageCount(ID);
+		//System.out.println("offlinemessagecount:" + offLineMessageCount);
 		if(offLineMessageCount > 0){
 			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
-			System.out.println("senders:");
-			System.out.println(senders);
+			//System.out.println("senders:");
+			//System.out.println(senders);
 			for (int sendId : senders) {
 				shortOffLineMessages.add(messageService.findById(sendId, ID));
 			}
-			System.out.println("messages:");
-			System.out.println(shortOffLineMessages);
+			//System.out.println("messages:");
+			//System.out.println(shortOffLineMessages);
 		}
-		return "success";
+		if(user.getPrivilege() <= 3){
+			rescentUserCount = messageService.getRescentUsersCount(user.getId());
+			ArrayList< Integer> list = (ArrayList<Integer>) messageService.getRescentUsersByPage(pageNo, pageSize, ID);
+			recentUsers = (ArrayList<UserPojo>) userService.findResentUsers(list);
+			System.out.println(recentUsers);
+			return "admin";
+		}else{
+			return "normal";
+		}
+		
+	}
+	
+	
+	@Action(value="recent", results={
+			@Result(name="recent", location="/consult.jsp")
+	})
+	public String getRecentUser(){
+		if(user == null){
+			user = (BaseUser)httpSession.getAttribute("loginUser");
+		}
+		int id = user.getId();
+		rescentUserCount = messageService.getRescentUsersCount(user.getId());
+		ArrayList< Integer> list = (ArrayList<Integer>) messageService.getRescentUsersByPage(pageNo, pageSize, user.getId());
+		recentUsers = (ArrayList<UserPojo>) userService.findResentUsers(list);
+		for (UserPojo pojo : recentUsers) {
+			recentUserMessages.clear();
+			recentUserMessages.add(messageService.findLatestMessage(pojo.getId(), id));
+		}
+		pageNo = 0;
+		return "recent";
+		
 	}
 	
 	@Action(value="getBroadCastMessage")
