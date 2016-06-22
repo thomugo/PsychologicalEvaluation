@@ -2,19 +2,23 @@ package com.pes.action;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.alibaba.fastjson.JSONObject;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 import com.pes.entity.AnswerPojo;
 import com.pes.entity.BaseUser;
+import com.pes.entity.Message;
 import com.pes.entity.User;
 import com.pes.entity.UserPojo;
 import com.pes.service.AnswerService;
+import com.pes.service.MessageService;
 import com.pes.service.UserService;
 import com.pes.util.AjaxUtil;
 
@@ -40,6 +44,25 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	private List<AnswerPojo> answers = new ArrayList<AnswerPojo>();
 	private ArrayList<UserPojo> experts = new ArrayList<UserPojo>();
 	private ArrayList<User> applicants = new ArrayList<User>();
+	@Autowired
+	private MessageService messageService;
+	private int unReadBroadCastMessageCount = 0;
+	private int offLineMessageCount = 0;
+	private ArrayList<Message> shortOffLineMessages = new ArrayList<Message>();
+	private ArrayList<UserPojo> recentUsers = new ArrayList<UserPojo>();
+	
+	public int getUnReadBroadCastMessageCount() {
+		return unReadBroadCastMessageCount;
+	}
+
+	public int getOffLineMessageCount() {
+		return offLineMessageCount;
+	}
+
+	public ArrayList<Message> getShortOffLineMessages() {
+		return shortOffLineMessages;
+	}
+	
 	public int getPageNum() {
 		return pageNum;
 	}
@@ -102,6 +125,16 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		System.out.println("login user infomation: ");
 		System.out.println(user);
 		ActionContext.getContext().getValueStack().push(user);
+		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
+		int ID = user.getId();
+		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
+		offLineMessageCount = messageService.getOffLineMessageCount(ID);
+		if(offLineMessageCount > 0){
+			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
+			for (int sendId : senders) {
+				shortOffLineMessages.add(messageService.findById(sendId, ID));
+			}
+		}
 		return "userinfo";
 	}
 	
@@ -125,6 +158,16 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 			jsonString = null;
 			AjaxUtil.ajaxJSONResponse(answers);
 			return NONE;
+		}
+		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
+		int ID = user.getId();
+		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
+		offLineMessageCount = messageService.getOffLineMessageCount(ID);
+		if(offLineMessageCount > 0){
+			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
+			for (int sendId : senders) {
+				shortOffLineMessages.add(messageService.findById(sendId, ID));
+			}
 		}
 		return "userinfo";
 	}
@@ -152,6 +195,16 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 			AjaxUtil.ajaxJSONResponse(users);
 			return NONE;
 		}
+		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
+		int ID = user.getId();
+		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
+		offLineMessageCount = messageService.getOffLineMessageCount(ID);
+		if(offLineMessageCount > 0){
+			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
+			for (int sendId : senders) {
+				shortOffLineMessages.add(messageService.findById(sendId, ID));
+			}
+		}
 		return "users";
 	}
 	
@@ -173,6 +226,16 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		userService.modify(user);
 		this.httpSession.setAttribute("loginUser", user);
 		//AjaxUtil.ajaxJSONResponse(userInfo);
+		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
+		int ID = user.getId();
+		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
+		offLineMessageCount = messageService.getOffLineMessageCount(ID);
+		if(offLineMessageCount > 0){
+			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
+			for (int sendId : senders) {
+				shortOffLineMessages.add(messageService.findById(sendId, ID));
+			}
+		}
 		return "success";
 	}
 	
@@ -182,7 +245,17 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	public String logout(){
 		BaseUser loginUser = (BaseUser) httpSession.getAttribute("loginUser");
 		System.out.println(loginUser.getUsername()+" logout!!");
-		this.httpSession.removeAttribute("loginUser");;
+		this.httpSession.removeAttribute("loginUser");
+		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
+		int ID = user.getId();
+		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
+		offLineMessageCount = messageService.getOffLineMessageCount(ID);
+		if(offLineMessageCount > 0){
+			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
+			for (int sendId : senders) {
+				shortOffLineMessages.add(messageService.findById(sendId, ID));
+			}
+		}
 		return "index";
 	}
 	public List<User> getUsers() {
@@ -225,7 +298,16 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 			jsonString = null;
 			return NONE;
 		}
-		
+		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
+		int ID = user.getId();
+		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
+		offLineMessageCount = messageService.getOffLineMessageCount(ID);
+		if(offLineMessageCount > 0){
+			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
+			for (int sendId : senders) {
+				shortOffLineMessages.add(messageService.findById(sendId, ID));
+			}
+		}
 		return "expert";
 	}
 	@Action(value="applicantUserList")
@@ -237,6 +319,16 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 			applicants = (ArrayList<User>) userService.findApplicantByPage(pageNum, pageSize);
 			AjaxUtil.ajaxJSONResponse(applicants);
 			jsonString = null;
+		}
+		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
+		int ID = user.getId();
+		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
+		offLineMessageCount = messageService.getOffLineMessageCount(ID);
+		if(offLineMessageCount > 0){
+			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
+			for (int sendId : senders) {
+				shortOffLineMessages.add(messageService.findById(sendId, ID));
+			}
 		}
 		return NONE;
 	}
