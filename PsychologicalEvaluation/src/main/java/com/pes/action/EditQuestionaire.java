@@ -2,20 +2,25 @@ package com.pes.action;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.pes.entity.BaseUser;
 import com.pes.entity.ChoiceQuestion;
+import com.pes.entity.Message;
 import com.pes.entity.Option;
 import com.pes.entity.Questionaire;
+import com.pes.entity.UserPojo;
 import com.pes.interceptor.Authority;
 import com.pes.service.ChoiceQuestionService;
+import com.pes.service.MessageService;
 import com.pes.service.QuestionaireService;
 import com.pes.service.TrueFalseQuestionService;
 import com.pes.util.AjaxUtil;
@@ -40,6 +45,24 @@ public class EditQuestionaire extends BaseAction {
 	private List<ChoiceQuestion> choiceQuestions = new ArrayList<ChoiceQuestion>();
 	private ArrayList<Integer> vectors = new ArrayList<Integer>();
 	private ArrayList<Questionaire> questionaires = new ArrayList<Questionaire>();
+	@Autowired
+	private MessageService messageService;
+	private int unReadBroadCastMessageCount = 0;
+	private int offLineMessageCount = 0;
+	private ArrayList<Message> shortOffLineMessages = new ArrayList<Message>();
+	private ArrayList<UserPojo> recentUsers = new ArrayList<UserPojo>();
+	
+	public int getUnReadBroadCastMessageCount() {
+		return unReadBroadCastMessageCount;
+	}
+
+	public int getOffLineMessageCount() {
+		return offLineMessageCount;
+	}
+
+	public ArrayList<Message> getShortOffLineMessages() {
+		return shortOffLineMessages;
+	}
 	//private List<TrueFalseQuestion> trueFalseQuestions = new ArrayList<TrueFalseQuestion>();
 
 	public String getJsonString() {
@@ -120,6 +143,17 @@ public class EditQuestionaire extends BaseAction {
 		System.out.println("edit questionaire success");
 		//AjaxUtil.ajaxJSONResponse("success");
 		vectors = (ArrayList<Integer>)choiceQuestionService.getVectors(questionaire.getId());
+		
+		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
+		int ID = user.getId();
+		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
+		offLineMessageCount = messageService.getOffLineMessageCount(ID);
+		if(offLineMessageCount > 0){
+			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
+			for (int sendId : senders) {
+				shortOffLineMessages.add(messageService.findById(sendId, ID));
+			}
+		}
 		return "success";
 	}
 	@Action(value="questionaireList", results={
@@ -142,6 +176,15 @@ public class EditQuestionaire extends BaseAction {
 			return NONE;
 		}
 		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
+		int ID = user.getId();
+		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
+		offLineMessageCount = messageService.getOffLineMessageCount(ID);
+		if(offLineMessageCount > 0){
+			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
+			for (int sendId : senders) {
+				shortOffLineMessages.add(messageService.findById(sendId, ID));
+			}
+		}
 		if(user.getPrivilege() == 1){
 			return "admin";
 		}

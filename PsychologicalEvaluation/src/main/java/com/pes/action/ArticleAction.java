@@ -3,19 +3,16 @@ package com.pes.action;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.alibaba.fastjson.JSONObject;
 import com.pes.entity.Article;
 import com.pes.entity.ArticlePojo;
 import com.pes.entity.BaseUser;
 import com.pes.entity.Message;
-import com.pes.entity.User;
 import com.pes.entity.UserPojo;
 import com.pes.service.ArticleService;
 import com.pes.service.MessageService;
@@ -125,6 +122,7 @@ public class ArticleAction extends BaseAction{
 			AjaxUtil.ajaxJSONResponse(articles);
 			return NONE;
 		}
+		
 		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
 		int ID = user.getId();
 		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
@@ -198,6 +196,16 @@ public class ArticleAction extends BaseAction{
 		article = articleService.findById(id);
 		//System.out.println(article.getContent());
 		//ActionContext.getContext().getValueStack().push(article);
+		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
+		int ID = user.getId();
+		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
+		offLineMessageCount = messageService.getOffLineMessageCount(ID);
+		if(offLineMessageCount > 0){
+			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
+			for (int sendId : senders) {
+				shortOffLineMessages.add(messageService.findById(sendId, ID));
+			}
+		}
 		return "articleinfo";
 	}
 	
@@ -205,6 +213,16 @@ public class ArticleAction extends BaseAction{
 			@Result(name="success", location="/WEB-INF/user/push.jsp")
 			})
 	public String push(){
+		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
+		int ID = user.getId();
+		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
+		offLineMessageCount = messageService.getOffLineMessageCount(ID);
+		if(offLineMessageCount > 0){
+			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
+			for (int sendId : senders) {
+				shortOffLineMessages.add(messageService.findById(sendId, ID));
+			}
+		}
 		return "success";
 	}
 
