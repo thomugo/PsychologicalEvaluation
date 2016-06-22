@@ -122,6 +122,7 @@ public class ConsultAction extends BaseAction{
 				offLineUserMessages.add(userMessage);
 			}
 		}
+		System.out.println("privilege:"+user.getPrivilege());
 		if(user.getPrivilege() <= 3){
 			return "admin";
 		}else{
@@ -141,12 +142,14 @@ public class ConsultAction extends BaseAction{
 		int ID= user.getId();
 		rescentUserCount = messageService.getRescentUsersCount(user.getId());
 		ArrayList< Integer> list = (ArrayList<Integer>) messageService.getRescentUsersByPage(pageNo, pageSize, user.getId());
+		System.out.println(list);
 		for (Integer sendId : list) {
 			UserMessage userMessage = new UserMessage();
 			User pojo = userService.findById(sendId);
 			userMessage.setUserId(sendId);
 			userMessage.setUsername(pojo.getUsername());
 			userMessage.setIcon(pojo.getIcon());
+			System.out.println("sendID:" + sendId + ID);
 			Message message =messageService.findById(sendId, ID);
 			userMessage.setContent(message.getContent());
 			userMessage.setDateTime(message.getDateTime());

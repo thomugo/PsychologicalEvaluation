@@ -2084,5 +2084,9 @@
 	}
 }
 .time{
-	margin-right: 80px;
+	margin-right: 40px;
+	margin-top:15px;
+}
+.message-item .time{
+	width:100px;
 }

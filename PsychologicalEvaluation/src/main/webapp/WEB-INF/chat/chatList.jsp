@@ -405,18 +405,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 														</div>
 
 														<div class="message-list-container">
-															<div class="message-list" id="message-list">
-																<div class="message-item message-unread" >
-
-																	<img src="<%=path%>/assets/avatars/avatar.png"/>
-																	<span class="sender" >peiyu </span>
-																	<span class="time">11:5</span>
-																	<span class="summary">
-																		<span class="texts">
-																			hello
-																		</span>
-																	</span>
-																</div>						
+															<div class="message-list" id="message-list">					
 										
 															</div>
 														</div><!-- /.message-list-container -->
@@ -443,43 +432,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/ace.min.js"></script>
 		<script type="text/javascript">
 		var basePath = $("#basePath").val();
-<%-- 																<div class="message-item message-unread" >
 
-																	<img src="<%=path%>/assets/avatars/avatar.png"/>
-																	<span class="sender" >peiyu </span>
-																	<span class="time">11:5</span>
-																	<span class="summary">
-																		<span class="texts">
-																			hello
-																		</span>
-																	</span>
-																</div>	 --%>
-		<c:forEach var="user" items="${recentUserMessages}">
-			var sender=${user.fromId};
-			var senderid=${user.fromId};
-			var text="${user.content}";
-			var time="${user.dateTime}";
-			time=time.substr();
-			$("#message-list").append("<div class='message-item message-unread'>"
-									+"<img src='<%=path%>/assets/avatars/avatar.png'/>"
-									+"<span class='sender'>"
-									+"<a href='"+basePath+"chat.action?id='"+senderid+"'>"
-									+sender
-									+"</a>"
-									+"</span>"
-									+"<span class='time'>"
-									+time
-									+"</span>"
-									+"<span class='summary'>"
-									+" "
-									+"<span class='texts'>"
-									+" "
-									+text
-									+"</span>"
-									+"</span>"
-									+"</div>");
-		</c:forEach>
-		</script>
+	 		<c:forEach var="user" items="${recentUserMessages}">
+	 			var sender="${user.username}";
+				var senderid=${user.userId};
+				var text="${user.content}";
+				var time="${user.dateTime}";
+				var mon=time.substr(5,2);
+				var day=time.substr(8,2);
+				var clock=time.substr(11,2);
+				var min=time.substr(14,2);
+				var sec=time.substr(17,2);
+				
+				$("#message-list").append("<div class='message-item message-unread'>"
+										+"<img src='<%=path%>/assets/avatars/avatar.png'/>"
+										+"<span class='sender'>"
+										+"<a href='"+basePath+"chat.action?id="+senderid+"'>"
+										+sender
+										+"</a>"
+										+"</span>"
+										+"<span class='time'>"
+										+mon+"/"+day+" "+clock+":"+min+":"+sec
+										+"</span>"
+										+"<span class='summary'>"
+										+" "
+										+"<span class='texts'>"
+										+" "
+										+text
+										+"</span>"
+										+"</span>"
+										+"</div>");
+			</c:forEach>
+		</script> 
 
 
 	</body>
