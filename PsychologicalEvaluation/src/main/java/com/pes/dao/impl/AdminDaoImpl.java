@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.pes.dao.AdminDao;
 import com.pes.entity.Admin;
+import com.pes.entity.User;
 
 /**
  * 
@@ -45,19 +46,15 @@ public class AdminDaoImpl extends GenericDao2Impl<Admin, Integer> implements Adm
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public boolean validate(Admin admin) {
-		Query query = sessionFactory.getCurrentSession().createQuery("from Admin as a where a.username = ? and a.password = ?  ");
-		query.setString(0, admin.getUsername());
-		query.setString(1, admin.getPassword());
-		List<Admin> list = query.list();
-		if (list.isEmpty()){
-			return false;
-		}
-		else {
-			return true;
-		}
+	public Admin validate(String username, String password) {
+		// TODO Auto-generated method stub
+		Query query = this.getCurrentSession()
+				.createQuery("from Admin as a where a.username = ? and a.password = ?  ");
+		query.setString(0, username);
+		query.setString(1, password);
+		Admin user = (Admin) query.uniqueResult();
+		return user;
 	}
 
 }

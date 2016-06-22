@@ -2,6 +2,7 @@ package com.pes.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.ScrollableResults;
@@ -12,9 +13,11 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import com.pes.dao.UserDao;
 import com.pes.entity.User;
 import com.pes.entity.UserPojo;
+import com.sun.org.apache.bcel.internal.generic.POP;
 
 /**
  * 
@@ -191,5 +194,27 @@ public class UserDaoImpl  extends GenericDao2Impl<User, Integer> implements User
              maxPageNo = 0;   
          }   
 		return maxPageNo;
+	}
+
+	@Override
+	public List<UserPojo> findResentUsers(List<Integer> userIds) {
+		// TODO Auto-generated method stub
+		ArrayList<UserPojo> users = new ArrayList<UserPojo>();
+        for (Integer userId : userIds) {
+        	System.out.println(userId);
+			User user = findById(userId);
+			System.out.println("user:"+user);
+			UserPojo pojo = new UserPojo();
+			pojo.setAge(user.getAge());
+			pojo.setEmail(user.getEmail());
+			pojo.setGender(user.getGender());
+			pojo.setId(user.getId());
+			pojo.setPhone(user.getPhone());
+			pojo.setUsername(user.getUsername());
+			pojo.setVocation(user.getVocation());
+			//System.out.println(pojo);
+			users.add(pojo);
+		}
+		return users;
 	}
 }

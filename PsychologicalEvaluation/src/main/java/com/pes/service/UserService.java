@@ -26,4 +26,6 @@ public interface UserService extends GenericService2<User, Integer>{
 	
 	public int findMaxApplicantPageNo(final int pageSize);
 	
+	public List<UserPojo> findResentUsers(List<Integer> userIds);
+	
 }

@@ -151,5 +151,11 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return userInfoDao.findMaxApplicantPageNo(pageSize);
 	}
+
+	@Override
+	public List<UserPojo> findResentUsers(List<Integer> userIds) {
+		// TODO Auto-generated method stub
+		return userInfoDao.findResentUsers(userIds);
+	}
 	
 }

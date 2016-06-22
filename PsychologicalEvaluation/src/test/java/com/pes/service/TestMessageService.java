@@ -103,4 +103,8 @@ public class TestMessageService extends BaseTestTemplate{
 		System.out.println("离线消息20-18"+offlineMessages);
 		System.out.println("离线消息发送者ID："+sendersIntegers);
 	}
+	@Test
+	public void getLatestMessage(){
+		System.out.println(messageService.findLatestMessage(18, 20));
+	}
 }

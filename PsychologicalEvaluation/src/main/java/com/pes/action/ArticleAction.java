@@ -162,7 +162,7 @@ public class ArticleAction extends BaseAction{
 			})
 	public String detail(){
 		article = articleService.findById(id);
-		System.out.println(article);
+		//System.out.println(article.getContent());
 		//ActionContext.getContext().getValueStack().push(article);
 		return "articleinfo";
 	}

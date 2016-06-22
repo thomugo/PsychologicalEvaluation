@@ -1,15 +1,24 @@
 package com.pes.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pes.dao.MessageDao;
+import com.pes.entity.Article;
+import com.pes.entity.ArticlePojo;
 import com.pes.entity.Message;
+import com.pes.entity.UserPojo;
 
 @Repository("messageDao")
 public class MessageDaoImpl extends GenericDao2Impl<Message, Integer> implements MessageDao{
@@ -172,4 +181,51 @@ public class MessageDaoImpl extends GenericDao2Impl<Message, Integer> implements
 		 Message message =  (Message)query.uniqueResult();
 		return message;
 	}
+
+	@Override
+	public int getRescentUsersCount(int id) {
+		// TODO Auto-generated method stub
+		String hql = "select count ( distinct fromId ) from Message as a where a.flag <= 1 and toId = ?  " ;
+		Query query = getCurrentSession().createQuery(hql);
+		query.setInteger(0, id);
+       return ( (Long) query.uniqueResult()).intValue();
+	}
+
+	@Override
+	public int getMaxRescentUsersPageNo(int id, int pageSize) {
+		// TODO Auto-generated method stub
+		// 最大页数   
+        int maxPageNo;   
+        // 总记录数   
+        int totalRows = getRescentUsersCount(id);   
+        if (totalRows > 0) {   
+             maxPageNo = (totalRows % pageSize == 0) ? (totalRows / pageSize)   
+                     : (totalRows / pageSize + 1);   
+         } else {   
+             maxPageNo = 0;   
+         }   
+        return maxPageNo;   
+	}
+
+	@Override
+	public List<Integer> getRescentUsersByPage(int pageNo, int pageSize, int id) {
+		// TODO Auto-generated method stub
+		Query query = getCurrentSession().createQuery
+				("select distinct ( fromId ) from Message as a where a.flag <= 1 and a.toId = ? ");
+		query.setInteger(0, id);
+		return (List<Integer>)query.list();
+	}
+
+	@Override
+	public Message findLatestMessage(int fromId, int toId) {
+		// TODO Auto-generated method stub
+		Query query = getCurrentSession().createQuery("from Message as a where a.flag <= 1 and (( a.fromId = ? and a.toId = ? ) or (a.fromId = ? and a.toId = ?)) order by a.dateTime desc ");
+		query.setInteger(0, fromId);
+		query.setInteger(1, toId);
+		query.setInteger(2, toId);
+		query.setInteger(3, fromId);
+		Message message = (Message) query.list().get(0);
+		return message;
+	}
+	
 }

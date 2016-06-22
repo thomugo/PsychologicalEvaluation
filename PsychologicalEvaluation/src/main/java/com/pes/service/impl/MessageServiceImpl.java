@@ -2,13 +2,10 @@ package com.pes.service.impl;
 
 import java.util.Collection;
 import java.util.List;
-
-import org.apache.commons.io.filefilter.FalseFileFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.pes.dao.MessageDao;
 import com.pes.entity.Message;
 import com.pes.service.MessageService;
@@ -180,6 +177,30 @@ public class MessageServiceImpl implements MessageService{
 	public Message findById(int fromId, int toId) {
 		// TODO Auto-generated method stub
 		return messageDao.findById(fromId, toId);
+	}
+
+	@Override
+	public int getRescentUsersCount(int id) {
+		// TODO Auto-generated method stub
+		return messageDao.getRescentUsersCount(id);
+	}
+
+	@Override
+	public int getMaxRescentUsersPageNo(int id, int pageSize) {
+		// TODO Auto-generated method stub
+		return messageDao.getMaxRescentUsersPageNo(id, pageSize);
+	}
+
+	@Override
+	public List<Integer> getRescentUsersByPage(int pageNo, int pageSize, int id) {
+		// TODO Auto-generated method stub
+		return messageDao.getRescentUsersByPage(pageNo, pageSize, id);
+	}
+
+	@Override
+	public Message findLatestMessage(int fromId, int toId) {
+		// TODO Auto-generated method stub
+		return messageDao.findLatestMessage(fromId, toId);
 	}
 
 }

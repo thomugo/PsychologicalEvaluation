@@ -14,4 +14,5 @@ public  interface UserDao extends GenericDao2<User, Integer> {
 	public List<User> findApplicantByPage(final int pageNo, final int pageSize);
 	public int findTotalApplicantRows();
 	public int findMaxApplicantPageNo(final int pageSize);
+	public List<UserPojo> findResentUsers(List<Integer> userIds);
 }

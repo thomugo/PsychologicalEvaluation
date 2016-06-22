@@ -1,7 +1,9 @@
 package com.pes.dao;
 
 import java.util.List;
+
 import com.pes.entity.Message;
+import com.pes.entity.UserPojo;
 
 public interface MessageDao extends GenericDao2<Message, Integer>{
 	public Message findById(int fromId, int toId);
@@ -100,5 +102,11 @@ public interface MessageDao extends GenericDao2<Message, Integer>{
    public List<Message> findBroadCastMessagesByPage(final int pageNo, final int pageSize);   
    
    public void updateOfflineMessageState(final int fromId, final int toId);
-	
+   
+   //获取最近联系人
+   public int getRescentUsersCount(int id);
+   public int getMaxRescentUsersPageNo(int id, int pageSize);
+   public List<Integer> getRescentUsersByPage(final int pageNo, final int pageSize, final int id);
+   //获取两个人的最近一条聊天记录
+   public Message findLatestMessage(final int fromId, final int toId);
 }

@@ -3,7 +3,6 @@ package com.pes.service;
 import java.util.Date;
 import java.util.List;
 
-
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
@@ -15,6 +14,7 @@ import org.springframework.test.context.transaction.BeforeTransaction;
 import com.alibaba.fastjson.JSON;
 import com.pes.base.test.BaseTestTemplate;
 import com.pes.entity.User;
+import com.pes.entity.UserPojo;
 
 
 public class TestUserService extends BaseTestTemplate{
@@ -24,6 +24,8 @@ public class TestUserService extends BaseTestTemplate{
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private MessageService messageService;
 	
 	@Before
     public void setUp() throws Exception {
@@ -97,4 +99,11 @@ public class TestUserService extends BaseTestTemplate{
 		//System.out.println(userService.findApplicantByPage(1, 2));
 		System.out.println(userService.findTotalExpertRows());
 	}
+	
+	@Test
+	public void getResentUsers(){
+		List<UserPojo> list = userService.findResentUsers(messageService.getRescentUsersByPage(1, 5, 18));
+		System.out.println(list);
+	}
+	
 }

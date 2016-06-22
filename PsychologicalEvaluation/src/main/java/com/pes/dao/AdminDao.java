@@ -5,6 +5,6 @@ import com.pes.entity.User;
 
 
 public  interface AdminDao extends GenericDao2<Admin, Integer>{
-	boolean isUserExist(String username);
-	boolean validate(Admin admin);
+	public boolean isUserExist(String username);
+	public Admin validate(String username, String password);
 }
