@@ -1,122 +1,185 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8"/> 
-<title>心理学从这里开始</title>
-<meta name="baidu-tc-cerfication" content="e37b9fc48676fae6577f9e35f95fdb3e" />
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>心理学从这里开始</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- basic styles -->
+		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
 
-<meta name="keywords" content="" />
-<meta name="description" content=""/>
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="<%=path%>/assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
 
+		<!-- page specific plugin styles -->
 
-<!--<meta name="apple-itunes-app" content="app-id=591341152">-->
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" /> 
-<meta content="yes" name="apple-mobile-web-app-capable" /> 
-<meta content="black" name="apple-mobile-web-app-status-bar-style" /> 
-<meta content="telephone=no" name="format-detection" /> 
+		<!-- fonts -->
 
+		<link rel="stylesheet" href="<%=path%>/style/family.css" />
 
-<link rel="stylesheet" href="<%=path%>/style/qz_home.css" />
+		<!-- ace styles -->
 
-<link rel="stylesheet" href="<%=path%>/style/app-ad.re.css">
-<style type="text/css">
-.s_reg button {
-	height: 36px;
-	line-height: 36px;
-	background-color: #245D94;
-	color: white;
-	border: 0 none;
-	font-size: 120%;
-	font-weight: bold;
-	width: 100%;
-	border-radius: 5px;
-	-webkit-appearance: none;
-	-webkit-border-radius: 0;
-	
-}
+		<link rel="stylesheet" href="<%=path%>/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="<%=path%>/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
+		
+		<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="<%=path%>/assets/css/ace-ie.min.css" />
+		<![endif]-->
 
+		<!-- inline styles related to this page -->
+		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
+		<!-- ace settings handler -->
 
-</style>
-</head>
-<body>
+		
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+		<!--[if lt IE 9]>
+		<script src="<%=path%>/assets/js/html5shiv.js"></script>
+		<script src="<%=path%>/assets/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
   		<input type="hidden" id="userId"  value="${sessionScope.loginUser.id}"/> 
   		<input type="hidden" id="username"  value="${sessionScope.loginUser.username}"/> 
   		<input type="hidden" id="userIcon"  value="${sessionScope.loginUser.icon}"/> 
   		<input type="hidden" id="targetId"  value="${target.id}"/> 
   		<input type="hidden" id="targetIcon"  value="${target.icon}"/> 
   		<input type="hidden" id="targetUsername"  value="${target.username}"/> 
-		
-<div id="main_body">
-    <div class="header">
-	    	<div class="left">
-	                <a href="<%=path%>/index.jsp" class="ico ico-back icon"></a>       
-	    	</div>    
-	        <h2>聊天</h2>
-    		<div class="right">
-                <div class="img">                		
-               		 <s:if test="#session.loginUser==null" ><!--用户未登录  -->
-               		 	<a class="avatar" href="<%=path%>/login.jsp">
-               		 		<img src="<%=path%>/image/img155.png" width="60" height="60">
-               		 		
-               		 	</a>
-               		 </s:if>
-  					 <s:else>						<!--用户已登录  -->
-  						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
-                        	<img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60">
-                  	  	</a>
-       				  </s:else>       				                 	 	
-                </div>
-            
-            </div><!-- right -->
-    </div>
+  		<input type="hidden" id="basePath" value="<%=basePath%>">
 
-	 <header class="s_header" style="display: none;">
-		<nav>
-			
-			
-			<a href="<%=path%>/index.jsp" class="bg">
-				<span>首页</span>
-			</a>			
-		</nav>
-	</header>
-	
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
 
-<section class="s_reg">
-    <div>
-        <b>说点什么吧</b>
-    </div>
-    <textarea class="dialogs content" name="content" ></textarea>
-    
-    <div id="send">
-        	<input type="text"  placeholder="在这里输入信息" name="message" id="message">
-			<button type="button" id="send">发送</button>			
-    </div>
-</section>
+			<div class="main-container-inner">
 
-	
-	<footer class="footer">
-	<div>
-		<p>
-			<a href="#">留言</a>
-		</p>
-		<p>
-			我们的小组<span>心理测评系统</span>
-		</p>
-	</div>
-</footer>
+				<div class="main-content">
 
-</div>
-<script src="<%=path%>/js/jquery.min.js"></script>
-<script src="<%=path%>/js/mchat.js"></script>
+					<div class="page-content">
 
-<script src="<%=path%>/js/api.js"></script>
-</body>
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<div class="row">
+
+									<div class="col-sm-6">
+										<div class="widget-box ">
+											<div class="widget-header">
+												<h4 class="lighter smaller">
+													<i class="icon-comment blue"></i>
+													会话
+												</h4>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main no-padding">
+													<div class="dialogs">
+														
+
+														<div class="itemdiv dialogdiv">
+															<div class="user">
+																<img alt="谷雨's Avatar" src="<%=path%>/assets/avatars/user.jpg" />
+															</div>
+
+															<div class="body">
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="orange">2分钟以前</span>
+																</div>
+
+																<div class="name">
+																	<a href="#">谷雨</a>
+																	<span class="label label-info arrowed arrowed-in-right">管理员</span>
+																</div>
+																<div class="text">欢迎大家使用我们做的后台管理系统.</div>
+
+																<div class="tools">
+																	<a href="#" class="btn btn-minier btn-info">
+																		<i class="icon-only icon-share-alt"></i>
+																	</a>
+																</div>
+															</div>
+														</div>														
+														
+													</div><!-- dialogs -->
+
+													<div ="send">
+														<div class="form-actions">
+															<div class="input-group">
+																<input placeholder="在这里输入信息 ..." type="text" class="form-control" name="message" id="message"/>
+																<span class="input-group-btn">
+																	<button class="btn btn-sm btn-info no-radius" type="button" id="send">
+																		<i class="icon-share-alt" ></i>
+																		发送
+																	</button>
+																</span>
+															</div>
+														</div>
+													</div>
+													
+												</div><!-- /widget-main -->
+											</div><!-- /widget-body -->
+										</div><!-- /widget-box -->
+									</div><!-- /span -->
+								</div><!-- /row -->
+
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+
+			</div><!-- /.main-container-inner -->
+
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
+
+		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
+		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		  <script src="<%=path%>/assets/js/excanvas.min.js"></script>
+		<![endif]-->
+
+
+		<script src="<%=path%>/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+		<script src="<%=path%>/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
+		<script src="<%=path%>/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
+		<!-- ace scripts -->
+
+		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
+		<script src="<%=path%>/assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+				
+		<script type="text/javascript" src="<%=path%>/assets/js/ace-extra.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
+
+		<script type="text/javascript" src="<%=path%>/js/consult.js"></script> 
+	</body>
 </html>
+

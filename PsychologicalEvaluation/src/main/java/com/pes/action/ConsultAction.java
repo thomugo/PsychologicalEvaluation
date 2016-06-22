@@ -97,8 +97,8 @@ public class ConsultAction extends BaseAction{
 	
 
 	@Action(value="chat", results={
-			@Result(name="normal", location="/WEB-INF/chat/consult.jsp"),
-			@Result(name="admin", location="/consult.jsp")
+			@Result(name="normal", location="/WEB-INF/chat/mchat.jsp"),
+			@Result(name="admin", location="/WEB-INF/chat/consult.jsp")
 	})
 	public String Chat(){
 		target = userService.findById(id);
