@@ -71,7 +71,7 @@ $(document).ready(function() {
 						
 						//选择题数目
 						var question1Num = $(".choicequestion").length;
-						alert("共有 "+question1Num+"题");
+						//alert("共有 "+question1Num+"题");
 						//判断题数目
 						//var question2Num = $(".truefalsequestion").length;
 						//alert("判断题:"+question2Num);

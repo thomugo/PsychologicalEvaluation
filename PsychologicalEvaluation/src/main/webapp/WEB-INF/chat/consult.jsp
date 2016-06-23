@@ -35,26 +35,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
-		
-		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="<%=path%>/assets/css/ace-ie.min.css" />
-		<![endif]-->
 
 		<!-- inline styles related to this page -->
 		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
-		<!-- ace settings handler -->
 
-		
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-
-		<!--[if lt IE 9]>
-		<script src="<%=path%>/assets/js/html5shiv.js"></script>
-		<script src="<%=path%>/assets/js/respond.min.js"></script>
-		<![endif]-->
 	</head>
 
 	<body>
 	<s:debug></s:debug>
+		<input type="hidden" id="basePath" value="<%=basePath%>">
   		<input type="hidden" id="userId"  value="${sessionScope.loginUser.id}"/> 
   		<input type="hidden" id="username"  value="${sessionScope.loginUser.username}"/> 
   		<input type="hidden" id="userIcon"  value="${sessionScope.loginUser.icon}"/> 
@@ -89,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
 								<li class="dropdown-header">
 									<i class="icon-warning-sign"></i>
-									${unReadBroadCastMessageCount}条通知
+									${unReadBroadCastMessageCount}条广播通知
 								</li>
 
 								<li>
@@ -97,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="clearfix">
 											<span class="pull-left">
 												<i class="btn btn-xs no-hover btn-pink icon-comment"></i>
-												未读消息
+												未读广播消息
 											</span>
 											<span class="pull-right badge badge-info">+${unReadBroadCastMessageCount}</span>
 										</div>
@@ -105,7 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="<%=path%>/getOffLineMessage.action">
+									<a>
 										查看所有通知
 										<i class="icon-arrow-right"></i>
 									</a>
@@ -119,68 +108,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<span class="badge badge-success" id="offLineMessage">${offLineMessageCount}</span>
 							</a>
 
-							<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+							<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close" id="recent">
 								<li class="dropdown-header">
 									<i class="icon-envelope-alt"></i>
-									${offLineMessageCount}条消息
-								</li>
-
-								<li>
-									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
-										<span class="msg-body">
-											<span class="msg-title">
-												<span class="blue">Alex:</span>
-												不知道写啥 ...
-											</span>
-
-											<span class="msg-time">
-												<i class="icon-time"></i>
-												<span>1分钟以前</span>
-											</span>
-										</span>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
-										<span class="msg-body">
-											<span class="msg-title">
-												<span class="blue">Susan:</span>
-												不知道翻译...
-											</span>
-
-											<span class="msg-time">
-												<i class="icon-time"></i>
-												<span>20分钟以前</span>
-											</span>
-										</span>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar4.png" class="msg-photo" alt="谷雨's Avatar" />
-										<span class="msg-body">
-											<span class="msg-title">
-												<span class="blue">谷雨:</span>
-												到底是不是英文 ...
-											</span>
-
-											<span class="msg-time">
-												<i class="icon-time"></i>
-												<span>下午3:15</span>
-											</span>
-										</span>
-									</a>
-								</li>
-
-								<li>
-									<a href="<%=path%>/recent.action">
-										查看所有消息
-										<i class="icon-arrow-right"></i>
-									</a>
+									${offLineMessageCount}条离线消息
 								</li>
 							</ul>
 						</li>
@@ -500,20 +431,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</a>
 		</div><!-- /.main-container -->
 
-		<!-- basic scripts -->
-
-		<!--[if !IE]> -->
+		<!--[if !IE] -->
 		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
 
 		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
 		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
 
-		<!-- page specific plugin scripts -->
-
-		<!--[if lte IE 8]>
+		<!--[if lte IE 8]-->
 		  <script src="<%=path%>/assets/js/excanvas.min.js"></script>
-		<![endif]-->
-
+		<!--[endif]-->
 
 		<script src="<%=path%>/assets/js/date-time/bootstrap-datepicker.min.js"></script>
 		<script src="<%=path%>/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
@@ -522,13 +448,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
 		<script src="<%=path%>/assets/js/ace.min.js"></script>
-
-		<!-- inline scripts related to this page -->
 				
 		<script type="text/javascript" src="<%=path%>/assets/js/ace-extra.min.js"></script>
 		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
 
 		<script type="text/javascript" src="<%=path%>/js/consult.js"></script> 
+		<script>
+			var basepath = $("#basePath").val();
+			var k=1;
+			var total=parseInt(${shortOffLineMessages.size()});
+			
+				if(total<4){
+					<c:forEach var="sender" items="shortOffLineMessages">
+						if(k<total){
+							$("#recent").append("<li><a><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
+											+"<span class='msg-body'>"
+											+"<span class='msg-title'>"+"<span class='blue'>"+name+":</span>"
+											+conent
+											+"</span>"
+											+"<span class='msg-time'>"
+											+"<i class='icon-time'></i>"
+											+"<span>"+clock+":"+min+"</span>"
+											+"</span></span></a></li>");
+							k++;
+						}
+					</c:forEach>
+				}else{
+					<c:forEach var="sender" items="shortOffLineMessages">
+						var name="${sender.username}";
+						var icon="${sender.icon}";
+						var time="${sender.dateTime}";
+						var content="${sender.content}";
+						var colock=time.substr(11,2);
+						var min=time.substr(14,2);
+						if(k<4){
+							$("#recent").append("<li><a><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
+											+"<span class='msg-body'>"
+											+"<span class='msg-title'>"+"<span class='blue'>"+name+":</span>"
+											+conent
+											+"</span>"
+											+"<span class='msg-time'>"
+											+"<i class='icon-time'></i>"
+											+"<span>"+clock+":"+min+"</span>"
+											+"</span></span></a></li>");
+							k++;
+						}
+					</c:forEach>
+				}
+			$("#recent").append("<li>"
+								+"<a href='"+basepath+"recent.action'>"
+								+"查看所有消息"
+								+"<i class='icon-arrow-right'></i>"
+								+"</a></li>");
+		
+		</script>
 	</body>
 </html>
 

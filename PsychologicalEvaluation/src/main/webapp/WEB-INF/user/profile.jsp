@@ -21,42 +21,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link href="<%=path%>/assets/css/bootstrap.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
 
-		<!--[if IE 7]>
-		  <link rel="stylesheet" href="<%=path%>/assets/css/font-awesome-ie7.min.css" />
-		<![endif]-->
-
-		<!-- page specific plugin styles -->
-
 		<link rel="stylesheet" href="<%=path%>/assets/css/jquery-ui-1.10.3.full.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/datepicker.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ui.jqgrid.css" />
 
 		<!-- fonts -->
 
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
-
-		<!-- ace styles -->
+		<link rel="stylesheet" href="<%=path%>/style/family.css" />
 
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
 
-		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
-		<![endif]-->
-
-		<!-- inline styles related to this page -->
-
-		<!-- ace settings handler -->
-
 		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
 
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-
-		<!--[if lt IE 9]>
-		<script src="<%=path%>/assets/js/html5shiv.js"></script>
-		<script src="<%=path%>/assets/js/respond.min.js"></script>
-		<![endif]-->
 	</head>
 
 	<body>
@@ -78,54 +56,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<div class="navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
+
 						<li class="purple">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-bell-alt icon-animated-bell"></i>
-								<span class="badge badge-important">8</span>
+								<span class="badge badge-important" id="broadcast">${unReadBroadCastMessageCount}</span>
 							</a>
 
 							<ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
 								<li class="dropdown-header">
 									<i class="icon-warning-sign"></i>
-									8 Notifications
+									${unReadBroadCastMessageCount}条广播通知
 								</li>
 
 								<li>
-									<a href="#">
+									<a href="<%=path%>/getOffLineMessage.action">
 										<div class="clearfix">
 											<span class="pull-left">
 												<i class="btn btn-xs no-hover btn-pink icon-comment"></i>
-												New Comments
+												未读广播消息
 											</span>
-											<span class="pull-right badge badge-info">+12</span>
+											<span class="pull-right badge badge-info">+${unReadBroadCastMessageCount}</span>
 										</div>
 									</a>
 								</li>
 
 								<li>
-									<a href="#">
-										<i class="btn btn-xs btn-primary icon-user"></i>
-										Bob just signed up as an editor ...
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<div class="clearfix">
-											<span class="pull-left">
-												<i class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>
-												New Orders
-											</span>
-											<span class="pull-right badge badge-success">+8</span>
-										</div>
-									</a>
-								</li>
-
-
-
-								<li>
-									<a href="#">
-										See all notifications
+									<a>
+										查看所有通知
 										<i class="icon-arrow-right"></i>
 									</a>
 								</li>
@@ -133,80 +91,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</li>
 
 						<li class="green">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-envelope icon-animated-vertical"></i>
-								<span class="badge badge-success">5</span>
+								<span class="badge badge-success" id="offLineMessage">${offLineMessageCount}</span>
 							</a>
 
-							<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+							<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close" id="recent">
 								<li class="dropdown-header">
 									<i class="icon-envelope-alt"></i>
-									5 Messages
-								</li>
-
-								<li>
-									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
-										<span class="msg-body">
-											<span class="msg-title">
-												<span class="blue">Alex:</span>
-												Ciao sociis natoque penatibus et auctor ...
-											</span>
-
-											<span class="msg-time">
-												<i class="icon-time"></i>
-												<span>a moment ago</span>
-											</span>
-										</span>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
-										<span class="msg-body">
-											<span class="msg-title">
-												<span class="blue">Susan:</span>
-												Vestibulum id ligula porta felis euismod ...
-											</span>
-
-											<span class="msg-time">
-												<i class="icon-time"></i>
-												<span>20 minutes ago</span>
-											</span>
-										</span>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
-										<span class="msg-body">
-											<span class="msg-title">
-												<span class="blue">Bob:</span>
-												Nullam quis risus eget urna mollis ornare ...
-											</span>
-
-											<span class="msg-time">
-												<i class="icon-time"></i>
-												<span>3:15 pm</span>
-											</span>
-										</span>
-									</a>
-								</li>
-
-								<li>
-									<a href="inbox.html">
-										See all messages
-										<i class="icon-arrow-right"></i>
-									</a>
+									${offLineMessageCount}条离线消息
 								</li>
 							</ul>
 						</li>
 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="<%=path%>/assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>欢迎光临</small>
 								</span>
@@ -218,23 +118,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li>
 									<a href="#">
 										<i class="icon-cog"></i>
-										Settings
+										设置
 									</a>
 								</li>
 
-								<li>
-									<a href="#">
-										<i class="icon-user"></i>
-										Profile
-									</a>
-								</li>
 
 								<li class="divider"></li>
 
 								<li>
-									<a href="${ pageContext.request.contextPath }/logout.action">
+									<a href="<%=path%>/logout.action">
 										<i class="icon-off"></i>
-										Logout
+										退出
 									</a>
 								</li>
 							</ul>
@@ -636,37 +530,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- basic scripts -->
 
-		<!--[if !IE]> -->
-
-
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<![endif]-->
-
-		<!--[if !IE]> -->
-
-		<script type="text/javascript">
-			window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
-		</script>
-
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-<script type="text/javascript">
- window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
-</script>
-<![endif]-->
-
-		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
 		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
 
-		<!-- page specific plugin scripts -->
-
-		<!--[if lte IE 8]>
-		  <script src="<%=path%>/assets/js/excanvas.min.js"></script>
-		<![endif]-->
+		<script src="<%=path%>/assets/js/excanvas.min.js"></script>
 
 		<script src="<%=path%>/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
 		<script src="<%=path%>/assets/js/jquery.ui.touch-punch.min.js"></script>
@@ -684,13 +550,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/jquery.maskedinput.min.js"></script>
 		<script src="<%=path%>/js/profile.js"></script>
 		<script src="<%=path %>/js/json2.js"></script>
+		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
 		<!-- ace scripts -->
 
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
 		<script src="<%=path%>/assets/js/ace.min.js"></script>
-
-		<!-- inline scripts related to this page -->
-
+		<script>
+			var basepath = $("#basePath").val();
+			var k=1;
+			var total=parseInt(${shortOffLineMessages.size()});
+			
+				if(total<4){
+					<c:forEach var="sender" items="shortOffLineMessages">
+						if(k<total){
+							$("#recent").append("<li><a><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
+											+"<span class='msg-body'>"
+											+"<span class='msg-title'>"+"<span class='blue'>"+name+":</span>"
+											+conent
+											+"</span>"
+											+"<span class='msg-time'>"
+											+"<i class='icon-time'></i>"
+											+"<span>"+clock+":"+min+"</span>"
+											+"</span></span></a></li>");
+							k++;
+						}
+					</c:forEach>
+				}else{
+					<c:forEach var="sender" items="shortOffLineMessages">
+						var name="${sender.username}";
+						var icon="${sender.icon}";
+						var time="${sender.dateTime}";
+						var content="${sender.content}";
+						var colock=time.substr(11,2);
+						var min=time.substr(14,2);
+						if(k<4){
+							$("#recent").append("<li><a><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
+											+"<span class='msg-body'>"
+											+"<span class='msg-title'>"+"<span class='blue'>"+name+":</span>"
+											+conent
+											+"</span>"
+											+"<span class='msg-time'>"
+											+"<i class='icon-time'></i>"
+											+"<span>"+clock+":"+min+"</span>"
+											+"</span></span></a></li>");
+							k++;
+						}
+					</c:forEach>
+				}
+			$("#recent").append("<li>"
+								+"<a href='"+basepath+"recent.action'>"
+								+"查看所有消息"
+								+"<i class='icon-arrow-right'></i>"
+								+"</a></li>");
+		
+		</script>
 		<script type="text/javascript">
 			jQuery(function($) {
 			
@@ -745,16 +658,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 						var new_source = (!newValue || newValue == "") ? [] : cities[newValue];
 						
-						//the destroy method is causing errors in x-editable v1.4.6
-						//it worked fine in v1.4.5
-						/**			
-						$('#city').editable('destroy').editable({
-							type: 'select2',
-							source: new_source
-						}).editable('setValue', null);
-						*/
-						
-						//so we remove it altogether and create a new element
 						var city = $('#city').removeAttr('id').get(0);
 						$(city).clone().attr('id', 'city').text('Select City').editable({
 							type: 'select2',
@@ -835,12 +738,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							//specify ace file input plugin's options here
 							btn_choose: 'Change Avatar',
 							droppable: true,
-							/**
-							//this will override the default before_change that only accepts image files
-							before_change: function(files, dropped) {
-								return true;
-							},
-							*/
 			
 							//and a few extra ones here
 							name: 'avatar',//put the field name here as well, will be used inside the custom plugin
@@ -1008,9 +905,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							
 				});
 			
-				
-			
-				//////////////////////////////
+
 				$('#profile-feed-1').slimScroll({
 				height: '250px',
 				alwaysVisible : true
@@ -1033,9 +928,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				}).css('color', barColor);
 				});
 			  
-				///////////////////////////////////////////
-			
-				//show the user info on right or left depending on its position
 				$('#user-profile-2 .memberdiv').on('mouseenter', function(){
 					var $this = $(this);
 					var $parent = $this.closest('.tab-pane');
@@ -1054,8 +946,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					return false;
 				});
 			
-			
-				///////////////////////////////////////////
+
 				$('#user-profile-3')
 				.find('input[type=file]').ace_file_input({
 					style:'well',
@@ -1091,10 +982,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				})
 				$('.input-mask-phone').mask('(999) 999-9999');
 			
-			
-			
-				////////////////////
-				//change profile
+
 				$('[data-toggle="buttons"] .btn').on('click', function(e){
 					var target = $(this).find('input[type=radio]');
 					var which = parseInt(target.val());

@@ -75,65 +75,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<div class="navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
-		
+
 						<li class="purple">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-bell-alt icon-animated-bell"></i>
-								<span class="badge badge-important">8</span>
+								<span class="badge badge-important" id="broadcast">${unReadBroadCastMessageCount}</span>
 							</a>
 
 							<ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
 								<li class="dropdown-header">
 									<i class="icon-warning-sign"></i>
-									8 Notifications
+									${unReadBroadCastMessageCount}条广播通知
 								</li>
 
 								<li>
-									<a href="#">
+									<a href="<%=path%>/getOffLineMessage.action">
 										<div class="clearfix">
 											<span class="pull-left">
 												<i class="btn btn-xs no-hover btn-pink icon-comment"></i>
-												New Comments
+												未读广播消息
 											</span>
-											<span class="pull-right badge badge-info">+12</span>
+											<span class="pull-right badge badge-info">+${unReadBroadCastMessageCount}</span>
 										</div>
 									</a>
 								</li>
 
 								<li>
-									<a href="#">
-										<i class="btn btn-xs btn-primary icon-user"></i>
-										Bob just signed up as an editor ...
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<div class="clearfix">
-											<span class="pull-left">
-												<i class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>
-												New Orders
-											</span>
-											<span class="pull-right badge badge-success">+8</span>
-										</div>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<div class="clearfix">
-											<span class="pull-left">
-												<i class="btn btn-xs no-hover btn-info icon-twitter"></i>
-												Followers
-											</span>
-											<span class="pull-right badge badge-info">+11</span>
-										</div>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										See all notifications
+									<a>
+										查看所有通知
 										<i class="icon-arrow-right"></i>
 									</a>
 								</li>
@@ -143,13 +112,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li class="green">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-envelope icon-animated-vertical"></i>
-								<span class="badge badge-success">5</span>
+								<span class="badge badge-success" id="offLineMessage">${offLineMessageCount}</span>
 							</a>
 
 							<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
 								<li class="dropdown-header">
 									<i class="icon-envelope-alt"></i>
-									5 Messages
+									${offLineMessageCount}条离线消息
 								</li>
 
 								<li>
@@ -158,12 +127,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Alex:</span>
-												Ciao sociis natoque penatibus et auctor ...
+												不知道写啥 ...
 											</span>
 
 											<span class="msg-time">
 												<i class="icon-time"></i>
-												<span>a moment ago</span>
+												<span>1分钟以前</span>
 											</span>
 										</span>
 									</a>
@@ -175,12 +144,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Susan:</span>
-												Vestibulum id ligula porta felis euismod ...
+												不知道翻译...
 											</span>
 
 											<span class="msg-time">
 												<i class="icon-time"></i>
-												<span>20 minutes ago</span>
+												<span>20分钟以前</span>
 											</span>
 										</span>
 									</a>
@@ -188,24 +157,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 								<li>
 									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+										<img src="<%=path%>/assets/avatars/avatar4.png" class="msg-photo" alt="谷雨's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
-												<span class="blue">Bob:</span>
-												Nullam quis risus eget urna mollis ornare ...
+												<span class="blue">谷雨:</span>
+												到底是不是英文 ...
 											</span>
 
 											<span class="msg-time">
 												<i class="icon-time"></i>
-												<span>3:15 pm</span>
+												<span>下午3:15</span>
 											</span>
 										</span>
 									</a>
 								</li>
 
 								<li>
-									<a href="<%=path%>/consult.action">
-										See all messages
+									<a href="<%=path%>/recent.action">
+										查看所有消息
 										<i class="icon-arrow-right"></i>
 									</a>
 								</li>
@@ -214,10 +183,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="<%=path%>/assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
-									<small>Welcome,</small>
-									Jason
+									<small>欢迎光临</small>
 								</span>
 
 								<i class="icon-caret-down"></i>
@@ -227,23 +195,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li>
 									<a href="#">
 										<i class="icon-cog"></i>
-										Settings
+										设置
 									</a>
 								</li>
 
-								<li>
-									<a href="#">
-										<i class="icon-user"></i>
-										Profile
-									</a>
-								</li>
 
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="<%=path%>/logout.action">
 										<i class="icon-off"></i>
-										Logout
+										退出
 									</a>
 								</li>
 							</ul>

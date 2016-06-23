@@ -1,4 +1,5 @@
 var basePath = $("#basePath").val();
+var send=true;
 function infosPageInit(){
 	var indexPage=$(this),loading=false
 	getmore=indexPage.find('li.get-more')
@@ -97,6 +98,7 @@ $('#id_ceshi_page').live('pageinit', function() {
 	var answer={};		
 	var choiceQuestions=new Array();
 	var labels = $(this).find('label');
+	var num1=parseInt(num);
 	labels.bind('vclick', function() {
 		var self = $(this),
 			question = self.data('question'),
@@ -107,7 +109,8 @@ $('#id_ceshi_page').live('pageinit', function() {
 		var map1={};	
 		map1["option"]=choice;
 		map1["question"]=question;
-		if(j<num){
+		if(j<num1){
+			
 			choiceQuestions[j++]=map1;			
 		}
 	
@@ -119,16 +122,19 @@ $('#id_ceshi_page').live('pageinit', function() {
 		 else{
 			 $('#id_submit_' + question).button('enable');
 			 $('#id_submit_' + question).click(function(){
-
+				 if(send){
 					 answer["questionaire"] = id;
 					 answer["choiceQuestions"] = choiceQuestions;
 					 var jsonString = JSON.stringify(answer);
-					 alert(jsonString); 
-				$.post(basePath+"saveAnswer.action", {"jsonString" : jsonString},
-					function (data){
-					$("body").html(data);
-					});	 	
-			});
+					 //alert(jsonString); 
+					
+					$.post(basePath+"saveAnswer.action", {"jsonString" : jsonString},
+						function (data){
+						$("body").html(data);
+						});	 	
+				}
+				 	send=false;
+			 });
 		 }
 	});
 /*	$('#id_form').submit(function() {

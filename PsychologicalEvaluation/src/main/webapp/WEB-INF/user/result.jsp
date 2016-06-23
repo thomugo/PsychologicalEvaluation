@@ -52,7 +52,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	</div>
 	</div>
     <div data-role="content" style="font-size: 120%">
-    <s:debug></s:debug>
         <h1 class="po_title" id='title'>${questionaire.title}</h1>
         <h2 style="font-size:16px;" id='result0'>我的结果 : ${answer.result}</h2>
         <br>

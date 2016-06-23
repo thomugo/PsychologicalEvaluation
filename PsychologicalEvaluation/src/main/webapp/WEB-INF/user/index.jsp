@@ -77,6 +77,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
 
 	<body>
+		<input type="hidden" id="basePath" value="<%=basePath%>">
+	
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -95,81 +97,56 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
 
-						<li class="green">
+						<li class="purple">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<i class="icon-envelope icon-animated-vertical"></i>
-								<span class="badge badge-success">5</span>
+								<i class="icon-bell-alt icon-animated-bell"></i>
+								<span class="badge badge-important" id="broadcast">${unReadBroadCastMessageCount}</span>
 							</a>
 
-							<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+							<ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
 								<li class="dropdown-header">
-									<i class="icon-envelope-alt"></i>
-									5 Messages
+									<i class="icon-warning-sign"></i>
+									${unReadBroadCastMessageCount}条广播通知
 								</li>
 
 								<li>
-									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
-										<span class="msg-body">
-											<span class="msg-title">
-												<span class="blue">谷雨:</span>
-												你好 ...
+									<a href="<%=path%>/getOffLineMessage.action">
+										<div class="clearfix">
+											<span class="pull-left">
+												<i class="btn btn-xs no-hover btn-pink icon-comment"></i>
+												未读广播消息
 											</span>
-
-											<span class="msg-time">
-												<i class="icon-time"></i>
-												<span>1分钟以前</span>
-											</span>
-										</span>
+											<span class="pull-right badge badge-info">+${unReadBroadCastMessageCount}</span>
+										</div>
 									</a>
 								</li>
 
 								<li>
-									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
-										<span class="msg-body">
-											<span class="msg-title">
-												<span class="blue">peiyu:</span>
-												hello ...
-											</span>
-
-											<span class="msg-time">
-												<i class="icon-time"></i>
-												<span>20 分钟以前</span>
-											</span>
-										</span>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<img src="<%=path%>/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
-										<span class="msg-body">
-											<span class="msg-title">
-												<span class="blue">haohao:</span>
-												what ...
-											</span>
-
-											<span class="msg-time">
-												<i class="icon-time"></i>
-												<span>11:35 </span>
-											</span>
-										</span>
-									</a>
-								</li>
-
-								<li>
-									<a href="<%=path%>/recent.action">
-										查看所有消息
+									<a>
+										查看所有通知
 										<i class="icon-arrow-right"></i>
 									</a>
 								</li>
 							</ul>
-						</li>
+						</li>		
+
+						<li class="green">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+								<i class="icon-envelope icon-animated-vertical"></i>
+								<span class="badge badge-success" id="offLineMessage">${offLineMessageCount}</span>
+							</a>
+
+							<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close" id="recent">
+								<li class="dropdown-header">
+									<i class="icon-envelope-alt"></i>
+									${offLineMessageCount}条离线消息
+								</li>
+							</ul>
+						</li>			
 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="/PsychologicalEvaluation/assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>欢迎光临</small>
 								</span>
@@ -185,24 +162,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</a>
 								</li>
 
-								<li>
-									<a href="#">
-										<i class="icon-user"></i>
-										个人
-									</a>
-								</li>
 
 								<li class="divider"></li>
 
 								<li>
-									<a href="${ pageContext.request.contextPath }/logout.action">
+									<a href="<%=path%>/logout.action">
 										<i class="icon-off"></i>
-										登出
+										退出
 									</a>
 								</li>
 							</ul>
-							
-							
 						</li>
 					</ul><!-- /.ace-nav -->
 				</div><!-- /.navbar-header -->
@@ -426,46 +395,100 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- basic scripts -->
 
-		<!--[if !IE]> -->
-
-
-
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<![endif]-->
-
-		<!--[if !IE]> -->
-
-		<script type="text/javascript">
-			window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+		<script>
+			var basepath = $("#basePath").val();
+			var k=1;
+			var total=parseInt(${shortOffLineMessages.size()});
+			
+				if(total<4){
+					<c:forEach var="sender" items="shortOffLineMessages">
+						if(k<total)
+						$("#recent").append("");
+						k++;
+					</c:forEach>
+				}else{
+					<c:forEach var="sender" items="shortOffLineMessages">
+						var name="${sender.username}";
+						var icon="${sender.icon}";
+						var time="${sender.dateTime}";
+						var content="${sender.content}";
+						var colock=time.substr(11,2);
+						var min=time.substr(14,2);
+						if(k<4){
+						$("#recent").append("<li><a><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
+										+"<span class='msg-body'>"
+										+"<span class='msg-title'>"+"<span class='blue'>"+name+":</span>"
+										+conent
+										+"</span>"
+										+"<span class='msg-time'>"
+										+"<i class='icon-time'></i>"
+										+"<span>"+clock+":"+min+"</span>"
+										+"</span></span></a></li>");
+						}
+					</c:forEach>
+				}
+			$("#recent").append("<li>"
+								+"<a href='"+basepath+"recent.action'>"
+								+"查看所有消息"
+								+"<i class='icon-arrow-right'></i>"
+								+"</a></li>");
+		
 		</script>
-
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-		<script type="text/javascript">
-			 window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
-		</script>
-		<![endif]-->
 
 		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
 		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
 
-		<!-- page specific plugin scripts -->
-
-		<!--[if lte IE 8]>
-		  <script src="<%=path%>/assets/js/excanvas.min.js"></script>
-		<![endif]-->
-
-
-		<!-- ace scripts -->
-
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
-		<script src="<%=path%>/assets/js/ace.min.js"></script>
 
-		<!-- inline scripts related to this page -->
+		<script>
+			var basepath = $("#basePath").val();
+			var k=1;
+			var total=parseInt(${shortOffLineMessages.size()});
+			
+				if(total<4){
+					<c:forEach var="sender" items="shortOffLineMessages">
+						if(k<total){
+							$("#recent").append("<li><a><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
+											+"<span class='msg-body'>"
+											+"<span class='msg-title'>"+"<span class='blue'>"+name+":</span>"
+											+conent
+											+"</span>"
+											+"<span class='msg-time'>"
+											+"<i class='icon-time'></i>"
+											+"<span>"+clock+":"+min+"</span>"
+											+"</span></span></a></li>");
+							k++;
+						}
+					</c:forEach>
+				}else{
+					<c:forEach var="sender" items="shortOffLineMessages">
+						var name="${sender.username}";
+						var icon="${sender.icon}";
+						var time="${sender.dateTime}";
+						var content="${sender.content}";
+						var colock=time.substr(11,2);
+						var min=time.substr(14,2);
+						if(k<4){
+							$("#recent").append("<li><a><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
+											+"<span class='msg-body'>"
+											+"<span class='msg-title'>"+"<span class='blue'>"+name+":</span>"
+											+conent
+											+"</span>"
+											+"<span class='msg-time'>"
+											+"<i class='icon-time'></i>"
+											+"<span>"+clock+":"+min+"</span>"
+											+"</span></span></a></li>");
+							k++;
+						}
+					</c:forEach>
+				}
+			$("#recent").append("<li>"
+								+"<a href='"+basepath+"recent.action'>"
+								+"查看所有消息"
+								+"<i class='icon-arrow-right'></i>"
+								+"</a></li>");
+		
+		</script>
 
 	</body>
 </html>

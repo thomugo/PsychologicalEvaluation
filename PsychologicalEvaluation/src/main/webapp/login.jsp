@@ -22,7 +22,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="keywords" content="">
 <meta name="description" content="">
 <link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css">
-
+<style type="text/css">
+.blue1{
+	color:blue;
+}
+.blue2{
+	color:blue;
+	font-weight:bold;
+}
+.tishi{
+	margin-top:-30px;
+	font-size:14px;
+}
+</style>
 <script src="<%=path%>/js/mobile_f4b5a0a094.js"></script>
 <!--[if lt IE 9]-->
 </head>
@@ -49,18 +61,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                        </div>
 	                    </div>
 	                </div>
-	                <div class="rowArea logInTip">
-	                    <ul>
-	                        <li>您如果<span class="t-blue">忘记密码</span>，请用电脑登陆我们的心理测评系统网站找回密码</li>
-							<li>使用电脑注册请点击<span class="t-blue"><a href="<%=path%>/registe.jsp">这里</a></span></li>	                        
-	                    </ul>
-	                </div>
+
 	                <div class="rowArea">
 	                    <s:submit value="提交" class="logIn-form-submit" ></s:submit>
 	                </div>
 	             </s:form> 
-                    
+	                <div class="rowArea logInTip tishi">
+	                    <ul>
+	                        <li>您如果<span class="blue1">忘记密码</span>，请用电脑登陆我们的心理测评系统网站找回密码</li>
+							<li>使用电脑注册请点击<span ><a href="<%=path%>/registe.jsp" class="blue2">这里</a></span></li>	                        
+	                    </ul>
+	                </div>	                    
 				<div class="otherLogIn">
+			
 					<div class="title">
 						<h3>第三方登录</h3>
 							<i class="bd"></i>

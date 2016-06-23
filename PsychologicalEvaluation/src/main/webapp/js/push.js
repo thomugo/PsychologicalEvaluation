@@ -34,10 +34,10 @@ $("#wz_save").click(function(){
 	if(save){
 		//用ajax请求服务器保存数据
 		var jsonString = JSON.stringify(article);
-		alert(jsonString);
+		//alert(jsonString);
 		$.post("editArticle.action", {"jsonString" : jsonString},
 				function (data){ 
-					alert(data); 
+				//	alert(data); 
 		}); 
 	}
 });
@@ -75,10 +75,10 @@ $("#push").click(function(){
 	if(save){
 		//用ajax请求服务器保存数据
 		var jsonString = JSON.stringify(article);
-		alert(jsonString); 
+		//alert(jsonString); 
 		$.post(basePath+"editArticle.action", {"jsonString" : jsonString},
 				function (data){
-					alert(data); 
+					//alert(data); 
 		});
 	}
 });
