@@ -3,19 +3,25 @@ package com.pes.action;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.alibaba.fastjson.JSONObject;
 import com.pes.entity.Article;
 import com.pes.entity.ArticlePojo;
 import com.pes.entity.BaseUser;
 import com.pes.entity.Message;
+import com.pes.entity.User;
+import com.pes.entity.UserMessage;
 import com.pes.entity.UserPojo;
+import com.pes.interceptor.Authority;
 import com.pes.service.ArticleService;
 import com.pes.service.MessageService;
+import com.pes.service.UserService;
 import com.pes.util.AjaxUtil;
 
 @ParentPackage("myBasicPackage")
@@ -36,11 +42,12 @@ public class ArticleAction extends BaseAction{
 	private String jsonString;
 	private List<ArticlePojo> articles = null;
 	@Autowired
+	private UserService userService;
+	@Autowired
 	private MessageService messageService;
 	private int unReadBroadCastMessageCount = 0;
 	private int offLineMessageCount = 0;
-	private ArrayList<Message> shortOffLineMessages = new ArrayList<Message>();
-	private ArrayList<UserPojo> recentUsers = new ArrayList<UserPojo>();
+	private ArrayList<UserMessage> offLineUserMessages = new ArrayList<UserMessage>();
 	
 	public int getUnReadBroadCastMessageCount() {
 		return unReadBroadCastMessageCount;
@@ -50,8 +57,8 @@ public class ArticleAction extends BaseAction{
 		return offLineMessageCount;
 	}
 
-	public ArrayList<Message> getShortOffLineMessages() {
-		return shortOffLineMessages;
+	public ArrayList<UserMessage> getOffLineUserMessages() {
+		return offLineUserMessages;
 	}
 
 	public int getId() {
@@ -127,10 +134,34 @@ public class ArticleAction extends BaseAction{
 		int ID = user.getId();
 		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
 		offLineMessageCount = messageService.getOffLineMessageCount(ID);
+		offLineUserMessages.clear();
 		if(offLineMessageCount > 0){
 			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
+			int i = 0;
 			for (int sendId : senders) {
-				shortOffLineMessages.add(messageService.findById(sendId, ID));
+				if(i<5){
+					User pojo = userService.findById(sendId);
+					List<Message> messages = messageService.getOffLineMessages(sendId, ID);
+					//System.out.println("count:"+messages.size());
+					for (Message message : messages) {
+						if(i<5){
+							UserMessage userMessage = new UserMessage();
+							userMessage.setUserId(sendId);
+							userMessage.setUsername(pojo.getUsername());
+							userMessage.setIcon(pojo.getIcon());
+							userMessage.setContent(message.getContent());
+							userMessage.setDateTime(message.getDateTime());
+							userMessage.setFlag(message.getFlag());
+							userMessage.setMessageId(message.getId());
+							offLineUserMessages.add(userMessage);
+							i++;
+						}else{
+							break;
+						}
+					}
+				}else{
+					break;
+				}
 			}
 		}
 		
@@ -144,6 +175,7 @@ public class ArticleAction extends BaseAction{
 	}
 	
 	@Action(value = "editArticle")
+	@Authority(privilege=3)
 	public String editArticle()
 	{
 		//System.out.println(jsonString);
@@ -177,6 +209,7 @@ public class ArticleAction extends BaseAction{
 	}
 	
 	@Action(value="deleteArticle")
+	@Authority(privilege=2)
 	public String deleteArticle(){
 		if(jsonString != null){
 			JSONObject json = JSONObject.parseObject(jsonString);
@@ -200,10 +233,34 @@ public class ArticleAction extends BaseAction{
 		int ID = user.getId();
 		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
 		offLineMessageCount = messageService.getOffLineMessageCount(ID);
+		offLineUserMessages.clear();
 		if(offLineMessageCount > 0){
 			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
+			int i = 0;
 			for (int sendId : senders) {
-				shortOffLineMessages.add(messageService.findById(sendId, ID));
+				if(i<5){
+					User pojo = userService.findById(sendId);
+					List<Message> messages = messageService.getOffLineMessages(sendId, ID);
+					//System.out.println("count:"+messages.size());
+					for (Message message : messages) {
+						if(i<5){
+							UserMessage userMessage = new UserMessage();
+							userMessage.setUserId(sendId);
+							userMessage.setUsername(pojo.getUsername());
+							userMessage.setIcon(pojo.getIcon());
+							userMessage.setContent(message.getContent());
+							userMessage.setDateTime(message.getDateTime());
+							userMessage.setFlag(message.getFlag());
+							userMessage.setMessageId(message.getId());
+							offLineUserMessages.add(userMessage);
+							i++;
+						}else{
+							break;
+						}
+					}
+				}else{
+					break;
+				}
 			}
 		}
 		return "articleinfo";
@@ -212,15 +269,40 @@ public class ArticleAction extends BaseAction{
 	@Action(value="article", results={
 			@Result(name="success", location="/WEB-INF/user/push.jsp")
 			})
+	@Authority(privilege=3)
 	public String push(){
 		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
 		int ID = user.getId();
 		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
 		offLineMessageCount = messageService.getOffLineMessageCount(ID);
+		offLineUserMessages.clear();
 		if(offLineMessageCount > 0){
 			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
+			int i = 0;
 			for (int sendId : senders) {
-				shortOffLineMessages.add(messageService.findById(sendId, ID));
+				if(i<5){
+					User pojo = userService.findById(sendId);
+					List<Message> messages = messageService.getOffLineMessages(sendId, ID);
+					//System.out.println("count:"+messages.size());
+					for (Message message : messages) {
+						if(i<5){
+							UserMessage userMessage = new UserMessage();
+							userMessage.setUserId(sendId);
+							userMessage.setUsername(pojo.getUsername());
+							userMessage.setIcon(pojo.getIcon());
+							userMessage.setContent(message.getContent());
+							userMessage.setDateTime(message.getDateTime());
+							userMessage.setFlag(message.getFlag());
+							userMessage.setMessageId(message.getId());
+							offLineUserMessages.add(userMessage);
+							i++;
+						}else{
+							break;
+						}
+					}
+				}else{
+					break;
+				}
 			}
 		}
 		return "success";

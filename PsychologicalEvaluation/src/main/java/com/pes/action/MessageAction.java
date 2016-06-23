@@ -3,13 +3,16 @@ package com.pes.action;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.alibaba.fastjson.JSONObject;
 import com.pes.entity.Message;
 import com.pes.entity.User;
+import com.pes.interceptor.Authority;
 import com.pes.service.MessageService;
 import com.pes.service.UserService;
 import com.pes.util.AjaxUtil;
@@ -38,6 +41,7 @@ public class MessageAction extends BaseAction {
 	}
 	
 	@Action(value="messageCount")
+	@Authority(privilege=5)
 	public String messageCount(){
 		user = (User) this.httpSession.getAttribute("loginUser");
 		int id = user.getId();
@@ -53,6 +57,7 @@ public class MessageAction extends BaseAction {
 
 	@Override
 	@Action(value="messages")
+	@Authority(privilege=5)
 	public String execute() {
 		// JSONObject json = JSONObject.parseObject(jsonString);
 		user = (User) this.httpSession.getAttribute("loginUser");
@@ -81,6 +86,7 @@ public class MessageAction extends BaseAction {
 	}
 	
 	@Action(value="updateMessage")
+	@Authority(privilege=2)
 	public String update(){
 		if(jsonString != null){
 			System.out.println("updateMessage: " + jsonString);

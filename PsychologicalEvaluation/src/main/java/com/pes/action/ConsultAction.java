@@ -2,15 +2,18 @@ package com.pes.action;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.alibaba.fastjson.JSONObject;
 import com.pes.entity.BaseUser;
 import com.pes.entity.Message;
 import com.pes.entity.User;
 import com.pes.entity.UserMessage;
+import com.pes.interceptor.Authority;
 import com.pes.service.MessageService;
 import com.pes.service.UserService;
 
@@ -32,14 +35,15 @@ public class ConsultAction extends BaseAction{
 	private int rescentUserCount = 0;
 	private ArrayList<Message> broadCastMessages = new ArrayList<Message>();
 	private ArrayList<UserMessage> offLineUserMessages = new ArrayList<UserMessage>();
+	private ArrayList<Message> unReadUserMessages = new ArrayList<Message>();
 	private ArrayList<UserMessage> recentUserMessages = new ArrayList<UserMessage>();
-	//private ArrayList<Message> shortOffLineMessages = new ArrayList<Message>();
-	//private ArrayList<UserPojo> recentUsers = new ArrayList<UserPojo>();
-	//private ArrayList<Message> recentUserMessages = new ArrayList<Message>();
 	private String jsonString;
 	
 	public ArrayList<UserMessage> getOffLineUserMessages() {
 		return offLineUserMessages;
+	}
+	public ArrayList<Message> getUnReadUserMessages() {
+		return unReadUserMessages;
 	}
 	public ArrayList<UserMessage> getRecentUserMessages() {
 		return recentUserMessages;
@@ -100,26 +104,45 @@ public class ConsultAction extends BaseAction{
 			@Result(name="normal", location="/WEB-INF/chat/mchat.jsp"),
 			@Result(name="admin", location="/WEB-INF/chat/consult.jsp")
 	})
+	@Authority(privilege=5)
 	public String Chat(){
+		System.out.println("in chat action");
 		target = userService.findById(id);
 		user = (BaseUser)httpSession.getAttribute("loginUser");
 		int ID = user.getId();
 		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
+		unReadUserMessages = (ArrayList<Message>) messageService.getOffLineMessages(id, ID);
+		messageService.updateOfflineMessageState(id, ID);
 		offLineMessageCount = messageService.getOffLineMessageCount(ID);
+		offLineUserMessages.clear();
 		if(offLineMessageCount > 0){
 			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
+			//System.out.println(senders);
+			int i = 0;
 			for (int sendId : senders) {
-				UserMessage userMessage = new UserMessage();
-				User pojo = userService.findById(sendId);
-				userMessage.setUserId(sendId);
-				userMessage.setUsername(pojo.getUsername());
-				userMessage.setIcon(pojo.getIcon());
-				Message message =messageService.findById(sendId, ID);
-				userMessage.setContent(message.getContent());
-				userMessage.setDateTime(message.getDateTime());
-				userMessage.setFlag(message.getFlag());
-				userMessage.setMessageId(message.getId());
-				offLineUserMessages.add(userMessage);
+				if(i<5){
+					User pojo = userService.findById(sendId);
+					List<Message> messages = messageService.getOffLineMessages(sendId, ID);
+					//System.out.println("count:"+messages.size());
+					for (Message message : messages) {
+						if(i<5){
+							UserMessage userMessage = new UserMessage();
+							userMessage.setUserId(sendId);
+							userMessage.setUsername(pojo.getUsername());
+							userMessage.setIcon(pojo.getIcon());
+							userMessage.setContent(message.getContent());
+							userMessage.setDateTime(message.getDateTime());
+							userMessage.setFlag(message.getFlag());
+							userMessage.setMessageId(message.getId());
+							offLineUserMessages.add(userMessage);
+							i++;
+						}else{
+							break;
+						}
+					}
+				}else{
+					break;
+				}
 			}
 		}
 		System.out.println("privilege:"+user.getPrivilege());
@@ -135,14 +158,17 @@ public class ConsultAction extends BaseAction{
 	@Action(value="recent", results={
 			@Result(name="recent", location="/WEB-INF/chat/chatList.jsp")
 	})
+	@Authority(privilege=3)
 	public String getRecentUser(){
+		System.out.println("in resent action");
 		if(user == null){
 			user = (BaseUser)httpSession.getAttribute("loginUser");
 		}
 		int ID= user.getId();
-		rescentUserCount = messageService.getRescentUsersCount(user.getId());
+		rescentUserCount = messageService.getRescentUsersCount(ID);
 		ArrayList< Integer> list = (ArrayList<Integer>) messageService.getRescentUsersByPage(pageNo, pageSize, user.getId());
-		System.out.println(list);
+		//System.out.println(list);
+		recentUserMessages.clear();
 		for (Integer sendId : list) {
 			UserMessage userMessage = new UserMessage();
 			User pojo = userService.findById(sendId);
@@ -157,11 +183,44 @@ public class ConsultAction extends BaseAction{
 			recentUserMessages.add(userMessage);
 		}
 		pageNo = 0;
+		
+		offLineMessageCount = messageService.getOffLineMessageCount(ID);
+		offLineUserMessages.clear();
+		if(offLineMessageCount > 0){
+			List<Integer> senders = messageService.getOffLineMessagesSenders(ID);
+			int i = 0;
+			for (int sendId : senders) {
+				if(i<5){
+					User pojo = userService.findById(sendId);
+					List<Message> messages = messageService.getOffLineMessages(sendId, ID);
+					for (Message message : messages) {
+						if(i<5){
+							UserMessage userMessage = new UserMessage();
+							userMessage.setUserId(sendId);
+							userMessage.setUsername(pojo.getUsername());
+							userMessage.setIcon(pojo.getIcon());
+							userMessage.setContent(message.getContent());
+							userMessage.setDateTime(message.getDateTime());
+							userMessage.setFlag(message.getFlag());
+							userMessage.setMessageId(message.getId());
+							offLineUserMessages.add(userMessage);
+							i++;
+						}else{
+							break;
+						}
+					}
+				}else{
+					break;
+				}
+			}
+		}
+		
 		return "recent";
 		
 	}
 	
 	@Action(value="getBroadCastMessage")
+	@Authority(privilege=5)
 	public String getBroadCastMessage(){
 		JSONObject json = JSONObject.parseObject(jsonString);
 		int count = 0;
@@ -172,6 +231,7 @@ public class ConsultAction extends BaseAction{
 	}
 	
 	@Action(value="getOffLineMessageSenders")
+	@Authority(privilege=5)
 	public String getOffLineMessageSenders(){
 		List<Integer> senders = messageService.getOffLineMessagesSenders(id);
 		ArrayList<BaseUser> users = new ArrayList<BaseUser>();
@@ -184,6 +244,7 @@ public class ConsultAction extends BaseAction{
 	}
 	
 	@Action(value="getOffLineMessage")
+	@Authority(privilege=5)
 	public String getOffLineMessages(){
 		int id = ((BaseUser)httpSession.getAttribute("loginUser")).getId();
 		ArrayList<Message> offLineMessages = (ArrayList<Message>)messageService.getOffLineMessages(fromId, id);

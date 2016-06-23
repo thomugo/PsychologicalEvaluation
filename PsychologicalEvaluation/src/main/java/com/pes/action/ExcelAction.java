@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
 import org.apache.poi.hssf.usermodel.HSSFFont;
@@ -22,12 +23,14 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.pes.entity.Answer;
 import com.pes.entity.BaseUser;
 import com.pes.entity.ChoiceQuestion;
 import com.pes.entity.Option;
 import com.pes.entity.Questionaire;
 import com.pes.entity.User;
+import com.pes.interceptor.Authority;
 import com.pes.service.AnswerService;
 import com.pes.service.ArticleService;
 import com.pes.service.RulerService;
@@ -67,6 +70,7 @@ public class ExcelAction extends BaseAction{
 	}
 
 	@Override
+	@Authority(privilege=3)
 	public String execute() throws Exception {
 		user = (BaseUser)httpSession.getAttribute("loginUser");
 		System.out.println(user);
@@ -211,6 +215,7 @@ public class ExcelAction extends BaseAction{
 	        "inputName", "excelFile", 
 	        "contentDisposition","attachment;filename=\"result.xls\"",
 	        "bufferSize","4096" })} )
+	@Authority(privilege=3)
 	public String getResult(){
 		user = (User) httpSession.getAttribute("loginUser");
 		Answer answer = answerService.get(answerId);

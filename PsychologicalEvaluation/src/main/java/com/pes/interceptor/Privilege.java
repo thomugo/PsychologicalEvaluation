@@ -41,7 +41,10 @@ public class Privilege extends AbstractInterceptor{
             HttpServletRequest req = ServletActionContext.getRequest();
             // 获取此请求的地址，请求地址包含application name，进行subString操作，去除application name
             //System.out.println(req.getRequestURI());
-            String path = req.getRequestURI().substring(25);
+            int length = req.getContextPath().length();
+            String path = req.getRequestURI().substring(length + 1);
+            //System.out.println(req.getRequestURI());
+            //System.out.println(path);
             // 获得请求中的参数
             String queryString = req.getQueryString();
             // 预防空指针
