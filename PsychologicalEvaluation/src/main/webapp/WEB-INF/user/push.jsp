@@ -15,23 +15,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-		<!-- basic styles -->
-
-		<link href="<%=path%>/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
-
-
-		<link rel="stylesheet" href="<%=path%>/assets/css/jquery-ui-1.10.3.full.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/datepicker.css" />
-		<link rel="stylesheet" href="<%=path%>/assets/css/ui.jqgrid.css" />
-
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
-
-
-		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
+		<link rel="stylesheet" href="<%=path%>/style/website_9efedb4906.css" />
 
 	</head>
 
@@ -393,120 +383,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div><!-- /.main-container -->
 
 		<!-- basic scripts -->
-
+		<script src="<%=path%>/js/jquery.min.js"></script>
 		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
-		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
-
-		<!-- page specific plugin scripts -->
-
-  		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/push.js"></script>
-		<!-- ace scripts -->
 
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
 		<script src="<%=path%>/assets/js/ace.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/push.js"></script>
 
-		<!-- inline scripts related to this page -->
-
-		<script type="text/javascript">
-			jQuery(function($){
-	
-	function showErrorAlert (reason, detail) {
-		var msg='';
-		if (reason==='unsupported-file-type') { msg = "Unsupported format " +detail; }
-		else {
-			console.log("error uploading file", reason, detail);
-		}
-		$('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>'+ 
-		 '<strong>File upload error</strong> '+msg+' </div>').prependTo('#alerts');
-	}
-
-	
-	$('#editor2').css({'height':'200px'}).ace_wysiwyg({
-		toolbar_place: function(toolbar) {
-			return $(this).closest('.widget-box').find('.widget-header').prepend(toolbar).children(0).addClass('inline');
-		},
-		toolbar:
-		[
-			'加粗',
-			{name:'italic' , title:'斜体'},
-			'删除线',
-			null,
-			'insertunorderedlist',
-			'insertorderedlist',
-			null,
-			'justifyleft',
-			'justifycenter',
-			'justifyright'
-		],
-		speech_button:false
-	});
-
-
-	$('[data-toggle="buttons"] .btn').on('click', function(e){
-		var target = $(this).find('input[type=radio]');
-		var which = parseInt(target.val());
-		var toolbar = $('#editor1').prev().get(0);
-		if(which == 1 || which == 2 || which == 3) {
-			toolbar.className = toolbar.className.replace(/wysiwyg\-style(1|2)/g , '');
-			if(which == 1) $(toolbar).addClass('wysiwyg-style1');
-			else if(which == 2) $(toolbar).addClass('wysiwyg-style2');
-		}
-	});
-
-
-	
-
-	//Add Image Resize Functionality to Chrome and Safari
-	//webkit browsers don't have image resize functionality when content is editable
-	//so let's add something using jQuery UI resizable
-	//another option would be opening a dialog for user to enter dimensions.
-	if ( typeof jQuery.ui !== 'undefined' && /applewebkit/.test(navigator.userAgent.toLowerCase()) ) {
-		
-		var lastResizableImg = null;
-		function destroyResizable() {
-			if(lastResizableImg == null) return;
-			lastResizableImg.resizable( "destroy" );
-			lastResizableImg.removeData('resizable');
-			lastResizableImg = null;
-		}
-
-		var enableImageResize = function() {
-			$('.wysiwyg-editor')
-			.on('mousedown', function(e) {
-				var target = $(e.target);
-				if( e.target instanceof HTMLImageElement ) {
-					if( !target.data('resizable') ) {
-						target.resizable({
-							aspectRatio: e.target.width / e.target.height,
-						});
-						target.data('resizable', true);
-						
-						if( lastResizableImg != null ) {//disable previous resizable image
-							lastResizableImg.resizable( "destroy" );
-							lastResizableImg.removeData('resizable');
-						}
-						lastResizableImg = target;
-					}
-				}
-			})
-			.on('click', function(e) {
-				if( lastResizableImg != null && !(e.target instanceof HTMLImageElement) ) {
-					destroyResizable();
-				}
-			})
-			.on('keydown', function() {
-				destroyResizable();
-			});
-	    }
-		
-		enableImageResize();
-
-	}
-
-
-});
 		<script>
 			var basepath = $("#basePath").val();
 			var k=1;

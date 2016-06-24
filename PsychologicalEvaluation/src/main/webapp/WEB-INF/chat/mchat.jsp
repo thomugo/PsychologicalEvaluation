@@ -159,13 +159,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
 		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
 
-		<!-- page specific plugin scripts -->
-
-		<!--[if lte IE 8]>
-		  <script src="<%=path%>/assets/js/excanvas.min.js"></script>
-		<![endif]-->
-
-
 		<script src="<%=path%>/assets/js/date-time/bootstrap-datepicker.min.js"></script>
 		<script src="<%=path%>/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
 		<script src="<%=path%>/assets/js/jqGrid/i18n/grid.locale-en.js"></script>

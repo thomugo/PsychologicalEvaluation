@@ -16,33 +16,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!-- basic styles -->
 		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
-
-		<!--[if IE 7]>
-		  <link rel="stylesheet" href="<%=path%>/assets/css/font-awesome-ie7.min.css" />
-		<![endif]-->
-
-		<!-- page specific plugin styles -->
-
-		<!-- fonts -->
-
-		<link rel="stylesheet" href="<%=path%>/style/family.css" />
-
-		<!-- ace styles -->
-
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
 
-		<!-- inline styles related to this page -->
-		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
-
 	</head>
 
 	<body>
-	<s:debug></s:debug>
 		<input type="hidden" id="basePath" value="<%=basePath%>">
   		<input type="hidden" id="userId"  value="${sessionScope.loginUser.id}"/> 
   		<input type="hidden" id="username"  value="${sessionScope.loginUser.username}"/> 
@@ -368,37 +350,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 											<div class="widget-body">
 												<div class="widget-main no-padding">
-													<div class="dialogs">
-														
-
-														<div class="itemdiv dialogdiv">
-															<div class="user">
-																<img alt="谷雨's Avatar" src="<%=path%>/assets/avatars/user.jpg" />
-															</div>
-
-															<div class="body">
-																<div class="time">
-																	<i class="icon-time"></i>
-																	<span class="orange">2分钟以前</span>
-																</div>
-
-																<div class="name">
-																	<a href="#">谷雨</a>
-																	<span class="label label-info arrowed arrowed-in-right">管理员</span>
-																</div>
-																<div class="text">欢迎大家使用我们做的后台管理系统.</div>
-
-																<div class="tools">
-																	<a href="#" class="btn btn-minier btn-info">
-																		<i class="icon-only icon-share-alt"></i>
-																	</a>
-																</div>
-															</div>
-														</div>														
+													<div class="dialogs" id="dialog">
+																	
 														
 													</div><!-- dialogs -->
 
-													<div ="send">
+													<div id="send">
 														<div class="form-actions">
 															<div class="input-group">
 																<input placeholder="在这里输入信息 ..." type="text" class="form-control" name="message" id="message"/>
@@ -431,40 +388,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</a>
 		</div><!-- /.main-container -->
 
-		<!--[if !IE] -->
-		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
-
+					
+		<script src="<%=path%>/js/jquery.min.js"></script>
 		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
-		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
-
-		<!--[if lte IE 8]-->
-		  <script src="<%=path%>/assets/js/excanvas.min.js"></script>
-		<!--[endif]-->
-
-		<script src="<%=path%>/assets/js/date-time/bootstrap-datepicker.min.js"></script>
-		<script src="<%=path%>/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
-		<script src="<%=path%>/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
-		<!-- ace scripts -->
 
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
 		<script src="<%=path%>/assets/js/ace.min.js"></script>
-				
-		<script type="text/javascript" src="<%=path%>/assets/js/ace-extra.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
+		<script src="<%=path%>/js/json2.js"></script>
 
-		<script type="text/javascript" src="<%=path%>/js/consult.js"></script> 
+		<script src="<%=path%>/js/consult.js"></script> 
 		<script>
 			var basepath = $("#basePath").val();
 			var k=1;
 			var total=parseInt(${shortOffLineMessages.size()});
 			
 				if(total<4){
-					<c:forEach var="sender" items="shortOffLineMessages">
+					<c:forEach var="sender" items="${offLineUserMessages}">
+						var name="${sender.username}";
+						var icon="${sender.icon}";
+						var time="${sender.dateTime}";
+						var content="${sender.content}";
+						var clock=time.substr(11,2);
+						var min=time.substr(14,2);
 						if(k<total){
 							$("#recent").append("<li><a><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
 											+"<span class='msg-body'>"
 											+"<span class='msg-title'>"+"<span class='blue'>"+name+":</span>"
-											+conent
+											+content
 											+"</span>"
 											+"<span class='msg-time'>"
 											+"<i class='icon-time'></i>"
@@ -474,18 +424,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						}
 					</c:forEach>
 				}else{
-					<c:forEach var="sender" items="shortOffLineMessages">
+					<c:forEach var="sender" items="${offLineUserMessages}">
 						var name="${sender.username}";
 						var icon="${sender.icon}";
 						var time="${sender.dateTime}";
 						var content="${sender.content}";
-						var colock=time.substr(11,2);
+						var clock=time.substr(11,2);
 						var min=time.substr(14,2);
 						if(k<4){
 							$("#recent").append("<li><a><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
 											+"<span class='msg-body'>"
 											+"<span class='msg-title'>"+"<span class='blue'>"+name+":</span>"
-											+conent
+											+content
 											+"</span>"
 											+"<span class='msg-time'>"
 											+"<i class='icon-time'></i>"
@@ -499,8 +449,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								+"<a href='"+basepath+"recent.action'>"
 								+"查看所有消息"
 								+"<i class='icon-arrow-right'></i>"
-								+"</a></li>");
-		
+								+"</a></li>");								
+			<c:forEach var="mes" items="${unReadUserMessages}">
+				$("#dialog").append("<div class='itemdiv dialogdiv'>"
+									+"<div class='user'>"
+									+"<img  src='"+basepath+"assets/avatars/"+ "${target.icon}" + " '/>"
+									+"</div>"
+									+"<div class='body'>"
+									+"<div class='time'>"
+									+"<i class='icon-time'></i>"
+									+"<span class='orange'>" + "${mes.dateTime}" + "</span>"
+									+"</div>"
+									+"<div class='name'>"
+									+"<span class='label label-info arrowed arrowed-in-right'>"+"${target.username}" +"</span>"
+									+"</div>"
+									+"<div class='text'>"+ "${mes.content}" +"</div>"
+									+"<div class='tools'>"
+									+"<a href='#' class='btn btn-minier btn-info'>"
+									+"<i class='icon-only icon-share-alt'></i>"
+									+"</a>"
+									+"</div>"
+									+"</div>"
+									+"</div>");
+			</c:forEach>
 		</script>
 	</body>
 </html>
