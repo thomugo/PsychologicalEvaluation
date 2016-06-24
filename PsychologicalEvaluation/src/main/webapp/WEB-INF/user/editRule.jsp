@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
+<head>
 		<meta charset="utf-8" />
 		<title>管理员</title>
 		<meta name="keywords" content="" />
@@ -19,21 +19,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
 
-		<link rel="stylesheet" href="<%=path%>/assets/css/select2.css" />
-
-		<!-- fonts -->
-
-		<link rel="stylesheet" href="<%=path%>/style/family.css" />
-
-		<!-- ace styles -->
-
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
 
-		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
-
-	<style type="text/css">
+<style type="text/css">
 	.vector{
 		margin-left:23.0%;
 		margin-top:15px;
@@ -71,8 +61,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	.addV{
 		margin-left:10px;
 	}
-	</style>
-	</head>
+</style>
+</head>
 
 	<body>
 	<input type="hidden" id="basePath" value="<%=basePath%>">
@@ -436,18 +426,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		</div><!-- /.main-container -->
 
-		<!-- basic scripts -->
-
-
+		<script src="<%=path%>/js/jquery.min.js"></script>
 		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
-
-
-		<!-- page specific plugin scripts -->
-  		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
 
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
 		<script src="<%=path%>/assets/js/ace.min.js"></script>
+		<script src="<%=path%>/js/editRule.js"></script>
 		<script>
 				var i=1;
  				var questionaireid=${Questionaire.id};
@@ -468,115 +452,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</script>
 		
 		<script>
-			var basePath = $("#basePath").val();
-var save = true;
-$(document).ready(function() {
-				//添加选择题
-				$("#addresult").click(function() {
-					$("#0").append("<label class='col-xs-12 col-sm-3 col-md-3 control-label no-padding-right' ></label>"
-										+"<div class='mystyle'>"
-										+"<span class=''>"
-										+"<textarea rows='4' cols='55' class='description'></textarea>"
-										+" &nbsp"
-										+"<input type='text' style='width:43px;font-size:14px;' class='startScore' placeholder='分数'/> —— <input type='text' style="
-										+"'width:43px;font-size:14px;' class='endScore' placeholder='区间'/>"
-										+"</span>"
-										+"</div>");
-					});
-				$(".addV").each(function(i){
-					this.onclick=function(){
-						$(this).parent().append("<span class='vec vecto'>"
-											+"<textarea rows='4' cols='55' class='description'></textarea>"
-											+" "
-											+"<input type='text' style='width:43px;font-size:14px;' class='startScore' placeholder='分数'/>"
-											+" —— <input type='text' style='width:43px;font-size:14px;' class='endScore' placeholder='区间'/>"
-											+"</span>");
-					};
-				});
-			
-			
-				$("#save0").click(function(){
-
-						//选择题数目
-/* alert(1); */
-						var vectorNum=$(".vector").length;
-
-//						alert("共有 "+(vectorNum-1)+"维度的评价");
-
-						var questionaire = {};
-						var rulers = new Array();
-						//遍历选择题
-						for(var i=0; i<vectorNum; i++){
-							var map2={};
-						 	var id=$(".vector").eq(i).attr("id");
-						 	
-						 	var pingjias=$(".vector").eq(i).find(".description").map(function(){
-								
-						 			var pingjia = $.trim($(this).val());
-						 			if(pingjia.length == 0){	//标记置空
-						 				save = false;
-						 				alert("有未填写的评价！");
-						 			}
-						 		return pingjia;
-						 	}).get().join(';');
-						 	
-						 	var starts=$(".vector").eq(i).find(".startScore").map(function(){
-					 			var start = $.trim($(this).val());
-
-					 			if(start.length == 0){	//标记置空
-					 				save = false;
-					 				alert("有未填写的分数！");
-					 			}
-					 			return start;
-					 		}).get().join(',');	
-						 	
-						 	var ends=$(".vector").eq(i).find(".endScore").map(function(){
-					 			var end = $.trim($(this).val());
-
-					 			if(end.length == 0){	//标记置空
-					 				save = false;
-					 				alert("有未填写的分数！");
-					 			}
-					 			return end;
-					 		}).get().join(',');						 	
-						 	
-						 	map2["ruler"]=pingjias;
-						 	map2["startScore"]=starts;
-						 	map2["endScore"]=ends;
-						 	map2["vector"]=id;
-						 	
-						 	rulers[i]=map2;
-						 };
-						 
-						//封装试卷
-						questionaire["rulers"] = rulers;
-						questionaire["questionaireId"]=questionaireid;
-						
-											
-					if(save){
-						//用ajax请求服务器保存数据
-						var jsonString = JSON.stringify(questionaire);
-						alert(jsonString);
-						$.post(basePath+"saveRulers.action", {"jsonString" : jsonString},function(result){
-							$("body").html(result)}
-						);
-					}
-				});								
-});		
-		
-		</script>
-		<script>
 			var basepath = $("#basePath").val();
 			var k=1;
 			var total=parseInt(${shortOffLineMessages.size()});
 			
 				if(total<4){
-					<c:forEach var="sender" items="shortOffLineMessages">
+					<c:forEach var="sender" items="${offLineUserMessages}">
+						var name="${sender.username}";
+						var icon="${sender.icon}";
+						var time="${sender.dateTime}";
+						var content="${sender.content}";
+						var clock=time.substr(11,2);
+						var min=time.substr(14,2);
 						if(k<total){
 							$("#recent").append("<li><a><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
 											+"<span class='msg-body'>"
 											+"<span class='msg-title'>"+"<span class='blue'>"+name+":</span>"
-											+conent
+											+content
 											+"</span>"
 											+"<span class='msg-time'>"
 											+"<i class='icon-time'></i>"
@@ -586,18 +478,18 @@ $(document).ready(function() {
 						}
 					</c:forEach>
 				}else{
-					<c:forEach var="sender" items="shortOffLineMessages">
+					<c:forEach var="sender" items="${offLineUserMessages}">
 						var name="${sender.username}";
 						var icon="${sender.icon}";
 						var time="${sender.dateTime}";
 						var content="${sender.content}";
-						var colock=time.substr(11,2);
+						var clock=time.substr(11,2);
 						var min=time.substr(14,2);
 						if(k<4){
 							$("#recent").append("<li><a><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
 											+"<span class='msg-body'>"
 											+"<span class='msg-title'>"+"<span class='blue'>"+name+":</span>"
-											+conent
+											+content
 											+"</span>"
 											+"<span class='msg-time'>"
 											+"<i class='icon-time'></i>"
@@ -613,7 +505,7 @@ $(document).ready(function() {
 								+"<i class='icon-arrow-right'></i>"
 								+"</a></li>");
 		
-		</script>					
+		</script>			
 	</body>
 </html>
 

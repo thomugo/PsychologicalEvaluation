@@ -19,30 +19,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<!-- basic styles -->
-
 		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
-
-
-		<!-- page specific plugin styles -->
-
-		<link rel="stylesheet" href="<%=path%>/assets/css/jquery-ui-1.10.3.full.min.css" />
-		<link rel="stylesheet" href="<%=path%>/assets/css/datepicker.css" />
-		<link rel="stylesheet" href="<%=path%>/assets/css/ui.jqgrid.css" />
-
-		<!-- fonts -->
-
-		<link rel="stylesheet" href="<%=path%>/style/family.css" />
-
-		<!-- ace styles -->
-
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
-
-
-		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
 
 
 <style type="text/css">
@@ -405,20 +386,11 @@ margin-top:5px;
 			</a>
 		</div><!-- /.main-container -->
 
-		<!-- basic scripts -->
-		<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/assets/js/bootstrap.min.js"></script>
+		<script src="<%=path%>/js/jquery.min.js"></script>
+		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
 
-		<!-- page specific plugin scripts -->
-  		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>
-
-
-		<!-- ace scripts -->
-
-		<script type="text/javascript" src="<%=path%>/assets/js/ace-elements.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/assets/js/ace.min.js"></script>
-
-		<!-- inline scripts related to this page -->
+		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
+		<script src="<%=path%>/assets/js/ace.min.js"></script>
 
 		<script type="text/javascript">
 			jQuery(function($) {
@@ -464,12 +436,18 @@ margin-top:5px;
 			var total=parseInt(${shortOffLineMessages.size()});
 			
 				if(total<4){
-					<c:forEach var="sender" items="shortOffLineMessages">
+					<c:forEach var="sender" items="${offLineUserMessages}">
+						var name="${sender.username}";
+						var icon="${sender.icon}";
+						var time="${sender.dateTime}";
+						var content="${sender.content}";
+						var clock=time.substr(11,2);
+						var min=time.substr(14,2);
 						if(k<total){
 							$("#recent").append("<li><a><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
 											+"<span class='msg-body'>"
 											+"<span class='msg-title'>"+"<span class='blue'>"+name+":</span>"
-											+conent
+											+content
 											+"</span>"
 											+"<span class='msg-time'>"
 											+"<i class='icon-time'></i>"
@@ -479,18 +457,18 @@ margin-top:5px;
 						}
 					</c:forEach>
 				}else{
-					<c:forEach var="sender" items="shortOffLineMessages">
+					<c:forEach var="sender" items="${offLineUserMessages}">
 						var name="${sender.username}";
 						var icon="${sender.icon}";
 						var time="${sender.dateTime}";
 						var content="${sender.content}";
-						var colock=time.substr(11,2);
+						var clock=time.substr(11,2);
 						var min=time.substr(14,2);
 						if(k<4){
 							$("#recent").append("<li><a><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
 											+"<span class='msg-body'>"
 											+"<span class='msg-title'>"+"<span class='blue'>"+name+":</span>"
-											+conent
+											+content
 											+"</span>"
 											+"<span class='msg-time'>"
 											+"<i class='icon-time'></i>"

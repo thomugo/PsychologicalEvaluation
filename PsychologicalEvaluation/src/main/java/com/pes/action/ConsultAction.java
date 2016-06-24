@@ -110,6 +110,7 @@ public class ConsultAction extends BaseAction{
 		int ID = user.getId();
 		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
 		unReadUserMessages = (ArrayList<Message>) messageService.getOffLineMessages(id, ID);
+		System.out.println("unread user messages" + unReadUserMessages);
 		messageService.updateOfflineMessageState(id, ID);
 		offLineMessageCount = messageService.getOffLineMessageCount(ID);
 		offLineUserMessages.clear();
