@@ -23,6 +23,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta content="telephone=no" name="format-detection" />
     <link rel="stylesheet" href="<%=path%>/style/qz_home.css">    
     <link rel="stylesheet" href="<%=path%>/style/app-ad.re.css">
+    
+	<script src="<%=path %>/js/jquery.min.js"></script>    
+	<script src="<%=path %>/js/api.js"></script>
 </head>
 <body>
 		
@@ -116,10 +119,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div class="list_box" id="mtestList">
       		
 	  </div>
-        
-      <div class="load_more">
-            		加载更多
-      </div>
    </section>
 
     <footer class="footer">
@@ -135,12 +134,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 </div>
 
-	<script src="<%=path %>/js/jquery.min.js"></script>    
-	
-	<script>
-
-    </script>
-		<script src="<%=path %>/js/api.js"></script>
 	
 	<script type="text/javascript">
 		var basePath = $("#basePath").val();

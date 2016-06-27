@@ -16,22 +16,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-	<meta content="yes" name="apple-mobile-web-app-capable" />
-	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
 	<meta content="telephone=no" name="format-detection" />   
-	<link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css"> 	 
+ 
 	<link rel="stylesheet" href="<%=path%>/style/jquery.mobile.min.css">
     <link rel="stylesheet" href="<%=path%>/style/qz_home.css">    
     <link rel="stylesheet" href="<%=path%>/style/mobile1.css">    
-    <link rel="stylesheet" href="<%=path%>/style/app-ad.re.css">
     <link rel="stylesheet" href="<%=path%>/style/csshare.min.css">  
-
-	   
+	<link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css"> 		   
     <script src="<%=path%>/js/jquery.min.js"></script>
-
-    <script src="<%=path%>/js/jquery.mobile.min.js"></script>
-  
-    <script src="<%=path%>/js/iscroll.js" ></script>
+    <script src="<%=path%>/js/jquery.mobile.min.js"></script>	
+    <script src="<%=path%>/js/mobile.js" ></script> 
 </head>
 <body>
 		
@@ -147,8 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</c:forEach>   
 
 </script>
-	
-    <script src="<%=path%>/js/mobile.js" ></script>  
+
 
 </body>
 </html>

@@ -349,21 +349,6 @@ margin-top:5px;
 
 											<div id="faq-list-1" class="panel-group accordion-style1 accordion-style2">
 												<div class="panel panel-default" id='testList'>
-													<div class="panel-heading">
-														<a id='title' href="#content" data-toggle="collapse" class="accordion-toggle collapsed">
-														
-															<i class="icon-chevron-left pull-right" data-icon-hide="icon-chevron-down" data-icon-show="icon-chevron-left"></i>
-
-															<i class="icon-user bigger-130"></i>
-														&nbsp;&nbsp;问卷一	
-														</a>
-													</div>
-
-													<div class="panel-collapse collapse" id="content">
-														<div class="panel-body">
-															恩恩，恩恩。
-														</div>
-													</div>
 												</div>												
 
 											</div><!-- faq -->
@@ -404,7 +389,7 @@ margin-top:5px;
 		</script>
 		<script type="text/javascript">
 				var i=0;
-
+			var basepath = $("#basePath").val();
  			<c:forEach var="tests" items="${questionaires}">
 
 				var id=${tests.id};
@@ -420,7 +405,7 @@ margin-top:5px;
 									+"</div>"
 									+"<div class='panel-collapse collapse' id='content"+(i++)+"'>"
 									+"<div class='panel-body'>"
-									+"<a href='<%=path%>/test?id="
+									+"<a href='"+ basepath+"test.action?id="
 									+id
 									+"'>"
 									+description
@@ -439,20 +424,23 @@ margin-top:5px;
 					<c:forEach var="sender" items="${offLineUserMessages}">
 						var name="${sender.username}";
 						var icon="${sender.icon}";
+						var id="${sender.userId}";
 						var time="${sender.dateTime}";
 						var content="${sender.content}";
 						var clock=time.substr(11,2);
 						var min=time.substr(14,2);
-						if(k<total){
-							$("#recent").append("<li><a><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
+						if(k<=total){
+							$("#recent").append("<li><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
 											+"<span class='msg-body'>"
-											+"<span class='msg-title'>"+"<span class='blue'>"+name+":</span>"
+											+"<span class='msg-title'>"+"<span class='blue'><a href='"
+											+basepath+"chat.action?id="
+											+id+"'>"+name
+											+"</a></span>"
 											+content
-											+"</span>"
 											+"<span class='msg-time'>"
 											+"<i class='icon-time'></i>"
 											+"<span>"+clock+":"+min+"</span>"
-											+"</span></span></a></li>");
+											+"</span></span></li>");
 							k++;
 						}
 					</c:forEach>
@@ -460,20 +448,23 @@ margin-top:5px;
 					<c:forEach var="sender" items="${offLineUserMessages}">
 						var name="${sender.username}";
 						var icon="${sender.icon}";
+						var id="${sender.userId}";
 						var time="${sender.dateTime}";
 						var content="${sender.content}";
 						var clock=time.substr(11,2);
 						var min=time.substr(14,2);
 						if(k<4){
-							$("#recent").append("<li><a><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
+							$("#recent").append("<li><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
 											+"<span class='msg-body'>"
-											+"<span class='msg-title'>"+"<span class='blue'>"+name+":</span>"
+											+"<span class='msg-title'>"+"<span class='blue'><a href='"
+											+basepath+"chat.action?id="
+											+id+"'>"+name
+											+":</a></span>"
 											+content
-											+"</span>"
-											+"<span class='msg-time'>"
-											+"<i class='icon-time'></i>"
-											+"<span>"+clock+":"+min+"</span>"
-											+"</span></span></a></li>");
+										    +"<span class='msg-time'>"
+											+" &nbsp;<i class='icon-time'></i>"
+											+"<span>"+clock+":"+min+"</span></span> "
+											+"</span></span></li>");
 							k++;
 						}
 					</c:forEach>

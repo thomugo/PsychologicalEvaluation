@@ -20,11 +20,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
+<style type="text/css">
+
+</style>
 
 </head>
 
 <body>
-<s:debug></s:debug>
 		<input type="hidden" value="<%=basePath %>" id="basePath">
 		<div class="main-container" id="main-container">
 

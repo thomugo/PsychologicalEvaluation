@@ -21,10 +21,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>心理学从这里开始</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
-<link rel="stylesheet" href="http://lapp.xinli001.com/dist/mobile_421d115e12.css">
+<link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css">
 
-<script src="<%=path%>/js/mobile_f4b5a0a094.js" ></script><!--[if lt IE 9]>
-<script src="<%=path%>/js/html5.min.js" ></script><![endif]-->
 
     <script src="<%=path%>/js/jquery.min.js" ></script></head>
 

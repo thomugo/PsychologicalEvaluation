@@ -64,7 +64,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </style>
 </head>
 
-	<body>
+<body>
+	<s:debug></s:debug>	
 	<input type="hidden" id="basePath" value="<%=basePath%>">
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
@@ -433,22 +434,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/ace.min.js"></script>
 		<script src="<%=path%>/js/editRule.js"></script>
 		<script>
-				var i=1;
  				var questionaireid=${Questionaire.id};
-				/* alert(questionaireid); */ 
-			<c:forEach var="vector" items="${vectors}">
-				var vector=${vector};			
- 				  $('#vector').append("<div class='vector' id='"+(i++)+"'>"
-									+"<span class='vec'>"
-									+vector
-									+"<textarea rows='4' cols='55' class='description'></textarea>"
-									+" "
-									+"<input type='text' style='width:43px;font-size:14px;' class='startScore' placeholder='分数'/>"
-									+" —— <input type='text' style='width:43px;font-size:14px;' class='endScore' placeholder='区间'/>"
-									+"<button class='btn addoptio addV'>添加维度测评</button>"
-									+"</span>"
-									+"</div>");  	 					
-			</c:forEach>
+				<c:forEach var="item" items="${vectors}">
+					var num=parseInt("${item}");
+					if(num){
+					for(var i=1;i<=num;i++)			
+	 				  $('#vector').append("<div class='vector' id='"+i+"'>"
+										+"<span class='vec'>"
+										+i
+										+"<textarea rows='4' cols='55' class='description'></textarea>"
+										+" "
+										+"<input type='text' style='width:43px;font-size:14px;' class='startScore' placeholder='分数'/>"
+										+" —— <input type='text' style='width:43px;font-size:14px;' class='endScore' placeholder='区间'/>"
+										+"<button class='btn addoptio addV'>添加维度测评</button>"
+										+"</span>"
+										+"</div>");  	
+					} 					
+				</c:forEach>
 		</script>
 		
 		<script>
@@ -460,20 +462,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<c:forEach var="sender" items="${offLineUserMessages}">
 						var name="${sender.username}";
 						var icon="${sender.icon}";
+						var id="${sender.userId}";
 						var time="${sender.dateTime}";
 						var content="${sender.content}";
 						var clock=time.substr(11,2);
 						var min=time.substr(14,2);
-						if(k<total){
-							$("#recent").append("<li><a><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
+						if(k<=total){
+							$("#recent").append("<li><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
 											+"<span class='msg-body'>"
-											+"<span class='msg-title'>"+"<span class='blue'>"+name+":</span>"
+											+"<span class='msg-title'>"+"<span class='blue'><a href='"
+											+basepath+"chat.action?id="
+											+id+"'>"+name
+											+"</a></span>"
 											+content
-											+"</span>"
 											+"<span class='msg-time'>"
 											+"<i class='icon-time'></i>"
 											+"<span>"+clock+":"+min+"</span>"
-											+"</span></span></a></li>");
+											+"</span></span></li>");
 							k++;
 						}
 					</c:forEach>
@@ -481,20 +486,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<c:forEach var="sender" items="${offLineUserMessages}">
 						var name="${sender.username}";
 						var icon="${sender.icon}";
+						var id="${sender.userId}";
 						var time="${sender.dateTime}";
 						var content="${sender.content}";
 						var clock=time.substr(11,2);
 						var min=time.substr(14,2);
 						if(k<4){
-							$("#recent").append("<li><a><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
+							$("#recent").append("<li><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
 											+"<span class='msg-body'>"
-											+"<span class='msg-title'>"+"<span class='blue'>"+name+":</span>"
+											+"<span class='msg-title'>"+"<span class='blue'><a href='"
+											+basepath+"chat.action?id="
+											+id+"'>"+name
+											+":</a></span>"
 											+content
-											+"</span>"
-											+"<span class='msg-time'>"
-											+"<i class='icon-time'></i>"
-											+"<span>"+clock+":"+min+"</span>"
-											+"</span></span></a></li>");
+										    +"<span class='msg-time'>"
+											+" &nbsp;<i class='icon-time'></i>"
+											+"<span>"+clock+":"+min+"</span></span> "
+											+"</span></span></li>");
 							k++;
 						}
 					</c:forEach>
@@ -505,7 +513,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								+"<i class='icon-arrow-right'></i>"
 								+"</a></li>");
 		
-		</script>			
+		</script>		
 	</body>
 </html>
 

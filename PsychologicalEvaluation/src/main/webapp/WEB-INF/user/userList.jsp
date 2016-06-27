@@ -375,20 +375,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<c:forEach var="sender" items="${offLineUserMessages}">
 						var name="${sender.username}";
 						var icon="${sender.icon}";
+						var id="${sender.userId}";
 						var time="${sender.dateTime}";
 						var content="${sender.content}";
 						var clock=time.substr(11,2);
 						var min=time.substr(14,2);
-						if(k<total){
-							$("#recent").append("<li><a><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
+						if(k<=total){
+							$("#recent").append("<li><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
 											+"<span class='msg-body'>"
-											+"<span class='msg-title'>"+"<span class='blue'>"+name+":</span>"
+											+"<span class='msg-title'>"+"<span class='blue'><a href='"
+											+basepath+"chat.action?id="
+											+id+"'>"+name
+											+"</a></span>"
 											+content
-											+"</span>"
 											+"<span class='msg-time'>"
 											+"<i class='icon-time'></i>"
 											+"<span>"+clock+":"+min+"</span>"
-											+"</span></span></a></li>");
+											+"</span></span></li>");
 							k++;
 						}
 					</c:forEach>
@@ -396,20 +399,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<c:forEach var="sender" items="${offLineUserMessages}">
 						var name="${sender.username}";
 						var icon="${sender.icon}";
+						var id="${sender.userId}";
 						var time="${sender.dateTime}";
 						var content="${sender.content}";
 						var clock=time.substr(11,2);
 						var min=time.substr(14,2);
 						if(k<4){
-							$("#recent").append("<li><a><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
+							$("#recent").append("<li><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
 											+"<span class='msg-body'>"
-											+"<span class='msg-title'>"+"<span class='blue'>"+name+":</span>"
+											+"<span class='msg-title'>"+"<span class='blue'><a href='"
+											+basepath+"chat.action?id="
+											+id+"'>"+name
+											+":</a></span>"
 											+content
-											+"</span>"
-											+"<span class='msg-time'>"
-											+"<i class='icon-time'></i>"
-											+"<span>"+clock+":"+min+"</span>"
-											+"</span></span></a></li>");
+										    +"<span class='msg-time'>"
+											+" &nbsp;<i class='icon-time'></i>"
+											+"<span>"+clock+":"+min+"</span></span> "
+											+"</span></span></li>");
 							k++;
 						}
 					</c:forEach>

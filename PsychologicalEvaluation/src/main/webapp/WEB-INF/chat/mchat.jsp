@@ -92,36 +92,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<div class="widget-body">
 												<div class="widget-main no-padding">
 													<div class="dialogs">
-														
-
-														<div class="itemdiv dialogdiv">
-															<div class="user">
-																<img alt="谷雨's Avatar" src="<%=path%>/assets/avatars/user.jpg" />
-															</div>
-
-															<div class="body">
-																<div class="time">
-																	<i class="icon-time"></i>
-																	<span class="orange">2分钟以前</span>
-																</div>
-
-																<div class="name">
-																	<a href="#">谷雨</a>
-																	<span class="label label-info arrowed arrowed-in-right">管理员</span>
-																</div>
-																<div class="text">欢迎大家使用我们做的后台管理系统.</div>
-
-																<div class="tools">
-																	<a href="#" class="btn btn-minier btn-info">
-																		<i class="icon-only icon-share-alt"></i>
-																	</a>
-																</div>
-															</div>
-														</div>														
+																											
 														
 													</div><!-- dialogs -->
 
-													<div ="send">
+													<div class="send">
 														<div class="form-actions">
 															<div class="input-group">
 																<input placeholder="在这里输入信息 ..." type="text" class="form-control" name="message" id="message"/>

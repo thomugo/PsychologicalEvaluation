@@ -115,10 +115,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         <div class="foot" id="article-more" data-page="1">
   
-                <span class="load-more-icon" style="display: none;">
-                    <i class="load-ico"></i>正在加载中…
-                </span>
-<!--                <a href="javascript:void(0);" data-page="1">更多文章</a>-->
         </div>
         
         <div class="hd-foot">

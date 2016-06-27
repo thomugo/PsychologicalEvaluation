@@ -911,12 +911,9 @@ font-size: 125%;
   background-position: -217px -4.5px;
 }
 
-.header .left1 {
+.header {
   position: absolute;
   margin-left: 13px;
-}
-
-.header .left1 .ico-back1 {
   display: block;
   background: url('http://lapp.xinli001.com/images/website-mobile/img23.png') no-repeat 0 50%;
   width: 30.5px;

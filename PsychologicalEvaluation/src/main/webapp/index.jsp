@@ -10,11 +10,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- 1464246831 -->
-    <script>
-        var pageName = 'mobile/index';
-        var indexAuthUserUrl = "";
-    </script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" >
@@ -59,8 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <li class="slide">
                                 <a href="#"><img src="<%=path%>/image/11123128mksdho3v8bf4a1.jpg"/></a>
  
-                            </li>
-                            
+                            </li>                             
                             <li class="slide">
                                 <a href="#"><img src="<%=path%>/image/043034uj6pq30kpw15ddhs.jpg"/></a>
 
@@ -76,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                              <li class="slide">
                                 <a href="#"><img src="<%=path%>/image/100242giq2mxfwujjmedwm.jpg"/></a>
 
-                            </li>
+                            </li> 
                   </ul>
             </div>
 
@@ -99,14 +93,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            			<h2>做测试</h2>
 	        				</a>
 	    				</li>
-	    				
+    				
 	    				<li>
-	        				<span >
+	        				<a href="<%=path%>/detail.action?id=${session.loginUser.id }">
 	            				<div class="img">
 	                				<i class="icon icon-fm"></i>
 	            				</div>
-	            				<h2>听歌</h2>
-	        				</span>
+	            				<h2>我的数据</h2>
+	        				<a>
 	    				</li>
 	    				    
 						<li>

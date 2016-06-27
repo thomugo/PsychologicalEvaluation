@@ -165,9 +165,10 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	}
 	
 	@Action(value="detail", results={
-			@Result(name="userinfo", location="/WEB-INF/user/profile.jsp")
+			@Result(name="adminuserinfo", location="/WEB-INF/user/profile.jsp"),
+			@Result(name="normaluserinfo",location="/WEB-INF/user/myResult.jsp")		
 			})
-	@Authority(privilege=3)
+	@Authority(privilege=5)
 	public String detail() {
 		if(jsonString == null){
 			user = userService.findById(id);
@@ -220,7 +221,11 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 				}
 			}
 		}
-		return "userinfo";
+		if(user.getPrivilege() <= 3){
+			return "adminuserinfo";
+		}else{
+			return "normaluserinfo";
+		}
 	}
 	
 	@Action(value="userList", results={
