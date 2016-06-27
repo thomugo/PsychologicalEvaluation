@@ -78,6 +78,7 @@ $(document).ready(function() {
 
 				
 				var jsonString = JSON.stringify(answer);
+				alert(jsonString);
 				$.post("saveAnswer.action", {"jsonString" : jsonString}, function(result){
 					$("body").html(result)
 				})

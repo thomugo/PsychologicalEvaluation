@@ -164,7 +164,6 @@ public class SaveAnswerAction extends BaseAction{
 			@Result(name="success", location="/WEB-INF/user/result.jsp"),
 			@Result(name="index", location="/index.jsp")})
 	@Override
-	@Authority(privilege=5)
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("jsonString:" + jsonString);

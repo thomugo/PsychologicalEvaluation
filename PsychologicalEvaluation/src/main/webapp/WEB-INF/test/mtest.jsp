@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css"> 		   
     <script src="<%=path%>/js/jquery.min.js"></script>
     <script src="<%=path%>/js/jquery.mobile.min.js"></script>	
-    <script src="<%=path%>/js/mobile.js" ></script> 
+    
 </head>
 <body>
 		
@@ -141,7 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</c:forEach>   
 
 </script>
-
+<script src="<%=path%>/js/mobile.js" ></script> 
 
 </body>
 </html>

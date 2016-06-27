@@ -256,7 +256,8 @@ public class TestQuestionaireService extends BaseTestTemplate{
     
     @Test
     public void getQuestionaires(){
-    	List<Questionaire> questionaires = questionaireService.findQuestionairesByPage("TEST", null, 0, 3, true);
-    	System.out.println(questionaires);
+    	Questionaire questionaire = questionaireService.get(84);
+    	questionaireService.delete(questionaire);
+    	
     }
 }

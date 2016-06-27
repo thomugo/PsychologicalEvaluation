@@ -2,13 +2,11 @@ package com.pes.action;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -148,7 +146,7 @@ public class EditQuestionaire extends BaseAction {
 		System.out.println("edit questionaire success");
 		//AjaxUtil.ajaxJSONResponse("success");
 		vectors = (ArrayList<Integer>)choiceQuestionService.getVectors(questionaire.getId());
-		
+		System.out.println(vectors);
 		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
 		int ID = user.getId();
 		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();

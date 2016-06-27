@@ -2,12 +2,10 @@ package com.pes.action;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.alibaba.fastjson.JSONObject;
 import com.pes.entity.BaseUser;
 import com.pes.entity.Message;
@@ -223,6 +221,7 @@ public class ConsultAction extends BaseAction{
 	@Action(value="getBroadCastMessage")
 	@Authority(privilege=5)
 	public String getBroadCastMessage(){
+		System.out.println("in getBroadCastMessage");
 		JSONObject json = JSONObject.parseObject(jsonString);
 		int count = 0;
 		//count = json.getIntValue("count");
@@ -234,6 +233,7 @@ public class ConsultAction extends BaseAction{
 	@Action(value="getOffLineMessageSenders")
 	@Authority(privilege=5)
 	public String getOffLineMessageSenders(){
+		System.out.println("in getOffLineMessageSenders");
 		List<Integer> senders = messageService.getOffLineMessagesSenders(id);
 		ArrayList<BaseUser> users = new ArrayList<BaseUser>();
 		for (Integer sender : senders) {
@@ -247,6 +247,7 @@ public class ConsultAction extends BaseAction{
 	@Action(value="getOffLineMessage")
 	@Authority(privilege=5)
 	public String getOffLineMessages(){
+		System.out.println("in getOffLineMessage");
 		int id = ((BaseUser)httpSession.getAttribute("loginUser")).getId();
 		ArrayList<Message> offLineMessages = (ArrayList<Message>)messageService.getOffLineMessages(fromId, id);
 		//AjaxUtil.ajaxJSONResponse(offLineMessages);

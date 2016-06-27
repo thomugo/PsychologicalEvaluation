@@ -18,7 +18,7 @@ public class User extends BaseUser implements Serializable{
 	
 	public User() {
 		// TODO Auto-generated constructor stub
-		privilege = 2;
+		privilege = 5;
 		broadcast = 0;
 	}
 
