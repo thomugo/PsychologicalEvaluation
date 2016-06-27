@@ -148,7 +148,7 @@ public class EditQuestionaire extends BaseAction {
 		System.out.println("edit questionaire success");
 		//AjaxUtil.ajaxJSONResponse("success");
 		vectors = (ArrayList<Integer>)choiceQuestionService.getVectors(questionaire.getId());
-		
+		System.out.println(vectors);
 		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
 		int ID = user.getId();
 		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
