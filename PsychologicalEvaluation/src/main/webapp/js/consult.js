@@ -1,4 +1,5 @@
 //EL表达式在单独的文件中不起作用
+var basePath=$("#basePath").val();
 $(document).ready(
 				function() {
 					

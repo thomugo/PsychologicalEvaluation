@@ -13,18 +13,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
     <meta charset="utf-8" />
     <title>心理测试 </title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-	<meta content="telephone=no" name="format-detection" />   
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" >
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="">
+<meta name="format-detection" content="telephone=no">
  
 	<link rel="stylesheet" href="<%=path%>/style/jquery.mobile.min.css">
     <link rel="stylesheet" href="<%=path%>/style/qz_home.css">    
     <link rel="stylesheet" href="<%=path%>/style/mobile1.css">    
     <link rel="stylesheet" href="<%=path%>/style/csshare.min.css">  
 	<link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css"> 		   
-    <script src="<%=path%>/js/jquery.min.js"></script>
-    <script src="<%=path%>/js/jquery.mobile.min.js"></script>	
     
 </head>
 <body>
@@ -44,12 +45,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                		 		
                		 	</a>
                		 </s:if>
-  					 <s:else>						<!--用户已登录  -->
+						<s:elseif test="#session.loginUser.privilege==4">						<!--用户已登录  -->
   						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
-                        	<img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60">
+  						<img src="${loginUser.icon}" width="60" height="60">
                   	  	</a>
-       				  </s:else>       				                 	 	
-                </div>            
+       				  </s:elseif>  
+       				  <s:else>
+  						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
+                        	<img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60"> 
+                  	  	</a>       				  
+       				  </s:else>   					     				                 	 	
+                </div>           
             </div><!-- right -->
 	</div>
     <div data-role="content" >
@@ -84,7 +90,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     
 </div><!-- /page -->
-
+<script src="<%=path%>/js/jquery.min.js"></script>
+<script src="<%=path%>/js/jquery.mobile.min.js"></script>
+<script src="<%=path%>/js/mobile.js" ></script> 	
 <script type="text/javascript">
   			var i=1;
 			var id=${questionaire.id};
@@ -141,7 +149,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</c:forEach>   
 
 </script>
-<script src="<%=path%>/js/mobile.js" ></script> 
+
 
 </body>
 </html>

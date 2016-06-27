@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="description" content="">
 <link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css">
 
-<script src="<%=path%>/js/mobile_f4b5a0a094.js" ></script>
+
 </head>
 
 <body>
@@ -41,11 +41,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                		 		
                		 	</a>
                		 </s:if>
-  					 <s:else>						<!--用户已登录  -->
+						<s:elseif test="#session.loginUser.privilege==4">						<!--用户已登录  -->
   						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
-                        	<img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60">
+  						<img src="${loginUser.icon}" width="60" height="60">
                   	  	</a>
-       				  </s:else>       				                 	 	
+       				  </s:elseif>  
+       				  <s:else>
+  						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
+                        	<img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60"> 
+                  	  	</a>       				  
+       				  </s:else>   					     				                 	 	
                 </div>
             
             </div><!-- right -->
@@ -126,9 +131,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		</p>
 		</div>
 
-<span style="display: none">
+<span style="display: none"></span>
+<script src="<%=path%>/js/mobile_f4b5a0a094.js" ></script>
 
-</span>
 		<script type="text/javascript">
 			var basePath = $("#basePath").val();
 				var i=0;

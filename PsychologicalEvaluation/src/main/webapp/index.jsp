@@ -26,6 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </head>
 <body>
+	<input type="hidden" id="basePath" value="<%=basePath%>">
     <div class="layout">
         <div class="header ">
         	<h2>心理学，从这里开始</h2> 
@@ -37,11 +38,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                		 		
                		 	</a>
                		 </s:if>
-  					 <s:else>						<!--用户已登录  -->
+						<s:elseif test="#session.loginUser.privilege==4">						<!--用户已登录  -->
   						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
-                        	<img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60">
+  						<img src="${loginUser.icon}" width="60" height="60">
                   	  	</a>
-       				  </s:else>       				                 	 	
+       				  </s:elseif>  
+       				  <s:else>
+  						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
+                        	<img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60"> 
+                  	  	</a>       				  
+       				  </s:else>   					     				                 	 	
                 </div>
             
             </div><!-- right -->

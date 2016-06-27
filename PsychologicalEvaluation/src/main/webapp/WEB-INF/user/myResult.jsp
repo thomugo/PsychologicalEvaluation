@@ -46,7 +46,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="col-xs-12 col-sm-3 center">
 											<div>
 												<span class="profile-picture">
-													<img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="<%=path%>/assets/avatars/${user.icon}", height="100" width="90"/>
+													<s:if test="user.privilege==4">								
+													<img id="avatar" class="editable img-responsive" alt="微信头像" src="${user.icon}"  height="100" width="90"/>
+													</s:if>
+													<s:else>
+													<img id="avatar" class="editable img-responsive" alt="本地头像" src="<%=path%>/assets/avatars/${user.icon}" height="100" width="90"/>
+													</s:else>												
 												</span>
 
 												<div class="space-4"></div>
@@ -155,7 +160,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 															<s:iterator value="answers"  var="answer">
 															<div class="profile-activity clearfix answer" >
 																<div>
-																	<img class="pull-left" alt="Alex Doe's avatar" src="<%=path%>/assets/avatars/${user.icon}" />
+																	<s:if test="user.privilege==4">								
+																	<img class="pull-left" alt="微信头像" src="${user.icon}" />
+																	</s:if>
+																	<s:else>
+																	<img class="pull-left" alt="本地头像" src="<%=path%>/assets/avatars/${user.icon}">
+																	</s:else>
 																	<a class="user" href="#"> <s:property value="#answer.title" /> </a>
 																	<br/>
 																	<s:property value="#answer.result" />													

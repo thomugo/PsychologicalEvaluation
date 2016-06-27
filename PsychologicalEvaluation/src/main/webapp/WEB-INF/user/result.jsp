@@ -24,17 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="<%=path%>/style/app-ad.re.css">
     <link rel="stylesheet" href="<%=path%>/style/csshare.min.css">
 	<link rel="stylesheet" href="<%=path%>/style/mresult.css">    
-    <script src="<%=path%>/js/jquery.min.js"></script>
-    <script>
-        $(document).bind("mobileinit", function(){
-            $.mobile.page.prototype.options.backBtnText = "返回";
-            $.mobile.page.prototype.options.addBackBtn= true;
-            $.mobile.ajaxEnabled = false;
-        });
-    </script>
-    <script src="<%=path%>/js/jquery.mobile.min.js"></script>
-    <script src="<%=path%>/js/mobile.js" ></script>    
-    <script src="<%=path%>/js/iscroll.js" ></script>
+
 </head>
 <body>
 <div data-role="page" id="one">
@@ -44,11 +34,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	</div>
     	<h2>测试</h2>
     	<div class="right">
-       		<div class="img">
-              	<a class="avatar" href="<%=path%>/user/userIndex.jsp">
-              		<img src="http://ossimg.xinli001.com/20160329/9fe4842afb2c58c2200a1b9ae7a68ca9.png!80" width="60" height="60">
-              	</a>
-        	</div>
+                <div class="img">                		
+               		 <s:if test="#session.loginUser==null" ><!--用户未登录  -->
+               		 	<a class="avatar" href="<%=path%>/login.jsp">
+               		 		<img src="<%=path%>/image/img155.png" width="60" height="60">
+               		 		
+               		 	</a>
+               		 </s:if>
+						<s:elseif test="#session.loginUser.privilege==4">						<!--用户已登录  -->
+  						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
+  						<img src="${loginUser.icon}" width="60" height="60">
+                  	  	</a>
+       				  </s:elseif>  
+       				  <s:else>
+  						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
+                        	<img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60"> 
+                  	  	</a>       				  
+       				  </s:else>   					     				                 	 	
+                </div>
     	</div>
 	</div>
     <div data-role="content" style="font-size: 120%">
@@ -64,14 +67,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<a href="<%=path%>/questionaireList.action" style="color: white;font-weight: normal;font-family: 微软雅黑;text-shadow: 0 0 0;background-image:none">试试其他测试</a>
     	</div>
 
-<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=603462" ></script>
-<script type="text/javascript" id="bdshell_js"></script>
-<script type="text/javascript">
-    document.getElementById("bdshell_js").src = "<%=path%>/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
-</script>
-<!-- Baidu Button END -->
-<br style="clear: both">    </div>
-</div>
+		<script src="<%=path%>/js/jquery.min.js"></script>
+		<script src="<%=path%>/js/jquery.mobile.min.js"></script>
+		<script src="<%=path%>/js/mobile.js" ></script>    
+		<script src="<%=path%>/js/iscroll.js" ></script>
+
+	</div>
 </body>
 </html>
 

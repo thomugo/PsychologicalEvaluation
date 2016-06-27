@@ -19,42 +19,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- basic styles -->
 		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
-
-		<!--[if IE 7]>
-		  <link rel="stylesheet" href="<%=path%>/assets/css/font-awesome-ie7.min.css" />
-		<![endif]-->
-
-		<!-- page specific plugin styles -->
-
-		<!-- fonts -->
-
 		<link rel="stylesheet" href="<%=path%>/style/family.css" />
-
-		<!-- ace styles -->
-
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
-		
-		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="<%=path%>/assets/css/ace-ie.min.css" />
-		<![endif]-->
 
-		<!-- inline styles related to this page -->
-		<script src="<%=path%>/assets/js/ace-extra.min.js"></script>
-		<!-- ace settings handler -->
 
-		
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-
-		<!--[if lt IE 9]>
-		<script src="<%=path%>/assets/js/html5shiv.js"></script>
-		<script src="<%=path%>/assets/js/respond.min.js"></script>
-		<![endif]-->
 	</head>
 
 	<body>
-
+		<s:debug></s:debug>
   		<input type="hidden" id="userId"  value="${sessionScope.loginUser.id}"/> 
   		<input type="hidden" id="username"  value="${sessionScope.loginUser.username}"/> 
   		<input type="hidden" id="userIcon"  value="${sessionScope.loginUser.icon}"/> 
@@ -64,9 +38,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		<input type="hidden" id="basePath" value="<%=basePath%>">
 
 		<div class="main-container" id="main-container">
-			<script type="text/javascript">
-				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
-			</script>
 
 			<div class="main-container-inner">
 
@@ -133,16 +104,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<script src="<%=path%>/assets/js/bootstrap.min.js"></script>
 		<script src="<%=path%>/assets/js/typeahead-bs2.min.js"></script>
-
 		<script src="<%=path%>/assets/js/date-time/bootstrap-datepicker.min.js"></script>
 		<script src="<%=path%>/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
 		<script src="<%=path%>/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
-		<!-- ace scripts -->
-
 		<script src="<%=path%>/assets/js/ace-elements.min.js"></script>
 		<script src="<%=path%>/assets/js/ace.min.js"></script>
 
-		<!-- inline scripts related to this page -->
 				
 		<script type="text/javascript" src="<%=path%>/assets/js/ace-extra.min.js"></script>
 		<script type="text/javascript" src="<%=path%>/js/json2.js"></script>

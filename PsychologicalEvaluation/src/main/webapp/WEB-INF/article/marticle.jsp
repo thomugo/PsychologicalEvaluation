@@ -50,11 +50,16 @@ font-family: 'Source Sans Pro', 'Oxygen', sans-serif !important;
                		 		
                		 	</a>
                		 </s:if>
-  					 <s:else>						<!--用户已登录  -->
+						<s:elseif test="#session.loginUser.privilege==4">						<!--用户已登录  -->
   						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
-                        	<img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60">
+  						<img src="${loginUser.icon}" width="60" height="60">
                   	  	</a>
-       				  </s:else>       				                 	 	
+       				  </s:elseif>  
+       				  <s:else>
+  						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
+                        	<img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60"> 
+                  	  	</a>       				  
+       				  </s:else>   					     				                 	 	
                 </div>
             
             </div><!-- right -->        		
