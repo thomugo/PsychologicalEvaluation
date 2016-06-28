@@ -1,6 +1,7 @@
 package com.pes.action;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
@@ -8,10 +9,12 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.pes.entity.AnswerPojo;
 import com.pes.entity.BaseUser;
 import com.pes.entity.User;
+import com.pes.service.AnswerService;
 import com.pes.service.UserService;
+import com.pes.util.AjaxUtil;
 
 @Results( {
         @Result(name = "success", location = "/index.jsp", type="redirect"),
@@ -19,17 +22,17 @@ import com.pes.service.UserService;
         @Result(name = "input", location = "/login.jsp"),
         @Result(name = "prePage", location = "${prePage}", type="redirectAction")
     })
-public class WeixinAction extends  BaseAction{
-	private static final Logger LOGGER = Logger.getLogger(WeixinAction.class);
+public class WeixinResultAction extends  BaseAction{
+	private static final Logger LOGGER = Logger.getLogger(WeixinResultAction.class);
 	private String nickname;
 	private String openId;
-	private int sex;
-	private String headimgurl;
 	//登录前页面
     private String prePage;
     private User user;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private AnswerService answerService;
 	
 	public String getNickname() {
 		return nickname;
@@ -47,47 +50,23 @@ public class WeixinAction extends  BaseAction{
 		this.openId = openId.substring(1, openId.length()-1);
 	}
 
-	public int getSex() {
-		return sex;
-	}
-
-	public void setSex(int sex) {
-		this.sex = sex;
-	}
-
-	public String getHeadimgurl() {
-		return headimgurl;
-	}
-
-	public void setHeadimgurl(String headimgurl) {
-		this.headimgurl = headimgurl.substring(1, headimgurl.length()-1);
-	}
-
 	public String getPrePage() {
 		return prePage;
 	}
 
-	@Action(value="weixin")
+	@Action(value="weixinResults")
 	public String execute()
 	{
 		//获取跳转到登陆界面之前的页面地址，由拦截器提供
         prePage = (String) session.get("prePage");
         System.out.println("in weixin action and prePage: "+prePage);
-		if(userService.isUserExist(nickname)){
-			user = userService.validate(nickname	, openId);
+        //nickname = 
+        //openId = 
+        System.out.println(nickname);
+		if(!userService.isUserExist(nickname)){
+			AjaxUtil.ajaxJSONResponse("您还没有进行过测试");
 		}else{
-			user = new User();
-			user.setUsername(nickname);
-			user.setPrivilege(4);
-			user.setPassword(openId);
-			user.setGender(sex);
-			user.setIcon(headimgurl);
-			user.setDateTime(new Date());
-			user.setAge(0);
-			user.setEmail("");
-			user.setVocation("");
-			user.setPhone("");
-			userService.save(user);
+			user = userService.validate(nickname, openId);
 		}
 		if(user == null)
 		{
@@ -95,19 +74,12 @@ public class WeixinAction extends  BaseAction{
 			return "input";
 		}else{
 			BaseUser baseUser = (BaseUser)user;
-			this.httpSession.setAttribute("loginUser", user);
-			//清除session中的数据
-	        session.remove("prePage");
-	        if (prePage == null) {
-	        	//不是拦截器跳转到登陆页面的，直接访问的登陆页面
-	        	if(user.getPrivilege() <= 3){
-	        		return "admin";
-	        	}else{
-	        		return "success";
-	        	}
-	        }else {
-				return "prePage";
-			}
+			this.httpSession.setAttribute("loginUser", baseUser);
+			System.out.println(baseUser.getId());
+			List<AnswerPojo> results = answerService.findByUserId(baseUser.getId());
+			System.out.println(results);
+			AjaxUtil.ajaxJSONResponse(results);
+			return NONE;
 		}
 	}
 	

@@ -229,7 +229,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	@Action(value="userList", results={
 			@Result(name="users", location="/WEB-INF/user/userList.jsp")
 	})
-	@Authority(privilege=2)
+	@Authority(privilege=3)
 	public String getAllUsers(){
 		//List<User> users = userService.findAll();
 		JSONObject json;
