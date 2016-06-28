@@ -25,6 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
 
 	<body>
+	<s:debug></s:debug>
 		<input type="hidden" id="basePath" value="<%=basePath%>">
   		<input type="hidden" id="userId"  value="${sessionScope.loginUser.id}"/> 
   		<input type="hidden" id="username"  value="${sessionScope.loginUser.username}"/> 
@@ -100,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="assets/avatars/${loginUser.icon}" alt="登陆" />
 								<span class="user-info">
 									<small>欢迎光临</small>
 								</span>
@@ -396,7 +397,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path%>/assets/js/ace.min.js"></script>
 		<script src="<%=path%>/js/json2.js"></script>
 
-		<script src="<%=path%>/js/consult.js"></script> 
+
 		<script>
 			var basepath = $("#basePath").val();
 			var k=1;
@@ -406,13 +407,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<c:forEach var="sender" items="${offLineUserMessages}">
 						var name="${sender.username}";
 						var icon="${sender.icon}";
+						if(parseInt("${sender.privilege}")!=4){
+							icon=basepath+"assets/avatars/"+icon;
+						}
 						var id="${sender.userId}";
 						var time="${sender.dateTime}";
 						var content="${sender.content}";
 						var clock=time.substr(11,2);
 						var min=time.substr(14,2);
 						if(k<=total){
-							$("#recent").append("<li><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
+							$("#recent").append("<li><img src='"+icon+"' class='msg-photo'/>"
 											+"<span class='msg-body'>"
 											+"<span class='msg-title'>"+"<span class='blue'><a href='"
 											+basepath+"chat.action?id="
@@ -430,13 +434,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<c:forEach var="sender" items="${offLineUserMessages}">
 						var name="${sender.username}";
 						var icon="${sender.icon}";
+						if(parseInt("${sender.privilege}")!=4){
+							icon=basepath+"assets/avatars/"+icon;
+						}						
 						var id="${sender.userId}";
 						var time="${sender.dateTime}";
 						var content="${sender.content}";
 						var clock=time.substr(11,2);
 						var min=time.substr(14,2);
 						if(k<4){
-							$("#recent").append("<li><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
+							$("#recent").append("<li><img src='"+icon+"' class='msg-photo'/>"
 											+"<span class='msg-body'>"
 											+"<span class='msg-title'>"+"<span class='blue'><a href='"
 											+basepath+"chat.action?id="
@@ -456,11 +463,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								+"查看所有消息"
 								+"<i class='icon-arrow-right'></i>"
 								+"</a></li>");
+//显示初始数据		
 								
 			<c:forEach var="mes" items="${unReadUserMessages}">
+				var p=parseInt("${target.privilege}");
+				var icon="${target.icon}";
+				if(p!=4){
+					icon=basepath+"assets/avatars/"+icon;
+				}
 				$("#dialog").append("<div class='itemdiv dialogdiv'>"
 									+"<div class='user'>"
-									+"<img  src='"+basepath+"assets/avatars/"+ "${target.icon}" + " '/>"
+									+"<img  src='"+icon+ " '/>"
 									+"</div>"
 									+"<div class='body'>"
 									+"<div class='time'>"
@@ -479,6 +492,157 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									+"</div>"
 									+"</div>");
 			</c:forEach>
+//EL表达式在单独的文件中不起作用
+//聊天 模块
+var basePath=$("#basePath").val();
+$(document).ready(function() {
+					
+					var ID = $("#userId").val();
+					var USERNAME = $("#username").val();
+					var ICON ;
+					
+					if(parseInt("${user.privilege}")==4){
+						ICON=$("#userIcon").val();
+					}else{
+						ICON=basePath+"assets/avatars/"+$("#userIcon").val();
+					}
+					var targetId =  $("#targetId").val();
+					var targetUsername =  $("#targetUsername").val();
+					var targetIcon;
+					if(parseInt("${target.privilege}")==4){
+						targetIcon=$("#targetIcon").val();
+					}else{
+						targetIcon=basePath+"assets/avatars/"+$("#targetIcon").val();
+					}					
+					//alert("用户:" + USERNAME);
+					var Chat = {};
+					Chat.socket = null;
+					Chat.connect = (function(host) {
+						if ('WebSocket' in window) {
+							Chat.socket = new WebSocket(host);
+						} else if ('MozWebSocket' in window) {
+							Chat.socket = new MozWebSocket(host);
+						} else {
+							alert('错误: 浏览器不支持websocket聊天.');
+							return;
+						}
+
+						Chat.socket.onopen = function() {
+							//Console.log('提示 : 聊天链接已建立');
+							 $('#message').keydown(function(event){
+								         if(event.which == 13)       //13等于回车键(Enter)键值,ctrlKey 等于 Ctrl
+									        Chat.sendMessage();
+				                })
+							$("#send").click(function(){
+								Chat.sendMessage();
+							});
+						};
+
+						Chat.socket.onclose = function() {
+							//document.getElementById('chat').onkeydown = null;
+							//Console.log('提示: 聊天已关闭.');
+							alert("聊天已关闭");
+						};
+
+						Chat.socket.onmessage = function(message) {
+							Console.log(message.data);
+						};
+					});
+
+					Chat.initialize = function() {
+						if (window.location.protocol == 'http:') {
+							Chat
+									.connect('ws://localhost:8080/PsychologicalEvaluation/consult');
+						} else {
+							Chat
+									.connect('wss://localhost:8080/PsychologicalEvaluation/consult');
+						}
+					};
+
+					Chat.sendMessage = (function() {
+						var message = $("#message").val();
+						message = $.trim(message);
+						var map = {};
+						var flag = 0; // 0： 未读消息（默认值）/ 4 ：无效消息（测试连接使用）/5：广播消息
+						//var targetId = TARGETID;
+						if (message.length > 0) {
+							map["message"] = message;
+							map["targetId"] = targetId;
+							map["onChat"] = true;
+							map["flag"] = flag;
+							var jsonString = JSON.stringify(map);
+							Chat.socket.send(jsonString);
+							Console.write(message);
+						}
+					});
+
+					var Console = {};
+					//解析收到的消息
+					Console.log = (function(jsonString) {
+/*						alert(jsonString);*/
+						messageobj =  JSON.parse(jsonString);
+						//alert(messageobj.content);
+						//var messages = JSON.parse(jsonString);
+						var date = new Date(messageobj.dateTime);
+						//alert(date.toLocaleString());
+						
+						$('.dialogs').append(
+								"<div class='itemdiv dialogdiv'>"
+									+"<div class='user'>"
+									+"<img  src='"+ targetIcon + " '/>"
+										+"</div>"
+								+"<div class='body'>"
+								+"	<div class='time'>"
+										+"<i class='icon-time'></i>"
+										+"<span class='orange'>" + date.toLocaleString() + "</span>"
+								+"</div>"
+								+"<div class='name'>"
+										+"<span class='label label-info arrowed arrowed-in-right'>"+ targetUsername +"</span>"
+								+"</div>"
+								+	"<div class='text'>"+ messageobj.content +"</div>"
+								+	"<div class='tools'>"
+										+"<a href='#' class='btn btn-minier btn-info'>"
+										+"<i class='icon-only icon-share-alt'></i>"
+										+"</a>"
+									+"</div>"
+								+"</div>"
+							+"</div>"
+						);
+						
+					});
+					//渲染自己发送的消息
+					Console.write = (function(messageString) {
+						//alert(messageString);
+						var icon = ICON;
+						var myDate = new Date();
+						$('.dialogs').append(
+								"<div class='itemdiv dialogdiv'>"
+									+"<div class='user'>"
+									+"<img  src='"+ icon+ " '/>"
+										+"</div>"
+								+"<div class='body'>"
+								+"	<div class='time'>"
+										+"<i class='icon-time'></i>"
+										+"<span class='green'>"+ myDate.toLocaleString()+"</span>"
+								+"</div>"
+								+"<div class='name'>"
+										+"<span class='label label-info arrowed arrowed-in-right'>" + USERNAME + "</span>"
+								+"</div>"
+								+	"<div class='text'>"+ messageString +"</div>"
+								+	"<div class='tools'>"
+										+"<a href='#' class='btn btn-minier btn-info'>"
+										+"<i class='icon-only icon-share-alt'></i>"
+										+"</a>"
+									+"</div>"
+								+"</div>"
+							+"</div>"
+						);
+						
+					});
+
+					Chat.initialize();					
+					
+});			
 		</script>
 	</body>
 </html>

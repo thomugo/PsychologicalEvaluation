@@ -96,7 +96,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="assets/avatars/${loginUser.icon}" alt="登陆" />
 								<span class="user-info">
 									<small>欢迎光临</small>
 								</span>
@@ -386,9 +386,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var clock=time.substr(11,2);
 				var min=time.substr(14,2);
 				var sec=time.substr(17,2);
-				
+				var icon="${user.icon}";
+				if(parseInt("${user.privilege}")!=4){
+					icon=basePath+"assets/avatars/"+icon;
+				}
 				$("#message-list").append("<div class='message-item message-unread'>"
-										+"<img src='<%=path%>/assets/avatars/avatar.png'/>"
+										+"<img width='48px;' width='48px;'src='"+icon+"'/>"
 										+"<span class='sender'>"
 										+"<a href='"+basePath+"chat.action?id="+senderid+"'>"
 										+sender
@@ -416,13 +419,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<c:forEach var="sender" items="${offLineUserMessages}">
 						var name="${sender.username}";
 						var icon="${sender.icon}";
+						if(parseInt("${sender.privilege}")!=4){
+							icon=basepath+"assets/avatars/"+icon;
+						}
 						var id="${sender.userId}";
 						var time="${sender.dateTime}";
 						var content="${sender.content}";
 						var clock=time.substr(11,2);
 						var min=time.substr(14,2);
 						if(k<=total){
-							$("#recent").append("<li><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
+							$("#recent").append("<li><img src='"+icon+"' class='msg-photo'/>"
 											+"<span class='msg-body'>"
 											+"<span class='msg-title'>"+"<span class='blue'><a href='"
 											+basepath+"chat.action?id="
@@ -440,13 +446,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<c:forEach var="sender" items="${offLineUserMessages}">
 						var name="${sender.username}";
 						var icon="${sender.icon}";
+						if(parseInt("${sender.privilege}")!=4){
+							icon=basepath+"assets/avatars/"+icon;
+						}						
 						var id="${sender.userId}";
 						var time="${sender.dateTime}";
 						var content="${sender.content}";
 						var clock=time.substr(11,2);
 						var min=time.substr(14,2);
 						if(k<4){
-							$("#recent").append("<li><img src='"+basepath+"assets/avatars/"+icon+"' class='msg-photo'/>"
+							$("#recent").append("<li><img src='"+icon+"' class='msg-photo'/>"
 											+"<span class='msg-body'>"
 											+"<span class='msg-title'>"+"<span class='blue'><a href='"
 											+basepath+"chat.action?id="
