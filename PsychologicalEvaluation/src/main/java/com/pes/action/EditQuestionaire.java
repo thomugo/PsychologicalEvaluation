@@ -17,7 +17,6 @@ import com.pes.entity.Option;
 import com.pes.entity.Questionaire;
 import com.pes.entity.User;
 import com.pes.entity.UserMessage;
-import com.pes.entity.UserPojo;
 import com.pes.interceptor.Authority;
 import com.pes.service.ChoiceQuestionService;
 import com.pes.service.MessageService;
@@ -166,6 +165,7 @@ public class EditQuestionaire extends BaseAction {
 							userMessage.setUserId(sendId);
 							userMessage.setUsername(pojo.getUsername());
 							userMessage.setIcon(pojo.getIcon());
+							userMessage.setPrivilege(pojo.getPrivilege());
 							userMessage.setContent(message.getContent());
 							userMessage.setDateTime(message.getDateTime());
 							userMessage.setFlag(message.getFlag());
@@ -221,6 +221,7 @@ public class EditQuestionaire extends BaseAction {
 							userMessage.setUserId(sendId);
 							userMessage.setUsername(pojo.getUsername());
 							userMessage.setIcon(pojo.getIcon());
+							userMessage.setPrivilege(pojo.getPrivilege());
 							userMessage.setContent(message.getContent());
 							userMessage.setDateTime(message.getDateTime());
 							userMessage.setFlag(message.getFlag());

@@ -3,13 +3,11 @@ package com.pes.action;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.alibaba.fastjson.JSONObject;
 import com.pes.entity.Article;
 import com.pes.entity.ArticlePojo;
@@ -17,7 +15,6 @@ import com.pes.entity.BaseUser;
 import com.pes.entity.Message;
 import com.pes.entity.User;
 import com.pes.entity.UserMessage;
-import com.pes.entity.UserPojo;
 import com.pes.interceptor.Authority;
 import com.pes.service.ArticleService;
 import com.pes.service.MessageService;
@@ -149,6 +146,7 @@ public class ArticleAction extends BaseAction{
 							userMessage.setUserId(sendId);
 							userMessage.setUsername(pojo.getUsername());
 							userMessage.setIcon(pojo.getIcon());
+							userMessage.setPrivilege(pojo.getPrivilege());
 							userMessage.setContent(message.getContent());
 							userMessage.setDateTime(message.getDateTime());
 							userMessage.setFlag(message.getFlag());
@@ -248,6 +246,7 @@ public class ArticleAction extends BaseAction{
 							userMessage.setUserId(sendId);
 							userMessage.setUsername(pojo.getUsername());
 							userMessage.setIcon(pojo.getIcon());
+							userMessage.setPrivilege(pojo.getPrivilege());
 							userMessage.setContent(message.getContent());
 							userMessage.setDateTime(message.getDateTime());
 							userMessage.setFlag(message.getFlag());
@@ -290,6 +289,7 @@ public class ArticleAction extends BaseAction{
 							userMessage.setUserId(sendId);
 							userMessage.setUsername(pojo.getUsername());
 							userMessage.setIcon(pojo.getIcon());
+							userMessage.setPrivilege(pojo.getPrivilege());
 							userMessage.setContent(message.getContent());
 							userMessage.setDateTime(message.getDateTime());
 							userMessage.setFlag(message.getFlag());

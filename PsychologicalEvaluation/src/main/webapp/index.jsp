@@ -26,7 +26,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </head>
 <body>
+<s:debug></s:debug>
 	<input type="hidden" id="basePath" value="<%=basePath%>">
+
     <div class="layout">
         <div class="header ">
         	<h2>心理学，从这里开始</h2> 
@@ -101,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    				</li>
     				
 	    				<li>
-	        				<a href="<%=path%>/detail.action?id=${session.loginUser.id }">
+	        				<a href="${ pageContext.request.contextPath }/detail.action?id=${loginUser.id }">
 	            				<div class="img">
 	                				<i class="icon icon-fm"></i>
 	            				</div>

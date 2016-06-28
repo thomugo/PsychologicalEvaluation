@@ -144,6 +144,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 							userMessage.setUserId(sendId);
 							userMessage.setUsername(pojo.getUsername());
 							userMessage.setIcon(pojo.getIcon());
+							userMessage.setPrivilege(pojo.getPrivilege());
 							userMessage.setContent(message.getContent());
 							userMessage.setDateTime(message.getDateTime());
 							userMessage.setFlag(message.getFlag());
@@ -204,6 +205,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 							userMessage.setUserId(sendId);
 							userMessage.setUsername(pojo.getUsername());
 							userMessage.setIcon(pojo.getIcon());
+							userMessage.setPrivilege(pojo.getPrivilege());
 							userMessage.setContent(message.getContent());
 							userMessage.setDateTime(message.getDateTime());
 							userMessage.setFlag(message.getFlag());
@@ -229,7 +231,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	@Action(value="userList", results={
 			@Result(name="users", location="/WEB-INF/user/userList.jsp")
 	})
-	@Authority(privilege=2)
+	@Authority(privilege=3)
 	public String getAllUsers(){
 		//List<User> users = userService.findAll();
 		JSONObject json;
@@ -269,6 +271,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 							userMessage.setUserId(sendId);
 							userMessage.setUsername(pojo.getUsername());
 							userMessage.setIcon(pojo.getIcon());
+							userMessage.setPrivilege(pojo.getPrivilege());
 							userMessage.setContent(message.getContent());
 							userMessage.setDateTime(message.getDateTime());
 							userMessage.setFlag(message.getFlag());
@@ -325,6 +328,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 							userMessage.setUserId(sendId);
 							userMessage.setUsername(pojo.getUsername());
 							userMessage.setIcon(pojo.getIcon());
+							userMessage.setPrivilege(pojo.getPrivilege());
 							userMessage.setContent(message.getContent());
 							userMessage.setDateTime(message.getDateTime());
 							userMessage.setFlag(message.getFlag());
@@ -412,6 +416,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 							userMessage.setUserId(sendId);
 							userMessage.setUsername(pojo.getUsername());
 							userMessage.setIcon(pojo.getIcon());
+							userMessage.setPrivilege(pojo.getPrivilege());
 							userMessage.setContent(message.getContent());
 							userMessage.setDateTime(message.getDateTime());
 							userMessage.setFlag(message.getFlag());
@@ -459,6 +464,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 							userMessage.setUserId(sendId);
 							userMessage.setUsername(pojo.getUsername());
 							userMessage.setIcon(pojo.getIcon());
+							userMessage.setPrivilege(pojo.getPrivilege());
 							userMessage.setContent(message.getContent());
 							userMessage.setDateTime(message.getDateTime());
 							userMessage.setFlag(message.getFlag());

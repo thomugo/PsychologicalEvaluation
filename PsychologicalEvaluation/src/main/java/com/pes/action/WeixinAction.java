@@ -36,7 +36,7 @@ public class WeixinAction extends  BaseAction{
 	}
 
 	public void setNickname(String nickname) {
-		this.nickname = nickname;
+		this.nickname = nickname.substring(1, nickname.length()-1);
 	}
 
 	public String getOpenId() {
@@ -44,7 +44,7 @@ public class WeixinAction extends  BaseAction{
 	}
 
 	public void setOpenId(String openId) {
-		this.openId = openId;
+		this.openId = openId.substring(1, openId.length()-1);
 	}
 
 	public int getSex() {
@@ -60,7 +60,7 @@ public class WeixinAction extends  BaseAction{
 	}
 
 	public void setHeadimgurl(String headimgurl) {
-		this.headimgurl = headimgurl;
+		this.headimgurl = headimgurl.substring(1, headimgurl.length()-1);
 	}
 
 	public String getPrePage() {
@@ -83,7 +83,11 @@ public class WeixinAction extends  BaseAction{
 			user.setGender(sex);
 			user.setIcon(headimgurl);
 			user.setDateTime(new Date());
-			userService.save(user);
+			user.setAge(0);
+			user.setEmail("");
+			user.setVocation("");
+			user.setPhone("");
+			user.setId(userService.save(user));
 		}
 		if(user == null)
 		{

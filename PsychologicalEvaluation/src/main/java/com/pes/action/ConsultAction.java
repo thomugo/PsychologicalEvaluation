@@ -129,6 +129,7 @@ public class ConsultAction extends BaseAction{
 							userMessage.setUserId(sendId);
 							userMessage.setUsername(pojo.getUsername());
 							userMessage.setIcon(pojo.getIcon());
+							userMessage.setPrivilege(pojo.getPrivilege());
 							userMessage.setContent(message.getContent());
 							userMessage.setDateTime(message.getDateTime());
 							userMessage.setFlag(message.getFlag());
@@ -174,6 +175,7 @@ public class ConsultAction extends BaseAction{
 			userMessage.setUserId(sendId);
 			userMessage.setUsername(pojo.getUsername());
 			userMessage.setIcon(pojo.getIcon());
+			userMessage.setPrivilege(pojo.getPrivilege());
 			Message message =messageService.findLatestMessage(sendId, ID);
 			userMessage.setContent(message.getContent());
 			userMessage.setDateTime(message.getDateTime());
@@ -198,6 +200,7 @@ public class ConsultAction extends BaseAction{
 							userMessage.setUserId(sendId);
 							userMessage.setUsername(pojo.getUsername());
 							userMessage.setIcon(pojo.getIcon());
+							userMessage.setPrivilege(pojo.getPrivilege());
 							userMessage.setContent(message.getContent());
 							userMessage.setDateTime(message.getDateTime());
 							userMessage.setFlag(message.getFlag());
