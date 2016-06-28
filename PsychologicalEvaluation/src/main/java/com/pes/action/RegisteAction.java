@@ -15,11 +15,11 @@ import com.pes.service.UserService;
 public class RegisteAction extends BaseAction implements ModelDriven<User>{
 	@Autowired
 	private UserService userService;
-	private User userInfo = new User();
+	private User user = new User();
 	
 	@Override
 	public void validate(){
-		if(userService.isUserExist(userInfo.getUsername())){
+		if(userService.isUserExist(user.getUsername())){
 			addFieldError("username", "用户名已存在");
 		}
 			
@@ -28,25 +28,25 @@ public class RegisteAction extends BaseAction implements ModelDriven<User>{
 	{
 		String iconsman[] = {"avatar.png","avatar4.png","avatar5.png"};
 		String iconswoman[] = {"avatar1.png","avatar3.png"};
-		userInfo.setDateTime(new Date());
-		if(userInfo.getGender() == 0){//man
+		user.setDateTime(new Date());
+		if(user.getGender() == 0){//man
 			int index=(int)(Math.random()*3);
-			userInfo.setIcon(iconsman[index]);
+			user.setIcon(iconsman[index]);
 		}else{
 			int index=(int)(Math.random()*2);
-			userInfo.setIcon(iconswoman[index]);
+			user.setIcon(iconswoman[index]);
 		}
 		Integer id = 0;
-		id = userService.save(userInfo);
+		id = userService.save(user);
 		System.out.println("add success");
-		userInfo.setId(id);
-		this.httpSession.setAttribute("loginUser", userInfo);
+		user.setId(id);
+		this.httpSession.setAttribute("loginUser", user);
 		//AjaxUtil.ajaxJSONResponse(userInfo);
 		return "success";
 	}
 	@Override
 	public User getModel() {
-		return userInfo;
+		return user;
 	}
 	
 }

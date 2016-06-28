@@ -59,6 +59,7 @@ public class UserDaoImpl  extends GenericDao2Impl<User, Integer> implements User
 		query.setString(0, username);
 		query.setString(1, password);
 		User user = (User) query.uniqueResult();
+		System.out.println(user);
 		return user;
 	}
 
@@ -140,7 +141,7 @@ public class UserDaoImpl  extends GenericDao2Impl<User, Integer> implements User
 	@Override
 	public int findTotalExpertRows() {
 		// TODO Auto-generated method stub
-		 String actualHql = "select count(*) from User as u where u.privilege = 3 ";   
+		 String actualHql = "select count(*) from User as u where u.privilege = 2 ";   
         return ( (Long) this.getCurrentSession().createQuery(actualHql).uniqueResult()).intValue();
 	}
 
@@ -168,7 +169,7 @@ public class UserDaoImpl  extends GenericDao2Impl<User, Integer> implements User
         // 计算实际每页的条数,如果请求的每页数据条数大于总条数, 则等于总条数   
         int actualPageSize = (pageSize > totalRows) ? totalRows : pageSize;   
         // 计算请求页码的第一条记录的索引值,如果 
-        Query query = this.getCurrentSession().createQuery("from User as u where u.privilege = 4 ");
+        Query query = this.getCurrentSession().createQuery("from User as u where u.privilege = 3 ");
         int startRow = (actualPageNo > 0) ? (actualPageNo - 1) * actualPageSize : 0;  
         query.setFirstResult(startRow);
         query.setMaxResults(actualPageSize);
@@ -178,7 +179,7 @@ public class UserDaoImpl  extends GenericDao2Impl<User, Integer> implements User
 	@Override
 	public int findTotalApplicantRows() {
 		// TODO Auto-generated method stub
-		String actualHql = "select count(*) from User as u where u.privilege = 4 ";   
+		String actualHql = "select count(*) from User as u where u.privilege = 3 ";   
         return ( (Long) this.getCurrentSession().createQuery(actualHql).uniqueResult()).intValue();
 	}
 

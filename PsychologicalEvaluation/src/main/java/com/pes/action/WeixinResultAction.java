@@ -1,14 +1,11 @@
 package com.pes.action;
 
-import java.util.Date;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.pes.entity.AnswerPojo;
 import com.pes.entity.BaseUser;
 import com.pes.entity.User;

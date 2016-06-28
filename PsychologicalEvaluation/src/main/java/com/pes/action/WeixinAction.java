@@ -1,14 +1,11 @@
 package com.pes.action;
 
 import java.util.Date;
-
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.pes.entity.BaseUser;
 import com.pes.entity.User;
 import com.pes.service.UserService;
@@ -84,17 +81,18 @@ public class WeixinAction extends  BaseAction{
 			user.setIcon(headimgurl);
 			user.setDateTime(new Date());
 			user.setAge(0);
-			user.setEmail("");
-			user.setVocation("");
-			user.setPhone("");
-			user.setId(userService.save(user));
+			user.setEmail("null");
+			user.setVocation("null");
+			user.setPhone("null");
+			int id = userService.save(user);
+			user.setId(id);
 		}
 		if(user == null)
 		{
 			this.addActionError("密码错误！");
 			return "input";
 		}else{
-			BaseUser baseUser = (BaseUser)user;
+			BaseUser baseUser = user;
 			this.httpSession.setAttribute("loginUser", user);
 			//清除session中的数据
 	        session.remove("prePage");

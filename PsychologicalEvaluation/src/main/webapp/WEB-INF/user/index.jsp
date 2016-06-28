@@ -421,7 +421,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								+"查看所有消息"
 								+"<i class='icon-arrow-right'></i>"
 								+"</a></li>");
-		
 		</script>
 	</body>
 </html>

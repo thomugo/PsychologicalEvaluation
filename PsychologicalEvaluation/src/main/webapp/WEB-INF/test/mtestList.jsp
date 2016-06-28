@@ -167,6 +167,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									+"</dl>");
 		
 		</c:forEach>
+	
 	</script>
 	
 </body>

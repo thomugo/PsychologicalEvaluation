@@ -1,3 +1,7 @@
+$.ajaxSetup({
+   type: 'POST',
+   headers: { "cache-control": "no-cache" }
+});
 var basePath = $("#basePath").val();
 var send=true;
 function infosPageInit(){

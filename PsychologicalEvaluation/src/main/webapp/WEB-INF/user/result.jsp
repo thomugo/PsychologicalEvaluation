@@ -27,10 +27,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </head>
 <body>
+<input type="hidden" id="basePath" val="<%=basePath%>">
 <div data-role="page" id="one">
     <div class="header">
     	<div class="left">
-        	<a href="<%=path%>/questionaireList.action" class="ico ico-back icon"></a>
+        	<a  class="ico ico-back icon questionaireList"></a>
     	</div>
     	<h2>测试</h2>
     	<div class="right">
@@ -64,14 +65,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		<div class="jiao"></div>
 		</div>
 		<div class="btn">
-        	<a href="<%=path%>/questionaireList.action" style="color: white;font-weight: normal;font-family: 微软雅黑;text-shadow: 0 0 0;background-image:none">试试其他测试</a>
+        	<a  style="color: white;font-weight: normal;font-family: 微软雅黑;text-shadow: 0 0 0;background-image:none" class="questionaireList">试试其他测试</a>
     	</div>
 
 		<script src="<%=path%>/js/jquery.min.js"></script>
 		<script src="<%=path%>/js/jquery.mobile.min.js"></script>
 		<script src="<%=path%>/js/mobile.js" ></script>    
 		<script src="<%=path%>/js/iscroll.js" ></script>
-
+		<script type="text/javascript">
+		var basePath = $("#basePath").val();
+		$('.questionaireList').click(function(){
+		window.location = basePath + "questionaireList.action";
+		});
+		</script>
 	</div>
 </body>
 </html>

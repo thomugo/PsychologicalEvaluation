@@ -5,12 +5,18 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.mysql.fabric.Response;
 import com.pes.entity.Answer;
 import com.pes.entity.BaseUser;
 import com.pes.entity.ChoiceQuestion;
@@ -113,6 +119,7 @@ public class SaveAnswerAction extends BaseAction{
 	})
 	@Authority(privilege=5)
 	public String showAnswer(){
+		
 		 answer = answerService.get(answerId);
 		 questionaire = answer.getQuestionaire();
 		//questionaire = questionaireService.get(questionaireID);
@@ -155,6 +162,7 @@ public class SaveAnswerAction extends BaseAction{
 				}
 			}
 		}
+		
 		return "success";
 	}
 	
@@ -268,6 +276,7 @@ public class SaveAnswerAction extends BaseAction{
 				}
 			}
 		}
+		
 		return "success";
 		
 	}

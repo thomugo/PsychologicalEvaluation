@@ -1,3 +1,7 @@
+$.ajaxSetup({
+   type: 'POST',
+   headers: { "cache-control": "no-cache" }
+});
 $(document).ready(function() {
 		var save = true;
 		var answer = {};                //answer{"choiceQuestions":choiceQuestions}, answer{"judgeQuestions":judgeQuestions};
@@ -80,7 +84,7 @@ $(document).ready(function() {
 				var jsonString = JSON.stringify(answer);
 				alert(jsonString);
 				$.post("saveAnswer.action", {"jsonString" : jsonString}, function(result){
-					$("body").html(result)
+					$("body").html(result);
 				})
 				
 				//location.href = "showAnswer.action";//页面重定向
