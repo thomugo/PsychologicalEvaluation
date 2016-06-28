@@ -87,7 +87,7 @@ public class WeixinAction extends  BaseAction{
 			user.setEmail("");
 			user.setVocation("");
 			user.setPhone("");
-			userService.save(user);
+			user.setId(userService.save(user));
 		}
 		if(user == null)
 		{

@@ -5,12 +5,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.pes.entity.Answer;
@@ -22,7 +20,6 @@ import com.pes.entity.OptionAnswer;
 import com.pes.entity.Questionaire;
 import com.pes.entity.User;
 import com.pes.entity.UserMessage;
-import com.pes.entity.UserPojo;
 import com.pes.interceptor.Authority;
 import com.pes.service.AnswerService;
 import com.pes.service.ChoiceQuestionService;
@@ -142,6 +139,7 @@ public class SaveAnswerAction extends BaseAction{
 							userMessage.setUserId(sendId);
 							userMessage.setUsername(pojo.getUsername());
 							userMessage.setIcon(pojo.getIcon());
+							userMessage.setPrivilege(pojo.getPrivilege());
 							userMessage.setContent(message.getContent());
 							userMessage.setDateTime(message.getDateTime());
 							userMessage.setFlag(message.getFlag());
@@ -254,6 +252,7 @@ public class SaveAnswerAction extends BaseAction{
 							userMessage.setUserId(sendId);
 							userMessage.setUsername(pojo.getUsername());
 							userMessage.setIcon(pojo.getIcon());
+							userMessage.setPrivilege(pojo.getPrivilege());
 							userMessage.setContent(message.getContent());
 							userMessage.setDateTime(message.getDateTime());
 							userMessage.setFlag(message.getFlag());

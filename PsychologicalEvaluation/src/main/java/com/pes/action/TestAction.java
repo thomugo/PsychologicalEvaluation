@@ -4,19 +4,16 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.pes.entity.BaseUser;
 import com.pes.entity.ChoiceQuestion;
 import com.pes.entity.Message;
 import com.pes.entity.Questionaire;
 import com.pes.entity.User;
 import com.pes.entity.UserMessage;
-import com.pes.entity.UserPojo;
 import com.pes.interceptor.Authority;
 import com.pes.service.MessageService;
 import com.pes.service.QuestionaireService;
@@ -95,6 +92,7 @@ public class TestAction extends BaseAction{
 							userMessage.setUserId(sendId);
 							userMessage.setUsername(pojo.getUsername());
 							userMessage.setIcon(pojo.getIcon());
+							userMessage.setPrivilege(pojo.getPrivilege());
 							userMessage.setContent(message.getContent());
 							userMessage.setDateTime(message.getDateTime());
 							userMessage.setFlag(message.getFlag());

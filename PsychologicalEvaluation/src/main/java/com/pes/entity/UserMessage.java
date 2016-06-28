@@ -3,12 +3,6 @@ package com.pes.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * 
- * @author thomugo
- * @flag 消息状态：0/未读; 1/已读; 4/无效消息; 5/广播消息
- */
-
 public class UserMessage implements Serializable{
 	private int messageId;
 	private int userId;
@@ -17,6 +11,7 @@ public class UserMessage implements Serializable{
 	private Date dateTime;
 	private String username;
 	private String icon;
+	private int privilege;
 
 	public int getMessageId() {
 		return messageId;
@@ -61,11 +56,18 @@ public class UserMessage implements Serializable{
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
+	public int getPrivilege() {
+		return privilege;
+	}
+	public void setPrivilege(int privilege) {
+		this.privilege = privilege;
+	}
 	@Override
 	public String toString() {
 		return "UserMessage [messageId=" + messageId + ", userId=" + userId
 				+ ", content=" + content + ", flag=" + flag + ", dateTime="
-				+ dateTime + ", username=" + username + ", icon=" + icon + "]";
+				+ dateTime + ", username=" + username + ", icon=" + icon
+				+ ", privilege=" + privilege + "]";
 	}
 	
 }
