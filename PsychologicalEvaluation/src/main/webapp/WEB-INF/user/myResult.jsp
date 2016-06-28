@@ -27,7 +27,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <body>
-<s:debug></s:debug>
 		<input type="hidden" value="<%=basePath %>" id="basePath">
 		<div class="main-container" id="main-container">
 

@@ -5,14 +5,7 @@ $(document).ready(
 					
 					var ID = $("#userId").val();
 					var USERNAME = $("#username").val();
-					var ICON ;
-					var s="#user.privilege";
-						alert(s);
-					if(parseInt("#user.privilege")==4){
-						ICON=$("#userIcon").val();
-					}else{
-						ICON=basePath+"assets/avatars/"+$("#userIcon").val();
-					}
+					var ICON = $("#userIcon").val();
 					var targetId =  $("#targetId").val();
 					var targetUsername =  $("#targetUsername").val();
 					var targetIcon =  $("#targetIcon").val();
@@ -120,7 +113,7 @@ $(document).ready(
 						$('.dialogs').append(
 								"<div class='itemdiv dialogdiv'>"
 									+"<div class='user'>"
-									+"<img  src='"+ icon+ " '/>"
+									+"<img  src='/PsychologicalEvaluation/assets/avatars/"+ icon+ " '/>"
 										+"</div>"
 								+"<div class='body'>"
 								+"	<div class='time'>"
