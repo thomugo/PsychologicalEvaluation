@@ -9,24 +9,64 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<meta charset="utf-8" />
 		<title>我的测评结果</title>
-
-		<meta name="keywords" content="" />
-		<meta name="description" content="" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" >
+<meta http-equiv="Expires" CONTENT="0">
+<meta http-equiv="Cache-Control" CONTENT="no-cache">
+<meta http-equiv="Pragma" CONTENT="no-cache">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<link rel="stylesheet" href="<%=path%>/style/app-ad.re.css">
+    <link rel="stylesheet" href="<%=path%>/style/qz_home.css"> 
 		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
+		
 <style type="text/css">
-
+.header a{ position: relative; color: #fff }
+header .left .ico-back { display: block; // background: url(../image/img11.jpg) 0 50%; width: 30.5px; height: 45px; background-position: -217px -4.5px }
+.header{ position: relative; color: #fff;background: #118bd0; text-align: center; line-height: 45px; height: 45px; overflow: hidden; z-index: 9 ;}
+.header .left { position: absolute; margin-left: 7.5px }
+.right { float: right }
+.header .right { position: absolute; top: 0; right: 0; margin-right: 7.5px; white-space: nowrap }
+.header .right .avatar { display: block; position: relative; line-height: 45px; width: 30px; height: 30px }
+.header .right .avatar img { vertical-align: middle; width: 30px; height: 30px; border: 1px solid #fff; border-radius: 50%; overflow: hidden }
+.head{
+margin-top:0px;}
 </style>
 
 </head>
 
 <body>
+<div class="header head">
+    	<div class="left">
+                <a href="<%=path%>/index.jsp" class="ico ico-back icon"></a>       
+    	</div>
+    		<div class="right">
+                <div class="img">                		
+               		 <s:if test="#session.loginUser==null" ><!--用户未登录  -->
+               		 	<a class="avatar" href="<%=path%>/login.jsp">
+               		 		<img src="<%=path%>/image/img155.png" width="60" height="60">
+               		 		
+               		 	</a>
+               		 </s:if>
+						<s:elseif test="#session.loginUser.privilege==4">						<!--用户已登录  -->
+  						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
+  						<img src="${loginUser.icon}" width="60" height="60">
+                  	  	</a>
+       				  </s:elseif>  
+       				  <s:else>
+  						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
+                        	<img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60"> 
+                  	  	</a>       				  
+       				  </s:else>   					     				                 	 	
+                </div>
+            
+            </div><!-- right -->
+	</div>
 		<input type="hidden" value="<%=basePath %>" id="basePath">
 		<div class="main-container" id="main-container">
 

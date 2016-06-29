@@ -93,20 +93,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <a href="<%=path%>/article/marticle.jsp"><h2>中国学生第一次哈佛毕业演讲：哈佛教会我们敢于改变世界</h2></a>
                         </li>
                         <li class="slide">
-                            <a href="http://www.xinli001.com/info/100320345"><img src="http://ossimg.xinli001.com/20160526/a22fea65786bf0a85fcfb21ed2256f50.png"/></a>
-                            <a href="http://www.xinli001.com/info/100320345"><h2>你控制欲那么强，源于未化解早年对父母的恨与不满</h2></a>
+                            <a ><img src="http://ossimg.xinli001.com/20160526/a22fea65786bf0a85fcfb21ed2256f50.png"/></a>
+                            <a ><h2>你控制欲那么强，源于未化解早年对父母的恨与不满</h2></a>
                         </li>
                         <li class="slide">
-                            <a href="http://www.xinli001.com/info/100320337"><img src="http://ossimg.xinli001.com/20160526/1da7bf899eb6f9f541eff53dd4e06550.jpg"/></a>
-                            <a href="http://www.xinli001.com/info/100320337"><h2>对抗孤独，哪个社交网络更有效？</h2></a>
+                            <a ><img src="http://ossimg.xinli001.com/20160526/1da7bf899eb6f9f541eff53dd4e06550.jpg"/></a>
+                            <a ><h2>对抗孤独，哪个社交网络更有效？</h2></a>
                         </li>
                         <li class="slide">
-                            <a href="http://xy.xinli001.com/course/89"><img src="http://image.xinli001.com/20160518/03352265fwgegvlhty2uyh.jpg"/></a>
-                            <a href="http://xy.xinli001.com/course/89"><h2>如何用最短的时间和同辈拉开距离？</h2></a>
+                            <a ><img src="http://image.xinli001.com/20160518/03352265fwgegvlhty2uyh.jpg"/></a>
+                            <a ><h2>如何用最短的时间和同辈拉开距离？</h2></a>
                         </li>
                         <li class="slide">
-                            <a href="http://www.xinli001.com/info/100320366"><img src="http://image.xinli001.com/20160526/054635n1lec1puj5124aet.jpg"/></a>
-                            <a href="http://www.xinli001.com/info/100320366"><h2>美队成最大反派？！其实他早就黑化了</h2></a>
+                            <a ><img src="http://image.xinli001.com/20160526/054635n1lec1puj5124aet.jpg"/></a>
+                            <a ><h2>美队成最大反派？！其实他早就黑化了</h2></a>
                         </li>
                 </ul>
             </div>
@@ -136,7 +136,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<script type="text/javascript">
 			var basePath = $("#basePath").val();
-				var i=0;
+				var i=1;
+				icon=basePath+"image/";
 			<c:forEach var="article" items="${articles}">
 				
 				
@@ -148,7 +149,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var id=${article.id};
  				 $('#article-list').append("<ul>"+" "+"<li>"+" "
  				 					+"<div class='img'>"
-									+"<a href='http://m.xinli001.com/info/100319150'><img src='http://image.xinli001.com/20160525/084105vdf8dm4p7e6fvycf.jpg!180x120'/></a>"
+									+"<a><img src='"+icon+(i++)+".png'/></a>"
 									+"</div>"
 									+" "
 									+"<div class='text'>"
