@@ -44,7 +44,7 @@ public class QuestionaireAction extends BaseAction {
 	}
 
 	@Override
-	@Authority(privilege=3)
+	@Authority(privilege=2)
 	public String execute() throws Exception {
 		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
 		int ID = user.getId();

@@ -8,19 +8,18 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8"/>
     <title>心理学从这里开始</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" >
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="">
-<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" >	
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="">
+	<meta name="format-detection" content="telephone=no">
 	<link rel="stylesheet" href="<%=path%>/style/app-ad.re.css">
     <link rel="stylesheet" href="<%=path%>/style/qz_home.css">        
 </head>
@@ -30,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<input type="hidden" id="basePath" value="<%=basePath%>">
     <div class="header">
         <div class="left">
-            <a href="<%=path%>/index.jsp" class="ico ico-back icon"></a>
+            <a href="<%=basePath%>index.jsp" class="ico ico-back icon" id="index"></a>
         </div>
         <h2>心理学，从这里开始</h2>
     		<div class="right">
@@ -167,7 +166,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									+"</dl>");
 		
 		</c:forEach>
-	
+		
 	</script>
 	
 </body>

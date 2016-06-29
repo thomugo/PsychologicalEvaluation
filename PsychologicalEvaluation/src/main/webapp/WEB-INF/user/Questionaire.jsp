@@ -13,11 +13,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<head>
 		<meta charset="utf-8" />
 		<title>管理员</title>
-
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
 		<!-- basic styles -->
 
 		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css" />
@@ -62,7 +60,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
 
 	<body>
-		<s:debug></s:debug>
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}

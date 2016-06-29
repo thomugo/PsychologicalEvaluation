@@ -168,7 +168,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																	</s:else>
 																	<a class="user" href="#"> <s:property value="#answer.title" /> </a>
 																	<br/>
-																	<s:property value="#answer.result" />													
+																	<s:property value='#answer.result.replace("<br>"," ").replace("<br/>", " ")' />													
 
 																	<div class="time">
 																		<i class="icon-time bigger-110"></i>

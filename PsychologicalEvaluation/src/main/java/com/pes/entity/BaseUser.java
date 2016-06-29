@@ -1,4 +1,5 @@
 package com.pes.entity;
+
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -8,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class BaseUser {
+public class BaseUser implements Serializable{
 	protected int id;
 	protected String username;
 	protected String password;

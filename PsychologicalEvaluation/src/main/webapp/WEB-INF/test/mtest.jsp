@@ -29,12 +29,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
 </head>
 <body>
-		
 <div data-role="page" id="id_ceshi_page" >
 	<input type="hidden" id="basePath" value="<%=basePath%>">
     <div class="header">
     		<div class="left">
-        		<a href="<%=path%>/questionaireList.action" class="ico ico-back icon"></a>
+        		<a  href="#" class="ico ico-back icon questionaireList" ></a>
     		</div>
     		<h2>测试</h2>
     		<div class="right">
@@ -86,7 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>   <!-- content -->
 
     <div class="po_footer">
-            <a title="测试列表" class="po_list" href="<%=path%>/questionaireList.action">测试列表</a>
+            <a href="#" title="测试列表" class="po_list questionaireList"  >测试列表</a>
     </div>
     
 </div><!-- /page -->
@@ -94,6 +93,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=path%>/js/jquery.mobile.min.js"></script>
 <script src="<%=path%>/js/mobile.js" ></script> 	
 <script type="text/javascript">
+			var basePath = $("#basePath").val();
   			var i=1;
 			var id=${questionaire.id};
 			var title="${questionaire.title}";		
@@ -147,7 +147,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										+"</div>");
 
 			</c:forEach>
-			   
+			   $('.questionaireList').click(function(){
+			   		window.location = basePath + "questionaireList.action";
+			   })
 </script>
 
 

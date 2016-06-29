@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" buffer="none"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -9,25 +9,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" >
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="">
-<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" >
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="">
+	<meta name="format-detection" content="telephone=no">
 <title>心理学从这里开始</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
-<link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css">
+<link rel="stylesheet" href="<%=path %>/style/mobile_421d115e12.css">
 
 <script src="<%=path%>/js/mobile_f4b5a0a094.js" ></script>
 
 </head>
 <body>
-<s:debug></s:debug>
-	<input type="hidden" id="basePath" value="<%=basePath%>">
+	<input type="hidden" id="basePath" value="<%=basePath %>">
 
     <div class="layout">
         <div class="header ">

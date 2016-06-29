@@ -1,10 +1,13 @@
 package com.pes.action;
 
 import java.util.Date;
+
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.opensymphony.xwork2.ModelDriven;
+import com.pes.entity.BaseUser;
 import com.pes.entity.User;
 import com.pes.service.UserService;
 
@@ -40,7 +43,8 @@ public class RegisteAction extends BaseAction implements ModelDriven<User>{
 		id = userService.save(user);
 		System.out.println("add success");
 		user.setId(id);
-		this.httpSession.setAttribute("loginUser", user);
+		BaseUser baseUser = user;
+		this.httpSession.setAttribute("loginUser", baseUser);
 		//AjaxUtil.ajaxJSONResponse(userInfo);
 		return "success";
 	}

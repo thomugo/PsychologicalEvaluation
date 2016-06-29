@@ -173,7 +173,7 @@ public class ArticleAction extends BaseAction{
 	}
 	
 	@Action(value = "editArticle")
-	@Authority(privilege=3)
+	@Authority(privilege=2)
 	public String editArticle()
 	{
 		//System.out.println(jsonString);
@@ -207,7 +207,7 @@ public class ArticleAction extends BaseAction{
 	}
 	
 	@Action(value="deleteArticle")
-	@Authority(privilege=2)
+	@Authority(privilege=1)
 	public String deleteArticle(){
 		if(jsonString != null){
 			JSONObject json = JSONObject.parseObject(jsonString);
@@ -268,7 +268,7 @@ public class ArticleAction extends BaseAction{
 	@Action(value="article", results={
 			@Result(name="success", location="/WEB-INF/user/push.jsp")
 			})
-	@Authority(privilege=3)
+	@Authority(privilege=2)
 	public String push(){
 		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
 		int ID = user.getId();

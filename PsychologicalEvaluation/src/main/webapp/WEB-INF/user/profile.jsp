@@ -25,7 +25,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <body>
-<s:debug></s:debug>
 		<input type="hidden" value="<%=basePath %>" id="basePath">
 		<div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
@@ -470,8 +469,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																</s:else>
 																	<a class="user" href="#"> <s:property value="#answer.title" /> </a>
 																	<br/>
-																	<s:property value="#answer.result" />													
-
+																	<s:property value='#answer.result.replace("<br>"," ").replace("<br/>", " ")' />													
 																	<div class="time">
 																		<i class="icon-time bigger-110"></i>
 																		<s:property value="#answer.dateTime" />

@@ -15,7 +15,7 @@ function remove(){
 				$.post(basePath+"deleteAnswer.action?answerId="+answerId,function(result){
 					var data = result.split("<script");
 					var resultStr = data[0];
-					alert(resultStr);
+					//alert(resultStr);
 				});
 				$(this).parent().parent().parent().remove();
 			}
@@ -35,17 +35,18 @@ $("#more").click(function(){
 		$.post(basePath+"detail.action", {"jsonString" : jsonString},function(result){
 			var data = result.split("<script");
 			var resultStr= data[0];
-			alert(resultStr);
+			//alert(resultStr);
 			var  datas= eval(resultStr);
 			for(var i=0; i<datas.length; i++){
 				//alert(datas[i].title);
+				var result = datas[i].result.replace("<br>", " ");
 				$("#profile-feed-1").append(
 					"<div class='profile-activity clearfix'>"
 						+"<div>"
 						+	"<img class='pull-left'  src="+path+" />"
 						+ " <a class='user' href='#'> "+datas[i].title+" </a>"
 								+"<br/>"
-								+datas[i].result			
+								+ result.replace('<br/>', ' ')
 								+"<div class='time'>"
 								+"<i class='icon-time bigger-110'></i>"
 								+ datas[i].dateTime

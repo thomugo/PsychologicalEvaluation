@@ -70,7 +70,7 @@ public class RulerAction extends BaseAction{
 	}
 	
 	@Override
-	@Authority(privilege=3)
+	@Authority(privilege=2)
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		vectors = (ArrayList<Integer>)questionaireService.getVectors(questionaireId);
@@ -115,7 +115,7 @@ public class RulerAction extends BaseAction{
 	@Action(value="saveRulers", results={
 			@Result(name="success", location="/WEB-INF/user/index.jsp")
 	})
-	@Authority(privilege=3)
+	@Authority(privilege=2)
 	public String fee() throws Exception {
 		// TODO Auto-generated method stub
 		System.err.println(jsonString);

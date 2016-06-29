@@ -70,7 +70,7 @@ public class WeixinResultAction extends  BaseAction{
 			this.addActionError("密码错误！");
 			return "input";
 		}else{
-			BaseUser baseUser = (BaseUser)user;
+			BaseUser baseUser = user;
 			this.httpSession.setAttribute("loginUser", baseUser);
 			System.out.println(baseUser.getId());
 			List<AnswerPojo> results = answerService.findByUserId(baseUser.getId());

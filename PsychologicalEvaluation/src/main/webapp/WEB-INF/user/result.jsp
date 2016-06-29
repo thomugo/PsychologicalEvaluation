@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div data-role="page" id="one">
     <div class="header">
     	<div class="left">
-        	<a  class="ico ico-back icon questionaireList"></a>
+        	<a  href="#" class = "ico ico-back icon questionaireList"></a>
     	</div>
     	<h2>测试</h2>
     	<div class="right">
@@ -57,15 +57,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
     <div data-role="content" style="font-size: 120%">
         <h1 class="po_title" id='title'>${questionaire.title}</h1>
-        <h2 style="font-size:16px;" id='result0'>我的结果 : ${answer.result}</h2>
+        <h2 style="font-size:16px; " id='result0'>我的结果 : <br/>
+        		${answer.result}
+        </h2>
         <br>
-
         <div class="kuang">
    		 	<span>综合心理健康评估</span>
     		<div class="jiao"></div>
 		</div>
 		<div class="btn">
-        	<a  style="color: white;font-weight: normal;font-family: 微软雅黑;text-shadow: 0 0 0;background-image:none" class="questionaireList">试试其他测试</a>
+        	<a  href="#" style="color: white;font-weight: normal;font-family: 微软雅黑;text-shadow: 0 0 0;background-image:none" class="questionaireList">试试其他测试</a>
     	</div>
 
 		<script src="<%=path%>/js/jquery.min.js"></script>

@@ -71,7 +71,7 @@ public class LoginAction extends  BaseAction{
 	        session.remove("prePage");
 	        if (prePage == null) {
 	        	//不是拦截器跳转到登陆页面的，直接访问的登陆页面
-	        	if(user.getPrivilege() == 3){
+	        	if(user.getPrivilege() <= 2){
 	        		return "admin";
 	        	}else{
 	        		return "success";

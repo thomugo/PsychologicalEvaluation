@@ -93,7 +93,7 @@ public class EditQuestionaire extends BaseAction {
 	}
 
 	@Override
-	@Authority(privilege=3)
+	@Authority(privilege=2)
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println(jsonString);
@@ -242,7 +242,7 @@ public class EditQuestionaire extends BaseAction {
 				}
 			}
 		}
-		if(user.getPrivilege() == 1){
+		if(user.getPrivilege() <= 2){
 			return "admin";
 		}
 		else{

@@ -84,7 +84,7 @@ public class MessageAction extends BaseAction {
 	}
 	
 	@Action(value="updateMessage")
-	@Authority(privilege=2)
+	@Authority(privilege=1)
 	public String update(){
 		if(jsonString != null){
 			System.out.println("updateMessage: " + jsonString);

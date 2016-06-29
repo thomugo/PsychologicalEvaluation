@@ -8,7 +8,6 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.fastjson.JSONObject;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 import com.pes.entity.AnswerPojo;
 import com.pes.entity.BaseUser;
@@ -31,7 +30,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	private UserService userService;
 	@Autowired
 	private AnswerService answerService;
-	private int id;
+	private Integer id;
 	private int pageSize = 4 ;
 	private int totalPages  = 0;
 	private int totalAnswerPages = 0;
@@ -39,7 +38,8 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	private int totalExpertPageNo = 0;
 	private int totalApplicantPageNo = 0;
 	private String jsonString;
-	private User user = null;
+	private User modelUser = new User();
+	private BaseUser user;
 	private List<User> users = new ArrayList<User>();
 	private List<AnswerPojo> answers = new ArrayList<AnswerPojo>();
 	private ArrayList<UserPojo> experts = new ArrayList<UserPojo>();
@@ -90,22 +90,21 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		this.jsonString = jsonString;
 	}
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public BaseUser getUser() {
+		return user;
 	}
 
 	public List<AnswerPojo> getAnswers() {
 		return answers;
 	}
-	
-	public User getUser() {
-		return user;
-	}
-	
 	
 	public ArrayList<UserPojo> getExperts() {
 		return experts;
@@ -121,11 +120,9 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 			})
 	@Authority(privilege=2)
 	public String execute() throws Exception {
-		user = (User) this.httpSession.getAttribute("loginUser");
+		user = (BaseUser) this.httpSession.getAttribute("loginUser");
 		System.out.println("login user infomation: ");
 		System.out.println(user);
-		ActionContext.getContext().getValueStack().push(user);
-		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
 		int ID = user.getId();
 		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
 		offLineMessageCount = messageService.getOffLineMessageCount(ID);
@@ -169,8 +166,17 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 			})
 	@Authority(privilege=5)
 	public String detail() {
+		user = null;
+		System.out.println("in detail");
 		if(jsonString == null){
-			user = userService.findById(id);
+			if(httpServletRequest.getParameter("id") == null || httpServletRequest.getParameter("id") == ""){
+				user = (BaseUser) this.httpSession.getAttribute("loginUser");
+			}else{
+				id = Integer.parseInt(httpServletRequest.getParameter("id"));
+				user = userService.findById(id);
+			}
+			id = user.getId();
+			System.out.println("in detail search :" + user);
 			answers = answerService.findAnswersByPage(id, 1, pageSize);
 			totalAnswerPages = answerService.getMaxAnswerPageNo(id, pageSize);
 			System.out.println(totalAnswerPages);
@@ -179,6 +185,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 			JSONObject json = JSONObject.parseObject(jsonString);
 			int pageNo = json.getInteger("pageNum");
 			int userId = json.getInteger("userId");
+			user = userService.findById(userId);
 			System.out.println("pageNo:" + pageNo);
 			ArrayList<AnswerPojo> answers = new ArrayList<AnswerPojo>();
 			answers = (ArrayList<AnswerPojo>) answerService.findAnswersByPage(userId, pageNo, pageSize);
@@ -186,9 +193,9 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 			AjaxUtil.ajaxJSONResponse(answers);
 			return NONE;
 		}
-		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
-		int ID = user.getId();
-		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
+		BaseUser loginUser = (BaseUser) this.httpSession.getAttribute("loginUser");
+		int ID = loginUser.getId();
+		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - loginUser.getBroadcast();
 		offLineMessageCount = messageService.getOffLineMessageCount(ID);
 		offLineUserMessages.clear();
 		if(offLineMessageCount > 0){
@@ -221,7 +228,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 				}
 			}
 		}
-		if(user.getPrivilege() <= 3){
+		if(loginUser.getPrivilege() <= 2){
 			return "adminuserinfo";
 		}else{
 			return "normaluserinfo";
@@ -231,7 +238,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	@Action(value="userList", results={
 			@Result(name="users", location="/WEB-INF/user/userList.jsp")
 	})
-	@Authority(privilege=3)
+	@Authority(privilege=2)
 	public String getAllUsers(){
 		//List<User> users = userService.findAll();
 		JSONObject json;
@@ -246,15 +253,16 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		users = userService.findByPage(pageNum, pageSize, true);
 		System.out.println("find "+users.size()+"users");
 		//System.out.println(userService.findById(18));
-		System.out.println(users);
+		//System.out.println(users);
 		if(jsonString != null){
 			jsonString = null;
 			AjaxUtil.ajaxJSONResponse(users);
 			return NONE;
 		}
-		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
-		int ID = user.getId();
-		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
+		BaseUser loginUser = (BaseUser)httpSession.getAttribute("loginUser");
+		System.out.println(loginUser);
+		int ID = loginUser.getId();
+		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - loginUser.getBroadcast();
 		offLineMessageCount = messageService.getOffLineMessageCount(ID);
 		offLineUserMessages.clear();
 		if(offLineMessageCount > 0){
@@ -291,7 +299,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	}
 	
 	@Action(value="deleteUser")
-	@Authority(privilege=2)
+	@Authority(privilege=1)
 	public String deleteUser(){
 		//JSONObject json = JSONObject.parseObject(jsonString);
 		//id = json.getInteger("id");
@@ -304,14 +312,19 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		AjaxUtil.ajaxJSONResponse(users);
 		return NONE;
 	}
+	
 	@Action(value="modifyUser")
+	@Authority(privilege=1)
 	public String modifyUser(){
-		userService.modify(user);
-		this.httpSession.setAttribute("loginUser", user);
+		int modifyId = modelUser.getId();
+		userService.modify(modelUser);
+		BaseUser loginUser = (BaseUser) this.httpSession.getAttribute("loginUser");
+		if(loginUser.getId() == modifyId){
+			this.httpSession.setAttribute("loginUser", modelUser);
+		}
 		//AjaxUtil.ajaxJSONResponse(userInfo);
-		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
-		int ID = user.getId();
-		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
+		int ID = loginUser.getId();
+		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - loginUser.getBroadcast();
 		offLineMessageCount = messageService.getOffLineMessageCount(ID);
 		offLineUserMessages.clear();
 		if(offLineMessageCount > 0){
@@ -373,18 +386,16 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		return totalPages;
 	}
 	
-	
-
 	@Override
 	public com.pes.entity.User getModel() {
 		// TODO Auto-generated method stub
-		return user;
+		return modelUser;
 	}
 	
 	@Action(value="expertUserList",results={
 			@Result(name="expert", location="/WEB-INF/chat/mchatList.jsp")
 	})
-	@Authority(privilege=5)
+	@Authority(privilege=1)
 	public String expertUser(){
 		if(jsonString != null){
 			JSONObject json = JSONObject.parseObject(jsonString);
@@ -397,9 +408,9 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 			jsonString = null;
 			return NONE;
 		}
-		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
-		int ID = user.getId();
-		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
+		BaseUser loginUser = (BaseUser)httpSession.getAttribute("loginUser");
+		int ID = loginUser.getId();
+		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - loginUser.getBroadcast();
 		offLineMessageCount = messageService.getOffLineMessageCount(ID);
 		offLineUserMessages.clear();
 		if(offLineMessageCount > 0){
@@ -435,7 +446,7 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		return "expert";
 	}
 	@Action(value="applicantUserList")
-	@Authority(privilege=2)
+	@Authority(privilege=1)
 	public String applicantUser(){
 		if(jsonString != null){
 			JSONObject json = JSONObject.parseObject(jsonString);
@@ -445,9 +456,9 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 			AjaxUtil.ajaxJSONResponse(applicants);
 			jsonString = null;
 		}
-		BaseUser user = (BaseUser)httpSession.getAttribute("loginUser");
-		int ID = user.getId();
-		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - user.getBroadcast();
+		BaseUser loginUser = (BaseUser)httpSession.getAttribute("loginUser");
+		int ID = loginUser.getId();
+		unReadBroadCastMessageCount = messageService.getBroadCastMessageCount() - loginUser.getBroadcast();
 		offLineMessageCount = messageService.getOffLineMessageCount(ID);
 		offLineUserMessages.clear();
 		if(offLineMessageCount > 0){

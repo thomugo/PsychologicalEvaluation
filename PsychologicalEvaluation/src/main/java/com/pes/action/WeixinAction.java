@@ -24,7 +24,7 @@ public class WeixinAction extends  BaseAction{
 	private String headimgurl;
 	//登录前页面
     private String prePage;
-    private User user;
+    private BaseUser baseUser;
 	@Autowired
 	private UserService userService;
 	
@@ -71,9 +71,9 @@ public class WeixinAction extends  BaseAction{
         prePage = (String) session.get("prePage");
         System.out.println("in weixin action and prePage: "+prePage);
 		if(userService.isUserExist(nickname)){
-			user = userService.validate(nickname	, openId);
+			baseUser = userService.validate(nickname	, openId);
 		}else{
-			user = new User();
+			User user = new User();
 			user.setUsername(nickname);
 			user.setPrivilege(4);
 			user.setPassword(openId);
@@ -86,19 +86,19 @@ public class WeixinAction extends  BaseAction{
 			user.setPhone("null");
 			int id = userService.save(user);
 			user.setId(id);
+			baseUser = user;
 		}
-		if(user == null)
+		if(baseUser == null)
 		{
 			this.addActionError("密码错误！");
 			return "input";
 		}else{
-			BaseUser baseUser = user;
-			this.httpSession.setAttribute("loginUser", user);
+			this.httpSession.setAttribute("loginUser", baseUser);
 			//清除session中的数据
 	        session.remove("prePage");
 	        if (prePage == null) {
 	        	//不是拦截器跳转到登陆页面的，直接访问的登陆页面
-	        	if(user.getPrivilege() <= 3){
+	        	if(baseUser.getPrivilege() <= 3){
 	        		return "admin";
 	        	}else{
 	        		return "success";
