@@ -17,12 +17,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="apple-mobile-web-app-title" content="">
 	<meta name="format-detection" content="telephone=no">
-<title>心理学从这里开始</title>
-<meta name="keywords" content="">
-<meta name="description" content="">
-<link rel="stylesheet" href="<%=path %>/style/mobile_421d115e12.css">
+	<title>心理学从这里开始</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="<%=path %>/style/mobile_421d115e12.css">
 
-<script src="<%=path%>/js/mobile_f4b5a0a094.js" ></script>
+	<script src="<%=path%>/js/mobile_f4b5a0a094.js" ></script>
 
 </head>
 <body>

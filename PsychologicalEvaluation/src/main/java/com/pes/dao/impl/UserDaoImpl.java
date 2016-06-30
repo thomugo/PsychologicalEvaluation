@@ -17,7 +17,6 @@ import org.springframework.stereotype.Repository;
 import com.pes.dao.UserDao;
 import com.pes.entity.User;
 import com.pes.entity.UserPojo;
-import com.sun.org.apache.bcel.internal.generic.POP;
 
 /**
  * 
@@ -112,7 +111,7 @@ public class UserDaoImpl  extends GenericDao2Impl<User, Integer> implements User
         int actualPageSize = (pageSize > totalRows) ? totalRows : pageSize;   
         int startRow = (actualPageNo > 0) ? (actualPageNo - 1) * actualPageSize : 0;  
         Criteria criteria = this.getCurrentSession().createCriteria(User.class);
-        criteria.add(Restrictions.eq("privilege", 3));
+        criteria.add(Restrictions.eq("privilege", 2));
         criteria.setFirstResult(startRow).setMaxResults(actualPageSize);
 	    criteria.setProjection( Projections.projectionList()
 	    		.add( Projections.property("id"), "id" )
@@ -121,6 +120,7 @@ public class UserDaoImpl  extends GenericDao2Impl<User, Integer> implements User
 	    		.add( Projections.property("gender"), "gender")
 	    		.add( Projections.property("vocation"), "vocation")
 	    		.add( Projections.property("email"), "email")
+	    		.add( Projections.property("icon"), "icon")
 	    		.add( Projections.property("username"), "username"));
 	    ScrollableResults srs = criteria.scroll();
 	    ArrayList<UserPojo> users = new ArrayList<UserPojo>();
@@ -132,7 +132,8 @@ public class UserDaoImpl  extends GenericDao2Impl<User, Integer> implements User
           userPojo.setGender(srs.getInteger(3));
           userPojo.setVocation(srs.getString(4));
           userPojo.setEmail(srs.getString(5));
-          userPojo.setUsername(srs.getString(6));
+          userPojo.setIcon(srs.getString(6));
+          userPojo.setUsername(srs.getString(7));
           users.add(userPojo);
        }
 		return users;

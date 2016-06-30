@@ -25,7 +25,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
 
 	<body>
-	<s:debug></s:debug>
 		<input type="hidden" id="basePath" value="<%=basePath%>">
   		<input type="hidden" id="userId"  value="${sessionScope.loginUser.id}"/> 
   		<input type="hidden" id="username"  value="${sessionScope.loginUser.username}"/> 

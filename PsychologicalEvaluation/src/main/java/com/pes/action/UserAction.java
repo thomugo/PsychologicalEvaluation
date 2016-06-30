@@ -113,7 +113,30 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 	public ArrayList<User> getApplicants() {
 		return applicants;
 	}
+	
+	public List<User> getUsers() {
+		return users;
+	}
+	
+	public int getPageSize() {
+		return pageSize;
+	}
 
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public int getTotalPages() {
+		totalPages = userService.getMaxPageNo(pageSize);
+		return totalPages;
+	}
+	
+	@Override
+	public com.pes.entity.User getModel() {
+		// TODO Auto-generated method stub
+		return modelUser;
+	}
+	
 	@Override
 	@Action(value="user", results={
 			@Result(name="userinfo", location="/WEB-INF/user/userinfo.jsp")
@@ -369,33 +392,11 @@ public class UserAction extends BaseAction implements ModelDriven<User>{
 		this.httpSession.removeAttribute("loginUser");
 		return "index";
 	}
-	public List<User> getUsers() {
-		return users;
-	}
-	
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
-
-	public int getTotalPages() {
-		totalPages = userService.getMaxPageNo(pageSize);
-		return totalPages;
-	}
-	
-	@Override
-	public com.pes.entity.User getModel() {
-		// TODO Auto-generated method stub
-		return modelUser;
-	}
 	
 	@Action(value="expertUserList",results={
 			@Result(name="expert", location="/WEB-INF/chat/mchatList.jsp")
 	})
-	@Authority(privilege=1)
+	@Authority(privilege=5)
 	public String expertUser(){
 		if(jsonString != null){
 			JSONObject json = JSONObject.parseObject(jsonString);

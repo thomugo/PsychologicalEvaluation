@@ -8,16 +8,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML>
 <html>
-<head>
-<base href="<%=basePath%>">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>心理学从这里开始 用户注册</title>
-<meta name="description" content="心理测评系统">
-<meta name="keywords" content="微信公众号，心理测评">
-<meta name="format-detection" content="telephone=no">
-<meta name="format-detection" content="address=no">
+	<head>
+	<base href="<%=basePath%>">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>心理学从这里开始 用户注册</title>
+	<meta name="description" content="心理测评系统">
+	<meta name="keywords" content="微信公众号，心理测评">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="address=no">
 	<link rel="stylesheet" type="text/css" href="<%=path%>/assets/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<%=path%>/style/reset.css">
 	<link rel="stylesheet" type="text/css" href="<%=path%>/style/custom.css">

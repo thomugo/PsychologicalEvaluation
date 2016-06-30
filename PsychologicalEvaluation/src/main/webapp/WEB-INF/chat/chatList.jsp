@@ -17,9 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
 		<!-- basic styles -->
-
 		<link rel="stylesheet" href="<%=path%>/assets/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="<%=path%>/assets/css/font-awesome.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace.min.css" />

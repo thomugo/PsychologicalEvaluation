@@ -641,7 +641,7 @@ $("#more").click(function(){
 		$.post(basePath+"detail.action", {"jsonString" : jsonString},function(result){
 			var data = result.split("<script");
 			var resultStr= data[0];
-			alert(resultStr);
+			//alert(resultStr);
 			var  datas= eval(resultStr);
 			for(var i=0; i<datas.length; i++){
 				//alert(datas[i].title);

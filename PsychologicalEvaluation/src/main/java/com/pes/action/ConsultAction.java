@@ -146,7 +146,7 @@ public class ConsultAction extends BaseAction{
 			}
 		}
 		System.out.println("privilege:"+user.getPrivilege());
-		if(user.getPrivilege() <= 3){
+		if(user.getPrivilege() <= 2){
 			return "admin";
 		}else{
 			return "normal";

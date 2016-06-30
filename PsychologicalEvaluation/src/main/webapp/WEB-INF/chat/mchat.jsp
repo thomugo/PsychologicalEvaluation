@@ -23,12 +23,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="<%=path%>/assets/css/ace-skins.min.css" />
-
-
 	</head>
 
 	<body>
-		<s:debug></s:debug>
   		<input type="hidden" id="userId"  value="${sessionScope.loginUser.id}"/> 
   		<input type="hidden" id="username"  value="${sessionScope.loginUser.username}"/> 
   		<input type="hidden" id="userIcon"  value="${sessionScope.loginUser.icon}"/> 

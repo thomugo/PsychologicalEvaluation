@@ -12,17 +12,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" >
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="">
-<meta name="format-detection" content="telephone=no">
-<title>心理学从这里开始</title>
-<meta name="keywords" content="">
-<meta name="description" content="">
-<link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css">
-
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" >
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="">
+	<meta name="format-detection" content="telephone=no">
+	<title>心理学从这里开始</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="<%=path%>/style/mobile_421d115e12.css">
 
     <script src="<%=path%>/js/jquery.min.js" ></script></head>
 
@@ -105,10 +104,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var name="${user.username}";
 		var vocation="${user.vocation}";
 		var id="${user.id}";
-		var icon;
+		var icon="${user.icon}";
 		$("#online-list").append("<li>"
 								+"<div class='left'>"
-								+"<div class='avatar'><img src='"+basePath+"assets/avatars/avatar.png'></div>"
+								+"<div class='avatar'><img src='"+basePath+"assets/avatars/"+icon+"'></div>"
 							    +"</div><div class='right'>"
 							    +"<div class='text'>"
 							    +"<p><span class='name'>"+"<a href='"+basePath+"chat.action?id="+id+"'>"+name+"</a></span>"

@@ -10,6 +10,7 @@ public class UserPojo implements Serializable{
 	private String vocation;
 	private String username;
 	private String email;
+	private String icon;
 	
 	public UserPojo(){
 	}
@@ -69,13 +70,22 @@ public class UserPojo implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
 
 	@Override
 	public String toString() {
 		return "UserPojo [id=" + id + ", age=" + age + ", phone=" + phone
 				+ ", gender=" + gender + ", vocation=" + vocation
-				+ ", username=" + username + ", email=" + email + "]";
+				+ ", username=" + username + ", email=" + email + ", icon="
+				+ icon + "]";
 	}
-	
+
 	
 }
