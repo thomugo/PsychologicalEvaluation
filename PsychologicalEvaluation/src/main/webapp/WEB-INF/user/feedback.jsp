@@ -36,13 +36,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <h2>留言</h2>
         <div class="right">
-            <div class="img">
-                
-                    <a class="avatar" href="<%=path%>/user/user.jsp">
-                        <img src="<%=path%>/image/avatar.jpg" width="60" height="60">
-                    </a>
-                
-            </div>
+                <div class="img">                		
+               		 <s:if test="#session.loginUser==null" ><!--用户未登录  -->
+               		 	<a class="avatar" href="<%=path%>/login.jsp">
+               		 		<img src="<%=path%>/image/img155.png" width="60" height="60">
+               		 		
+               		 	</a>
+               		 </s:if>
+						<s:elseif test="#session.loginUser.privilege==4">						<!--用户已登录  -->
+  						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
+  						<img src="${loginUser.icon}" width="60" height="60">
+                  	  	</a>
+       				  </s:elseif>  
+       				  <s:else>
+  						<a class="avatar" href="${ pageContext.request.contextPath }/logout.action">
+                        	<img src="<%=path%>/assets/avatars/${loginUser.icon}" width="60" height="60"> 
+                  	  	</a>       				  
+       				  </s:else>   					     				                 	 	
+                </div>
         </div>
     </div>
 

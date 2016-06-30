@@ -83,25 +83,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    	<div class="qs-expert_on userVersion" style="padding-bottom: 153px;">
 		        	<div class="body">
 		           	 	<ul id="online-list">
-
-							<li>
-							    <div class="left">
-							        <div class="avatar"><img src="http://ossimg.xinli001.com/20160321/614b26dae32b86c7c33e24b8360f2d8f.png!80"></div>
-							    </div>
-							    <div class="right">
-							        <div class="text">
-							            <p><span class="name">张筱茜</span>
-							                <span class="title">国家三级咨询师</span></p>
-							            <p class="desc">你来或者不来，我一直都会在这里！</p>
-							            <ul class="tags">
-							                                    <li>婚恋</li>
-							                                    <li>情绪</li>
-							                                    <li>职场</li>
-							                                    <li>个人成长</li>
-							            </ul>
-							        </div>
-							    </div>
-							</li>
 							
 						</ul>
     				</div>
@@ -124,9 +105,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var name="${user.username}";
 		var vocation="${user.vocation}";
 		var id="${user.id}";
+		var icon;
 		$("#online-list").append("<li>"
 								+"<div class='left'>"
-								+"<div class='avatar'><img src='http://ossimg.xinli001.com/20160321/614b26dae32b86c7c33e24b8360f2d8f.png!80'></div>"
+								+"<div class='avatar'><img src='"+basePath+"assets/avatars/avatar.png'></div>"
 							    +"</div><div class='right'>"
 							    +"<div class='text'>"
 							    +"<p><span class='name'>"+"<a href='"+basePath+"chat.action?id="+id+"'>"+name+"</a></span>"
