@@ -1,7 +1,3 @@
-$.ajaxSetup({
-   type: 'POST',
-   headers: { "cache-control": "no-cache" }
-});
 var basePath = $("#basePath").val();
 var send=true;
 function infosPageInit(){
@@ -131,11 +127,18 @@ $('#id_ceshi_page').live('pageinit', function() {
 					 answer["choiceQuestions"] = choiceQuestions;
 					 var jsonString = JSON.stringify(answer);
 					 //alert(jsonString); 
-					
 					$.post(basePath+"saveAnswer.action", {"jsonString" : jsonString},
 						function (data){
-						$("body").html(data);
+							//$("body").html(data);
+							$("html").remove();
+							window.document.write(data);
+							window.document.close();
+							//OpenWindow=window.open(basePath+"result.jsp"); 
+							//OpenWindow.document.write(data);
+							//OpenWindow.document.close();
+							//window.location = "questionaireList.action";
 						});	 	
+					
 				}
 				 	send=false;
 			 });
